@@ -1,0 +1,111 @@
+*{
+
+    -fx-primary-color: #153849;/*Fundo tarja superior*/
+    -fx-secondary-color: #d4dbdc;/*Fundo panel inferior*/
+    -fx-third-color:#b8cad4;
+    -fx-fourth-color:#880015;
+    -fx-fifth-color:#ffffff;/*Branco*/
+    -fx-focus-color: -fx-primary-color;
+    -fx-box-border: #9fb9b9;
+    -fx-inner-border: #b5e9e9;
+    -fx-body-color: #bbe4e4;
+   /* -fx-text-font:*/
+}
+
+.button{
+    -fx-body-weight:60;
+    -fx-body-width:35;
+    -fx-background-color:-fx-primary-color;
+    -fx-background-radius:10;
+    -fx-text-fill: -fx-fifth-color;
+    -fx-border-color: -fx-secondary-color;
+    -fx-border-width:0;
+    -fx-border-weight:0;
+    -fx-border-radius:7 7 7 7;
+}
+
+.button:focused{
+    -fx-border-color: -fx-third-color;
+    -fx-font-weight:bold;
+}
+
+.button:hover{
+    -fx-background-color:#214455;
+    -fx-font-weight:bold;
+}
+
+.button3{
+    -fx-pref-width:90;
+    -fx-pref-weight:25;
+    -fx-background-color:-fx-primary-color;
+    -fx-background-radius:10;
+    -fx-text-fill: -fx-fifth-color;
+    -fx-border-color: -fx-secondary-color;
+    -fx-border-width:0;
+    -fx-border-weight:0;
+    -fx-border-radius:7 7 7 7;
+}
+
+.button3:focused{
+    -fx-border-color: -fx-third-color;
+    -fx-font-weight:bold;
+}
+
+.button3:hover{
+    -fx-background-color:#214455;
+    -fx-font-weight:bold;
+
+}
+
+.button4{
+    -fx-pref-width:65;
+    -fx-pref-weight:65;
+    -fx-background-color:-fx-secondary-color;
+    -fx-border-color:-fx-primary-color;
+    -fx-background-radius:10;
+    -fx-text-fill: -fx-primary-color;
+    -fx-border-width:2;
+    -fx-border-weight:2;
+    -fx-border-radius:7 7 7 7;
+}
+
+.button4:focused{
+    -fx-border-color: -fx-fifth-color;
+    -fx-font-weight:bold;
+}
+
+.button4:hover{
+    -fx-background-color:-fx-secondary-color;
+    -fx-border-color:-fx-fifth-color;
+    -fx-font-weight:bold;
+}
+
+.btn1{
+    -fx-background-color:#e32636;
+    -fx-background-radius:30;
+    -fx-border-width:0;
+    -fx-border-weight:0;
+    -fx-font-weight:bold;
+    -fx-border-radius: 7 7 7 7;
+    -fx-text-fill: -fx-fifth-color;
+}
+
+.btn2{
+    -fx-background-color:#7dd0d4;
+    -fx-background-radius:30;
+    -fx-border-width:0;
+    -fx-border-weight:0;
+    -fx-font-weight:bold;
+    -fx-border-radius:7 7 7 7;
+    -fx-text-fill: -fx-fifth-color;
+}
+
+.btn3{
+    -fx-background-color:-fx-primary-color;
+    -fx-background-radius:30;
+    -fx-border-width:0;
+    -fx-border-weight:0;
+    -fx-font-weight:bold;
+    -fx-border-radius:7 7 7 7;
+    -fx-text-fill: -fx-fifth-color;
+}

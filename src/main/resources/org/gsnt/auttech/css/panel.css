@@ -1,0 +1,86 @@
+*{
+
+    -fx-primary-color: #153849;/*Fundo tarja superior verde escuro*/
+    -fx-secondary-color: #d4dbdc;/*Fundo panel inferior*/
+    -fx-third-color:#b8cad4;
+    -fx-fourth-color:#880015;
+    -fx-fifth-color:#ffffff;/*Branco*/
+    -fx-sixth-color:#2f4f4f;
+}
+
+.pane{
+      -fx-background-color:-fx-secondary-color;
+          -fx-border-width:0;
+          -fx-background-insets: 0 0 0 0;
+          -fx-background-radius: 20 20 0 0;
+}
+
+.pane1{
+      -fx-background-color:-fx-secondary-color;
+          -fx-border-width:0;
+          -fx-background-insets: 0;
+          -fx-background-radius: 0;
+}
+
+
+
+
+.anchorpane{
+
+    -fx-background-color: -fx-primary-color;
+    -fx-border-width:20;
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+}
+
+.anchorpane1{
+    -fx-background-color: -fx-secondary-color;
+    -fx-border-width:0;
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+}
+
+.anchorpane2{
+    -fx-background-color: -fx-secondary-color;
+    -fx-border-color:-fx-primary-color;
+    -fx-border-width:3;
+    -fx-border-radius: 10 10 0 0;
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-radius: 10 10 0 0;
+}
+
+.vbox{
+ 	-fx-background-color: -fx-primary-color;
+ 	-fx-background-radius: 10 0 0 10;
+}
+
+.pane-header-area{
+ 	-fx-background-color: -fx-primary-color;
+}
+
+.scrollpanel{
+
+    -fx-border-color:-fx-primary-color;
+     -fx-background-color:-fx-secondary-color;
+     -fx-border-width:2;
+     -fx-background-insets: 0 0 0 0;
+     -fx-background-radius: 20 20 0 0;
+}
+
+.accordion{
+    -fx-border-color:-fx-primary-color;
+    -fx-background-color:-fx-secondary-color;
+    -fx-text-fill:-fx-fifth-color;
+    -fx-border-width:2;
+
+}
+
+.titledpane{
+    -fx-background-color:-fx-secondary-color;
+    -fx-text-fill: -fx-fifth-color;
+
+}
+
+.titledpane > .title{
+    -fx-background-color: -fx-primary-color;
+}

@@ -1,0 +1,61 @@
+*{
+    -fx-primary-color: #1f4152;/*Fundo tarja superior*/
+    -fx-secondary-color: #d5dbde;/*Fundo panel inferior*/
+    -fx-third-color:#153849;/*Fundo aba selecionada*/
+}
+
+
+.tab-pane {/*panel interno da tab*/
+
+    -fx-background-color:-fx-secondary-color;
+	-fx-tab-min-width: 120px;
+	-fx-tab-min-height: 45px;
+	-fx-tab-max-height: 45px;
+	-fx-background-radius: 10;
+	-fx-border-color:-fx-primary-color;
+	-fx-border-width:2;
+	-fx-border-radius:10;
+	-fx-padding: 1;
+
+}
+
+.tab .tab-label {
+
+ 	-fx-alignment: center-left;
+	-fx-text-fill: white;
+  	-fx-font-weight: bold;
+
+}
+
+
+.tab-pane:focused .tab-header-area .headers-region .tab:selected .focus-indicator {
+
+    -fx-text-color:-fx-primary-color;
+    -fx-border-color:-fx-primary-color;
+ 	-fx-border-width: 0 0 0 0;
+	-fx-border-insets: 0 0 0 0;
+	-fx-border-radius: 7 7 0 0;
+
+}
+
+.tab-pane .tab {
+    -fx-border-width: 10;
+    -fx-background-color:-fx-primary-color;
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-radius: 7 7 0 0;
+}
+
+
+
+.tab-header-area .tab-header-background {
+ 	-fx-background-color: -fx-secondary-color;
+ 	-fx-background-radius: 7 7 0 0;
+}
+
+.tab-pane .tab:selected {
+ 	-fx-background-color: -fx-third-color;
+	-fx-background-insets: 3 3 0 0;
+	-fx-background-radius: 7 7 0 0;
+
+}
+

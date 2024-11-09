@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1210.0" styleClass="anchorpane" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.controller.TelaPrincipalController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="AUTTECH - Automação de processos na gestão de oficinas" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btIconified" layoutX="843.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="btn2" stylesheets="@css/button.css" text="_" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btClose" layoutX="913.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btCloseButtonClick" prefHeight="25.0" prefWidth="25.0" styleClass="btn1" stylesheets="@css/button.css" text="X" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Button>
+      <Pane layoutY="50.0" prefHeight="850.0" prefWidth="1200.0" styleClass="pane" stylesheets="@css/panel.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+         <children>
+            <TabPane layoutX="13.0" layoutY="14.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="320.0" prefWidth="1175.0" stylesheets="@css/tabpane.css" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                  <Tab text="Clientes / Veículos">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@css/tabpane.css">
+                           <children>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="25.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
+                              <Button fx:id="btCliente" layoutX="10.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btClienteButtonClick" prefHeight="70.0" prefWidth="70.0" styleClass="button4" stylesheets="@css/button.css" text="Clientes" />
+                              <Button fx:id="btVeiculo" layoutX="84.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btVeiculoButtonClick" prefHeight="70.0" prefWidth="70.0" styleClass="button4" stylesheets="@css/button.css" text="Veículo" />
+                              <Button fx:id="btAgenda" layoutX="158.0" layoutY="13.0" mnemonicParsing="false" onAction="#btAgendaButtonClick" prefHeight="70.0" prefWidth="70.0" styleClass="button4" stylesheets="@css/button.css" text="Agenda" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab closable="false" text="Cadastros">
+                      <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                      </content>
+                  </Tab>
+                <Tab closable="false" text="Relatórios">
+                  <content>
+                    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="262.0" prefWidth="1168.0" />
+                  </content>
+                </Tab>
+                <Tab closable="false" text="Fornecedores">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+              </tabs>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </TabPane>
+            <Label layoutX="14.0" layoutY="340.0" stylesheets="@css/label.css" text="Serviços">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Accordion fx:id="accServicos" layoutX="12.0" layoutY="375.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="1175.0" stylesheets="@css/panel.css">
+              <panes>
+                <TitledPane fx:id="tpAgenda" animated="false" styleClass="titledpane" stylesheets="@css/panel.css" text="Agenda" textFill="WHITE">
+                     <content>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="329.0" prefWidth="1169.0" styleClass="anchorpane1" stylesheets="@css/panel.css">
+                           <children>
+                              <ScrollPane prefHeight="329.0" prefWidth="956.0">
+                                 <content>
+                                    <TableView fx:id="tvAgenda" prefHeight="333.0" prefWidth="940.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="C1" />
+                                        <TableColumn prefWidth="75.0" text="C2" />
+                                      </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                              <Button fx:id="btAgenda" layoutX="961.0" layoutY="8.0" mnemonicParsing="false" onAction="#btAgendaButtonClick" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Agendar" />
+                              <Button fx:id="btCancAgenda" layoutX="961.0" layoutY="52.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancelar agendamento" />
+                              <Button fx:id="btReceberVeic" layoutX="961.0" layoutY="93.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="confirmar recebimento do veículo" />
+                              <Button fx:id="btEnvioSocorro" layoutX="961.0" layoutY="135.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Confirmar envio do socorro" />
+                           </children>
+                        </AnchorPane>
+                     </content></TitledPane>
+                <TitledPane fx:id="tpFuturos" animated="false" prefHeight="430.0" prefWidth="1175.0" styleClass="titledpane" stylesheets="@css/panel.css" text="Veículos a serem iniciados" textFill="WHITE">
+                     <content>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="329.0" prefWidth="1169.0" styleClass="anchorpane1" stylesheets="@css/panel.css">
+                           <children>
+                              <ScrollPane prefHeight="329.0" prefWidth="956.0">
+                                 <content>
+                                    <TableView prefHeight="333.0" prefWidth="940.0">
+                                       <columns>
+                                          <TableColumn prefWidth="75.0" text="C1" />
+                                          <TableColumn prefWidth="75.0" text="C2" />
+                                       </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                              <Button fx:id="btAbrirOS" layoutX="961.0" layoutY="8.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Abrir ordem de serviços" />
+                              <Button fx:id="btCancOS" layoutX="961.0" layoutY="52.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancelar ordem de serviço" />
+                              <Button fx:id="btDirTecnico" layoutX="961.0" layoutY="93.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Direcionar ao(s) técnico(s)" />
+                           </children>
+                        </AnchorPane>
+                     </content></TitledPane>
+                  <TitledPane fx:id="tpEmOrcamento" animated="false" styleClass="titledpane" stylesheets="@css/panel.css" text="Veículos em orçamento">
+                     <content>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="329.0" prefWidth="1169.0" styleClass="anchorpane1" stylesheets="@css/panel.css">
+                           <children>
+                              <ScrollPane prefHeight="329.0" prefWidth="956.0">
+                                 <content>
+                                    <TableView prefHeight="333.0" prefWidth="940.0">
+                                       <columns>
+                                          <TableColumn prefWidth="75.0" text="C1" />
+                                          <TableColumn prefWidth="75.0" text="C2" />
+                                       </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                              <Button fx:id="btAltOrc" layoutX="961.0" layoutY="9.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Alterar orçamento" />
+                              <Button fx:id="btAutrzOrc" layoutX="961.0" layoutY="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Autorizar orçamento" />
+                              <Button fx:id="btCnclOrc" layoutX="961.0" layoutY="92.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancelar serviço" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </TitledPane>
+                  <TitledPane fx:id="tpServicos" animated="false" styleClass="titledpane" stylesheets="@css/panel.css" text="Veículos em serviços">
+                     <content>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="329.0" prefWidth="1169.0" styleClass="anchorpane1" stylesheets="@css/panel.css">
+                           <children>
+                              <ScrollPane prefHeight="329.0" prefWidth="956.0">
+                                 <content>
+                                    <TableView prefHeight="333.0" prefWidth="940.0">
+                                       <columns>
+                                          <TableColumn prefWidth="75.0" text="C1" />
+                                          <TableColumn prefWidth="75.0" text="C2" />
+                                       </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                              <Button fx:id="btFnlzServ" layoutX="961.0" layoutY="97.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Finalizar serviço" />
+                              <Button fx:id="btCncOS" layoutX="961.0" layoutY="54.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancela Ordem de Serviço" />
+                              <Button fx:id="btAlteraOS" layoutX="961.0" layoutY="11.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Altera Ordem de Serviço" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </TitledPane>
+                  <TitledPane fx:id="tpProntos" animated="false" styleClass="titledpane" stylesheets="@css/panel.css" text="Veículos prontos">
+                     <content>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="329.0" prefWidth="1169.0" styleClass="anchorpane1" stylesheets="@css/panel.css">
+                           <children>
+                              <ScrollPane prefHeight="329.0" prefWidth="956.0">
+                                 <content>
+                                    <TableView prefHeight="333.0" prefWidth="940.0">
+                                       <columns>
+                                          <TableColumn prefWidth="75.0" text="C1" />
+                                          <TableColumn prefWidth="75.0" text="C2" />
+                                       </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                              <Button fx:id="btFnlzOS" layoutX="961.0" layoutY="11.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Finalizar ordem de serviço" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </TitledPane>
+              </panes>
+            </Accordion>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

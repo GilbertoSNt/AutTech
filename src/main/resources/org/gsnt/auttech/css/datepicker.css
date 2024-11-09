@@ -1,0 +1,42 @@
+* {
+    -fx-primary-color: #153849;  /*Fundo tarja superior verde escuro*/
+    -fx-secondary-color: #d4dbdc;  /*Fundo panel inferior*/
+    -fx-third-color:#b8cad4;
+    -fx-fourth-color:#880015;
+    -fx-fifth-color:#ffffff;  /*Branco*/
+    -fx-sixth-color:#2f4f4f;
+    -fx-outer-border: -fx-primary-color;
+    -fx-inner-border: -fx-primary-color;
+}
+
+.calendar-grid {
+    -fx-background-color: -fx-secondary-color;
+}
+/*
+.combo-box-popup > .list-view > .placeholder > .label {
+    /*-fx-text-fill: -fx-fifth-color;*/
+/*}*/
+
+.calendar-header {
+    -fx-background-color: -fx-secondary-color;
+    -fx-text-fill: -fx-fifth-color;
+}
+
+.date-picker-popup > .month-year-pane{
+    -fx-background-color: -fx-secondary-color;
+}
+
+.date-picker > .text-field {
+	-fx-background-insets: 0, 0 1 0 0;
+	-fx-background-radius: 0 0 0 5;
+}
+
+/*.date-picker-popup > .month-year-pane > .secondary-label{
+    /*-fx-text-fill: -fx-fifth-color;*/
+/*}*/
+
+.date-picker > .arrow-button {
+    -fx-background-color: -fx-fifth-color,-fx-primary-color;
+    -fx-background-radius: 0 5 5 0;
+}
+

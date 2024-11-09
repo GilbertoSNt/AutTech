@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="993.0" styleClass="anchorpane" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testecfx.fxml.CadSistemas">
+   <children>
+      <Button layoutX="958.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="btn1" stylesheets="@css/button.css" text="X">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Button>
+      <AnchorPane layoutX="6.0" layoutY="68.0" prefHeight="581.0" prefWidth="987.0" styleClass="pane" stylesheets="@css/panel.css" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0">
+         <children>
+            <ComboBox layoutX="14.0" layoutY="11.0" prefHeight="25.0" prefWidth="210.0" promptText="Marca" />
+            <ComboBox layoutX="302.0" layoutY="11.0" prefHeight="25.0" prefWidth="191.0" promptText="modelo" />
+            <TabPane layoutX="7.0" layoutY="45.0" prefHeight="471.0" prefWidth="972.0" stylesheets="@css/tabpane.css" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Admissão / Escape">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="392.0" prefWidth="925.0">
+                           <children>
+                              <AnchorPane prefHeight="436.0" prefWidth="950.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                 <children>
+                                    <AnchorPane layoutX="14.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Filtro / Mangueira" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="F M - conj 1" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="F M com sensor temp - conj 2" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="F M com MAP - conj 3" />
+                                          <CheckBox layoutX="14.0" layoutY="148.0" mnemonicParsing="false" text="F sem M no corpo - Conj 6" />
+                                          <CheckBox layoutX="14.0" layoutY="124.0" mnemonicParsing="false" text="F M com turbo - conj 5" />
+                                          <CheckBox layoutX="14.0" layoutY="101.0" mnemonicParsing="false" text="F M com tubo sup. - conj 4" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="249.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Admissão" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="admissão - conj 7" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="adm valv turbo - conj 8" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="adm map - conj9" />
+                                          <CheckBox layoutX="15.0" layoutY="100.0" mnemonicParsing="false" text="adm corpo efi - conj10" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="14.0" layoutY="214.0" prefHeight="70.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Turbo" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Turbo - conj19" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="485.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Coletor / Escape" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Coletor simples - conj 11" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="Sonda pré - conj 12" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="Coletor c catalisador - conj 13" />
+                                          <CheckBox layoutX="15.0" layoutY="100.0" mnemonicParsing="false" text="Sonda pré pós - Conj 14" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="716.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Catalisador e escape" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Com catalisador - Conj 15" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="Malha pós tubo - Conj 16" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="Tubo com malha - Conj 17" />
+                                          <CheckBox layoutX="15.0" layoutY="100.0" mnemonicParsing="false" text="Escap simples - Conj 18" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Arrefecimento">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane prefHeight="437.0" prefWidth="950.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                 <children>
+                                    <AnchorPane layoutX="14.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Mangueiras" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="M A conj1" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="M A Diesel conj2" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="M A Flex conj 3" />
+                                          <CheckBox layoutX="14.0" layoutY="148.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="14.0" layoutY="124.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="14.0" layoutY="101.0" mnemonicParsing="false" text="" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="249.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Ar quente" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Ar quente - conj 4" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="Ar quente com válvula - conj 5" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="15.0" layoutY="100.0" mnemonicParsing="false" text="" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="14.0" layoutY="214.0" prefHeight="70.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Selos" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="selos" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="249.0" layoutY="214.0" prefHeight="70.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="trocador câmbio" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Trocador" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="485.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Eletroventilador" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Eletrov com sensor - conj 6" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="Eletroventilador - conj 7" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="15.0" layoutY="100.0" mnemonicParsing="false" text="" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="716.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Sensor, válv. trocador" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="sensor, válvula - Conj 8" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="sensor, válvula, trocador - Conj 9" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="15.0" layoutY="100.0" mnemonicParsing="false" text="" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="Direção">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane prefHeight="301.0" prefWidth="950.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                 <children>
+                                    <AnchorPane layoutX="14.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Coluna direção" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Col simples - conj 1" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="Col elétrica - conj 2" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="Col escamoteável - conj 3" />
+                                          <CheckBox layoutX="14.0" layoutY="148.0" mnemonicParsing="false" text="Col com airbag - Conj 4" />
+                                          <CheckBox layoutX="14.0" layoutY="124.0" mnemonicParsing="false" text="Col esc. com airbag - conj 5" />
+                                          <CheckBox layoutX="14.0" layoutY="101.0" mnemonicParsing="false" text="" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="249.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Caixa direção" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Dir mec - conj 6" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="Dir elet - conj 7" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="Dir hid - conj 8" />
+                                          <CheckBox layoutX="15.0" layoutY="100.0" mnemonicParsing="false" text="Dir hid camionete - conj 9" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="14.0" layoutY="214.0" prefHeight="70.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="---" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="485.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="----" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="15.0" layoutY="100.0" mnemonicParsing="false" text="" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="716.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="----" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="15.0" layoutY="100.0" mnemonicParsing="false" text="" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Freios">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane prefHeight="387.0" prefWidth="950.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                 <children>
+                                    <AnchorPane layoutX="14.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Freio disco diant e tras" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="fr diant - conj 1" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="Fr dt com abs - conj 2" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="Fr tr com disco - conj 3" />
+                                          <CheckBox layoutX="14.0" layoutY="148.0" mnemonicParsing="false" text="Fr tr com disco abs - Conj 4" />
+                                          <CheckBox layoutX="14.0" layoutY="124.0" mnemonicParsing="false" text="Fr tr c disco fr m elet - conj 5" />
+                                          <CheckBox layoutX="14.0" layoutY="101.0" mnemonicParsing="false" text="Fr tr c disco fr m sapata - conj 6" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="248.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Freio a lona" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="fr tras - conj 7" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="fr tras com lona - conj 8" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="14.0" layoutY="100.0" mnemonicParsing="false" text="" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="14.0" layoutY="214.0" prefHeight="166.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="9.0" layoutY="10.0" text="Freio de mão" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="f m alavanca - conj 16" />
+                                          <CheckBox layoutX="14.0" layoutY="55.0" mnemonicParsing="false" text="f m alav. e sede - conj 17" />
+                                          <CheckBox layoutX="14.0" layoutY="78.0" mnemonicParsing="false" text="f m alav. e tirante - conj 18" />
+                                          <CheckBox layoutX="14.0" layoutY="101.0" mnemonicParsing="false" text="f m com pedal - conj 19" />
+                                          <CheckBox layoutX="14.0" layoutY="124.0" mnemonicParsing="false" text="f m elétrico - conj 20" />
+                                          <CheckBox layoutX="14.0" layoutY="147.0" mnemonicParsing="false" text="f m acion elétrico - conj 21" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="485.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Linha de freio" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="linha com conexões - conj 9" />
+                                          <CheckBox layoutX="14.0" layoutY="55.0" mnemonicParsing="false" text="Linha simples - conj 10" />
+                                          <CheckBox layoutX="14.0" layoutY="78.0" mnemonicParsing="false" text="Linha com corretoras - conj 11" />
+                                          <CheckBox layoutX="14.0" layoutY="101.0" mnemonicParsing="false" text="Linha com abs e corretoras - Conj 12" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="248.0" layoutY="214.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Sistema de vácuo" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="vácuo - conj 22" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="vácuo elétrico - conj 23" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="14.0" layoutY="100.0" mnemonicParsing="false" text="" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="716.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Abs" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Módulo - Conj 13" />
+                                          <CheckBox layoutX="14.0" layoutY="55.0" mnemonicParsing="false" text="Sensores nas 4 - Conj 14" />
+                                          <CheckBox layoutX="14.0" layoutY="78.0" mnemonicParsing="false" text="Sensores no diferencial - Conj 15" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Suspensão">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane prefHeight="298.0" prefWidth="950.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                 <children>
+                                    <AnchorPane layoutX="14.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Suspensão diant." />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="S dt Macpherson - conj 1" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="S dt duplo a - conj 2" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="S dt barra torção - conj 3" />
+                                          <CheckBox layoutX="14.0" layoutY="101.0" mnemonicParsing="false" text="S dt braço tensor - Conj 4" />
+                                          <CheckBox layoutX="14.0" layoutY="124.0" mnemonicParsing="false" text="S dt band sup. 2 braç inf - conj 5" />
+                                          <CheckBox layoutX="14.0" layoutY="148.0" mnemonicParsing="false" text="" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="249.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Suspensão traseira" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="braço oscilante - conj 6" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="eixo rigído - conj 7" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="eixo rig com rolto - conj 8" />
+                                          <CheckBox layoutX="15.0" layoutY="101.0" mnemonicParsing="false" text="multi link 4 braços - conj 9" />
+                                          <CheckBox layoutX="15.0" layoutY="124.0" mnemonicParsing="false" text="feixe molas - conj 10" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="14.0" layoutY="214.0" prefHeight="70.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="----" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="485.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="------" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="15.0" layoutY="100.0" mnemonicParsing="false" text="" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="716.0" layoutY="24.0" prefHeight="180.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="------" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="" />
+                                          <CheckBox layoutX="15.0" layoutY="100.0" mnemonicParsing="false" text="" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Motor">
+                    <content>
+                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                          <children>
+                             <AnchorPane prefHeight="387.0" prefWidth="950.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                <children>
+                                   <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="89.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                      <children>
+                                         <Label layoutX="13.0" layoutY="13.0" text="Partes motor " />
+                                         <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Motor parcial - conj 1" />
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane layoutX="246.0" layoutY="16.0" prefHeight="89.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                      <children>
+                                         <Label layoutX="13.0" layoutY="13.0" text="Suportes e coxins" />
+                                         <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Suportes diversos - conj 2" />
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane layoutX="13.0" layoutY="114.0" prefHeight="166.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                      <children>
+                                         <Label layoutX="9.0" layoutY="10.0" text="Sincronismo e componentes" />
+                                         <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="com correia - conj 3" />
+                                         <CheckBox layoutX="14.0" layoutY="55.0" mnemonicParsing="false" text="com corrente - conj 4" />
+                                         <CheckBox layoutX="14.0" layoutY="78.0" mnemonicParsing="false" text="com correia motores em v- conj 5" />
+                                         <CheckBox layoutX="14.0" layoutY="101.0" mnemonicParsing="false" text="com corrente motores em v - conj 6" />
+                                         <CheckBox layoutX="14.0" layoutY="124.0" mnemonicParsing="false" text="com engrenagens - conj 7" />
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane layoutX="476.0" layoutY="16.0" prefHeight="90.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                      <children>
+                                         <Label layoutX="13.0" layoutY="13.0" text="Lubrificação" />
+                                         <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Lubrificação - conj 8" />
+                                         <CheckBox layoutX="14.0" layoutY="55.0" mnemonicParsing="false" text="Lubr com correia interna - conj 9" />
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane layoutX="248.0" layoutY="114.0" prefHeight="91.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                      <children>
+                                         <Label layoutX="13.0" layoutY="13.0" text="Cabeçote e componentes" />
+                                         <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Cabeçote - conj 10" />
+                                         <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="Cebeçote motores em v - conj 11" />
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane layoutX="702.0" layoutY="16.0" prefHeight="92.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                      <children>
+                                         <Label layoutX="13.0" layoutY="13.0" text="Bloco e componetnes" />
+                                         <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Bloco - Conj 12" />
+                                      </children>
+                                   </AnchorPane>
+                                    <AnchorPane layoutX="476.0" layoutY="115.0" prefHeight="90.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="13.0" text="Respiro do motor" />
+                                          <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Respiro - conj 13" />
+                                       </children>
+                                    </AnchorPane>
+                                </children>
+                             </AnchorPane>
+                          </children>
+                       </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Tração">
+                    <content>
+                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                          <children>
+                             <AnchorPane prefHeight="387.0" prefWidth="950.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                <children>
+                                   <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="89.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                      <children>
+                                         <Label layoutX="13.0" layoutY="13.0" text="Semi eixos diant " />
+                                         <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Homoc / Homoc - conj 1" />
+                                         <CheckBox layoutX="14.0" layoutY="55.0" mnemonicParsing="false" text="Homoc / Tulipa - conj 2" />
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane layoutX="246.0" layoutY="16.0" prefHeight="89.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                      <children>
+                                         <Label layoutX="13.0" layoutY="13.0" text="Semi eixos tras" />
+                                         <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Homoc / Homoc - conj 4" />
+                                         <CheckBox layoutX="14.0" layoutY="55.0" mnemonicParsing="false" text="Homoc / Tulipa - conj 3" />
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane layoutX="13.0" layoutY="114.0" prefHeight="166.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                      <children>
+                                         <Label layoutX="9.0" layoutY="10.0" text="Diferenciais traseiros" />
+                                         <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Diferencial tras - conj 5" />
+                                         <CheckBox layoutX="14.0" layoutY="55.0" mnemonicParsing="false" text="Dif tras com semi eixo - conj 6" />
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane layoutX="476.0" layoutY="16.0" prefHeight="90.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                      <children>
+                                         <Label layoutX="13.0" layoutY="13.0" text="Diferencial diant." />
+                                         <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Dif. dianteiro - conj 7" />
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane layoutX="248.0" layoutY="114.0" prefHeight="91.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                      <children>
+                                         <Label layoutX="13.0" layoutY="13.0" text="cardã e componentes" />
+                                         <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="tras com mancal - conj 8" />
+                                         <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="tras sem mancal - conj 9" />
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane layoutX="702.0" layoutY="16.0" prefHeight="92.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                      <children>
+                                         <Label layoutX="13.0" layoutY="13.0" text="Cubo diant" />
+                                         <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Cubo e rolamentos - Conj 10" />
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane layoutX="476.0" layoutY="115.0" prefHeight="90.0" prefWidth="220.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+                                      <children>
+                                         <Label layoutX="13.0" layoutY="13.0" text="Cubo tras" />
+                                         <CheckBox layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Cubo rol. pnt eixo - conj 11" />
+                                      </children>
+                                   </AnchorPane>
+                                </children>
+                             </AnchorPane>
+                          </children>
+                       </AnchorPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children></AnchorPane>
+      <Label layoutX="8.0" layoutY="19.0" text="Associação de sistemas" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
