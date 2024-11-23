@@ -1,5 +1,6 @@
 package org.gsnt.auttech.util;
 
+import javafx.collections.ObservableList;
 import org.gsnt.auttech.model.entities.Estados;
 import org.gsnt.auttech.model.entities.TipoEndereco;
 import org.gsnt.auttech.model.entities.TipoTelefone;
@@ -9,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DadosCombos {
+
+    private ObservableList ObsMarca;
+
+
 
     public List perfilFiscal(){
 

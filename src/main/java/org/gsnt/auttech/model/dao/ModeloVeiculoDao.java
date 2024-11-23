@@ -8,6 +8,6 @@ public interface ModeloVeiculoDao {
 
     ModeloVeiculo findById(Integer id);
     List<ModeloVeiculo> findAll();
-    List<ModeloVeiculo> findByMarca();
+    List<ModeloVeiculo> findByIdMarca(Integer id);
 
 }

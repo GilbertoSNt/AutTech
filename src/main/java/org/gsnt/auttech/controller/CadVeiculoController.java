@@ -60,12 +60,30 @@ public class CadVeiculoController implements Initializable {
         cbModelo.show();
     }
 
+    private void carregarComboMarca(){
+        obsListTipoMArca = FXCollections.observableList(dadosCombos.marcaVeiculo());
+        cbMarca.setItems(obsListTipoMArca);
+        Callback<ListView<MarcaVeiculo>, ListCell<MarcaVeiculo>> factory = lv -> new ListCell<MarcaVeiculo>() {
+            @Override
+            protected void updateItem(MarcaVeiculo marca, boolean empty) {
+                super.updateItem(marca, empty);
+                setText(empty ? "" : marca.getMarcaVeiculo());
+            }
+        };
+        cbMarca.setCellFactory(factory);
+        cbMarca.setButtonCell(factory.call(null));
+    }
+
     @FXML
     protected ComboBox cbModelo;
 
     @FXML
     private void hiddencbModelo(){
         txtChassi.requestFocus();
+    }
+
+    private void carregarComboModelo(Integer id){
+
     }
 
     @FXML
@@ -149,21 +167,7 @@ public class CadVeiculoController implements Initializable {
     @FXML
     protected Button btCancelar;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        obsListTipoMArca = FXCollections.observableList(dadosCombos.marcaVeiculo());
-        cbMarca.setItems(obsListTipoMArca);
-        Callback<ListView<MarcaVeiculo>, ListCell<MarcaVeiculo>> factory = lv -> new ListCell<MarcaVeiculo>() {
-            @Override
-            protected void updateItem(MarcaVeiculo marca, boolean empty) {
-                super.updateItem(marca, empty);
-                setText(empty ? "" : marca.getMarcaVeiculo());
-            }
-        };
-        cbMarca.setCellFactory(factory);
-        cbMarca.setButtonCell(factory.call(null));
-
+    private void controlTab(){
         if(this.cad != 0){
             txtCodCli.setText(""+this.cad);
             txtNomeCli.setText(this.nome);
@@ -205,6 +209,14 @@ public class CadVeiculoController implements Initializable {
                 txtChassi.requestFocus();
             }
         });
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        carregarComboMarca();
+        controlTab();
 
 
     }
