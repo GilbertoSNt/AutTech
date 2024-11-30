@@ -6,8 +6,7 @@ import java.util.List;
 
 public interface ModeloVeiculoDao {
 
-    ModeloVeiculo findById(Integer id);
-    List<ModeloVeiculo> findAll();
-    List<ModeloVeiculo> findByIdMarca(Integer id);
+    ModeloVeiculo findById(int id);
+    List<ModeloVeiculo> findByIdMarca(int id);
 
 }

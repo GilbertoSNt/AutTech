@@ -9,7 +9,8 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.gsnt.auttech.model.entities.MarcaVeiculo;
-import org.gsnt.auttech.util.DadosCombos2;
+import org.gsnt.auttech.model.entities.ModeloVeiculo;
+import org.gsnt.auttech.util.DadosCombos;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,9 +30,11 @@ public class CadVeiculoController implements Initializable {
 
     }
 
-    private DadosCombos2 dadosCombos = new DadosCombos2();
+    private DadosCombos dadosCombos = new DadosCombos();
 
     private ObservableList<MarcaVeiculo> obsListTipoMArca;
+
+    private ObservableList<ModeloVeiculo> obsListModeloVeiculo;
 
 
     @FXML
@@ -53,14 +56,21 @@ public class CadVeiculoController implements Initializable {
     protected TextField txtPlaca;
 
     @FXML
-    protected ComboBox cbMarca;
+    protected ComboBox<MarcaVeiculo> cbMarca;
 
     @FXML
     private void hiddencbMarca(){
+
+        MarcaVeiculo marca = cbMarca.getSelectionModel().getSelectedItem();
+        carregarComboModelo(marca.getCod());
         cbModelo.show();
+
     }
 
-    private void carregarComboMarca(){
+
+    //Carrega ComboBox Marca
+    private void carregarComboMarca( ){
+
         obsListTipoMArca = FXCollections.observableList(dadosCombos.marcaVeiculo());
         cbMarca.setItems(obsListTipoMArca);
         Callback<ListView<MarcaVeiculo>, ListCell<MarcaVeiculo>> factory = lv -> new ListCell<MarcaVeiculo>() {
@@ -72,17 +82,31 @@ public class CadVeiculoController implements Initializable {
         };
         cbMarca.setCellFactory(factory);
         cbMarca.setButtonCell(factory.call(null));
+
     }
 
     @FXML
-    protected ComboBox cbModelo;
+    protected ComboBox<ModeloVeiculo> cbModelo;
 
     @FXML
     private void hiddencbModelo(){
         txtChassi.requestFocus();
     }
 
-    private void carregarComboModelo(Integer id){
+    //Carrega ComboBox Modelos
+    private void carregarComboModelo(int id){
+
+        obsListModeloVeiculo = FXCollections.observableList(dadosCombos.modeloVeiculo(id));
+        cbModelo.setItems(obsListModeloVeiculo);
+        Callback<ListView<ModeloVeiculo>, ListCell<ModeloVeiculo>> factory = lv -> new ListCell<ModeloVeiculo>() {
+           @Override
+           protected void updateItem(ModeloVeiculo modelo, boolean empty){
+               super.updateItem(modelo, empty);
+               setText(empty ? "" : modelo.getModelo());
+           }
+        };
+        cbModelo.setCellFactory(factory);
+        cbModelo.setButtonCell(factory.call(null));
 
     }
 

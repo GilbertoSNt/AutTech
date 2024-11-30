@@ -2,9 +2,7 @@ package org.gsnt.auttech.db;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
 public class DB {
@@ -15,16 +13,18 @@ public class DB {
         if (conn == null) {
             try {
                 Properties props = loadProperties();
-                String url = props.getProperty("local");
+                String url = "jdbc:postgresql://192.168.0.180:5432/bancoempresabase";
+             //   String url = props.getProperty("local");
                 conn = DriverManager.getConnection(url, props);
             } catch (SQLException e) {
                 throw new DbException(e.getMessage());
             }
+
         }
         return conn;
     }
 
-    public void closeConnection(){
+    public static void closeConnection(){
         if(conn != null){
             try{
                 conn.close();
@@ -45,6 +45,28 @@ public class DB {
             throw new DbException(e.getMessage());
         }
 
+    }
+
+    public static void closeStatement(PreparedStatement st){
+        if (st != null){
+            try{
+                st.close();
+            }
+            catch (SQLException a){
+                throw new DbException(a.getMessage());
+            }
+        }
+    }
+
+    public static void closeResultSet(ResultSet rs){
+        if (rs != null){
+            try{
+                rs.close();
+            }
+            catch (SQLException a){
+                throw new DbException(a.getMessage());
+            }
+        }
     }
 
 }

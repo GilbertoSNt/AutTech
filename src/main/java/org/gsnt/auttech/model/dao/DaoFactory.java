@@ -1,16 +1,35 @@
 package org.gsnt.auttech.model.dao;
 
 
+import org.gsnt.auttech.db.DB;
 import org.gsnt.auttech.model.dao.impl.MarcaVeiculoDaoJDBC;
+import org.gsnt.auttech.model.dao.impl.ModeloVeiculoDaoJDBC;
+
+import java.sql.SQLException;
 
 public class DaoFactory {
 
     public static MarcaVeiculoDao createMarcaVeiculoDao(){
-        return new MarcaVeiculoDaoJDBC();
+        try {
+            return new MarcaVeiculoDaoJDBC(DB.getConnection());
+        }
+        catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+
     }
-/*
+
     public static ModeloVeiculoDao createModeloVeiculoDao(){
-        return new ModeloVeiculoDaoJDBC();
+
+        try {
+            return new ModeloVeiculoDaoJDBC(DB.getConnection());
+        }
+        catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+
     }
-*/
+
 }

@@ -193,7 +193,6 @@ public class CadClienteJController implements Initializable {
         //dados do combo tipo endereço
         obsListTipoEndereco = FXCollections.observableList(dadosCombos.tipoEndereco());
         cbTipoEndereco.setItems(obsListTipoEndereco);
-
         Callback<ListView<TipoEndereco>, ListCell<TipoEndereco>> factory = lv -> new ListCell<TipoEndereco>(){
             @Override
             protected void updateItem(TipoEndereco tipo, boolean empty){
@@ -201,13 +200,13 @@ public class CadClienteJController implements Initializable {
                 setText(empty ?"":tipo.getTipo());
             }
         };
-        //dados do combo perfil fiscal
         cbTipoEndereco.setCellFactory(factory);
         cbTipoEndereco.setButtonCell(factory.call(null));
 
+        //dados do combo perfil fiscal
+
         obsListPerfilFiscal = FXCollections.observableList(dadosCombos.perfilFiscal());
         cbPerfilFiscal.setItems(obsListPerfilFiscal);
-
         Callback<ListView<PerfilFiscal>, ListCell<PerfilFiscal>> factoryFiscal = lv -> new ListCell<PerfilFiscal>(){
             @Override
             protected void updateItem(PerfilFiscal tipo1, boolean empty){
@@ -215,9 +214,9 @@ public class CadClienteJController implements Initializable {
                 setText(empty ?"":tipo1.getTipo());
             }
         };
-
         cbPerfilFiscal.setCellFactory(factoryFiscal);
         cbPerfilFiscal.setButtonCell(factoryFiscal.call(null));
+
         //dados do combo tipo telefone
         obsListTipoTelefone = FXCollections.observableList(dadosCombos.tipoTelefoneJ());
         cbTipoTelefone.setItems(obsListTipoTelefone);

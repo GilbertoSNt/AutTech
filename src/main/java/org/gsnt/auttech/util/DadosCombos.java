@@ -1,11 +1,11 @@
 package org.gsnt.auttech.util;
 
 import javafx.collections.ObservableList;
-import org.gsnt.auttech.model.entities.Estados;
-import org.gsnt.auttech.model.entities.TipoEndereco;
-import org.gsnt.auttech.model.entities.TipoTelefone;
-import org.gsnt.auttech.model.entities.TiposEmail;
-import org.gsnt.auttech.model.entities.PerfilFiscal;
+import org.gsnt.auttech.model.dao.DaoFactory;
+import org.gsnt.auttech.model.dao.MarcaVeiculoDao;
+import org.gsnt.auttech.model.dao.ModeloVeiculoDao;
+import org.gsnt.auttech.model.entities.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +18,6 @@ public class DadosCombos {
     public List perfilFiscal(){
 
         List<PerfilFiscal> list = new ArrayList<>();
-
         list.add(new PerfilFiscal(1,"Contribuinte"));
         list.add(new PerfilFiscal(2,"Não Contribuinte"));
 
@@ -29,7 +28,6 @@ public class DadosCombos {
     public List tipoEmail(){
 
         List<TiposEmail> list = new ArrayList<>();
-
         list.add(new TiposEmail(1,"Pessoal"));
         list.add(new TiposEmail(2,"Profissional"));
         list.add(new TiposEmail(3,"Compras"));
@@ -48,7 +46,6 @@ public class DadosCombos {
     public List dadoEstados(){
 
         List<Estados> list = new ArrayList<>();
-
         list.add(new Estados(1, "AC - Acre"));
         list.add(new Estados(2, "AL - Alagoas"));
         list.add(new Estados(3, "AP - Amapá"));
@@ -83,7 +80,6 @@ public class DadosCombos {
     public List tipoEndereco(){
 
         List<TipoEndereco> list = new ArrayList<>();
-
         list.add(new TipoEndereco(1,"Avenida"));
         list.add(new TipoEndereco(2,"Comunidade"));
         list.add(new TipoEndereco(3,"Corredor"));
@@ -103,7 +99,6 @@ public class DadosCombos {
     public List tipoTelefone(){
 
         List<TipoTelefone> list = new ArrayList<>();
-
         list.add(new TipoTelefone(1, "Celular"));
         list.add(new TipoTelefone(2, "Residêncial(Fixo)"));
         list.add(new TipoTelefone(3, "Trabalho(Cel)"));
@@ -118,7 +113,6 @@ public class DadosCombos {
     public List tipoTelefoneJ(){
 
         List<TipoTelefone> list = new ArrayList<>();
-
         list.add(new TipoTelefone(1, "Empresa(Fixo)"));
         list.add(new TipoTelefone(2, "Setor Financeiro(Fixo)"));
         list.add(new TipoTelefone(3, "Gerente(Cel)"));
@@ -129,6 +123,22 @@ public class DadosCombos {
         list.add(new TipoTelefone(8, "Responsável(Cel)"));
 
         return list;
+    }
+
+    public List marcaVeiculo(){
+
+        MarcaVeiculoDao mv = DaoFactory.createMarcaVeiculoDao();
+        List<MarcaVeiculo> listLimpa = mv.findAll();
+        return listLimpa;
+
+    }
+
+    public List modeloVeiculo(int id){
+
+        ModeloVeiculoDao mv = DaoFactory.createModeloVeiculoDao();
+        List<ModeloVeiculo> list = mv.findByIdMarca(id);
+        return list;
+
     }
 
 }

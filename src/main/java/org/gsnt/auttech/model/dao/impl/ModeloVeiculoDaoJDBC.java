@@ -1,10 +1,14 @@
 package org.gsnt.auttech.model.dao.impl;
 
+import org.gsnt.auttech.db.DB;
+import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.entities.ModeloVeiculo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ModeloVeiculoDaoJDBC implements org.gsnt.auttech.model.dao.ModeloVeiculoDao {
@@ -17,38 +21,32 @@ public class ModeloVeiculoDaoJDBC implements org.gsnt.auttech.model.dao.ModeloVe
     }
 
     @Override
-    public ModeloVeiculo findById(Integer id) {
+    public ModeloVeiculo findById(int id) {
         return null;
     }
 
-    @Override
-    public List<ModeloVeiculo> findAll() {
-        return List.of();
-    }
 
     @Override
-    public List<ModeloVeiculo> findByIdMarca(Integer id) {
+    public List<ModeloVeiculo> findByIdMarca(int id) {
         PreparedStatement st = null;
         ResultSet rs = null;
-        /*
+        List<ModeloVeiculo> list = new ArrayList<>();
+
         try{
-            st = conn.prepareStatement("select * from modelo where marca =  <<<<");
+            st = conn.prepareStatement("select cod,modelo from modelo where marca = ? and status = false order by modelo");
             st.setInt(1,id);
             rs = st.executeQuery();
             while (rs.next()){
-
+                list.add(new ModeloVeiculo(Integer.valueOf(rs.getInt("cod")), rs.getString("modelo")));
             }
-
-            if (){
-
-            }
-            return null;
-
         }
-        catch (SQLException e){
-
-        }*/
-
-        return List.of();
+        catch (SQLException a){
+            throw new DbException(a.getMessage());
+        }
+        finally{
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
+        return list;
     }
 }
