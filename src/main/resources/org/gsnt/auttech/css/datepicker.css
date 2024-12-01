@@ -1,6 +1,8 @@
 * {
-    -fx-primary-color: #153849;  /*Fundo tarja superior verde escuro*/
-    -fx-secondary-color: #d4dbdc;  /*Fundo panel inferior*/
+    -fx-primary-color:#8ab5bb;
+    -fx-secondary-color: #eff1f2;
+    /*-fx-primary-color: #153849;  /*Fundo tarja superior verde escuro*/
+    /*-fx-secondary-color: #d4dbdc;  /*Fundo panel inferior*/
     -fx-third-color:#b8cad4;
     -fx-fourth-color:#880015;
     -fx-fifth-color:#ffffff;  /*Branco*/

@@ -23,7 +23,7 @@
    <children>
       <Pane prefHeight="80.0" prefWidth="200.0" styleClass="anchorpane" stylesheets="@css/panel.css">
          <children>
-            <Label layoutX="40.0" layoutY="23.0" text="CADASTRO PESSOA JURÍDICA" textFill="#f2eeee">
+            <Label layoutX="40.0" layoutY="23.0" text="CADASTRO PESSOA JURÍDICA">
                <font>
                   <Font size="24.0" />
                </font>

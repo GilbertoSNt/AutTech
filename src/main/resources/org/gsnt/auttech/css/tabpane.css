@@ -1,7 +1,8 @@
 *{
-    -fx-primary-color: #1f4152;/*Fundo tarja superior*/
-    -fx-secondary-color: #d5dbde;/*Fundo panel inferior*/
-    -fx-third-color:#153849;/*Fundo aba selecionada*/
+    -fx-primary-color: #8ab5bb;/*Fundo tarja superior*/
+    -fx-secondary-color: #eff1f2;/*Fundo panel inferior*/
+    -fx-third-color:#3f676d;
+
 }
 
 

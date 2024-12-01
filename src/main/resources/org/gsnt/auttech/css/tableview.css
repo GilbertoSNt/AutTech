@@ -1,6 +1,6 @@
 
 * {
-	-fx-primary-color: #153849;/*ok*/
+    -fx-primary-color: #3f676d;
 	-fx-secondary-color: #4B6EAF;
 	-fx-third-color:#ffffff;
 	-fx-accent-color: #B6FF00;
@@ -20,7 +20,7 @@
 }
 .table-view {
 	-fx-border-color: transparent;
-	-fx-background-color: transparent; /* OR  -fx-background-insets: 0.0; */
+	-fx-background-color: transparent;
 }
 .table-view .column-header-background,
 .table-view .column-header-background .filler,

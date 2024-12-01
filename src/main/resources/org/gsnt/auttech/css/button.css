@@ -1,7 +1,8 @@
 *{
-
-    -fx-primary-color: #153849;/*Fundo tarja superior*/
+    -fx-primary-color: #3f676d;
+    /*-fx-primary-color: #153849;/*Fundo tarja superior*/
     -fx-secondary-color: #d4dbdc;/*Fundo panel inferior*/
+    /*-fx-secondary-color: ;*/
     -fx-third-color:#b8cad4;
     -fx-fourth-color:#880015;
     -fx-fifth-color:#ffffff;/*Branco*/
@@ -60,7 +61,7 @@
 .button4{
     -fx-pref-width:65;
     -fx-pref-weight:65;
-    -fx-background-color:-fx-secondary-color;
+    -fx-background-color:#eff1f2/*-fx-secondary-color*/;
     -fx-border-color:-fx-primary-color;
     -fx-background-radius:10;
     -fx-text-fill: -fx-primary-color;
