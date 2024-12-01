@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="anchorpane" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testecfx.fxml.CadSistemas">
    <children>
       <Button fx:id="btnimi" layoutX="926.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="btn2" stylesheets="@css/button.css" text="_">
@@ -19,7 +18,7 @@
          </font>
       </Button>
       <AnchorPane layoutY="63.0" prefHeight="737.0" prefWidth="1000.0" styleClass="pane" stylesheets="@css/panel.css" />
-      <Label layoutX="12.0" layoutY="11.0" text="Associação de sistemas" textFill="WHITE">
+      <Label layoutX="12.0" layoutY="11.0" text="Associação de sistemas">
          <font>
             <Font size="24.0" />
          </font>

@@ -26,24 +26,24 @@
             <Label layoutX="298.0" layoutY="64.0" text="Telefone" />
             <AnchorPane layoutX="14.0" layoutY="100.0" prefHeight="200.0" prefWidth="573.0" styleClass="anchorpane" stylesheets="@css/panel.css">
                <children>
-                  <Label layoutX="14.0" layoutY="14.0" text="Tipos de serviços" textFill="WHITE" />
-                  <CheckBox fx:id="cbRevisao" layoutX="14.0" layoutY="45.0" mnemonicParsing="false" text="Revisão" textFill="WHITE" />
-                  <CheckBox fx:id="cbTrcOleo" layoutX="214.0" layoutY="45.0" mnemonicParsing="false" text="Troca de óleo" textFill="WHITE" />
-                  <CheckBox fx:id="cbMec" layoutX="410.0" layoutY="45.0" mnemonicParsing="false" text="Mecânico" textFill="WHITE" />
-                  <CheckBox fx:id="cbSusp" layoutX="14.0" layoutY="75.0" mnemonicParsing="false" text="Suspensão" textFill="WHITE" />
-                  <CheckBox fx:id="cbFreio" layoutX="214.0" layoutY="75.0" mnemonicParsing="false" text="Freio" textFill="WHITE" />
-                  <CheckBox fx:id="cbMotor" layoutX="410.0" layoutY="75.0" mnemonicParsing="false" text="Motor" textFill="WHITE" />
-                  <CheckBox fx:id="cbInjElet" layoutX="14.0" layoutY="104.0" mnemonicParsing="false" text="Injeção eletrônica" textFill="WHITE" />
-                  <CheckBox fx:id="cbElet" layoutX="214.0" layoutY="104.0" mnemonicParsing="false" text="Elétrica" textFill="WHITE" />
-                  <CheckBox fx:id="cbAlinBalan" layoutX="14.0" layoutY="133.0" mnemonicParsing="false" text="Alinhamento / Balanceamento" textFill="WHITE" />
-                  <CheckBox fx:id="cbCaixa" layoutX="410.0" layoutY="104.0" mnemonicParsing="false" text="Caixa" textFill="WHITE" />
+                  <Label layoutX="14.0" layoutY="14.0" text="Tipos de serviços" />
+                  <CheckBox fx:id="cbRevisao" layoutX="14.0" layoutY="45.0" mnemonicParsing="false" text="Revisão" />
+                  <CheckBox fx:id="cbTrcOleo" layoutX="214.0" layoutY="45.0" mnemonicParsing="false" text="Troca de óleo" />
+                  <CheckBox fx:id="cbMec" layoutX="410.0" layoutY="45.0" mnemonicParsing="false" text="Mecânico" />
+                  <CheckBox fx:id="cbSusp" layoutX="14.0" layoutY="75.0" mnemonicParsing="false" text="Suspensão" />
+                  <CheckBox fx:id="cbFreio" layoutX="214.0" layoutY="75.0" mnemonicParsing="false" text="Freio" />
+                  <CheckBox fx:id="cbMotor" layoutX="410.0" layoutY="75.0" mnemonicParsing="false" text="Motor" />
+                  <CheckBox fx:id="cbInjElet" layoutX="14.0" layoutY="104.0" mnemonicParsing="false" text="Injeção eletrônica" />
+                  <CheckBox fx:id="cbElet" layoutX="214.0" layoutY="104.0" mnemonicParsing="false" text="Elétrica" />
+                  <CheckBox fx:id="cbAlinBalan" layoutX="14.0" layoutY="133.0" mnemonicParsing="false" text="Alinhamento / Balanceamento" />
+                  <CheckBox fx:id="cbCaixa" layoutX="410.0" layoutY="104.0" mnemonicParsing="false" text="Caixa" />
                </children>
             </AnchorPane>
             <Button fx:id="btGravar" layoutX="22.0" layoutY="315.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Gravar" />
             <Button fx:id="btCancel" layoutX="144.0" layoutY="315.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Cancelar" />
             <Button fx:id="btFechar" layoutX="265.0" layoutY="315.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Fechar" />
          </children></AnchorPane>
-      <Label layoutX="12.0" layoutY="11.0" text="Agendamento" textFill="WHITE">
+      <Label layoutX="12.0" layoutY="11.0" text="Agendamento">
          <font>
             <Font size="24.0" />
          </font>

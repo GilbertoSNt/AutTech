@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="anchorpane" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.controller.OsInternaController">
+   <children>
+      <Button layoutX="963.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="btn1" stylesheets="@css/button.css" text="X" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Button>
+      <AnchorPane layoutY="63.0" prefHeight="737.0" prefWidth="1000.0" styleClass="pane" stylesheets="@css/panel.css">
+         <children>
+            <Label layoutX="14.0" layoutY="44.0" text="Placa - ">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label fx:id="lblPlaca" layoutX="71.0" layoutY="44.0" prefHeight="25.0" prefWidth="116.0">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label layoutX="198.0" layoutY="44.0" text="Descrição modelo - ">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblModelo" layoutX="346.0" layoutY="44.0" prefHeight="25.0" prefWidth="544.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="15.0" text="Cliente - ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCli" layoutX="90.0" layoutY="15.0" prefHeight="27.0" prefWidth="869.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TabPane layoutX="3.0" layoutY="202.0" prefHeight="452.0" prefWidth="994.0" stylesheets="@css/tabpane.css" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Peças">
+                     <content>
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="994.0" stylesheets="@css/panel.css">
+                           <children>
+                              <Label layoutX="6.0" layoutY="14.0" text="Código" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="14.0" />
+                              <TextField fx:id="txtCodigoPeca" layoutX="56.0" layoutY="10.0" stylesheets="@css/TextField.css" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="10.0" />
+                              <Label layoutX="220.0" layoutY="14.0" text="Quantidade" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="14.0" />
+                              <TextField fx:id="txtQuantidadePecas" layoutX="295.0" layoutY="10.0" prefHeight="25.0" prefWidth="95.0" stylesheets="@css/TextField.css" AnchorPane.leftAnchor="295.0" AnchorPane.topAnchor="10.0" />
+                              <Button fx:id="btGravarPecas" layoutX="403.0" layoutY="10.0" mnemonicParsing="false" styleClass="btn3" stylesheets="@css/button.css" text="Gravar" AnchorPane.leftAnchor="403.0" AnchorPane.topAnchor="10.0" />
+                              <Button fx:id="btExcluirPecas" layoutX="469.0" layoutY="10.0" mnemonicParsing="false" styleClass="btn3" stylesheets="@css/button.css" text="Excluir" AnchorPane.leftAnchor="470.0" AnchorPane.topAnchor="10.0" />
+                              <Label fx:id="lblTotalPecas" layoutX="690.0" layoutY="9.0" text="Total de peças - R$" AnchorPane.leftAnchor="690.0" AnchorPane.topAnchor="10.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <ScrollPane hbarPolicy="ALWAYS" layoutX="6.0" layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="987.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="40.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <content>
+                                    <TableView fx:id="tvPecas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="972.0" stylesheets="@css/tableview.css">
+                                      <columns>
+                                        <TableColumn fx:id="tcCodigoPecas" prefWidth="75.0" resizable="false" text="Código" />
+                                        <TableColumn minWidth="350.0" prefWidth="75.0" resizable="false" text="Descrição" />
+                                          <TableColumn prefWidth="75.0" resizable="false" text="Quantidade" />
+                                          <TableColumn prefWidth="50.0" resizable="false" text="Lado">
+                                             <columns>
+                                                <TableColumn prefWidth="30.0" resizable="false" text="E" />
+                                                <TableColumn prefWidth="30.0" resizable="false" text="D" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn prefWidth="150.0" resizable="false" text="Valor">
+                                             <columns>
+                                                <TableColumn prefWidth="90.0" resizable="false" text="Unitário" />
+                                                <TableColumn prefWidth="90.0" resizable="false" text="Total" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn prefWidth="300.0" resizable="false" text="Obs" />
+                                      </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                </Tab>
+                <Tab text="Serviços">
+                     <content>
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="994.0" stylesheets="@css/panel.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <Label layoutX="12.0" layoutY="16.0" text="Código" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="14.0" />
+                              <TextField fx:id="txtCodigoServico" layoutX="62.0" layoutY="12.0" stylesheets="@css/TextField.css" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="10.0" />
+                              <Label layoutX="218.0" layoutY="14.0" text="Quantidade" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="14.0" />
+                              <TextField fx:id="txtQuantidadeServico" layoutX="293.0" layoutY="10.0" prefHeight="25.0" prefWidth="95.0" stylesheets="@css/TextField.css" AnchorPane.leftAnchor="295.0" AnchorPane.topAnchor="10.0" />
+                              <Button fx:id="btGravarServico" layoutX="409.0" layoutY="12.0" mnemonicParsing="false" styleClass="btn3" stylesheets="@css/button.css" text="Gravar" AnchorPane.leftAnchor="403.0" AnchorPane.topAnchor="10.0" />
+                              <Button fx:id="btExcluirServico" layoutX="475.0" layoutY="12.0" mnemonicParsing="false" styleClass="btn3" stylesheets="@css/button.css" text="Excluir" AnchorPane.leftAnchor="470.0" AnchorPane.topAnchor="10.0" />
+                              <Label fx:id="lblTotalServico" layoutX="685.0" layoutY="11.0" text="Total de serviços R$ " AnchorPane.leftAnchor="690.0" AnchorPane.topAnchor="10.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <ScrollPane hbarPolicy="ALWAYS" layoutY="46.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="987.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="40.0">
+                                 <content>
+                                    <TableView fx:id="tvServicos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="974.0" stylesheets="@css/tableview.css">
+                                       <columns>
+                                          <TableColumn prefWidth="75.0" text="Código" />
+                                          <TableColumn minWidth="350.0" prefWidth="75.0" text="Descrição" />
+                                          <TableColumn prefWidth="75.0" text="Quantidade" />
+                                          <TableColumn minWidth="150.0" prefWidth="75.0" text="Valor">
+                                             <columns>
+                                                <TableColumn minWidth="90.0" prefWidth="75.0" text="Unitário" />
+                                                <TableColumn minWidth="90.0" prefWidth="75.0" text="Total" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn minWidth="100.0" prefWidth="75.0" text="Profissional" />
+                                          <TableColumn minWidth="230.0" prefWidth="75.0" text="Obs" />
+                                       </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                </Tab>
+                  <Tab text="Encerramento">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ComboBox fx:id="cbFormaPagamento" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="250.0" promptText="Formas de pagamento" stylesheets="@css/combobox.css" />
+                              <ComboBox fx:id="cbPrazo" layoutX="14.0" layoutY="67.0" prefHeight="30.0" prefWidth="250.0" promptText="Prazo" stylesheets="@css/combobox.css" />
+                              <ScrollPane hbarPolicy="NEVER" layoutX="284.0" layoutY="38.0" prefHeight="141.0" prefWidth="693.0" vbarPolicy="ALWAYS" />
+                              <TextArea layoutX="284.0" layoutY="219.0" prefHeight="161.0" prefWidth="690.0" />
+                              <Label layoutX="284.0" layoutY="197.0" text="Observações" />
+                              <Label layoutX="284.0" layoutY="14.0" text="Parcelamento" />
+                              <Button layoutX="14.0" layoutY="356.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="200.0" stylesheets="@css/button.css" text="Encerrar ordem de serviço" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children></AnchorPane>
+      <Label layoutX="12.0" layoutY="11.0" text="Ordem de serviço" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

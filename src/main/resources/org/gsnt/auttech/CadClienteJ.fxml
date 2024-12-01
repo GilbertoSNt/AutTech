@@ -28,7 +28,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <CheckBox fx:id="cbAtivo" layoutX="811.0" layoutY="32.0" mnemonicParsing="false" stylesheets="@css/panel.css" text="Cliente Ativo" textFill="WHITE" />
+            <CheckBox fx:id="cbAtivo" layoutX="811.0" layoutY="32.0" mnemonicParsing="false" stylesheets="@css/panel.css" text="Cliente Ativo" />
             <Button fx:id="btClose" layoutX="964.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btCloseButtonClick" prefHeight="25.0" prefWidth="25.0" styleClass="btn1" stylesheets="@css/button.css" text="X">
                <font>
                   <Font name="Arial Bold" size="12.0" />
