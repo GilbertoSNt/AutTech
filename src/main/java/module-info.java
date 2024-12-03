@@ -13,6 +13,7 @@ module org.gsnt.auttech {
     requires java.desktop;
     requires java.sql;
     requires com.fasterxml.jackson.annotation;
+    requires java.naming;
 
     opens org.gsnt.auttech to javafx.fxml;
     exports org.gsnt.auttech;
