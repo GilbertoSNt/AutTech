@@ -9,13 +9,15 @@ import java.util.List;
 
 public interface ClienteDao {
 
-    List<Cliente> findAll();
+    List<Cliente> findAll();//implementado mas não testado
+    List<Cliente> findAllPart(String part);//implementado mas não testado
     Cliente findByCPF(String CPF);
+    Cliente findByCNPJ(String CNPJ);
     List<EmailCliente> findEmailById(int id);
     EndCliente findEndById(int id);
     List<TelCliente> findTelById(int id);
 
-    Boolean saveCliente(Cliente cliente);
+    int saveCliente(Cliente cliente);//implementado mas não testado
     Boolean emailCliente(List<EmailCliente> email);
     Boolean endCliente(EndCliente endereco);
     Boolean telCliente(List<TelCliente> telefone);
