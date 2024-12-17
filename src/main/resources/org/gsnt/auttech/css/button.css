@@ -14,7 +14,7 @@
 }
 
 .button{
-    -fx-body-weight:60;
+    -fx-body-height:60;
     -fx-body-width:35;
     -fx-background-color:-fx-primary-color;
     -fx-background-radius:10;
@@ -37,7 +37,7 @@
 
 .button3{
     -fx-pref-width:90;
-    -fx-pref-weight:25;
+    -fx-pref-height:25;
     -fx-background-color:-fx-primary-color;
     -fx-background-radius:10;
     -fx-text-fill: -fx-fifth-color;
@@ -59,8 +59,8 @@
 }
 
 .button4{
-    -fx-pref-width:65;
-    -fx-pref-weight:65;
+    -fx-pref-width:120;
+    -fx-pref-height:100;
     -fx-background-color:#eff1f2/*-fx-secondary-color*/;
     -fx-border-color:-fx-primary-color;
     -fx-background-radius:10;

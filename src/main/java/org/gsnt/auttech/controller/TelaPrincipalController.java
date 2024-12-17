@@ -11,8 +11,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.gsnt.auttech.TelaPrincipal;
-
-import javax.swing.text.TableView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -73,19 +71,13 @@ public class TelaPrincipalController implements Initializable {
         loadView("/org/gsnt/auttech/Agenda.fxml");
     }
 
-
-
     @FXML
     protected Button btCliente;
 
     @FXML
     protected void btClienteButtonClick() {
-
         loadView("/org/gsnt/auttech/TipoPessoa.fxml");
-
     }
-
-
 
     @FXML
     protected Button btVeiculo;
@@ -95,7 +87,13 @@ public class TelaPrincipalController implements Initializable {
         loadView("/org/gsnt/auttech/CadVeiculo.fxml");
     }
 
+    @FXML
+    protected Button btListaClientes;
 
+    @FXML
+    protected void btListaClientesButtonClick(){
+        loadView("/org/gsnt/auttech/ListaCliente.fxml");
+    }
 
     @FXML
     protected Button btCancAgenda;
@@ -144,11 +142,11 @@ public class TelaPrincipalController implements Initializable {
 
         accServicos.setExpandedPane(tpAgenda);
 
-
     }
 
     private void loadView(String absoluteName) {
         try {
+
             FXMLLoader loader = new FXMLLoader(TelaPrincipal.class.getResource(absoluteName));
             Scene secundaryScene = new Scene(loader.load());
             Stage stage1 = new Stage();

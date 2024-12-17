@@ -187,17 +187,18 @@ public class ClienteDaoJDBC implements ClienteDao {
     }
 
     @Override
-    public Boolean emailCliente(List<EmailCliente> email) {
+    public Boolean emailCliente(List<EmailCliente> email, int codCliente) {
+
         return null;
     }
 
     @Override
-    public Boolean endCliente(EndCliente endereco) {
+    public Boolean endCliente(EndCliente endereco, int cod) {
         return null;
     }
 
     @Override
-    public Boolean telCliente(List<TelCliente> telefone) {
+    public Boolean telCliente(List<TelCliente> telefone, int cod) {
         return null;
     }
 

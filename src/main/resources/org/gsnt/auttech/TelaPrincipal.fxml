@@ -10,7 +10,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -40,15 +39,15 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@css/tabpane.css">
                            <children>
-                              <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="25.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
-                              <Button fx:id="btCliente" layoutX="10.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btClienteButtonClick" prefHeight="70.0" prefWidth="70.0" styleClass="button4" stylesheets="@css/button.css" text="Clientes" />
-                              <Button fx:id="btVeiculo" layoutX="84.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btVeiculoButtonClick" prefHeight="70.0" prefWidth="70.0" styleClass="button4" stylesheets="@css/button.css" text="Veículo" />
-                              <Button fx:id="btAgenda" layoutX="158.0" layoutY="13.0" mnemonicParsing="false" onAction="#btAgendaButtonClick" prefHeight="70.0" prefWidth="70.0" styleClass="button4" stylesheets="@css/button.css" text="Agenda" />
+                              <Button fx:id="btCliente" layoutX="10.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btClienteButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Clientes" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
+                              <Button fx:id="btVeiculo" layoutX="150.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btVeiculoButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Veículo" wrapText="true" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="15.0" />
+                              <Button fx:id="btAgenda" layoutX="288.0" layoutY="12.0" mnemonicParsing="false" onAction="#btAgendaButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Agenda" wrapText="true" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="15.0" />
+                              <Button fx:id="btListaClientes" layoutX="15.0" layoutY="99.0" mnemonicParsing="false" onAction="#btListaClientesButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Listar Clientes " AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="140.0" />
                            </children>
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab closable="false" text="Cadastros">
+                  <Tab closable="false" text="Cadastros diversos">
                       <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                       </content>

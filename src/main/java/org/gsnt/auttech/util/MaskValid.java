@@ -301,6 +301,48 @@ public class MaskValid {
     }
 
 
+    public void maskHora(TextField textField){
+
+        textField.setOnKeyTyped(new EventHandler<KeyEvent>() {
+
+            private int a = 1;
+            private int b = 0;
+            private String delta = "";
+            @Override
+            public void handle(KeyEvent event) {
+
+                if ("0123456789".contains(event.getCharacter())&& a<=5){
+
+                    a++;
+                    delta = delta+event.getCharacter();
+
+                    switch (a) {
+                        case 3:
+                            delta = delta+":";
+                            a++;
+                            break;
+                        default:
+                            break;
+                    }
+
+                } else if("\b".contains(event.getCharacter())&& textField.getLength() >= 0){
+
+                    delta = textField.getText();
+                    b=delta.length();
+                    delta = delta.substring(0,b);
+                    a=b+1;
+
+                }else{
+                    event.consume();
+                }
+                textField.setText(delta);
+                textField.positionCaret(delta.length());
+            }
+        });
+
+    }
+
+
     public Boolean isCPF(String CPF){
 
         CPF = CPF.replaceAll("\\D","");
