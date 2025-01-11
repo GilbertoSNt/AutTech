@@ -1,4 +1,4 @@
-package org.gsnt.auttech.model.dao.impl;
+package org.gsnt.auttech.model.dao.service;
 
 import org.gsnt.auttech.db.DB;
 import org.gsnt.auttech.db.DbException;
@@ -13,13 +13,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MarcaVeiculoDaoJDBC implements MarcaVeiculoDao {
+public class MarcaVeiculoService implements MarcaVeiculoDao {
 
     private Connection conn;
 
 
 
-    public MarcaVeiculoDaoJDBC(Connection conn){
+    public MarcaVeiculoService(Connection conn){
         this.conn = conn;
     }
 

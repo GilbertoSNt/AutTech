@@ -39,6 +39,7 @@
 }
 /* This is just magic */
 .table-row-cell:filled {
+
 	-fx-background-color: transparent;
 	-fx-border-color: transparent -fx-lightest-grey-color -fx-lightest-grey-color -fx-lightest-grey-color, transparent;
 	-fx-border-insets: 0, 1;
@@ -53,7 +54,7 @@
 	-fx-background-color: -fx-light-grey-color;
 }
 .table-row-cell:filled:selected {
-  	-fx-background-color: #eaeaea;
+  	-fx-background-color: -fx-light-grey-color;
  	-fx-background-insets: 0.0;
 	-fx-background-radius: 0.0;
 }
@@ -61,7 +62,7 @@
 	-fx-text-fill: black;
 }
 .table-view .cell:filled{
-	-fx-cell-size: 30;
+	-fx-cell-size: 20;
 	-fx-alignment: center-left;
 }
 .check-box-table-cell > .check-box:selected .box .mark {

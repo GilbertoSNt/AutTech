@@ -25,12 +25,12 @@
                      <children>
                         <TableView fx:id="tableViewListClient" prefHeight="676.0" prefWidth="963.0" stylesheets="@css/tableview.css">
                           <columns>
-                            <TableColumn fx:id="tcCodigo" prefWidth="70.0" text="Código" />
-                            <TableColumn fx:id="tcNome" prefWidth="400.0" text="Nome" />
-                              <TableColumn fx:id="tcApelido" prefWidth="320.0" text="Nome fantasia" />
-                              <TableColumn fx:id="tcBtAcessar" prefWidth="58.0" text="Acessar" />
-                              <TableColumn fx:id="tcBtEditar" prefWidth="56.0" text="Editar" />
-                              <TableColumn fx:id="tcBtExcluir" prefWidth="56.0" text="Excluir" />
+                            <TableColumn fx:id="tcCodigo" editable="false" prefWidth="70.0" resizable="false" text="Código" />
+                            <TableColumn fx:id="tcNome" editable="false" prefWidth="400.0" resizable="false" text="Nome" />
+                              <TableColumn fx:id="tcApelido" editable="false" prefWidth="320.0" resizable="false" text="Nome fantasia" />
+                              <TableColumn fx:id="tcBtAcessar" editable="false" prefWidth="56.0" resizable="false" text="Acessar" />
+                              <TableColumn fx:id="tcBtEditar" editable="false" prefWidth="56.0" resizable="false" text="Editar" />
+                              <TableColumn fx:id="tcBtExcluir" editable="false" prefWidth="56.0" resizable="false" text="Excluir" />
                           </columns>
                         </TableView>
                      </children>

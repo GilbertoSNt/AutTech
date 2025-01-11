@@ -3,17 +3,15 @@ package org.gsnt.auttech.model.dao;
 
 import org.gsnt.auttech.db.DB;
 import org.gsnt.auttech.db.DB2;
-import org.gsnt.auttech.model.dao.impl.ClienteDaoJDBC;
-import org.gsnt.auttech.model.dao.impl.MarcaVeiculoDaoJDBC;
-import org.gsnt.auttech.model.dao.impl.ModeloVeiculoDaoJDBC;
-
-import java.sql.SQLException;
+import org.gsnt.auttech.model.dao.service.ClienteService;
+import org.gsnt.auttech.model.dao.service.MarcaVeiculoService;
+import org.gsnt.auttech.model.dao.service.ModeloVeiculoService;
 
 public class DaoFactory {
 
     public static MarcaVeiculoDao createMarcaVeiculoDao(){
         try {
-            return new MarcaVeiculoDaoJDBC(DB.getConnection());
+            return new MarcaVeiculoService(DB.getConnection());
         }
         catch (RuntimeException e){
             System.out.println(e.getMessage());
@@ -25,7 +23,7 @@ public class DaoFactory {
     public static ModeloVeiculoDao createModeloVeiculoDao(){
 
         try {
-            return new ModeloVeiculoDaoJDBC(DB.getConnection());
+            return new ModeloVeiculoService(DB.getConnection());
         }
         catch (RuntimeException e){
             System.out.println(e.getMessage());
@@ -37,7 +35,7 @@ public class DaoFactory {
     public static ClienteDao createClienteDao(){
 
         try {
-            return new ClienteDaoJDBC(DB2.getConnection());
+            return new ClienteService(DB2.getConnection());
         }
         catch (RuntimeException e){
             System.out.println(e.getMessage());

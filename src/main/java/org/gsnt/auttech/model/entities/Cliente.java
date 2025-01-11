@@ -1,10 +1,22 @@
 package org.gsnt.auttech.model.entities;
 
+
+
 import java.io.Serializable;
 
 public class Cliente implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public Cliente(){};
+
+    public Cliente(int cod, String nome, String apelido){
+
+        this.cod = cod;
+        this.nome = nome;
+        this.apelido = apelido;
+
+    }
 
     public Cliente(Boolean pj, int cod, String nome, String apelido){
 
@@ -13,7 +25,7 @@ public class Cliente implements Serializable {
         this.nome = nome;
         this.apelido = apelido;
 
-    };
+    }
 
     public Cliente(int cod, String cpf, String rg, String nome, String apelido, String dataCad, String dataNasc, Boolean perfil, Boolean status){
         this.cod = cod;
@@ -53,6 +65,9 @@ public class Cliente implements Serializable {
     private String dataCad;
     private Boolean perfil;
     private Boolean status;
+
+
+
 
     public Boolean getStatus() {
         return status;
@@ -157,6 +172,7 @@ public class Cliente implements Serializable {
     public void setPerfil(Boolean perfil) {
         this.perfil = perfil;
     }
+
 
 
 }

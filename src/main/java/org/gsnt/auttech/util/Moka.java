@@ -7,14 +7,16 @@ import java.util.List;
 
 public class Moka {
 
+
     public List<Cliente> dadosListaClientes(){
 
         List<Cliente> list = new ArrayList<>();
 
-        list.add(new Cliente(false, 1, "teste1", "teste11"));
-        list.add(new Cliente(true, 2, "teste2", "teste22"));
-        list.add(new Cliente(false, 3, "teste3", "teste33"));
-        list.add(new Cliente(true, 4, "teste4", "teste44"));
+        list.add(new Cliente(1, "teste1", "teste11"));
+        list.add(new Cliente(2, "teste2", "teste22"));
+        list.add(new Cliente(3, "teste3", "teste33"));
+        list.add(new Cliente(4, "teste4", "teste44"));
+        list.add(new Cliente(5, "teste5", "teste55"));
 
         return list;
     }

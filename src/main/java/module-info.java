@@ -15,7 +15,9 @@ module org.gsnt.auttech {
     requires com.fasterxml.jackson.annotation;
     requires java.naming;
 
-    opens org.gsnt.auttech to javafx.fxml;
+    opens org.gsnt.auttech to javafx.fxml, javafx.base, javafx.graphics;
+    opens org.gsnt.auttech.model.entities to javafx.base;
+
     exports org.gsnt.auttech;
     exports org.gsnt.auttech.controller;
     opens org.gsnt.auttech.controller to javafx.fxml;

@@ -1,9 +1,10 @@
-package org.gsnt.auttech.model.dao.impl;
+package org.gsnt.auttech.model.dao.service;
 
 import org.gsnt.auttech.db.DB2;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.ClienteDao;
 import org.gsnt.auttech.model.entities.*;
+import org.gsnt.auttech.util.Moka;
 
 import java.sql.*;
 import java.text.ParseException;
@@ -11,12 +12,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteDaoJDBC implements ClienteDao {
+public class ClienteService implements ClienteDao {
+
+    public ClienteService(){
+
+    }
 
     private Connection conn;
 
-    public ClienteDaoJDBC(Connection conn){
+    public ClienteService(Connection conn){
         this.conn = conn;
+    }
+
+    @Override
+    public List<Cliente> findAllTest(){
+        Moka mok = new Moka();
+        return mok.dadosListaClientes();
     }
 
     @Override
@@ -184,6 +195,10 @@ public class ClienteDaoJDBC implements ClienteDao {
             DB2.closeStatement(st);
         }
         return resultado;
+
+        //falta implementar telefones, emails, endereço
+
+
     }
 
     @Override

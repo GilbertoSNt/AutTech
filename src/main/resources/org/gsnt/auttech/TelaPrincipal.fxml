@@ -10,6 +10,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -39,10 +41,38 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@css/tabpane.css">
                            <children>
-                              <Button fx:id="btCliente" layoutX="10.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btClienteButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Clientes" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
-                              <Button fx:id="btVeiculo" layoutX="150.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btVeiculoButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Veículo" wrapText="true" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="15.0" />
-                              <Button fx:id="btAgenda" layoutX="288.0" layoutY="12.0" mnemonicParsing="false" onAction="#btAgendaButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Agenda" wrapText="true" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="15.0" />
-                              <Button fx:id="btListaClientes" layoutX="15.0" layoutY="99.0" mnemonicParsing="false" onAction="#btListaClientesButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Listar Clientes " AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="140.0" />
+                              <Button fx:id="btCliente" layoutX="10.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btClienteButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Clientes" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0">
+                                 <graphic>
+                                    <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icones/cliente.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button fx:id="btVeiculo" layoutX="150.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btVeiculoButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Veículo" wrapText="true" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="15.0">
+                                 <graphic>
+                                    <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icones/icons8-car-50.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button fx:id="btAgenda" layoutX="288.0" layoutY="12.0" mnemonicParsing="false" onAction="#btAgendaButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Agenda" wrapText="true" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="15.0">
+                                 <graphic>
+                                    <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icones/icons8-task-planning-50.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button fx:id="btListaClientes" layoutX="15.0" layoutY="99.0" mnemonicParsing="false" onAction="#btListaClientesButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Listar Clientes" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="140.0">
+                                 <graphic>
+                                    <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icones/ordem.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                            </children>
                         </AnchorPane>
                     </content>
@@ -82,8 +112,24 @@
                                  <content>
                                     <TableView fx:id="tvAgenda" prefHeight="333.0" prefWidth="940.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="C1" />
-                                        <TableColumn prefWidth="75.0" text="C2" />
+                                        <TableColumn fx:id="tcData" prefWidth="75.0" text="Data">
+                                             <columns>
+                                                <TableColumn fx:id="tcdia" prefWidth="70.0" text="Dia" />
+                                              <TableColumn fx:id="tcHora" prefWidth="50.0" text="Hora" />
+                                             </columns></TableColumn>
+                                          <TableColumn fx:id="tcNome" prefWidth="180.0" text="Nome" />
+                                          <TableColumn fx:id="tcVeiculo" prefWidth="100.0" text="Veículo" />
+                                          <TableColumn fx:id="tcPlaca" prefWidth="90.0" text="Placa" />
+                                          <TableColumn fx:id="tcAssisDes" prefWidth="191.0" text="Assistência / Deslocamento">
+                                             <columns>
+                                                <TableColumn fx:id="tcBuscar" prefWidth="70.0" text="Buscar" />
+                                                <TableColumn fx:id="tcGuincho" prefWidth="70.0" text="Guincho" />
+                                                <TableColumn fx:id="tcSocorro" prefWidth="75.0" text="Socorro" />
+                                                <TableColumn fx:id="tcSocMec" prefWidth="70.0" text="Mecânico" />
+                                                <TableColumn fx:id="tcSocElet" prefWidth="70.0" text="Elétrico" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn fx:id="tcStatus" prefWidth="92.0" text="Status" />
                                       </columns>
                                     </TableView>
                                  </content>
@@ -101,10 +147,41 @@
                            <children>
                               <ScrollPane prefHeight="329.0" prefWidth="956.0">
                                  <content>
-                                    <TableView prefHeight="333.0" prefWidth="940.0">
+                                    <TableView fx:id="tvFuturos" prefHeight="333.0" prefWidth="940.0">
                                        <columns>
-                                          <TableColumn prefWidth="75.0" text="C1" />
-                                          <TableColumn prefWidth="75.0" text="C2" />
+                                          <TableColumn fx:id="tcOs" prefWidth="100.0" text="Ordem Serviço" />
+                                          <TableColumn prefWidth="388.0" text="Dados Veículo">
+                                             <columns>
+                                                <TableColumn fx:id="tcPlaca2" prefWidth="90.0" text="Placa" />
+                                                <TableColumn fx:id="tcModelo2" prefWidth="194.0" text="Modelo Veículo" />
+                                             </columns></TableColumn>
+                                          <TableColumn fx:id="tcTipoServico" prefWidth="75.0" text="Tipo de serviço">
+                                             <columns>
+                                                <TableColumn fx:id="tcElet2" prefWidth="60.0" text="Elétrico" />
+                                                <TableColumn prefWidth="60.0" text="Inj. Elet." />
+                                                <TableColumn fx:id="tcMec2" prefWidth="75.0" text="Mecânica">
+                                                   <columns>
+                                                      <TableColumn fx:id="tcCambio2" prefWidth="60.0" text="Câmbio" />
+                                                      <TableColumn fx:id="tcFreio2" prefWidth="50.0" text="Freio">
+                                                         <columns>
+                                                            <TableColumn fx:id="tcFreioDt" prefWidth="36.0" text="D" />
+                                                            <TableColumn fx:id="tcFreioTr" prefWidth="36.0" text="T" />
+                                                         </columns>
+                                                      </TableColumn>
+                                                      <TableColumn fx:id="tcMotor2" prefWidth="60.0" text="Motor" />
+                                                      <TableColumn fx:id="tcRevisao2" prefWidth="50.0" text="Revisão" />
+                                                      <TableColumn fx:id="tcSuspensao2" prefWidth="72.0" text="Suspensão">
+                                                         <columns>
+                                                            <TableColumn fx:id="tcSuspDiant" prefWidth="36.0" text="D" />
+                                                            <TableColumn fx:id="tcSuspTras" prefWidth="36.0" text="T" />
+                                                         </columns>
+                                                      </TableColumn>
+                                                   </columns>
+                                                </TableColumn>
+                                                <TableColumn fx:id="tcPneus2" prefWidth="60.0" text="Pneus" />
+                                                <TableColumn fx:id="tcOleo2" prefWidth="60.0" text="Tr. Óleo" />
+                                             </columns>
+                                          </TableColumn>
                                        </columns>
                                     </TableView>
                                  </content>
@@ -123,8 +200,18 @@
                                  <content>
                                     <TableView prefHeight="333.0" prefWidth="940.0">
                                        <columns>
-                                          <TableColumn prefWidth="75.0" text="C1" />
-                                          <TableColumn prefWidth="75.0" text="C2" />
+                                          <TableColumn fx:id="pcPlaca3" prefWidth="90.0" text="Placa" />
+                                          <TableColumn fx:id="tcVeiculo3" prefWidth="194.0" text="Modelo veículo" />
+                                          <TableColumn fx:id="tcStatus2" prefWidth="278.0" text="Status da analise">
+                                             <columns>
+                                                <TableColumn fx:id="tcCambio3" prefWidth="75.0" text="Câmbio" />
+                                                <TableColumn fx:id="tcElet3" prefWidth="75.0" text="Elétrico" />
+                                                <TableColumn fx:id="tcFreio3" prefWidth="75.0" text="Freio" />
+                                                <TableColumn fx:id="tcInjecao3" prefWidth="75.0" text="Injeção" />
+                                                <TableColumn fx:id="tcMecanico3" prefWidth="75.0" text="Mecânica" />
+                                                <TableColumn fx:id="tcPneus3" prefWidth="75.0" text="Pneus" />
+                                             </columns>
+                                          </TableColumn>
                                        </columns>
                                     </TableView>
                                  </content>
@@ -144,8 +231,19 @@
                                  <content>
                                     <TableView prefHeight="333.0" prefWidth="940.0">
                                        <columns>
-                                          <TableColumn prefWidth="75.0" text="C1" />
-                                          <TableColumn prefWidth="75.0" text="C2" />
+                                          <TableColumn fx:id="tcPlaca4" prefWidth="90.0" text="Placa" />
+                                          <TableColumn fx:id="tcVeiculo4" prefWidth="194.0" text="Modelo veículo" />
+                                          <TableColumn fx:id="tcStatus4" prefWidth="278.0" text="Status do serviço">
+                                             <columns>
+                                                <TableColumn fx:id="tcCambio4" prefWidth="75.0" text="Câmbio" />
+                                                <TableColumn fx:id="tcElet4" prefWidth="75.0" text="Elétrico" />
+                                                <TableColumn fx:id="tcFreio4" prefWidth="75.0" text="Freio" />
+                                                <TableColumn fx:id="tcInjecao4" prefWidth="75.0" text="Injeção" />
+                                                <TableColumn fx:id="tcMecanico4" prefWidth="75.0" text="Mecânica" />
+                                                <TableColumn fx:id="tcPneus4" prefWidth="75.0" text="Pneus" />
+                                                <TableColumn fx:id="tcRevisao4" prefWidth="75.0" text="Revisão" />
+                                             </columns>
+                                          </TableColumn>
                                        </columns>
                                     </TableView>
                                  </content>
@@ -165,8 +263,11 @@
                                  <content>
                                     <TableView prefHeight="333.0" prefWidth="940.0">
                                        <columns>
-                                          <TableColumn prefWidth="75.0" text="C1" />
-                                          <TableColumn prefWidth="75.0" text="C2" />
+                                          <TableColumn fx:id="tcPlaca5" prefWidth="90.0" text="Placa" />
+                                          <TableColumn fx:id="tcVeiculo5" prefWidth="194.0" text="Modelo veículo" />
+                                          <TableColumn fx:id="tcCliente5" prefWidth="200.0" text="Cliente" />
+                                          <TableColumn fx:id="tcTelefone5" prefWidth="100.0" text="Telefone" />
+                                          <TableColumn fx:id="tcStatus5" prefWidth="100.0" text="Status aviso" />
                                        </columns>
                                     </TableView>
                                  </content>

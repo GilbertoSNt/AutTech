@@ -1,13 +1,28 @@
 package org.gsnt.auttech.controller;
 
+
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import org.gsnt.auttech.db.DbException;
+import org.gsnt.auttech.model.dao.service.ClienteService;
 import org.gsnt.auttech.model.entities.Cliente;
+import org.gsnt.auttech.util.Botoes;
+import org.gsnt.auttech.util.Moka;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ListaClienteController implements Initializable {
+
+
+
+    private Moka mok = new Moka();
 
     @FXML
     protected TextField textFieldText;
@@ -31,13 +46,13 @@ public class ListaClienteController implements Initializable {
     protected TableView<Cliente> tableViewListClient;
 
     @FXML
-    protected TableColumn<Cliente, Integer> tcCodigo;
+    public TableColumn<Cliente, Integer> tcCodigo;
 
     @FXML
-    protected TableColumn<Cliente, String> tcNome;
+    public TableColumn<Cliente, String> tcNome;
 
     @FXML
-    protected TableColumn<Cliente, String> tcApelido;
+    public TableColumn<Cliente, String > tcApelido;
 
     @FXML
     protected TableColumn<Cliente, Cliente> tcBtEditar;
@@ -57,10 +72,14 @@ public class ListaClienteController implements Initializable {
     @FXML
     protected Button buttonFecha1;
 
+    @FXML
+    protected ImageView teste;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @FXML
+    protected Button btTeste;
 
+
+    private void radio(){
         ToggleGroup radioGroup = new ToggleGroup();
         rbNome.setToggleGroup(radioGroup);
         rbParteNome.setToggleGroup(radioGroup);
@@ -69,4 +88,117 @@ public class ListaClienteController implements Initializable {
 
 
     }
+
+    //implementação da tableview
+    protected ClienteService clienteService;
+
+    public void setClienteService(ClienteService cli){
+        this.clienteService = cli;
+    }
+
+    protected ObservableList<Cliente> obsListCliente;
+
+
+
+    public void updateTableView() {
+        try {
+            if (clienteService == null) {
+                throw new IllegalStateException("Cliente estava nulo");
+            }
+
+            obsListCliente = FXCollections.observableArrayList(clienteService.findAllTest());
+            tableViewListClient.setItems(obsListCliente);
+        }catch (Exception a){
+            throw new DbException(a.getMessage());
+        }
+    }
+
+    private void initializeNodes(){
+
+        try {
+            tcCodigo.setCellValueFactory(new PropertyValueFactory<Cliente, Integer>("cod"));
+            tcNome.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nome"));
+            tcApelido.setCellValueFactory(new PropertyValueFactory<Cliente, String>("apelido"));
+            buttonColumnEdit();
+            buttonColumnAcessar();
+            buttonColumnExclui();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        radio();
+        initializeNodes();
+
+
+    }
+
+    private void buttonColumnAcessar(){
+        tcBtAcessar.setCellValueFactory(param-> new ReadOnlyObjectWrapper<>(param.getValue()));
+        tcBtAcessar.setCellFactory(param -> new TableCell<Cliente, Cliente>(){
+
+            private final Botoes buttonAcessar = new Botoes("#70c3a7");
+
+            @Override
+            protected void updateItem(Cliente cliente, boolean empty){
+
+                super.updateItem(cliente,empty);
+
+                if(cliente == null){
+                    setGraphic(null);
+                    return;
+                }
+                setGraphic(buttonAcessar);
+           //     buttonAcessar.setOnAction(event ->);
+            }
+        } );
+    }
+
+    private void buttonColumnEdit(){
+        tcBtEditar.setCellValueFactory(param-> new ReadOnlyObjectWrapper<>(param.getValue()));
+        tcBtEditar.setCellFactory(param -> new TableCell<Cliente, Cliente>(){
+
+            private final Botoes editButton = new Botoes("#ecec53");
+
+            @Override
+            protected void updateItem(Cliente cliente, boolean empty){
+
+                super.updateItem(cliente,empty);
+                if(cliente == null){
+                    setGraphic(null);
+                    return;
+                }
+                setGraphic(editButton);
+             //   editButton.setOnAction(event ->);
+            }
+        } );
+    }
+
+    private void buttonColumnExclui(){
+        tcBtExcluir.setCellValueFactory(param-> new ReadOnlyObjectWrapper<>(param.getValue()));
+        tcBtExcluir.setCellFactory(param -> new TableCell<Cliente, Cliente>(){
+
+            private final Botoes excluiButton = new Botoes("#cd5c5c");
+
+            @Override
+            protected void updateItem(Cliente cliente, boolean empty){
+
+                super.updateItem(cliente,empty);
+
+                if(cliente == null){
+                    setGraphic(null);
+                    return;
+                }
+                setGraphic(excluiButton);
+           //     excluiButton.setOnAction(event->);
+            }
+        } );
+    }
+
+
 }

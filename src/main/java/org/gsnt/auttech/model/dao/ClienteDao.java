@@ -11,6 +11,7 @@ public interface ClienteDao {
 
     //Select
     List<Cliente> findAll();//implementado mas não testado
+    List<Cliente> findAllTest();
     List<Cliente> findAllPart(String part);//implementado mas não testado
     Cliente findByCPF(String CPF);
     Cliente findByCNPJ(String CNPJ);
