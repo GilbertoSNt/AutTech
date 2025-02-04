@@ -1,34 +1,211 @@
 package org.gsnt.auttech.model.entities;
 
-import java.util.Date;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import org.gsnt.auttech.util.Circulos;
 
-public class Agenda {
 
-    private Date data;
-    private Date hora;
+import javax.crypto.CipherSpi;
+import java.io.Serializable;
+
+public class Agenda implements Serializable {
+
+    //Dados genéricos bando de dados e tela inicial
+    private Integer cod;
+    private String data;
+    private String hora;
     private String nome;
-    private String Veiculo;
+    private String veiculo;
     private String placa;
-    private Boolean serMecanico;
-    private Boolean serEletrivo;
-    private Boolean guincho;
-    private Boolean buscar;
-    private Boolean socorro;
-    private String status;
+    private String telefone;
+    private String obs;
 
-    public Date getData() {
+    //Dados tela inicial
+    private Circulos eletrico;
+    private Circulos injecao;
+    private Circulos mecanico;
+    private Circulos trocaOleo;
+    private Circulos pneus;
+    private Circulos revisao;
+
+    private Circulos socEletrico;
+    private Circulos guincho;
+    private Circulos socMecanico;
+
+    private Circulos buscar;
+    private Circulos levar;
+
+    private Circulos status;
+
+    //Dados genéricos banco de dados
+    private Boolean sRevisao;
+    private Boolean sSuspensao;
+    private Boolean sInjecao;
+    private Boolean sPneus;
+    private Boolean sTrocaOleo;
+    private Boolean sFreio;
+    private Boolean sEletrico;
+    private Boolean sMecanico;
+    private Boolean sMotor;
+    private Boolean sCaixa;
+
+    private Boolean assSocMecanico;
+    private Boolean assSocEletrico;
+    private Boolean assLevar;
+    private Boolean assGuincho;
+    private Boolean assBuscar;
+    private Boolean assClienteTraz;
+    private Integer verStatus = 0;
+
+
+    public Agenda(){}
+
+    public Agenda(String data, String hora, String nome, String veiculo, String placa,
+                  Circulos socMecanico, Circulos socEletrico, Circulos levar, Circulos guincho, Circulos buscar,
+                  Circulos mecanico, Circulos eletrico, Circulos injecao, Circulos revisao,  Circulos pneus,
+                  Circulos trocaOleo, Circulos status) {
+
+        this.data = data;
+        this.hora = hora;
+        this.nome = nome;
+        this.veiculo = veiculo;
+        this.placa = placa;
+        this.socMecanico = socMecanico;
+        this.socEletrico = socEletrico;
+        this.levar = levar;
+        this.guincho = guincho;
+        this.buscar = buscar;
+        this.mecanico = mecanico;
+        this.eletrico = eletrico;
+        this.injecao = injecao;
+        this.revisao = revisao;
+        this.pneus = pneus;
+        this.trocaOleo = trocaOleo;
+        this.status = status;
+
+
+    }
+
+    public Agenda(Integer cod, String data, String hora, String nome, String veiculo, String placa,
+                  String telefone, String obs, Boolean sRevisao, Boolean sSuspensao, Boolean sInjecao,
+                  Boolean sPneus, Boolean sTrocaOleo, Boolean sFreio, Boolean sEletrico, Boolean sMecanico,
+                  Boolean sMotor, Boolean sCaixa, Boolean assSocMecanico, Boolean assSocEletrico, Boolean assLevar,
+                  Boolean assGuincho, Boolean assBuscar, Boolean assClienteTraz, Integer verStatus) {
+
+        this.cod = cod;
+        this.data = data;
+        this.hora = hora;
+        this.nome = nome;
+        this.veiculo = veiculo;
+        this.placa = placa;
+        this.telefone = telefone;
+        this.obs = obs;
+        this.sRevisao = sRevisao;
+        this.sSuspensao = sSuspensao;
+        this.sInjecao = sInjecao;
+        this.sPneus = sPneus;
+        this.sTrocaOleo = sTrocaOleo;
+        this.sFreio = sFreio;
+        this.sEletrico = sEletrico;
+        this.sMecanico = sMecanico;
+        this.sMotor = sMotor;
+        this.sCaixa = sCaixa;
+        this.assSocMecanico = assSocMecanico;
+        this.assSocEletrico = assSocEletrico;
+        this.assLevar = assLevar;
+        this.assGuincho = assGuincho;
+        this.assBuscar = assBuscar;
+        this.assClienteTraz = assClienteTraz;
+        this.verStatus = verStatus;
+
+    }
+
+    public Agenda(String data, String hora, String nome, String veiculo, String placa,
+                  String telefone, String obs, Boolean sRevisao, Boolean sSuspensao, Boolean sInjecao,
+                  Boolean sPneus, Boolean sTrocaOleo, Boolean sFreio, Boolean sEletrico, Boolean sMecanico,
+                  Boolean sMotor, Boolean sCaixa, Boolean assSocMecanico, Boolean assSocEletrico, Boolean assLevar,
+                  Boolean assGuincho, Boolean assBuscar, Boolean assClienteTraz, Integer verStatus) {
+
+        this.data = data;
+        this.hora = hora;
+        this.nome = nome;
+        this.veiculo = veiculo;
+        this.placa = placa;
+        this.telefone = telefone;
+        this.obs = obs;
+        this.sRevisao = sRevisao;
+        this.sSuspensao = sSuspensao;
+        this.sInjecao = sInjecao;
+        this.sPneus = sPneus;
+        this.sTrocaOleo = sTrocaOleo;
+        this.sFreio = sFreio;
+        this.sEletrico = sEletrico;
+        this.sMecanico = sMecanico;
+        this.sMotor = sMotor;
+        this.sCaixa = sCaixa;
+        this.assSocMecanico = assSocMecanico;
+        this.assSocEletrico = assSocEletrico;
+        this.assLevar = assLevar;
+        this.assGuincho = assGuincho;
+        this.assBuscar = assBuscar;
+        this.assClienteTraz = assClienteTraz;
+        this.verStatus = verStatus;
+
+    }
+
+    public Agenda(String data, String hora, String nome, String veiculo, String placa, Boolean sRevisao,
+                  Boolean sSuspensao, Boolean sInjecao, Boolean sPneus, Boolean sTrocaOleo, Boolean sFreio,
+                  Boolean sEletrico, Boolean sMecanico, Boolean sMotor, Boolean sCaixa, Boolean assSocMecanico,
+                  Boolean assSocEletrico, Boolean assLevar, Boolean assGuincho, Boolean assBuscar,
+                  Integer verStatus) {
+
+        this.data = data;
+        this.hora = hora;
+        this.nome = nome;
+        this.veiculo = veiculo;
+        this.placa = placa;
+        this.sRevisao = sRevisao;
+        this.sSuspensao = sSuspensao;
+        this.sInjecao = sInjecao;
+        this.sPneus = sPneus;
+        this.sTrocaOleo = sTrocaOleo;
+        this.sFreio = sFreio;
+        this.sEletrico = sEletrico;
+        this.sMecanico = sMecanico;
+        this.sMotor = sMotor;
+        this.sCaixa = sCaixa;
+        this.assSocMecanico = assSocMecanico;
+        this.assSocEletrico = assSocEletrico;
+        this.assLevar = assLevar;
+        this.assGuincho = assGuincho;
+        this.assBuscar = assBuscar;
+        this.verStatus = verStatus;
+
+    }
+
+    public Integer getCod() {
+        return cod;
+    }
+
+    public void setCod(Integer cod) {
+        this.cod = cod;
+    }
+
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
-    public Date getHora() {
+    public String getHora() {
         return hora;
     }
 
-    public void setHora(Date hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
 
@@ -41,11 +218,11 @@ public class Agenda {
     }
 
     public String getVeiculo() {
-        return Veiculo;
+        return veiculo;
     }
 
     public void setVeiculo(String veiculo) {
-        Veiculo = veiculo;
+        this.veiculo = veiculo;
     }
 
     public String getPlaca() {
@@ -56,52 +233,252 @@ public class Agenda {
         this.placa = placa;
     }
 
-    public Boolean getSerMecanico() {
-        return serMecanico;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setSerMecanico(Boolean serMecanico) {
-        this.serMecanico = serMecanico;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public Boolean getSerEletrivo() {
-        return serEletrivo;
+    public String getObs() {
+        return obs;
     }
 
-    public void setSerEletrivo(Boolean serEletrivo) {
-        this.serEletrivo = serEletrivo;
+    public void setObs(String obs) {
+        this.obs = obs;
     }
 
-    public Boolean getGuincho() {
+    public Circulos getSocMecanico() {
+        return socMecanico;
+    }
+
+    public void setSocMecanico(Circulos socMecanico) {
+        this.socMecanico = socMecanico;
+    }
+
+    public Circulos getSocEletrico() {
+        return socEletrico;
+    }
+
+    public void setSocEletrico(Circulos socEletrico) {
+        this.socEletrico = socEletrico;
+    }
+
+    public Circulos getLevar() {
+        return levar;
+    }
+
+    public void setLevar(Circulos levar) {
+        this.levar = levar;
+    }
+
+    public Circulos getGuincho() {
         return guincho;
     }
 
-    public void setGuincho(Boolean guincho) {
+    public void setGuincho(Circulos guincho) {
         this.guincho = guincho;
     }
 
-    public Boolean getBuscar() {
+    public Circulos getBuscar() {
         return buscar;
     }
 
-    public void setBuscar(Boolean buscar) {
+    public void setBuscar(Circulos buscar) {
         this.buscar = buscar;
     }
 
-    public Boolean getSocorro() {
-        return socorro;
+    public Circulos getMecanico() {
+        return mecanico;
     }
 
-    public void setSocorro(Boolean socorro) {
-        this.socorro = socorro;
+    public void setMecanico(Circulos mecanico) {
+        this.mecanico = mecanico;
     }
 
-    public String getStatus() {
+    public Circulos getEletrico() {
+        return eletrico;
+    }
+
+    public void setEletrico(Circulos eletrico) {
+        this.eletrico = eletrico;
+    }
+
+    public Circulos getInjecao() {
+        return injecao;
+    }
+
+    public void setInjecao(Circulos injecao) {
+        this.injecao = injecao;
+    }
+
+    public Circulos getRevisao() {
+        return revisao;
+    }
+
+    public void setRevisao(Circulos revisão) {
+        this.revisao = revisão;
+    }
+
+    public Circulos getPneus() {
+        return pneus;
+    }
+
+    public void setPneus(Circulos pneus) {
+        this.pneus = pneus;
+    }
+
+    public Circulos getTrocaOleo() {
+        return trocaOleo;
+    }
+
+    public void setTrocaOleo(Circulos trocaOleo) {
+        this.trocaOleo = trocaOleo;
+    }
+
+    public Circulos getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Circulos status) {
         this.status = status;
+    }
+
+    public Boolean getsRevisao() {
+        return sRevisao;
+    }
+
+    public void setsRevisao(Boolean sRevisao) {
+        this.sRevisao = sRevisao;
+    }
+
+    public Boolean getsSuspensao() {
+        return sSuspensao;
+    }
+
+    public void setsSuspensao(Boolean sSuspensao) {
+        this.sSuspensao = sSuspensao;
+    }
+
+    public Boolean getsInjecao() {
+        return sInjecao;
+    }
+
+    public void setsInjecao(Boolean sInjecao) {
+        this.sInjecao = sInjecao;
+    }
+
+    public Boolean getsPneus() {
+        return sPneus;
+    }
+
+    public void setsPneus(Boolean sPneus) {
+        this.sPneus = sPneus;
+    }
+
+    public Boolean getsTrocaOleo() {
+        return sTrocaOleo;
+    }
+
+    public void setsTrocaOleo(Boolean sTrocaOleo) {
+        this.sTrocaOleo = sTrocaOleo;
+    }
+
+    public Boolean getsFreio() {
+        return sFreio;
+    }
+
+    public void setsFreio(Boolean sFreio) {
+        this.sFreio = sFreio;
+    }
+
+    public Boolean getsEletrico() {
+        return sEletrico;
+    }
+
+    public void setsEletrico(Boolean sEletrico) {
+        this.sEletrico = sEletrico;
+    }
+
+    public Boolean getsMecanico() {
+        return sMecanico;
+    }
+
+    public void setsMecanico(Boolean sMecanico) {
+        this.sMecanico = sMecanico;
+    }
+
+    public Boolean getsMotor() {
+        return sMotor;
+    }
+
+    public void setsMotor(Boolean sMotor) {
+        this.sMotor = sMotor;
+    }
+
+    public Boolean getsCaixa() {
+        return sCaixa;
+    }
+
+    public void setsCaixa(Boolean sCaixa) {
+        this.sCaixa = sCaixa;
+    }
+
+    public Boolean getAssSocMecanico() {
+        return assSocMecanico;
+    }
+
+    public void setAssSocMecanico(Boolean assSocMecanico) {
+        this.assSocMecanico = assSocMecanico;
+    }
+
+    public Boolean getAssSocEletrico() {
+        return assSocEletrico;
+    }
+
+    public void setAssSocEletrico(Boolean assSocEletrico) {
+        this.assSocEletrico = assSocEletrico;
+    }
+
+    public Boolean getAssLevar() {
+        return assLevar;
+    }
+
+    public void setAssLevar(Boolean assLevar) {
+        this.assLevar = assLevar;
+    }
+
+    public Boolean getAssGuincho() {
+        return assGuincho;
+    }
+
+    public void setAssGuincho(Boolean assGuincho) {
+        this.assGuincho = assGuincho;
+    }
+
+    public Boolean getAssBuscar() {
+        return assBuscar;
+    }
+
+    public void setAssBuscar(Boolean assBuscar) {
+        this.assBuscar = assBuscar;
+    }
+
+    public Boolean getAssClienteTraz() {
+        return assClienteTraz;
+    }
+
+    public void setAssClienteTraz(Boolean assClienteTraz) {
+        this.assClienteTraz = assClienteTraz;
+    }
+
+    public Integer getVerStatus() {
+        return verStatus;
+    }
+
+    public void setVerStatus(Integer verStatus) {
+        this.verStatus = verStatus;
     }
 
 }

@@ -37,8 +37,7 @@
          <children>
             <TabPane layoutX="13.0" layoutY="14.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="320.0" prefWidth="1175.0" stylesheets="@css/tabpane.css" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                  <Tab text="Clientes / Veículos">
-                    <content>
+                  <Tab text="Clientes / Veículos">                    <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@css/tabpane.css">
                            <children>
                               <Button fx:id="btCliente" layoutX="10.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btClienteButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Clientes" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0">
@@ -57,7 +56,7 @@
                                        </image>
                                     </ImageView>
                                  </graphic></Button>
-                              <Button fx:id="btAgenda" layoutX="288.0" layoutY="12.0" mnemonicParsing="false" onAction="#btAgendaButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Agenda" wrapText="true" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="15.0">
+                              <Button fx:id="btAgenda" layoutX="288.0" layoutY="12.0" mnemonicParsing="false" onAction="#btAgendaOnButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Agenda" wrapText="true" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="15.0">
                                  <graphic>
                                     <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -110,31 +109,45 @@
                            <children>
                               <ScrollPane prefHeight="329.0" prefWidth="956.0">
                                  <content>
-                                    <TableView fx:id="tvAgenda" prefHeight="333.0" prefWidth="940.0">
+                                    <TableView fx:id="tvAgenda" prefHeight="333.0" prefWidth="940.0" stylesheets="@css/tableview.css">
                                       <columns>
                                         <TableColumn fx:id="tcData" prefWidth="75.0" text="Data">
                                              <columns>
-                                                <TableColumn fx:id="tcdia" prefWidth="70.0" text="Dia" />
-                                              <TableColumn fx:id="tcHora" prefWidth="50.0" text="Hora" />
+                                                <TableColumn fx:id="tcDia" prefWidth="65.0" style="-fx-alignment: center;" text="Dia" />
+                                              <TableColumn fx:id="tcHora" prefWidth="50.0" style="-fx-alignment: center;" text="Hora" />
                                              </columns></TableColumn>
-                                          <TableColumn fx:id="tcNome" prefWidth="180.0" text="Nome" />
-                                          <TableColumn fx:id="tcVeiculo" prefWidth="100.0" text="Veículo" />
-                                          <TableColumn fx:id="tcPlaca" prefWidth="90.0" text="Placa" />
-                                          <TableColumn fx:id="tcAssisDes" prefWidth="191.0" text="Assistência / Deslocamento">
+                                          <TableColumn fx:id="tcNome" prefWidth="155.0" text="Nome" />
+                                          <TableColumn fx:id="tcVeiculo" prefWidth="70.0" text="Veículo" />
+                                          <TableColumn fx:id="tcPlaca" prefWidth="75.0" text="Placa" />
+                                          <TableColumn prefWidth="170.0" text="Tipo Serviço">
                                              <columns>
-                                                <TableColumn fx:id="tcBuscar" prefWidth="70.0" text="Buscar" />
-                                                <TableColumn fx:id="tcGuincho" prefWidth="70.0" text="Guincho" />
-                                                <TableColumn fx:id="tcSocorro" prefWidth="75.0" text="Socorro" />
-                                                <TableColumn fx:id="tcSocMec" prefWidth="70.0" text="Mecânico" />
-                                                <TableColumn fx:id="tcSocElet" prefWidth="70.0" text="Elétrico" />
+                                                <TableColumn fx:id="tcServElet" prefWidth="35.0" style="-fx-alignment: center;" text="E" />
+                                                <TableColumn fx:id="tcServInj" prefWidth="35.0" style="-fx-alignment: center;" text="I" />
+                                                <TableColumn fx:id="tcServMec" prefWidth="35.0" style="-fx-alignment: center;" text="M" />
+                                                <TableColumn fx:id="tcServOleo" prefWidth="35.0" style="-fx-alignment: center;" text="O" />
+                                                <TableColumn fx:id="tcServPneu" prefWidth="35.0" style="-fx-alignment: center;" text="P" />
+                                                <TableColumn fx:id="tcServRev" prefWidth="35.0" style="-fx-alignment: center;" text="R" />
                                              </columns>
                                           </TableColumn>
-                                          <TableColumn fx:id="tcStatus" prefWidth="92.0" text="Status" />
+                                          <TableColumn fx:id="tcSocorro" prefWidth="195.0" text="Socorro">
+                                             <columns>
+                                                <TableColumn fx:id="tcSocElet" prefWidth="60.0" style="-fx-alignment: center;" text="Elétrico" />
+                                                <TableColumn fx:id="tcGuincho" prefWidth="60.0" style="-fx-alignment: center;" text="Guincho" />
+                                                <TableColumn fx:id="tcSocMec" prefWidth="60.0" style="-fx-alignment: center;" text="Mecânico" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn fx:id="tcDeslocamento" prefWidth="130.0" text="Desloc.">
+                                             <columns>
+                                                <TableColumn fx:id="tcBuscar" prefWidth="45.0" style="-fx-alignment: center;" text="Buscar" />
+                                                <TableColumn fx:id="tcLevar" prefWidth="43.0" style="-fx-alignment: center;" text="Levar" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn fx:id="tcStatus" prefWidth="47.0" style="-fx-alignment: center;" text="Status" />
                                       </columns>
                                     </TableView>
                                  </content>
                               </ScrollPane>
-                              <Button fx:id="btAgenda" layoutX="961.0" layoutY="8.0" mnemonicParsing="false" onAction="#btAgendaButtonClick" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Agendar" />
+                              <Button fx:id="btAgenda" layoutX="961.0" layoutY="8.0" mnemonicParsing="false" onAction="#btAgendaOnButtonClick" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Agendar" />
                               <Button fx:id="btCancAgenda" layoutX="961.0" layoutY="52.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancelar agendamento" />
                               <Button fx:id="btReceberVeic" layoutX="961.0" layoutY="93.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="confirmar recebimento do veículo" />
                               <Button fx:id="btEnvioSocorro" layoutX="961.0" layoutY="135.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Confirmar envio do socorro" />
@@ -150,18 +163,22 @@
                                     <TableView fx:id="tvFuturos" prefHeight="333.0" prefWidth="940.0">
                                        <columns>
                                           <TableColumn fx:id="tcOs" prefWidth="100.0" text="Ordem Serviço" />
-                                          <TableColumn prefWidth="388.0" text="Dados Veículo">
+                                          <TableColumn fx:id="tcDdVeiculos" prefWidth="388.0" text="Dados Veículo">
                                              <columns>
                                                 <TableColumn fx:id="tcPlaca2" prefWidth="90.0" text="Placa" />
-                                                <TableColumn fx:id="tcModelo2" prefWidth="194.0" text="Modelo Veículo" />
+                                                <TableColumn fx:id="tcModelo2" prefWidth="182.0" text="Modelo Veículo" />
                                              </columns></TableColumn>
                                           <TableColumn fx:id="tcTipoServico" prefWidth="75.0" text="Tipo de serviço">
                                              <columns>
                                                 <TableColumn fx:id="tcElet2" prefWidth="60.0" text="Elétrico" />
-                                                <TableColumn prefWidth="60.0" text="Inj. Elet." />
+                                                <TableColumn fx:id="tcInj2" prefWidth="60.0" text="Inj. Elet." />
                                                 <TableColumn fx:id="tcMec2" prefWidth="75.0" text="Mecânica">
                                                    <columns>
-                                                      <TableColumn fx:id="tcCambio2" prefWidth="60.0" text="Câmbio" />
+                                                      <TableColumn fx:id="tcCambio2" prefWidth="60.0" text="Câmbio">
+                                                         <columns>
+                                                            <TableColumn fx:id="tcCbAut" prefWidth="36.0" text="Aut" />
+                                                            <TableColumn fx:id="tcCbMec" prefWidth="36.0" text="Mec" />
+                                                         </columns></TableColumn>
                                                       <TableColumn fx:id="tcFreio2" prefWidth="50.0" text="Freio">
                                                          <columns>
                                                             <TableColumn fx:id="tcFreioDt" prefWidth="36.0" text="D" />
@@ -198,9 +215,9 @@
                            <children>
                               <ScrollPane prefHeight="329.0" prefWidth="956.0">
                                  <content>
-                                    <TableView prefHeight="333.0" prefWidth="940.0">
+                                    <TableView fx:id="tvEmOrcamento" prefHeight="333.0" prefWidth="940.0">
                                        <columns>
-                                          <TableColumn fx:id="pcPlaca3" prefWidth="90.0" text="Placa" />
+                                          <TableColumn fx:id="tcPlaca3" prefWidth="90.0" text="Placa" />
                                           <TableColumn fx:id="tcVeiculo3" prefWidth="194.0" text="Modelo veículo" />
                                           <TableColumn fx:id="tcStatus2" prefWidth="278.0" text="Status da analise">
                                              <columns>
@@ -208,10 +225,12 @@
                                                 <TableColumn fx:id="tcElet3" prefWidth="75.0" text="Elétrico" />
                                                 <TableColumn fx:id="tcFreio3" prefWidth="75.0" text="Freio" />
                                                 <TableColumn fx:id="tcInjecao3" prefWidth="75.0" text="Injeção" />
-                                                <TableColumn fx:id="tcMecanico3" prefWidth="75.0" text="Mecânica" />
+                                                <TableColumn fx:id="tcMecanica3" prefWidth="75.0" text="Mecânica" />
                                                 <TableColumn fx:id="tcPneus3" prefWidth="75.0" text="Pneus" />
                                              </columns>
                                           </TableColumn>
+                                          <TableColumn fx:id="tcAguardAvaliacao" prefWidth="75.0" text="Mont. Orç." />
+                                          <TableColumn fx:id="tcStatusCliente" prefWidth="130.0" text="Status cliente" />
                                        </columns>
                                     </TableView>
                                  </content>
@@ -229,26 +248,27 @@
                            <children>
                               <ScrollPane prefHeight="329.0" prefWidth="956.0">
                                  <content>
-                                    <TableView prefHeight="333.0" prefWidth="940.0">
+                                    <TableView fx:id="tvServicos" prefHeight="333.0" prefWidth="940.0">
                                        <columns>
                                           <TableColumn fx:id="tcPlaca4" prefWidth="90.0" text="Placa" />
                                           <TableColumn fx:id="tcVeiculo4" prefWidth="194.0" text="Modelo veículo" />
-                                          <TableColumn fx:id="tcStatus4" prefWidth="278.0" text="Status do serviço">
+                                          <TableColumn fx:id="tcStatus4" prefWidth="656.0" text="Status do serviço">
                                              <columns>
-                                                <TableColumn fx:id="tcCambio4" prefWidth="75.0" text="Câmbio" />
-                                                <TableColumn fx:id="tcElet4" prefWidth="75.0" text="Elétrico" />
-                                                <TableColumn fx:id="tcFreio4" prefWidth="75.0" text="Freio" />
-                                                <TableColumn fx:id="tcInjecao4" prefWidth="75.0" text="Injeção" />
-                                                <TableColumn fx:id="tcMecanico4" prefWidth="75.0" text="Mecânica" />
-                                                <TableColumn fx:id="tcPneus4" prefWidth="75.0" text="Pneus" />
-                                                <TableColumn fx:id="tcRevisao4" prefWidth="75.0" text="Revisão" />
+                                                <TableColumn fx:id="tcCambio4" prefWidth="82.0" text="Câmbio" />
+                                                <TableColumn fx:id="tcElet4" prefWidth="82.0" text="Elétrico" />
+                                                <TableColumn fx:id="tcFreio4" prefWidth="82.0" text="Freio" />
+                                                <TableColumn fx:id="tcInjecao4" prefWidth="82.0" text="Injeção" />
+                                                <TableColumn fx:id="tcMecanica4" prefWidth="82.0" text="Mecânica" />
+                                                <TableColumn fx:id="tcPneus4" prefWidth="82.0" text="Pneus" />
+                                                <TableColumn fx:id="tcRevisao4" prefWidth="82.0" text="Revisão" />
+                                                <TableColumn fx:id="tcLavacao4" prefWidth="82.0" text="Lavação" />
                                              </columns>
                                           </TableColumn>
                                        </columns>
                                     </TableView>
                                  </content>
                               </ScrollPane>
-                              <Button fx:id="btFnlzServ" layoutX="961.0" layoutY="97.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Finalizar serviço" />
+                              <Button fx:id="btFnlzServ" layoutX="961.0" layoutY="97.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Finalizar todos os serviço" />
                               <Button fx:id="btCncOS" layoutX="961.0" layoutY="54.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancela Ordem de Serviço" />
                               <Button fx:id="btAlteraOS" layoutX="961.0" layoutY="11.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Altera Ordem de Serviço" />
                            </children>
@@ -261,13 +281,13 @@
                            <children>
                               <ScrollPane prefHeight="329.0" prefWidth="956.0">
                                  <content>
-                                    <TableView prefHeight="333.0" prefWidth="940.0">
+                                    <TableView fx:id="tvProntos" prefHeight="333.0" prefWidth="940.0">
                                        <columns>
                                           <TableColumn fx:id="tcPlaca5" prefWidth="90.0" text="Placa" />
-                                          <TableColumn fx:id="tcVeiculo5" prefWidth="194.0" text="Modelo veículo" />
-                                          <TableColumn fx:id="tcCliente5" prefWidth="200.0" text="Cliente" />
-                                          <TableColumn fx:id="tcTelefone5" prefWidth="100.0" text="Telefone" />
-                                          <TableColumn fx:id="tcStatus5" prefWidth="100.0" text="Status aviso" />
+                                          <TableColumn fx:id="tcVeiculo5" prefWidth="120.0" text="Modelo veículo" />
+                                          <TableColumn fx:id="tcCliente5" prefWidth="350.0" text="Cliente" />
+                                          <TableColumn fx:id="tcTelefone5" prefWidth="120.0" text="Telefone" />
+                                          <TableColumn fx:id="tcStatus5" prefWidth="258.0" text="Status aviso" />
                                        </columns>
                                     </TableView>
                                  </content>

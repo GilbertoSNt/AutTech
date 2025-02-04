@@ -1,0 +1,62 @@
+Relação das entidades
+
+Agenda
+
+Agenda
+    Agenda.FXML
+    AgendaController
+
+    Utiliza
+        AgendaDao
+        AgendaService
+
+
+Cliente
+
+    Seleção
+        TipoPessoaController
+        TipoPessoa.fxml
+            - Ao cadastrar clientes vem a caixa de seleção para pessoa juridica e fisíca;
+
+    Listagem
+        ListaClienteController
+        ListaCliente.fxml
+            - Lista clientes
+
+    Cadastro
+
+    CadClienteFController
+    CadClienteF.fxml
+    CadClienteJController
+    CadClienteJ.fxml
+            - Cadastro de pessoas
+                -Entidades relacionadas
+                    Cliente
+                    TipoEmail
+                    EmailCliente
+                    TipoEnd
+                    EndCliente
+                    Estados
+                    PerfilFiscal
+                    TipoTelefone
+                    TelCliente
+
+
+
+        Utiliza
+            ClienteDao
+            ClienteService
+
+
+Veículo
+
+    CadVeículoController
+
+
+Ordem de serviços
+
+    Entidades
+
+        VecASIniciados(Tela Principal) -
+
+    OsInterna.fxml

@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.service.ClienteService;
 import org.gsnt.auttech.model.entities.Cliente;
@@ -67,10 +68,16 @@ public class ListaClienteController implements Initializable {
     protected Button buttonNovo;
 
     @FXML
-    protected Button buttonFecha;
+    protected Button btClose1;
 
     @FXML
-    protected Button buttonFecha1;
+    protected Button btClose;
+
+    @FXML
+    protected void btCloseButtonClick(){
+        Stage stage = (Stage)btClose.getScene().getWindow();
+        stage.close();
+    }
 
     @FXML
     protected ImageView teste;
@@ -85,7 +92,6 @@ public class ListaClienteController implements Initializable {
         rbParteNome.setToggleGroup(radioGroup);
         rbCNPJ.setToggleGroup(radioGroup);
         rbCPF.setToggleGroup(radioGroup);
-
 
     }
 

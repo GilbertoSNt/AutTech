@@ -3,6 +3,7 @@ package org.gsnt.auttech.model.dao;
 
 import org.gsnt.auttech.db.DB;
 import org.gsnt.auttech.db.DB2;
+import org.gsnt.auttech.model.dao.service.AgendaService;
 import org.gsnt.auttech.model.dao.service.ClienteService;
 import org.gsnt.auttech.model.dao.service.MarcaVeiculoService;
 import org.gsnt.auttech.model.dao.service.ModeloVeiculoService;
@@ -42,6 +43,16 @@ public class DaoFactory {
             return null;
         }
 
+    }
+
+    public static AgendaDao agendaDao(){
+        try {
+            return new AgendaService(DB2.getConnection());
+        }
+        catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
 }

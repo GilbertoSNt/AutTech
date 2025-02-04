@@ -1,67 +1,52 @@
 package org.gsnt.auttech.controller;
 
+import com.fasterxml.jackson.databind.introspect.TypeResolutionContext;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.util.Callback;
+import org.gsnt.auttech.model.entities.DadosGenericos;
+import org.gsnt.auttech.model.entities.TipoEndereco;
+import org.gsnt.auttech.util.DadosCombos;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class OsInternaController implements Initializable {
 
-    @FXML
-    protected Label lblCli;
+
+    private ObservableList<DadosGenericos> obsTipoProcura;
+
+
+    private DadosCombos dadosCombos;
 
     @FXML
-    protected Label lblPlaca;
+    protected ComboBox<DadosGenericos> cbBusca;
 
     @FXML
-    protected Label lblModelo;
-
-    @FXML
-    protected TextField txtCodigoPeca;
-
-    @FXML
-    protected TextField txtQuantidadePecas;
-
-    @FXML
-    protected Button btGravarPecas;
-
-    @FXML
-    protected Button btExcluirPecas;
-
-    @FXML
-    protected TextField txtCodigoServico;
-
-    @FXML
-    protected TextField txtQuantidadeServico;
-
-    @FXML
-    protected Button btGravarServico;
-
-    @FXML
-    protected Button btExcluirServico;
-
-    @FXML
-    protected TableView tvPecas;
-
-    @FXML
-    protected TableView tvServicos;
-
-    @FXML
-    protected TableColumn tcCodigoPecas;
-
-    @FXML
-    protected Label lblTotalPecas;
-
-    @FXML
-    protected Label lblTotalServico;
+    protected Label lblInstrucao;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        obsTipoProcura = FXCollections.observableList(dadosCombos.tipoProcura());
+        cbBusca.setItems(obsTipoProcura);
+        Callback<ListView<DadosGenericos>, ListCell<DadosGenericos>> factory = lv -> new ListCell<DadosGenericos>(){
+            @Override
+            protected void updateItem(DadosGenericos dados, boolean empty){
+                super.updateItem(dados, empty);
+                setText(empty ? "" : dados.getDado());
+            }
+        };
+        cbBusca.setCellFactory(factory);
+        cbBusca.setButtonCell(factory.call(null));
+
     }
+
 }

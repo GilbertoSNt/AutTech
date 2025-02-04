@@ -141,4 +141,15 @@ public class DadosCombos {
 
     }
 
+    public List tipoProcura(){
+
+        List<DadosGenericos> list = new ArrayList<>();
+        list.add(new DadosGenericos(1, "Placa"));
+        list.add(new DadosGenericos(2,"Nome"));
+        list.add(new DadosGenericos(3,"CPF"));
+        list.add(new DadosGenericos(4, "CNPJ"));
+        list.add(new DadosGenericos(5,"Veículo / Primeiro nome"));
+
+        return list;
+    }
 }

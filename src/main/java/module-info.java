@@ -14,6 +14,7 @@ module org.gsnt.auttech {
     requires java.sql;
     requires com.fasterxml.jackson.annotation;
     requires java.naming;
+    requires com.fasterxml.jackson.databind;
 
     opens org.gsnt.auttech to javafx.fxml, javafx.base, javafx.graphics;
     opens org.gsnt.auttech.model.entities to javafx.base;

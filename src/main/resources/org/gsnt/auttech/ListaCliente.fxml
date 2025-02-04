@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="anchorpane" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.controller.ListaClienteController">
    <children>
-      <Button fx:id="buttonFecha1" layoutX="963.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="btn1" stylesheets="@css/button.css" text="X">
+      <Button fx:id="btClose" layoutX="963.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btCloseButtonClick" prefHeight="25.0" prefWidth="25.0" styleClass="btn1" stylesheets="@css/button.css" text="X">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
@@ -28,7 +28,7 @@
                             <TableColumn fx:id="tcCodigo" editable="false" prefWidth="70.0" resizable="false" text="Código" />
                             <TableColumn fx:id="tcNome" editable="false" prefWidth="400.0" resizable="false" text="Nome" />
                               <TableColumn fx:id="tcApelido" editable="false" prefWidth="320.0" resizable="false" text="Nome fantasia" />
-                              <TableColumn fx:id="tcBtAcessar" editable="false" prefWidth="56.0" resizable="false" text="Acessar" />
+                              <TableColumn fx:id="tcBtAcessar" editable="false" prefWidth="56.0" resizable="false" text="Ver cad." />
                               <TableColumn fx:id="tcBtEditar" editable="false" prefWidth="56.0" resizable="false" text="Editar" />
                               <TableColumn fx:id="tcBtExcluir" editable="false" prefWidth="56.0" resizable="false" text="Excluir" />
                           </columns>
@@ -38,7 +38,7 @@
               </content>
             </ScrollPane>
             <Button fx:id="buttonNovo" layoutX="14.0" layoutY="687.0" mnemonicParsing="false" styleClass="button3" stylesheets="@css/button.css" text="Novo" />
-            <Button fx:id="buttonFecha" layoutX="120.0" layoutY="687.0" mnemonicParsing="false" styleClass="button3" stylesheets="@css/button.css" text="Fechar" />
+            <Button fx:id="btClose1" layoutX="120.0" layoutY="687.0" mnemonicParsing="false" onAction="#btCloseButtonClick" styleClass="button3" stylesheets="@css/button.css" text="Fechar" />
             <TextField fx:id="textFieldText" layoutX="14.0" layoutY="12.0" prefHeight="25.0" prefWidth="628.0" />
             <Button fx:id="buttonPesquisa" layoutX="658.0" layoutY="12.0" mnemonicParsing="false" styleClass="button3" stylesheets="@css/button.css" text="Pesquisar" />
             <Label layoutX="14.0" layoutY="51.0" text="Pesquisar por - " />
