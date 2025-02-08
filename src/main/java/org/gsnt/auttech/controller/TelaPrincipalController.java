@@ -487,7 +487,7 @@ public class TelaPrincipalController implements Initializable {
             tcOs.setCellValueFactory(new PropertyValueFactory<OrdemServico, Integer>("numero"));
             tcPlaca2.setCellValueFactory(new PropertyValueFactory<OrdemServico, String>("placa"));
             tcModelo2.setCellValueFactory(new PropertyValueFactory<OrdemServico, String>("modelo"));
-            tcElet2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sEletrico2"));
+         /*   tcElet2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sEletrico2"));
             tcInj2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sInjecao2"));
             tcCbAut.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sCamAut2"));
             tcCbMec.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sCamMec2"));
@@ -499,7 +499,7 @@ public class TelaPrincipalController implements Initializable {
             tcSuspTras.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sSuspTr2"));
             tcPneus2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sPneus2"));
             tcOleo2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sTrOleo2"));
-
+*/
         }
 
         catch (Exception a){
