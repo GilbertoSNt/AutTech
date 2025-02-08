@@ -16,7 +16,9 @@ import org.gsnt.auttech.TelaPrincipal;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.service.AgendaService;
 import org.gsnt.auttech.model.dao.service.ClienteService;
+import org.gsnt.auttech.model.dao.service.OrdemServicoService;
 import org.gsnt.auttech.model.entities.Agenda;
+import org.gsnt.auttech.model.entities.OrdemServico;
 import org.gsnt.auttech.util.Circulos;
 
 
@@ -30,6 +32,8 @@ public class TelaPrincipalController implements Initializable {
 
 
     private AgendaService agendaService;
+
+    private OrdemServicoService ordemServicoService;
 
     @FXML
     private Accordion accServicos;
@@ -131,16 +135,16 @@ public class TelaPrincipalController implements Initializable {
     protected TableView tvFuturos;
 
     @FXML
-    protected TableColumn tcOs;
+    protected TableColumn<OrdemServico,Integer> tcOs;
 
     @FXML
     protected TableColumn tcDdVeiculos;
 
     @FXML
-    protected TableColumn tcPlaca2;
+    protected TableColumn<OrdemServico, String> tcPlaca2;
 
     @FXML
-    protected TableColumn tcModelo2;
+    protected TableColumn<OrdemServico, String> tcModelo2;
 
     @FXML
     protected TableColumn tcTipoServico;
@@ -149,46 +153,46 @@ public class TelaPrincipalController implements Initializable {
     protected TableColumn tcMec2;
 
     @FXML
-    protected TableColumn tcElet2;
+    protected TableColumn<OrdemServico, Circulos> tcElet2;
 
     @FXML
-    protected TableColumn tcInj2;
+    protected TableColumn<OrdemServico, Circulos> tcInj2;
 
     @FXML
     protected TableColumn tcCambio2;
 
     @FXML
-    protected TableColumn tcCbAut;
+    protected TableColumn<OrdemServico, Circulos> tcCbAut;
 
     @FXML
-    protected TableColumn tcCbMec;
+    protected TableColumn<OrdemServico, Circulos> tcCbMec;
 
     @FXML
     protected TableColumn tcFreio2;
 
     @FXML
-    protected TableColumn tcFreioDt;
+    protected TableColumn<OrdemServico, Circulos> tcFreioDt;
 
     @FXML
-    protected TableColumn tcFreioTr;
+    protected TableColumn<OrdemServico, Circulos> tcFreioTr;
 
     @FXML
-    protected TableColumn tcMotor2;
+    protected TableColumn<OrdemServico, Circulos> tcMotor2;
 
     @FXML
-    protected TableColumn tcRevisao2;
+    protected TableColumn<OrdemServico, Circulos> tcRevisao2;
 
     @FXML
-    protected TableColumn tcPneus2;
+    protected TableColumn<OrdemServico, Circulos> tcPneus2;
 
     @FXML
-    protected TableColumn tcOleo2;
+    protected TableColumn<OrdemServico, Circulos> tcOleo2;
 
     @FXML
-    protected TableColumn tcSuspDiant;
+    protected TableColumn<OrdemServico, Circulos> tcSuspDiant;
 
     @FXML
-    protected TableColumn tcSuspTras;
+    protected TableColumn<OrdemServico, Circulos> tcSuspTras;
 
     @FXML
     protected Button btAbrirOS;
@@ -200,6 +204,12 @@ public class TelaPrincipalController implements Initializable {
     protected Button btDirTecnico;
 
 
+
+    protected void setOrdemServicoService(OrdemServicoService ordem){
+        this.ordemServicoService = ordem;
+    }
+
+    protected ObservableList<OrdemServico> obsListOrdemServico;
 
 
 
@@ -394,6 +404,7 @@ public class TelaPrincipalController implements Initializable {
     }
 
     public void updateTableView() {
+
             setAgendaService(new AgendaService());
         try {
             if (agendaService == null) {
@@ -404,11 +415,26 @@ public class TelaPrincipalController implements Initializable {
         }catch (Exception a){
             throw new DbException(a.getMessage());
         }
+
+
+
+            setOrdemServicoService(new OrdemServicoService());
+        try{
+            if(ordemServicoService == null){
+                throw new IllegalStateException("Ordem de Serviço Service está nulo");
+            }
+            obsListOrdemServico = FXCollections.observableArrayList(ordemServicoService.findTelaPrincipal());
+            tvFuturos.setItems(obsListOrdemServico);
+        }catch (Exception a){
+            throw new DbException(a.getMessage());
+        }
+
     }
 
     protected void initializeNodes(){
 
         accordionAgenda();
+        accordionSerIniciados();
 
     }
 
@@ -452,7 +478,33 @@ public class TelaPrincipalController implements Initializable {
             System.out.println(a.getMessage()+"  erro no initializeNodes TelaPrincipalController");
         }
 
+    }
 
+    private void accordionSerIniciados(){
+
+
+        try {
+            tcOs.setCellValueFactory(new PropertyValueFactory<OrdemServico, Integer>("numero"));
+            tcPlaca2.setCellValueFactory(new PropertyValueFactory<OrdemServico, String>("placa"));
+            tcModelo2.setCellValueFactory(new PropertyValueFactory<OrdemServico, String>("modelo"));
+            tcElet2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sEletrico2"));
+            tcInj2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sInjecao2"));
+            tcCbAut.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sCamAut2"));
+            tcCbMec.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sCamMec2"));
+            tcFreioDt.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sFreioDt2"));
+            tcFreioTr.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sFreioTr2"));
+            tcMotor2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sMotor2"));
+            tcRevisao2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sRevisao2"));
+            tcSuspDiant.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sSuspDt2"));
+            tcSuspTras.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sSuspTr2"));
+            tcPneus2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sPneus2"));
+            tcOleo2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sTrOleo2"));
+
+        }
+
+        catch (Exception a){
+            System.out.println(a.getMessage()+"  erro no initializeNodes TelaPrincipalController");
+        }
 
     }
 

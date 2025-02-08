@@ -13,9 +13,9 @@ public class Circulos extends Circle{
 
     //    setCenterX(5);
     //    setCenterY(25);
-        setRadius(7);
+        setRadius(5);
         setFill(Paint.valueOf(cor));
-        setStrokeWidth(4);
+        setStrokeWidth(3);
         setStroke(Paint.valueOf(cor1));
 
     }
@@ -24,9 +24,9 @@ public class Circulos extends Circle{
 
         //    setCenterX(5);
         //    setCenterY(25);
-        setRadius(7);
+        setRadius(5);
         setFill(Paint.valueOf(cor));
-        setStrokeWidth(4);
+        setStrokeWidth(3);
         setStroke(Paint.valueOf(cor));
 
     }

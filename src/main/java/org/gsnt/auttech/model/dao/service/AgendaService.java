@@ -1,7 +1,6 @@
 package org.gsnt.auttech.model.dao.service;
 
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+
 import org.gsnt.auttech.model.dao.AgendaDao;
 import org.gsnt.auttech.model.entities.Agenda;
 import org.gsnt.auttech.util.Circulos;
@@ -32,8 +31,6 @@ public class AgendaService implements AgendaDao {
         Boolean assGuincho, Boolean assBuscar, Boolean assClienteTraz
         */
 
-
-
         /* construtor da tela inicial
          String data, String hora, String nome, String veiculo, String placa,
          BooleanProperty socMecanico, BooleanProperty socEletrico, BooleanProperty levar,
@@ -42,16 +39,11 @@ public class AgendaService implements AgendaDao {
          BooleanProperty trocaOleo, IntegerProperty status
          */
 
-        Boolean b1 = false;
         Moka mok = new Moka();
         List<Agenda> a = mok.dadosTelaAgenda();
         List<Agenda> correta = new ArrayList<>();
 
         for(Integer b=0; b<a.size();b++) {
-
-            System.out.println(""+b+" retorno do ver status "+a.get(b).getVerStatus());
-
-
 
             Circulos socMecanico = null;
             if (a.get(b).getAssSocMecanico()){
