@@ -281,14 +281,13 @@
                                           <TableColumn fx:id="tcVeiculo4" prefWidth="194.0" text="Modelo veículo" />
                                           <TableColumn fx:id="tcStatus4" prefWidth="656.0" text="Status do serviço">
                                              <columns>
-                                                <TableColumn fx:id="tcCambio4" prefWidth="82.0" style="-fx-alignment: center;" text="Câmbio" />
-                                                <TableColumn fx:id="tcElet4" prefWidth="82.0" style="-fx-alignment: center;" text="Elétrico" />
-                                                <TableColumn fx:id="tcFreio4" prefWidth="82.0" style="-fx-alignment: center;" text="Freio" />
-                                                <TableColumn fx:id="tcInjecao4" prefWidth="82.0" style="-fx-alignment: center;" text="Injeção" />
-                                                <TableColumn fx:id="tcMecanica4" prefWidth="82.0" style="-fx-alignment: center;" text="Mecânica" />
-                                                <TableColumn fx:id="tcPneus4" prefWidth="82.0" style="-fx-alignment: center;" text="Pneus" />
-                                                <TableColumn fx:id="tcRevisao4" prefWidth="82.0" style="-fx-alignment: center;" text="Revisão" />
-                                                <TableColumn fx:id="tcLavacao4" prefWidth="82.0" style="-fx-alignment: center;" text="Lavação" />
+                                                <TableColumn fx:id="tcCambio4" prefWidth="93.0" style="-fx-alignment: center;" text="Câmbio" />
+                                                <TableColumn fx:id="tcElet4" prefWidth="93.0" style="-fx-alignment: center;" text="Elétrico" />
+                                                <TableColumn fx:id="tcInjecao4" prefWidth="93.0" style="-fx-alignment: center;" text="Injeção" />
+                                                <TableColumn fx:id="tcMecanica4" prefWidth="93.0" style="-fx-alignment: center;" text="Mecânica" />
+                                                <TableColumn fx:id="tcMotor4" prefWidth="93.0" style="-fx-alignment: center;" text="Motor" />
+                                                <TableColumn fx:id="tcPneus4" prefWidth="93.0" style="-fx-alignment: center;" text="Pneus" />
+                                                <TableColumn fx:id="tcLavacao4" prefWidth="93.0" style="-fx-alignment: center;" text="Lavação" />
                                              </columns>
                                           </TableColumn>
                                        </columns>
