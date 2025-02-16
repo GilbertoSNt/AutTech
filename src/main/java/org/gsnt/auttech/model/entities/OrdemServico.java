@@ -7,6 +7,7 @@ public class OrdemServico {
     private Integer numero;
     private String placa;
     private String modelo;
+
     private Circulos sEletrico2;
     private Circulos sInjecao2;
     private Circulos sCamAut2;
