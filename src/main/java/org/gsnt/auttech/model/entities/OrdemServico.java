@@ -33,6 +33,10 @@ public class OrdemServico {
     private Boolean sPneus;
     private Boolean sTrOleo;
 
+    private String telefone;
+    private String status;
+
+
     public OrdemServico(Integer numero, String placa, String modelo, Circulos sEletrico2, Circulos sInjecao2,
     Circulos sCamAut2, Circulos sCamMec2, Circulos sFreioDt2, Circulos sFreioTr2, Circulos sMotor2, Circulos sRevisao2,
     Circulos sSuspDt2, Circulos sSuspTr2, Circulos sPneus2, Circulos sTrOleo2){
@@ -77,6 +81,44 @@ public class OrdemServico {
 
     }
 
+    //
+    /////Construtor tela veículo em serviços
+    //
+    public OrdemServico(Integer numero, String placa, String modelo, Boolean sEletrico, Boolean sInjecao,
+                        Boolean sCamAut, Boolean sCamMec, Boolean sFreioDt, Boolean sFreioTr, Boolean sMotor,
+                        Boolean sSuspDt, Boolean sSuspTr, Boolean sPneus, Boolean sTrOleo) {
+
+        this.numero = numero;
+        this.placa = placa;
+        this.modelo = modelo;
+        this.sCamAut = sCamAut;
+        this.sCamMec = sCamMec;
+        this.sEletrico = sEletrico;
+        this.sFreioDt = sFreioDt;
+        this.sFreioTr = sFreioTr;
+        this.sInjecao = sInjecao;
+        this.sMotor = sMotor;
+        this.sSuspDt = sSuspDt;
+        this.sSuspTr = sSuspTr;
+        this.sPneus = sPneus;
+        this.sTrOleo = sTrOleo;
+
+    }
+
+    //
+    /////Tela de veículos prontos
+    //
+    public OrdemServico(Integer numero, String placa, String modelo, String telefone, String status) {
+
+        this.numero = numero;
+        this.placa = placa;
+        this.modelo = modelo;
+        this.telefone = telefone;
+        this.status = status;
+
+
+    }
+
     public Integer getNumero() {
         return numero;
     }
@@ -101,99 +143,99 @@ public class OrdemServico {
         this.modelo = modelo;
     }
 
-    public Circulos getsEletrico2() {
+    public Circulos getSEletrico2() {
         return sEletrico2;
     }
 
-    public void setsEletrico2(Circulos sEletrico2) {
+    public void setSEletrico2(Circulos sEletrico2) {
         this.sEletrico2 = sEletrico2;
     }
 
-    public Circulos getsInjecao2() {
+    public Circulos getSInjecao2() {
         return sInjecao2;
     }
 
-    public void setsInjecao2(Circulos sInjecao2) {
+    public void setSInjecao2(Circulos sInjecao2) {
         this.sInjecao2 = sInjecao2;
     }
 
-    public Circulos getsCamAut2() {
+    public Circulos getSCamAut2() {
         return sCamAut2;
     }
 
-    public void setsCamAut2(Circulos sCamAut2) {
+    public void setSCamAut2(Circulos sCamAut2) {
         this.sCamAut2 = sCamAut2;
     }
 
-    public Circulos getsCamMec2() {
+    public Circulos getSCamMec2() {
         return sCamMec2;
     }
 
-    public void setsCamMec2(Circulos sCamMec2) {
+    public void setSCamMec2(Circulos sCamMec2) {
         this.sCamMec2 = sCamMec2;
     }
 
-    public Circulos getsFreioDt2() {
+    public Circulos getSFreioDt2() {
         return sFreioDt2;
     }
 
-    public void setsFreioDt2(Circulos sFreioDt2) {
+    public void setSFreioDt2(Circulos sFreioDt2) {
         this.sFreioDt2 = sFreioDt2;
     }
 
-    public Circulos getsFreioTr2() {
+    public Circulos getSFreioTr2() {
         return sFreioTr2;
     }
 
-    public void setsFreioTr2(Circulos sFreioTr2) {
+    public void setSFreioTr2(Circulos sFreioTr2) {
         this.sFreioTr2 = sFreioTr2;
     }
 
-    public Circulos getsMotor2() {
+    public Circulos getSMotor2() {
         return sMotor2;
     }
 
-    public void setsMotor2(Circulos sMotor2) {
+    public void setSMotor2(Circulos sMotor2) {
         this.sMotor2 = sMotor2;
     }
 
-    public Circulos getsRevisao2() {
+    public Circulos getSRevisao2() {
         return sRevisao2;
     }
 
-    public void setsRevisao2(Circulos sRevisao2) {
+    public void setSRevisao2(Circulos sRevisao2) {
         this.sRevisao2 = sRevisao2;
     }
 
-    public Circulos getsSuspDt2() {
+    public Circulos getSSuspDt2() {
         return sSuspDt2;
     }
 
-    public void setsSuspDt2(Circulos sSuspDt2) {
+    public void setSSuspDt2(Circulos sSuspDt2) {
         this.sSuspDt2 = sSuspDt2;
     }
 
-    public Circulos getsSuspTr2() {
+    public Circulos getSSuspTr2() {
         return sSuspTr2;
     }
 
-    public void setsSuspTr2(Circulos sSuspTr2) {
+    public void setSSuspTr2(Circulos sSuspTr2) {
         this.sSuspTr2 = sSuspTr2;
     }
 
-    public Circulos getsPneus2() {
+    public Circulos getSPneus2() {
         return sPneus2;
     }
 
-    public void setsPneus2(Circulos sPneus2) {
+    public void setSPneus2(Circulos sPneus2) {
         this.sPneus2 = sPneus2;
     }
 
-    public Circulos getsTrOleo2() {
+    public Circulos getSTrOleo2() {
         return sTrOleo2;
     }
 
-    public void setsTrOleo2(Circulos sTrOleo2) {
+    public void setSTrOleo2(Circulos sTrOleo2) {
         this.sTrOleo2 = sTrOleo2;
     }
 

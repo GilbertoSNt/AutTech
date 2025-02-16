@@ -104,7 +104,9 @@ public class AgendaService implements AgendaDao {
             if(a.get(b).getVerStatus()==1){
                 status = new Circulos("#70c3a7");
             }else if(a.get(b).getVerStatus()==2) {
-                status = new Circulos("#70c3a7", "#cd5c5c");
+                status = new Circulos("#f9d428");
+            }else if(a.get(b).getVerStatus()==3) {
+                status = new Circulos("#cd5c5c");
             }
 
             correta.add(new Agenda(a.get(b).getData(), a.get(b).getHora(), a.get(b).getNome(), a.get(b).getVeiculo(),

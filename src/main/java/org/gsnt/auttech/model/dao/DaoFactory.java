@@ -63,4 +63,14 @@ public class DaoFactory {
         }
     }
 
+    public static OrcamentoDao orcamentoDao(){
+        try {
+            return new OrcamentoService(DB2.getConnection());
+        }
+        catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
 }

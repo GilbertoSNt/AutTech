@@ -28,7 +28,7 @@ public class OrdemServicoService implements OrdemServicoDao {
         List<OrdemServico> a = mok.dadosTelaSerIniciados();
         List<OrdemServico> correta = new ArrayList<>();
 
-        for(Integer b = 0; b>a.size(); b++){
+        for(Integer b = 0; b<a.size(); b++){
 
             Circulos sEletrico = null;
             if(a.get(b).getsEletrico()){
@@ -86,8 +86,8 @@ public class OrdemServicoService implements OrdemServicoDao {
             }
 
             Circulos sRevisao = null;
-            if(a.get(b).getsTrOleo()){
-                sRevisao = new Circulos("#f9d428","#cd5c5c");
+            if(a.get(b).getsRevisao()){
+                sRevisao = new Circulos("#f9d428","#70c3a7");
                 sEletrico = new Circulos("#f9d428");
                 sInjecao = new Circulos("#f9d428");
                 sCamAut = new Circulos("#f9d428");
@@ -100,13 +100,12 @@ public class OrdemServicoService implements OrdemServicoDao {
                 sPneus = new Circulos("#f9d428");
                 sTrOleo = new Circulos("#f9d428");
 
-
             }
-           /* Circulos sRevisao2,
-                    Circulos sPneus2, Circulos sTrOleo2*/
+
             correta.add(new OrdemServico(a.get(b).getNumero(), a.get(b).getPlaca(), a.get(b).getModelo(),
                     sEletrico, sInjecao, sCamAut, sCamMec, sFreioDt, sFreioTr, sMotor, sRevisao,sSuspDt,
                     sSuspTr, sPneus,sTrOleo));
+
         }
 
         return correta;

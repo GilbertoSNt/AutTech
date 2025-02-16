@@ -64,10 +64,12 @@
 	-fx-background-color: -fx-light-grey-color;
 }
 
-.table-row-cell:filled:selected {
-  	-fx-background-color: -fx-light-grey-color;
+.table-row-cell:filled:selected .table-cell{
+
+    -fx-background-color: #afeeee;
  	-fx-background-insets: 0.0;
 	-fx-background-radius: 0.0;
+
 }
 
 .table-row-cell:filled:selected .table-cell {
