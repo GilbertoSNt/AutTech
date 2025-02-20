@@ -110,3 +110,27 @@
     -fx-border-radius:7 7 7 7;
     -fx-text-fill: -fx-fifth-color;
 }
+
+
+.button5{
+    -fx-pref-width:45;
+    -fx-pref-height:25;
+    -fx-background-color:#eff1f2/*-fx-secondary-color*/;
+    -fx-border-color:-fx-primary-color;
+    -fx-background-radius:3;
+    -fx-text-fill: -fx-primary-color;
+    -fx-border-width:2;
+    -fx-border-weight:2;
+    -fx-border-radius:3 3 3 3;
+}
+
+.button5:focused{
+    -fx-border-color: -fx-fifth-color;
+    -fx-font-weight:bold;
+}
+
+.button5:hover{
+    -fx-background-color:-fx-secondary-color;
+    -fx-border-color:-fx-fifth-color;
+    -fx-font-weight:bold;
+}

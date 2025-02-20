@@ -268,6 +268,8 @@ public class TelaPrincipalController implements Initializable {
 
     // implementação tableview em serviço
 
+    protected ObservableList<OrdemServico> obsListEmServico;
+
     @FXML
     protected TitledPane tpServicos;
 
@@ -275,37 +277,34 @@ public class TelaPrincipalController implements Initializable {
     protected TableView tvServicos;
 
     @FXML
-    protected TableColumn tcPlaca4;
+    protected TableColumn<OrdemServico, String> tcPlaca4;
 
     @FXML
-    protected TableColumn tcVeiculo4;
+    protected TableColumn<OrdemServico, String> tcVeiculo4;
 
     @FXML
     protected TableColumn tcStatus4;
 
     @FXML
-    protected TableColumn tcCambio4;
+    protected TableColumn<OrdemServico, Circulos> tcCambio4;
 
     @FXML
-    protected TableColumn tcElet4;
+    protected TableColumn<OrdemServico, Circulos> tcElet4;
 
     @FXML
-    protected TableColumn tcFreio4;
+    protected TableColumn<OrdemServico, Circulos> tcInjecao4;
 
     @FXML
-    protected TableColumn tcInjecao4;
+    protected TableColumn<OrdemServico, Circulos> tcMecanica4;
 
     @FXML
-    protected TableColumn tcMecanica4;
+    protected TableColumn<OrdemServico, Circulos> tcMotor4;
 
     @FXML
-    protected TableColumn tcPneus4;
+    protected TableColumn<OrdemServico, Circulos> tcPneus4;
 
     @FXML
-    protected TableColumn tcRevisao4;
-
-    @FXML
-    protected TableColumn tcLavacao4;
+    protected TableColumn<OrdemServico, Circulos> tcLavacao4;
 
     @FXML
     protected Button btAlteraOS;
@@ -424,6 +423,10 @@ public class TelaPrincipalController implements Initializable {
             }
             obsListOrdemServico = FXCollections.observableArrayList(ordemServicoService.findTelaPrincipal());
             tvFuturos.setItems(obsListOrdemServico);
+            obsListEmServico = FXCollections.observableArrayList(ordemServicoService.findTelaPrincipalEmServiço());
+            tvServicos.setItems(obsListEmServico);
+
+
         }catch (Exception a){
             throw new DbException(a.getMessage());
         }
@@ -446,7 +449,7 @@ public class TelaPrincipalController implements Initializable {
         accordionAgenda();
         accordionSerIniciados();
         accordionOrcamento();
-
+        accordionEmServico();
     }
 
 
@@ -535,6 +538,19 @@ public class TelaPrincipalController implements Initializable {
         tcAguardAvaliacao.setCellValueFactory(new PropertyValueFactory<Orcamento,Circulos>("statusOrc2"));
         tcStatusCliente.setCellValueFactory(new PropertyValueFactory<Orcamento,String>("statusCliente2"));
 
+    }
+
+    private void accordionEmServico(){
+
+        tcPlaca4.setCellValueFactory(new PropertyValueFactory<OrdemServico,String>("placa"));
+        tcVeiculo4.setCellValueFactory(new PropertyValueFactory<OrdemServico,String>("modelo"));
+        tcCambio4.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sCamMec2"));
+        tcElet4.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sEletrico2"));
+        tcInjecao4.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sInjecao2"));
+        tcMecanica4.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("mecanico1"));
+        tcMotor4.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sMotor2"));
+        tcPneus4.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sPneus2"));
+        tcLavacao4.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("lavacao1"));
     }
 
 

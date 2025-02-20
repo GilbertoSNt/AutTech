@@ -297,6 +297,12 @@
                               <Button fx:id="btFnlzServ" layoutX="961.0" layoutY="97.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Finalizar todos os serviço" />
                               <Button fx:id="btCncOS" layoutX="961.0" layoutY="54.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancela Ordem de Serviço" />
                               <Button fx:id="btAlteraOS" layoutX="961.0" layoutY="11.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Altera Ordem de Serviço" />
+                              <Circle fx:id="circleSem12" fill="#f9d428" layoutX="974.0" layoutY="174.0" radius="8.0" stroke="#f9d428" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="991.0" layoutY="167.0" text="Em produção" />
+                              <Circle fx:id="circleDirecionado12" fill="#70c3a7" layoutX="974.0" layoutY="202.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="992.0" layoutY="194.0" text="Serviço pronto" />
+                              <Circle fx:id="circleDirecionado111" fill="INDIANRED" layoutX="975.0" layoutY="148.0" radius="8.0" stroke="INDIANRED" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="992.0" layoutY="140.0" text="Não iniciado" />
                            </children>
                         </AnchorPane>
                      </content>

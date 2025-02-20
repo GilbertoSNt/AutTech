@@ -22,6 +22,8 @@ public class OrcamentoService implements OrcamentoDao {
     @Override
     public List<Orcamento> findByTela() {
 
+        //Tela principal da tela ordem de serviço
+
         Moka mok = new Moka();
         List<Orcamento> a = new ArrayList<>();
         a = mok.dadosTelaOrcamento();

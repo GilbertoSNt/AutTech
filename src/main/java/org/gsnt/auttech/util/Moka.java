@@ -80,5 +80,28 @@ public class Moka {
     }
 
 
+    public List<OrdemServico> dadosTelaOsProducao(){
+        /*
+        Integer numero, String placa, String modelo, Integer sEletrico3, Integer sInjecao3,
+        Integer sCamAut3, Integer sCamMec3, Integer sFreioDt3, Integer sFreioTr3, Integer sMotor3,
+        Integer sSuspDt3, Integer sSuspTr3, Integer sPneus3, Integer sTrOleo3, Integer lavacao
+        */
+
+        List<OrdemServico> list = new ArrayList<>();
+        list.add(new OrdemServico(1,"AAA0A00","Veículo1",1,1,1,1,1,1,1,1,1,1,1,1));
+        list.add(new OrdemServico(2,"BBB0B00","Veículo2",2,2,2,2,2,2,2,2,2,2,2,2));
+        list.add(new OrdemServico(3,"CCC0C00","Veículo3",3,3,3,3,3,3,3,3,3,3,3,3));
+        list.add(new OrdemServico(3,"CCC0C00","Veículo4",0,0,0,1,1,0,0,0,0,0,0,0));
+        list.add(new OrdemServico(3,"CCC0C00","Veículo5",1,1,1,0,0,1,1,0,0,1,0,1));
+        list.add(new OrdemServico(3,"CCC0C00","Veículo6",2,2,0,0,0,0,2,3,0,2,0,2));
+        list.add(new OrdemServico(3,"CCC0C00","Veículo7",3,3,0,2,0,0,3,1,3,3,0,3));
+        list.add(new OrdemServico(3,"CCC0C00","Veículo8",0,0,0,0,0,0,0,0,0,0,3,1));
+        list.add(new OrdemServico(3,"CCC0C00","Veículo9",0,0,0,0,1,0,0,0,0,1,3,0));
+        return list;
+
+    }
+
+
+
 
 }

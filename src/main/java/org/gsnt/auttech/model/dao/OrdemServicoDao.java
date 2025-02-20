@@ -8,6 +8,8 @@ public interface OrdemServicoDao {
 
     List<OrdemServico> findTelaPrincipal();
 
+    List<OrdemServico> findTelaPrincipalEmServiço();
+
     List<OrdemServico> findLista();
 
     Boolean saveOrdemServico(OrdemServico item);
