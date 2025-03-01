@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="1000.0" styleClass="anchorpane" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.controller.ItensOsController">
+   <children>
+      <Button fx:id="btClose" layoutX="964.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btCloseButtonClick" prefHeight="25.0" prefWidth="25.0" styleClass="btn1" stylesheets="@css/button.css" text="X">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Button>
+      <AnchorPane layoutX="3.0" layoutY="58.0" prefHeight="800.0" prefWidth="994.0" styleClass="pane" stylesheets="@css/panel.css" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="55.0">
+         <children>
+            <Label layoutX="22.0" layoutY="16.0" text="Placa Veículo" />
+            <TextField fx:id="txtPlaca" layoutX="102.0" layoutY="12.0" styleClass="text-field" stylesheets="@css/TextField.css" />
+            <Label layoutX="22.0" layoutY="55.0" text="Veículo - " />
+            <Label layoutX="338.0" layoutY="16.0" text="Nome - " />
+            <AnchorPane layoutX="14.0" layoutY="87.0" prefHeight="155.0" prefWidth="475.0" styleClass="anchorpane" stylesheets="@css/panel.css" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="505.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="10.0" text="Tipos de serviços" />
+                  <CheckBox fx:id="cbRevisao" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" text="Revisão" />
+                  <CheckBox fx:id="cbTrcOleo" layoutX="208.0" layoutY="34.0" mnemonicParsing="false" text="Troca de óleo" />
+                  <CheckBox fx:id="cbMec" layoutX="380.0" layoutY="34.0" mnemonicParsing="false" text="Mecânico" />
+                  <CheckBox fx:id="cbSusp" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" text="Suspensão" />
+                  <CheckBox fx:id="cbFreio" layoutX="208.0" layoutY="64.0" mnemonicParsing="false" text="Freio" />
+                  <CheckBox fx:id="cbMotor" layoutX="380.0" layoutY="64.0" mnemonicParsing="false" text="Motor" />
+                  <CheckBox fx:id="cbInjElet" layoutX="14.0" layoutY="93.0" mnemonicParsing="false" text="Injeção eletrônica" />
+                  <CheckBox fx:id="cbElet" layoutX="208.0" layoutY="93.0" mnemonicParsing="false" text="Elétrica" />
+                  <CheckBox fx:id="cbCaixa" layoutX="380.0" layoutY="93.0" mnemonicParsing="false" text="Caixa" />
+                  <CheckBox fx:id="cbAlinBalan" layoutX="14.0" layoutY="121.0" mnemonicParsing="false" text="Alinhamento / Balanceamento / Pneus" />
+               </children>
+            </AnchorPane>
+            <Button fx:id="btGravar" layoutX="22.0" layoutY="674.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Gravar" />
+            <Button fx:id="btCancel" layoutX="144.0" layoutY="674.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Cancelar" />
+            <Button fx:id="btFechar" layoutX="265.0" layoutY="674.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btCloseButtonClick" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Fechar" />
+            <AnchorPane layoutX="497.0" layoutY="87.0" prefHeight="99.0" prefWidth="486.0" styleClass="anchorpane" stylesheets="@css/panel.css">
+               <children>
+                  <Label layoutX="14.0" layoutY="10.0" text="Assitências / Deslocamento" />
+                  <CheckBox fx:id="cbSocMec" layoutX="14.0" layoutY="31.0" mnemonicParsing="false" text="Socorro mecânico" />
+                  <CheckBox fx:id="cbSocElet" layoutX="209.0" layoutY="31.0" mnemonicParsing="false" text="Socorro elétrico" />
+                  <CheckBox fx:id="cbBusVei" layoutX="15.0" layoutY="58.0" mnemonicParsing="false" text="Buscar veículo" />
+                  <CheckBox fx:id="cbGuincho" layoutX="379.0" layoutY="31.0" mnemonicParsing="false" text="Guincho" />
+                  <CheckBox fx:id="cbLevVei" layoutX="209.0" layoutY="58.0" mnemonicParsing="false" text="Levar veículo" />
+                  <CheckBox fx:id="cbCliente" layoutX="379.0" layoutY="58.0" mnemonicParsing="false" text="Cliente traz" />
+               </children>
+            </AnchorPane>
+            <Label fx:id="lblNomeCliente" layoutX="389.0" layoutY="16.0" />
+            <Label fx:id="lblVeiculo" layoutX="82.0" layoutY="55.0" />
+            <Button fx:id="btnVeiculo" layoutX="260.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="button5" stylesheets="@css/button.css">
+               <graphic>
+                  <ImageView fx:id="btVeiculo" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icones/icons8-car-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btCadastraCliente" layoutX="861.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="button5" stylesheets="@css/button.css">
+               <graphic>
+                  <ImageView fx:id="btCliente" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icones/cliente.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <TabPane fx:id="tpGeral" layoutX="14.0" layoutY="257.0" prefHeight="402.0" prefWidth="966.0" stylesheets="@css/tabpane.css" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="tabPecas" text="Peças / Acessórios">
+                     <content>
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="960.0">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <children>
+                              <ScrollPane hbarPolicy="ALWAYS" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="960.0" vbarPolicy="ALWAYS" AnchorPane.topAnchor="45.0">
+                                 <content>
+                                    <TableView fx:id="tvPecas" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="950.0" stylesheets="@css/tableview.css">
+                                      <columns>
+                                        <TableColumn fx:id="tcReferenciaPecas" prefWidth="90.0" text="Referência" />
+                                          <TableColumn fx:id="tcDescricaoPecas" editable="false" prefWidth="300.0" text="Descrição" />
+                                          <TableColumn fx:id="tcQuantPecas" prefWidth="75.0" text="Quantidade" />
+                                          <TableColumn fx:id="tcUnidade" prefWidth="50.0" text="Unid." />
+                                          <TableColumn fx:id="tcValorPecas" prefWidth="90.0" text="Valor Unitário" />
+                                          <TableColumn fx:id="tcDescontoPecas" prefWidth="75.0" text="Desconto %" />
+                                          <TableColumn fx:id="tcLiquido" prefWidth="90.0" text="V. LÍquido" />
+                                          <TableColumn fx:id="tcValorTotalPecas" editable="false" prefWidth="110.0" text="Valor Total" />
+                                          <TableColumn fx:id="tcExcluirPecas" prefWidth="60.0" text="Excluir" />
+                                      </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                              <Label layoutX="14.0" layoutY="14.0" text="Referência - " />
+                              <TextField fx:id="txfReferenciaPecas" layoutX="85.0" layoutY="10.0" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/TextField.css" />
+                              <Label layoutX="297.0" layoutY="14.0" text="Quantidade - " />
+                              <TextField fx:id="txfQuantidadePecas" layoutX="371.0" layoutY="10.0" prefHeight="25.0" prefWidth="90.0" stylesheets="@css/TextField.css" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                <Tab fx:id="tvMaoObra" text="Mão de Obra">
+                     <content>
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="960.0">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <children>
+                              <ScrollPane hbarPolicy="ALWAYS" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="960.0" vbarPolicy="ALWAYS" AnchorPane.topAnchor="45.0">
+                                 <content>
+                                    <TableView fx:id="tvServicos" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="950.0" stylesheets="@css/tableview.css">
+                                       <columns>
+                                          <TableColumn fx:id="tcReferenciaMaoObra" editable="false" prefWidth="90.0" text="Referência" />
+                                          <TableColumn fx:id="tcDescricaoMaoObra" editable="false" prefWidth="312.0" text="Descrição" />
+                                          <TableColumn fx:id="tcQuantMaoObra" prefWidth="75.0" text="Quantidade" />
+                                          <TableColumn fx:id="tcValorMaoObra" prefWidth="90.0" text="Valor Unitário" />
+                                          <TableColumn fx:id="tcDescontoMaoObra" prefWidth="75.0" text="Desconto %" />
+                                          <TableColumn fx:id="tcValorTotalMaoObra" editable="false" prefWidth="90.0" text="Valor Total" />
+                                          <TableColumn fx:id="tcTecnico" prefWidth="135.0" text="Técnico" />
+                                          <TableColumn fx:id="tcExcluirMaoObra" prefWidth="75.0" text="Excluir" />
+                                       </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                              <Label layoutX="14.0" layoutY="14.0" text="Referência - " />
+                              <TextField fx:id="txfRefernciaMaoObra" layoutX="85.0" layoutY="10.0" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/TextField.css" />
+                              <Label layoutX="297.0" layoutY="14.0" text="Quantidade - " />
+                              <TextField fx:id="txfQuantidadeMaoObra" layoutX="371.0" layoutY="10.0" prefHeight="25.0" prefWidth="90.0" stylesheets="@css/TextField.css" />
+                              <Label layoutX="474.0" layoutY="14.0" text="Valor unitário(Valor/Hora) - " />
+                              <TextField fx:id="txfValorMaoObra" layoutX="623.0" layoutY="10.0" stylesheets="@css/TextField.css" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="tabFinanceiro" text="Financeiro">
+                     <content>
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="960.0">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <children>
+                              <ScrollPane hbarPolicy="ALWAYS" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="960.0" vbarPolicy="ALWAYS" AnchorPane.topAnchor="45.0">
+                                 <content>
+                                    <TableView fx:id="tvFinanceiro" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="950.0" stylesheets="@css/tableview.css">
+                                       <columns>
+                                          <TableColumn fx:id="tcParcela" prefWidth="50.0" text="Parcela" />
+                                          <TableColumn fx:id="tcTipo" prefWidth="120.0" text="Tipo cobrança" />
+                                          <TableColumn fx:id="tcSituacaoBancaria" prefWidth="120.0" text="Situação bancária" />
+                                          <TableColumn fx:id="tcDataEmissao" prefWidth="120.0" text="Data emissão" />
+                                          <TableColumn fx:id="tcDataVencimento" prefWidth="120.0" text="Data vencimento" />
+                                          <TableColumn fx:id="tcDataPagamento" prefWidth="120.0" text="Data pagamento" />
+                                          <TableColumn fx:id="tcStatus" prefWidth="120.0" text="Status" />
+                                          <TableColumn fx:id="tcBaixar" prefWidth="56.0" text="Baixar" />
+                                          <TableColumn fx:id="tcCancelar" prefWidth="56.0" text="Cancelar" />
+                                       </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                              <Label fx:id="lblValorTotal" layoutX="14.0" layoutY="14.0" text="Valor total - " />
+                              <ComboBox fx:id="cbTipoParcelamento" layoutX="203.0" layoutY="10.0" prefWidth="150.0" promptText="Tipo Pagamento" stylesheets="@css/combobox.css" />
+                              <ComboBox fx:id="cbParcelas" layoutX="373.0" layoutY="10.0" prefWidth="150.0" promptText="Parcelas" stylesheets="@css/combobox.css" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Descrição / Defeitos">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextArea fx:id="txaDescricao" layoutX="7.0" layoutY="17.0" prefHeight="317.0" prefWidth="944.0" stylesheets="@css/tableview.css" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab fx:id="txaObservacoes" text="Observações">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextArea fx:id="txaObservacoes" layoutX="7.0" layoutY="17.0" prefHeight="317.0" prefWidth="944.0" stylesheets="@css/tableview.css" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children></AnchorPane>
+      <Label layoutX="12.0" layoutY="11.0" text="Ordem de serviço - Nº ">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblNumOs" layoutX="264.0" layoutY="11.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

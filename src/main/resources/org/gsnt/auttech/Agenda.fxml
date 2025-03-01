@@ -45,9 +45,9 @@
                </children>
             </AnchorPane>
             <TextArea fx:id="txaDescricao" layoutX="14.0" layoutY="419.0" prefHeight="108.0" prefWidth="473.0" stylesheets="@css/tableview.css" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-            <Button fx:id="btGravar" layoutX="22.0" layoutY="541.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Gravar" />
+            <Button fx:id="btGravar" layoutX="22.0" layoutY="541.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btGravarButtonClick" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Gravar" />
             <Button fx:id="btCancel" layoutX="144.0" layoutY="541.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Cancelar" />
-            <Button fx:id="btFechar" layoutX="265.0" layoutY="541.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Fechar" />
+            <Button fx:id="btFechar" layoutX="265.0" layoutY="541.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btFecharButtonClick" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Fechar" />
             <Label layoutX="22.0" layoutY="15.0" text="Data" />
             <Label layoutX="21.0" layoutY="395.0" text="Descrição / Defeitos" />
             <AnchorPane layoutX="13.0" layoutY="291.0" prefHeight="99.0" prefWidth="475.0" styleClass="anchorpane" stylesheets="@css/panel.css">

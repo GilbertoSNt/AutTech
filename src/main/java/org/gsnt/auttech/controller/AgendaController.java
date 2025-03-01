@@ -3,12 +3,15 @@ package org.gsnt.auttech.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class AgendaController {
 
 
+    @FXML
+    private DatePicker dpData;
 
     @FXML
     protected TextField txtVeiculo;
@@ -35,10 +38,23 @@ public class AgendaController {
     protected Button btGravar;
 
     @FXML
+    protected void btGravarButtonClick(){
+
+        System.out.println(""+dpData.);
+
+    }
+
+    @FXML
     protected Button btCancel;
 
     @FXML
     protected Button btFechar;
+
+    @FXML
+    protected void btFecharButtonClick(){
+        Stage stage = (Stage)btFechar.getScene().getWindow();
+        stage.close();
+    }
 
     @FXML
     protected CheckBox cbRevisao;

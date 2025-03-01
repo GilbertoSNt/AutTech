@@ -150,14 +150,16 @@
                               </ScrollPane>
                               <Button fx:id="btAgenda" layoutX="961.0" layoutY="8.0" mnemonicParsing="false" onAction="#btAgendaOnButtonClick" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Agendar" />
                               <Button fx:id="btCancAgenda" layoutX="961.0" layoutY="52.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancelar agendamento" />
-                              <Button fx:id="btReceberVeic" layoutX="961.0" layoutY="93.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="confirmar recebimento do veículo" />
+                              <Button fx:id="btReceberVeic" layoutX="961.0" layoutY="93.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Criar O.S. pelo agendamento" />
                               <Button fx:id="btEnvioSocorro" layoutX="961.0" layoutY="135.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Confirmar envio do socorro" />
                               <Circle fx:id="circleSem11" fill="INDIANRED" layoutX="975.0" layoutY="240.0" radius="8.0" stroke="INDIANRED" strokeType="INSIDE" strokeWidth="3.0" />
                               <Circle fx:id="circleRevisao11" fill="#70c3a7" layoutX="975.0" layoutY="187.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
                               <Label layoutX="994.0" layoutY="178.0" text="Agendado" />
                               <Label layoutX="994.0" layoutY="205.0" text="Em Alerta de horário" />
                               <Circle fx:id="circleParcial12" fill="#f9d428" layoutX="975.0" layoutY="212.0" radius="8.0" stroke="#f9d428" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="995.0" layoutY="232.0" text="Atrasadp" />
+                              <Label layoutX="995.0" layoutY="232.0" text="Atrasado" />
+                              <Circle fx:id="circleSem111" fill="#0047ab" layoutX="975.0" layoutY="266.0" radius="8.0" stroke="#0047ab" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="995.0" layoutY="259.0" text="Socorro enviado" />
                            </children>
                         </AnchorPane>
                      </content></TitledPane>
