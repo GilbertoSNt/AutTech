@@ -10,10 +10,16 @@ public interface AgendaDao {
 
     List<Agenda> findLista();
 
-    Boolean saveAgenda(Agenda item);
+    Boolean insertAgenda(Agenda item);
 
-    Boolean excluiAgenda(Agenda Item);
+    Boolean excluiAgenda(Agenda item);
 
-    Boolean saveAlterAgenda(Agenda Item);
+    Boolean saveAlterAgenda(Agenda item);
+
+    Agenda findByPlacaData(String placa);
+
+    void saveEnvioRecolhimento(Agenda item);
+
+    void saveEnvioGuincho(Agenda item);
 
 }

@@ -1,6 +1,7 @@
 package org.gsnt.auttech.controller;
 
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,28 +15,28 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.gsnt.auttech.TelaPrincipal;
 import org.gsnt.auttech.db.DbException;
-import org.gsnt.auttech.model.dao.service.AgendaService;
+import org.gsnt.auttech.model.dao.AgendaDao;
+import org.gsnt.auttech.model.dao.DaoFactory;
 import org.gsnt.auttech.model.dao.service.ClienteService;
 import org.gsnt.auttech.model.dao.service.OrcamentoService;
 import org.gsnt.auttech.model.dao.service.OrdemServicoService;
 import org.gsnt.auttech.model.entities.Agenda;
 import org.gsnt.auttech.model.entities.Orcamento;
 import org.gsnt.auttech.model.entities.OrdemServico;
+import org.gsnt.auttech.util.Alerts;
 import org.gsnt.auttech.util.Circulos;
 
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
 public class TelaPrincipalController implements Initializable {
 
-    private AgendaService agendaService;
-
-    protected void setAgendaService(AgendaService agenda){
-        this.agendaService = agenda;
-    }
+    AgendaDao agendaService = DaoFactory.createAgendaDao();
 
     protected ObservableList<Agenda> obsListAgenda;
 
@@ -109,18 +110,97 @@ public class TelaPrincipalController implements Initializable {
     protected Button btAgenda;
 
     @FXML
-    protected void btAgendaOnButtonClick() {
+    protected void onBtAgenda() {
         loadView("/org/gsnt/auttech/Agenda.fxml",x->{});
+        updateTableView();
+    }
+
+    @FXML
+    protected Button btAlteraAgenda;
+
+    @FXML
+    protected void onBtAlteraAgenda(){
+
+        if(tvAgenda.getSelectionModel().getSelectedItem() != null) {
+            Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
+            Optional<ButtonType> result = Alerts.showConfirmation("Confirmação de alteração", "Realmente deseja alterar o agendamento da placa " + tt.getPlaca());
+
+            if(result.get() == ButtonType.OK) {
+
+                loadView("/org/gsnt/auttech/Agenda.fxml", (AgendaController agendaController) -> {
+                    agendaController.preencheDados(tt.getPlaca());
+                });
+            }
+        }else{
+            Alerts.showAlert("Sem dados", "Você deve selecionar uma linha na tabela agenda", null, Alert.AlertType.INFORMATION);
+        }
     }
 
     @FXML
     protected Button btCancAgenda;
 
     @FXML
+    protected void onBtCancelarAgenda(){
+
+        Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
+        Optional<ButtonType> result = Alerts.showConfirmation("Confirmação de exclusão", "Realmente deseja excluir o agendamento da placa "+tt.getPlaca());
+
+      if(result.get() == ButtonType.OK) {
+          agendaService.excluiAgenda(tt);
+          updateTableView();
+      }
+
+    }
+
+    @FXML
     protected Button btReceberVeic;
 
     @FXML
     protected Button btEnvioSocorro;
+
+    @FXML
+    protected void onBtConfirmaEnvioSocorro(){
+
+        Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
+        if(tt.getGuincho() != null || tt.getSocMecanico() != null || tt.getSocEletrico() != null){
+
+            Optional<ButtonType> result = Alerts.showConfirmation("Confirmação do envio de guincho / socorro do veículo", "Confirma o envio do guincho / socorro para o veículo "+tt.getPlaca());
+
+            if(result.get() == ButtonType.OK) {
+
+                agendaService.saveEnvioGuincho(tt);
+                updateTableView();
+            }
+
+        }
+        else{
+            Alerts.showAlert("Atenção","Agendamento não tem registro da necessidade do guinho / socorro para o veículo",null, Alert.AlertType.ERROR);
+        }
+    }
+
+    @FXML
+    protected Button btEnvioBusca;
+
+    @FXML
+    protected void onBtConfirmaEnvioBusca(){
+
+        Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
+
+        if(tt.getBuscar() != null){
+
+            Optional<ButtonType> result = Alerts.showConfirmation("Confirmação do envio de recolhimento do veículo", "Confirma o envio da equipe de recolhimento para o veículo "+tt.getPlaca());
+
+            if(result.get() == ButtonType.OK) {
+                agendaService.saveEnvioRecolhimento(tt);
+                updateTableView();
+            }
+
+        }
+        else{
+            Alerts.showAlert("Atenção","Agendamento não tem registro da necessidade de buscar o veículo",null, Alert.AlertType.ERROR);
+        }
+
+    }
 
     // Inicio da table view(Veículo a serem iniciados)
 
@@ -316,11 +396,8 @@ public class TelaPrincipalController implements Initializable {
     protected Button btFnlzServ;
 
 
-
-
-
-
     // Implementaçao serviços prontos
+
     @FXML
     protected TitledPane tpProntos;
 
@@ -344,12 +421,6 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     protected Button btFnlzOS;
-
-
-
-
-
-
 
 
 
@@ -403,7 +474,6 @@ public class TelaPrincipalController implements Initializable {
 
     public void updateTableView() {
 
-            setAgendaService(new AgendaService());
         try {
             if (agendaService == null) {
                 throw new IllegalStateException("Agenda estava nulo");
@@ -411,9 +481,8 @@ public class TelaPrincipalController implements Initializable {
             obsListAgenda = FXCollections.observableArrayList(agendaService.findTelaPrincipal());
             tvAgenda.setItems(obsListAgenda);
         }catch (Exception a){
-            throw new DbException(a.getMessage());
+            throw new DbException(a.getMessage()+" updateTableView - Tela Agenda");
         }
-
 
 
             setOrdemServicoService(new OrdemServicoService());
@@ -468,7 +537,7 @@ public class TelaPrincipalController implements Initializable {
 
         try {
 
-            tcDia.setCellValueFactory(new PropertyValueFactory<Agenda, String>("data"));
+            tcDia.setCellValueFactory(new PropertyValueFactory<Agenda, String>("dataAgenda"));
             tcHora.setCellValueFactory(new PropertyValueFactory<Agenda, String>("hora"));
             tcNome.setCellValueFactory(new PropertyValueFactory<Agenda, String>("nome"));
             tcPlaca.setCellValueFactory(new PropertyValueFactory<Agenda, String>("placa"));

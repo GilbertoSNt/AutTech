@@ -43,7 +43,7 @@ public class DaoFactory {
 
     }
 
-    public static AgendaDao agendaDao(){
+    public static AgendaDao createAgendaDao(){
         try {
             return new AgendaService(DB2.getConnection());
         }
@@ -53,7 +53,7 @@ public class DaoFactory {
         }
     }
 
-    public static OrdemServicoDao ordemServicoDao(){
+    public static OrdemServicoDao createOrdemServicoDao(){
         try {
             return new OrdemServicoService(DB2.getConnection());
         }
@@ -63,7 +63,7 @@ public class DaoFactory {
         }
     }
 
-    public static OrcamentoDao orcamentoDao(){
+    public static OrcamentoDao createOrcamentoDao(){
         try {
             return new OrcamentoService(DB2.getConnection());
         }

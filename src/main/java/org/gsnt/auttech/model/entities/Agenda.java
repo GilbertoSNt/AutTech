@@ -14,7 +14,7 @@ public class Agenda implements Serializable {
 
     //Dados genéricos bando de dados e tela inicial
     private Integer cod;
-    private String data;
+    private String dataAgenda;
     private String hora;
     private String nome;
     private String veiculo;
@@ -29,14 +29,11 @@ public class Agenda implements Serializable {
     private Circulos trocaOleo;
     private Circulos pneus;
     private Circulos revisao;
-
     private Circulos socEletrico;
     private Circulos guincho;
     private Circulos socMecanico;
-
     private Circulos buscar;
     private Circulos levar;
-
     private Circulos status;
 
     //Dados genéricos banco de dados
@@ -55,19 +52,23 @@ public class Agenda implements Serializable {
     private Boolean assSocEletrico;
     private Boolean assLevar;
     private Boolean assGuincho;
+    private Boolean assEnvioGuincho;
     private Boolean assBuscar;
+    private Boolean assEnvioDeslocamento;
     private Boolean assClienteTraz;
-    private Integer verStatus = 0;
+
 
 
     public Agenda(){}
 
-    public Agenda(String data, String hora, String nome, String veiculo, String placa,
+
+    //Construtor tela inicital
+    public Agenda(String dataAgenda, String hora, String nome, String veiculo, String placa,
                   Circulos socMecanico, Circulos socEletrico, Circulos levar, Circulos guincho, Circulos buscar,
                   Circulos mecanico, Circulos eletrico, Circulos injecao, Circulos revisao,  Circulos pneus,
                   Circulos trocaOleo, Circulos status) {
 
-        this.data = data;
+        this.dataAgenda = dataAgenda;
         this.hora = hora;
         this.nome = nome;
         this.veiculo = veiculo;
@@ -88,14 +89,17 @@ public class Agenda implements Serializable {
 
     }
 
-    public Agenda(Integer cod, String data, String hora, String nome, String veiculo, String placa,
+
+    //Construtor banco dados
+    public Agenda(Integer cod, String dataAgenda, String hora, String nome, String veiculo, String placa,
                   String telefone, String obs, Boolean sRevisao, Boolean sSuspensao, Boolean sInjecao,
                   Boolean sPneus, Boolean sTrocaOleo, Boolean sFreio, Boolean sEletrico, Boolean sMecanico,
                   Boolean sMotor, Boolean sCaixa, Boolean assSocMecanico, Boolean assSocEletrico, Boolean assLevar,
-                  Boolean assGuincho, Boolean assBuscar, Boolean assClienteTraz, Integer verStatus) {
+                  Boolean assGuincho, Boolean assBuscar, Boolean assClienteTraz, Boolean assEnvioGuincho,
+                  Boolean assEnvioDeslocamento) {
 
         this.cod = cod;
-        this.data = data;
+        this.dataAgenda = dataAgenda;
         this.hora = hora;
         this.nome = nome;
         this.veiculo = veiculo;
@@ -118,17 +122,20 @@ public class Agenda implements Serializable {
         this.assGuincho = assGuincho;
         this.assBuscar = assBuscar;
         this.assClienteTraz = assClienteTraz;
-        this.verStatus = verStatus;
+        this.assEnvioGuincho = assEnvioGuincho;
+        this.assEnvioDeslocamento = assEnvioDeslocamento;
 
     }
 
-    public Agenda(String data, String hora, String nome, String veiculo, String placa,
+    //Construtor inserção banco dados
+    public Agenda(String dataAgenda, String hora, String nome, String veiculo, String placa,
                   String telefone, String obs, Boolean sRevisao, Boolean sSuspensao, Boolean sInjecao,
                   Boolean sPneus, Boolean sTrocaOleo, Boolean sFreio, Boolean sEletrico, Boolean sMecanico,
                   Boolean sMotor, Boolean sCaixa, Boolean assSocMecanico, Boolean assSocEletrico, Boolean assLevar,
-                  Boolean assGuincho, Boolean assBuscar, Boolean assClienteTraz, Integer verStatus) {
+                  Boolean assGuincho, Boolean assBuscar, Boolean assClienteTraz, Boolean assEnvioGuincho,
+                  Boolean assEnvioDeslocamento) {
 
-        this.data = data;
+        this.dataAgenda = dataAgenda;
         this.hora = hora;
         this.nome = nome;
         this.veiculo = veiculo;
@@ -151,17 +158,19 @@ public class Agenda implements Serializable {
         this.assGuincho = assGuincho;
         this.assBuscar = assBuscar;
         this.assClienteTraz = assClienteTraz;
-        this.verStatus = verStatus;
+        this.assEnvioGuincho = assEnvioGuincho;
+        this.assEnvioDeslocamento = assEnvioDeslocamento;
 
     }
 
-    public Agenda(String data, String hora, String nome, String veiculo, String placa, Boolean sRevisao,
+    //Construtor retorno bando dados para tela principal agenda
+    public Agenda(String dataAgenda, String hora, String nome, String veiculo, String placa, Boolean sRevisao,
                   Boolean sSuspensao, Boolean sInjecao, Boolean sPneus, Boolean sTrocaOleo, Boolean sFreio,
                   Boolean sEletrico, Boolean sMecanico, Boolean sMotor, Boolean sCaixa, Boolean assSocMecanico,
                   Boolean assSocEletrico, Boolean assLevar, Boolean assGuincho, Boolean assBuscar,
-                  Integer verStatus) {
+                  Boolean assEnvioGuincho, Boolean assEnvioDeslocamento) {
 
-        this.data = data;
+        this.dataAgenda = dataAgenda;
         this.hora = hora;
         this.nome = nome;
         this.veiculo = veiculo;
@@ -181,7 +190,8 @@ public class Agenda implements Serializable {
         this.assLevar = assLevar;
         this.assGuincho = assGuincho;
         this.assBuscar = assBuscar;
-        this.verStatus = verStatus;
+        this.assEnvioGuincho = assEnvioGuincho;
+        this.assEnvioDeslocamento = assEnvioDeslocamento;
 
     }
 
@@ -193,12 +203,12 @@ public class Agenda implements Serializable {
         this.cod = cod;
     }
 
-    public String getData() {
-        return data;
+    public String getDataAgenda() {
+        return dataAgenda;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setDataAgenda(String data) {
+        this.dataAgenda = data;
     }
 
     public String getHora() {
@@ -473,12 +483,19 @@ public class Agenda implements Serializable {
         this.assClienteTraz = assClienteTraz;
     }
 
-    public Integer getVerStatus() {
-        return verStatus;
+    public Boolean getAssEnvioGuincho() {
+        return assEnvioGuincho;
     }
 
-    public void setVerStatus(Integer verStatus) {
-        this.verStatus = verStatus;
+    public void setAssEnvioGuincho(Boolean assEnvioGuincho) {
+        this.assEnvioGuincho = assEnvioGuincho;
     }
 
+    public Boolean getAssEnvioDeslocamento() {
+        return assEnvioDeslocamento;
+    }
+
+    public void setAssEnvioDeslocamento(Boolean assEnvioDeslocamento) {
+        this.assEnvioDeslocamento = assEnvioDeslocamento;
+    }
 }
