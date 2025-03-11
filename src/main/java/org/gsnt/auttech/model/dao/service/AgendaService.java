@@ -201,7 +201,6 @@ public class AgendaService implements AgendaDao {
 
         PreparedStatement st = null;
         try{
-
             st = conn.prepareStatement(
             "INSERT INTO tabagenda(hora, nome, veiculo, placa, telefone, obs, revisao, suspensao,"+
                 " injecao, pneus, trocaoleo, freio, eletrico, mecanico, motor, caixa, socmecanico,"+
@@ -265,10 +264,18 @@ public class AgendaService implements AgendaDao {
     public Boolean excluiAgenda(Agenda item) {
 
         PreparedStatement st = null;
+        ResultSet rs = null;
         try{
-            st = conn.prepareStatement("DELETE FROM tabagenda WHERE placa = ?");
-            st.setString(1, item.getPlaca());
 
+            st = conn.prepareStatement("SELECT cod FROM tabagenda WHERE placa = ?");
+            st.setString(1, item.getPlaca());
+            Integer codigo = 0;
+            rs = st.executeQuery();
+            rs.next();
+            codigo = rs.getInt("cod");
+
+            st = conn.prepareStatement("DELETE FROM tabagenda WHERE cod = ?");
+            st.setInt(1, codigo);
             st.executeUpdate();
 
             return true;
@@ -283,8 +290,57 @@ public class AgendaService implements AgendaDao {
     }
 
     @Override
-    public Boolean saveAlterAgenda(Agenda item) {
-        return null;
+    public Boolean saveAlterAgenda(Agenda item, String placa) {
+
+        Agenda a = item;
+
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement(
+                    "UPDATE tabagenda SET hora = ?, nome = ?, veiculo = ?, placa = ?, telefone = ?, obs = ?," +
+                            " revisao = ?, suspensao = ?, injecao = ?, pneus = ?, trocaoleo = ?, freio = ?," +
+                            " eletrico = ?, mecanico = ?, motor = ?, caixa = ?, socmecanico = ?, soceletrico = ?," +
+                            " asslevar = ?, assguincho = ?, assbuscar = ?, assclientetraz = ?, assenvioguincho = ?,"+
+                            " assenviodeslocamento = ?, dataagenda = ?"+
+                            " WHERE placa = ?");
+
+            st.setString(1,a.getHora());
+            st.setString(2,a.getNome());
+            st.setString(3,a.getVeiculo());
+            st.setString(4,a.getPlaca());
+            st.setString(5,a.getTelefone());
+            st.setString(6,a.getObs());
+            st.setBoolean(7,a.getsRevisao());
+            st.setBoolean(8,a.getsSuspensao());
+            st.setBoolean(9,a.getsInjecao());
+            st.setBoolean(10,a.getsPneus());
+            st.setBoolean(11,a.getsTrocaOleo());
+            st.setBoolean(12,a.getsFreio());
+            st.setBoolean(13,a.getsEletrico());
+            st.setBoolean(14,a.getsMecanico());
+            st.setBoolean(15,a.getsMotor());
+            st.setBoolean(16,a.getsCaixa());
+            st.setBoolean(17,a.getAssSocMecanico());
+            st.setBoolean(18,a.getAssSocEletrico());
+            st.setBoolean(19,a.getAssLevar());
+            st.setBoolean(20,a.getAssGuincho());
+            st.setBoolean(21,a.getAssBuscar());
+            st.setBoolean(22,a.getAssClienteTraz());
+            st.setBoolean(23,a.getAssEnvioGuincho());
+            st.setBoolean(24,a.getAssEnvioDeslocamento());
+            st.setString(25,a.getDataAgenda());
+
+            st.setString(26,placa);
+
+            st.executeUpdate();
+
+            return true;
+        }catch (SQLException e){
+            throw new DbException(e.getMessage()+" updateAgenda");
+        }
+        finally {
+            DB2.closeStatement(st);
+        }
     }
 
     @Override
@@ -302,12 +358,12 @@ public class AgendaService implements AgendaDao {
         ResultSet rs = null;
         PreparedStatement st = null;
         try{
-            st = conn.prepareStatement("SELECT tabagenda " +
+            st = conn.prepareStatement("SELECT * FROM tabagenda " +
                                         "WHERE placa = ?");
             st.setString(1, placa);
 
             rs = st.executeQuery();
-
+            rs.next();
             agenda.setCod(rs.getInt("cod"));
             agenda.setDataAgenda(rs.getString("dataagenda"));
             agenda.setHora(rs.getString("hora"));

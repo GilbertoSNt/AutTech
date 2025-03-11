@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import org.gsnt.auttech.model.dao.AgendaDao;
 import org.gsnt.auttech.model.dao.DaoFactory;
 import org.gsnt.auttech.model.entities.Agenda;
+import org.gsnt.auttech.util.Alerts;
 import org.gsnt.auttech.util.MaskValid;
 
 import java.net.URL;
@@ -19,8 +20,6 @@ public class AgendaController implements Initializable {
 
     public AgendaController(){}
 
-
-
     private MaskValid maskValid = new MaskValid();
 
     private AgendaDao agendaService = DaoFactory.createAgendaDao();
@@ -29,6 +28,9 @@ public class AgendaController implements Initializable {
     private LocalDate b = null;
     private LocalTime c = null;
     private LocalTime d = null;
+
+    private int tipoTela = 0;
+    private String placaTela = null;
 
     @FXML
     private DatePicker dpData;
@@ -135,14 +137,20 @@ public class AgendaController implements Initializable {
     @FXML
     protected void btGravarButtonClick(){
 
-        Boolean confirma = agendaService.insertAgenda(coletaDados());
-
-        if (confirma){
-
-            //implementar tela aviso/confirmação
-
+        Boolean confirma = false;
+        if (tipoTela == 0){
+            confirma = agendaService.insertAgenda(coletaDados());
+        }else if(tipoTela == 1) {
+            confirma = agendaService.saveAlterAgenda(coletaDados(), this.placaTela);
         }
 
+        if (confirma){
+            tipoTela = 0;
+            this.placaTela = null;
+            Alerts.showAlert("Atenção","Correção gravada no agendamento",null, Alert.AlertType.CONFIRMATION);
+        }
+
+        close(btGravar);
 
     }
 
@@ -155,6 +163,11 @@ public class AgendaController implements Initializable {
     @FXML
     protected void btFecharButtonClick(){
         Stage stage = (Stage)btFechar.getScene().getWindow();
+        stage.close();
+    }
+
+    private void close(Button bt){
+        Stage stage = (Stage)bt.getScene().getWindow();
         stage.close();
     }
 
@@ -228,8 +241,6 @@ public class AgendaController implements Initializable {
             }
         });
 
-
-
     }
 
 
@@ -266,10 +277,10 @@ public class AgendaController implements Initializable {
 
     }
 
-    public void preencheDados(String placa){
+    public void preencheDados(String placa, int tipoTela){
 
-        System.out.println("Aqui");
-
+        this.tipoTela = 1;
+        this.placaTela = placa;
         Agenda dados = agendaService.findByPlacaData(placa);
         lblNumAgenda.setVisible(true);
         lblNumAgenda.setText("Nº - "+dados.getCod());
@@ -278,6 +289,7 @@ public class AgendaController implements Initializable {
         txtVeiculo.setText(dados.getVeiculo());
         txtPlaca.setText(dados.getPlaca());
         txtTelefone.setText(dados.getTelefone());
+        txtNome.setText(dados.getNome());
         cbRevisao.setSelected(dados.getsRevisao());
         cbSusp.setSelected(dados.getsSuspensao());
         cbInjElet.setSelected(dados.getsInjecao());
@@ -295,7 +307,6 @@ public class AgendaController implements Initializable {
         cbLevVei.setSelected(dados.getAssLevar());
         cbCliente.setSelected(dados.getAssClienteTraz());
         txaDescricao.setText(dados.getObs());
-
 
     }
 

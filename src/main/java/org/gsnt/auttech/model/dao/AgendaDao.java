@@ -14,7 +14,7 @@ public interface AgendaDao {
 
     Boolean excluiAgenda(Agenda item);
 
-    Boolean saveAlterAgenda(Agenda item);
+    Boolean saveAlterAgenda(Agenda item, String placa);
 
     Agenda findByPlacaData(String placa);
 

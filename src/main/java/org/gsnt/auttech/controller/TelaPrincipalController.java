@@ -122,18 +122,20 @@ public class TelaPrincipalController implements Initializable {
     protected void onBtAlteraAgenda(){
 
         if(tvAgenda.getSelectionModel().getSelectedItem() != null) {
+
             Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
             Optional<ButtonType> result = Alerts.showConfirmation("Confirmação de alteração", "Realmente deseja alterar o agendamento da placa " + tt.getPlaca());
 
             if(result.get() == ButtonType.OK) {
 
                 loadView("/org/gsnt/auttech/Agenda.fxml", (AgendaController agendaController) -> {
-                    agendaController.preencheDados(tt.getPlaca());
+                    agendaController.preencheDados(tt.getPlaca(), 1);
                 });
             }
         }else{
             Alerts.showAlert("Sem dados", "Você deve selecionar uma linha na tabela agenda", null, Alert.AlertType.INFORMATION);
         }
+        updateTableView();
     }
 
     @FXML
@@ -171,11 +173,11 @@ public class TelaPrincipalController implements Initializable {
                 agendaService.saveEnvioGuincho(tt);
                 updateTableView();
             }
-
         }
         else{
             Alerts.showAlert("Atenção","Agendamento não tem registro da necessidade do guinho / socorro para o veículo",null, Alert.AlertType.ERROR);
         }
+
     }
 
     @FXML
