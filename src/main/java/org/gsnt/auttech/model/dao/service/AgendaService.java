@@ -28,14 +28,6 @@ public class AgendaService implements AgendaDao {
     @Override
     public List<Agenda> findTelaPrincipal() {
 
-        /* construtor do banco de dados
-                    Integer cod, String data, String hora, String nome, String veiculo, String placa,
-                  String telefone, String obs, Boolean sRevisao, Boolean sSuspensao, Boolean sInjecao,
-                  Boolean sPneus, Boolean sTrocaOleo, Boolean sFreio, Boolean sEletrico, Boolean sMecanico,
-                  Boolean sMotor, Boolean sCaixa, Boolean assSocMecanico, Boolean assSocEletrico, Boolean assLevar,
-                  Boolean assGuincho, Boolean assBuscar, Boolean assClienteTraz, Boolean assEnvioGuincho,
-                  Boolean assEnvioDeslocamento
-        */
         Agenda b = new Agenda();
         List<Agenda> correta = new ArrayList<>();
 
@@ -166,7 +158,7 @@ public class AgendaService implements AgendaDao {
             }
         }
         catch (SQLException e){
-                throw new DbException(e.getMessage()+" findTelaPrincipal");
+            throw new DbException(e.getMessage()+" findTelaPrincipal");
         }
         finally {
             DB2.closeStatement(st);
@@ -175,27 +167,9 @@ public class AgendaService implements AgendaDao {
         return correta;
 
     }
-//----------------------------------------------------------------------------------------------------------------------
-    @Override
-    public List<Agenda> findLista() {
-
-
-
-
-        return List.of();
-    }
 
     @Override
     public Boolean insertAgenda(Agenda item) {
-
-        /* construtor do banco de dados
-                  Integer cod, String data, String hora, String nome, String veiculo, String placa,
-                  String telefone, String obs, Boolean sRevisao, Boolean sSuspensao, Boolean sInjecao,
-                  Boolean sPneus, Boolean sTrocaOleo, Boolean sFreio, Boolean sEletrico, Boolean sMecanico,
-                  Boolean sMotor, Boolean sCaixa, Boolean assSocMecanico, Boolean assSocEletrico, Boolean assLevar,
-                  Boolean assGuincho, Boolean assBuscar, Boolean assClienteTraz, Boolean assEnvioGuincho,
-                  Boolean assEnvioDeslocamento
-        */
 
         Agenda a = item;
 
@@ -238,16 +212,10 @@ public class AgendaService implements AgendaDao {
             int rowsEffected = st.executeUpdate();
 
             if (rowsEffected > 0) {
-				/*ResultSet rs = st.getGeneratedKeys();
-				if (rs.next()) {
-					int id = rs.getInt(1);
-					obj.setId(id);*/
                 return true;
-
             }
 			else {
                 return false;
-				//throw new DbException("Unexpected error! No rows affected!");
 			}
 
         }catch (SQLException e){
@@ -256,7 +224,6 @@ public class AgendaService implements AgendaDao {
         finally {
             DB2.closeStatement(st);
         }
-
 
     }
 
@@ -346,14 +313,6 @@ public class AgendaService implements AgendaDao {
     @Override
     public Agenda findByPlacaData(String placa) {
 
-        /* construtor do banco de dados
-                  Integer cod, String data, String hora, String nome, String veiculo, String placa,
-                  String telefone, String obs, Boolean sRevisao, Boolean sSuspensao, Boolean sInjecao,
-                  Boolean sPneus, Boolean sTrocaOleo, Boolean sFreio, Boolean sEletrico, Boolean sMecanico,
-                  Boolean sMotor, Boolean sCaixa, Boolean assSocMecanico, Boolean assSocEletrico, Boolean assLevar,
-                  Boolean assGuincho, Boolean assBuscar, Boolean assClienteTraz, Boolean assEnvioGuincho,
-                  Boolean assEnvioDeslocamento
-        */
         Agenda agenda = new Agenda();
         ResultSet rs = null;
         PreparedStatement st = null;
@@ -446,6 +405,80 @@ public class AgendaService implements AgendaDao {
 
     }
 
+    @Override
+    public void reverteEnvioGuincho(Agenda item) {
+
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement("UPDATE tabagenda " +
+                    "SET assenvioguincho=false " +
+                    "WHERE placa = ?");
+            st.setString(1, item.getPlaca());
+
+            st.executeUpdate();
+
+        }
+        catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB2.closeStatement(st);
+        }
+
+    }
+
+    @Override
+    public void reverterEnvioRecolhimento(Agenda item) {
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement("UPDATE tabagenda " +
+                    "SET assenviodeslocamento=false " +
+                    "WHERE placa = ?");
+            st.setString(1, item.getPlaca());
+
+            st.executeUpdate();
+
+        }
+        catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB2.closeStatement(st);
+        }
+    }
+
+    @Override
+    public Agenda verStatusAssistencias(String placa) {
+
+        Agenda retorno = new Agenda();
+
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+
+            st = conn.prepareStatement(
+                    "SELECT placa, assenvioguincho, assenviodeslocamento " +
+                            "FROM tabagenda " +
+                            "where placa = ?"
+            );
+            st.setString(1, placa);
+            rs = st.executeQuery();
+            rs.next();
+            retorno.setPlaca(rs.getString("placa"));
+            retorno.setAssEnvioGuincho(rs.getBoolean("assEnvioGuincho"));
+            retorno.setAssEnvioDeslocamento(rs.getBoolean("assEnvioDeslocamento"));
+
+        }
+        catch (SQLException e){
+            throw new DbException(e.getMessage()+" findTelaPrincipal");
+        }
+        finally {
+            DB2.closeStatement(st);
+        }
+
+        return retorno;
+    }
 
 
 }

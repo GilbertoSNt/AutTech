@@ -195,6 +195,14 @@ public class Agenda implements Serializable {
 
     }
 
+    public Agenda(String placa, Boolean assEnvioGuincho, Boolean assEnvioDeslocamento){
+
+        this.placa = placa;
+        this.assEnvioGuincho = assEnvioGuincho;
+        this.assEnvioDeslocamento = assEnvioDeslocamento;
+
+    }
+
     public Integer getCod() {
         return cod;
     }

@@ -58,14 +58,14 @@
             <Label fx:id="lblVeiculo" layoutX="82.0" layoutY="55.0" />
             <Button fx:id="btCadVeiculo" layoutX="260.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="button5" stylesheets="@css/button.css">
                <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btCadVeiculo" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icones/icons8-car-50.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btCadastraCliente" layoutX="861.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="button5" stylesheets="@css/button.css">
+            <Button fx:id="btCadCliente" layoutX="861.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="button5" stylesheets="@css/button.css">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>

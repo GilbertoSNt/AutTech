@@ -8,8 +8,6 @@ public interface AgendaDao {
 
     List<Agenda> findTelaPrincipal();
 
-    List<Agenda> findLista();
-
     Boolean insertAgenda(Agenda item);
 
     Boolean excluiAgenda(Agenda item);
@@ -22,4 +20,9 @@ public interface AgendaDao {
 
     void saveEnvioGuincho(Agenda item);
 
+    void reverteEnvioGuincho(Agenda item);
+
+    void reverterEnvioRecolhimento(Agenda item);
+
+    Agenda verStatusAssistencias(String placa);
 }

@@ -43,7 +43,7 @@
                            <children>
                               <Button fx:id="btCliente" layoutX="10.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btClienteButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Clientes" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0">
                                  <graphic>
-                                    <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@icones/cliente.png" />
                                        </image>
@@ -51,7 +51,7 @@
                                  </graphic></Button>
                               <Button fx:id="btVeiculo" layoutX="150.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btVeiculoButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Veículo" wrapText="true" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="15.0">
                                  <graphic>
-                                    <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@icones/icons8-car-50.png" />
                                        </image>
@@ -59,7 +59,7 @@
                                  </graphic></Button>
                               <Button fx:id="btAgenda" layoutX="288.0" layoutY="12.0" mnemonicParsing="false" onAction="#onBtAgenda" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Agenda" wrapText="true" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="15.0">
                                  <graphic>
-                                    <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@icones/icons8-task-planning-50.png" />
                                        </image>
@@ -67,7 +67,7 @@
                                  </graphic></Button>
                               <Button fx:id="btListaClientes" layoutX="15.0" layoutY="99.0" mnemonicParsing="false" onAction="#btListaClientesButtonClick" styleClass="button4" stylesheets="@css/button.css" text="Listar Clientes" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="140.0">
                                  <graphic>
-                                    <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@icones/ordem.png" />
                                        </image>
@@ -79,7 +79,19 @@
                   </Tab>
                   <Tab closable="false" text="Cadastros diversos">
                       <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="btCadProfissionais" layoutX="10.0" layoutY="16.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCadProfissionais" styleClass="button4" stylesheets="@css/button.css" text="Cadastro de Profissional Funcionário" wrapText="true">
+                                 <graphic>
+                                    <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btListarProfissionais" layoutX="10.0" layoutY="139.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtListarProfissionais" styleClass="button4" stylesheets="@css/button.css" text="Listar funcionários" wrapText="true">
+                                 <graphic>
+                                    <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                              </Button>
+                           </children></AnchorPane>
                       </content>
                   </Tab>
                 <Tab closable="false" text="Relatórios">
@@ -110,7 +122,7 @@
                            <children>
                               <ScrollPane prefHeight="329.0" prefWidth="956.0">
                                  <content>
-                                    <TableView fx:id="tvAgenda" prefHeight="333.0" prefWidth="940.0" stylesheets="@css/tableview.css">
+                                    <TableView fx:id="tvAgenda" onMouseClicked="#onClickTableAgenda" prefHeight="333.0" prefWidth="940.0" stylesheets="@css/tableview.css">
                                       <columns>
                                         <TableColumn fx:id="tcData" prefWidth="75.0" text="Data">
                                              <columns>
@@ -158,7 +170,7 @@
                               <Label layoutX="992.0" layoutY="276.0" text="Atrasado" />
                               <Circle fx:id="circleSem111" fill="#0047ab" layoutX="975.0" layoutY="309.0" radius="8.0" stroke="#0047ab" strokeType="INSIDE" strokeWidth="3.0" />
                               <Label layoutX="992.0" layoutY="303.0" text="Socorro/Deslocamento enviado" />
-                              <Button fx:id="btEnvioBusca" layoutX="961.0" layoutY="205.0" mnemonicParsing="false" onAction="#onBtConfirmaEnvioBusca" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Confirmar a bsuca do veículo" />
+                              <Button fx:id="btEnvioBusca" layoutX="961.0" layoutY="205.0" mnemonicParsing="false" onAction="#onBtConfirmaEnvioBusca" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Confirmar a busca do veículo" />
                               <Button fx:id="btAlteraAgenda" layoutX="961.0" layoutY="48.0" mnemonicParsing="false" onAction="#onBtAlteraAgenda" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Altera agendamento" />
                            </children>
                         </AnchorPane>
