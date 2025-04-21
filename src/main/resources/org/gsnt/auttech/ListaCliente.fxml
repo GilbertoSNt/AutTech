@@ -38,7 +38,7 @@
               </content>
             </ScrollPane>
             <Button fx:id="buttonNovo" layoutX="14.0" layoutY="687.0" mnemonicParsing="false" styleClass="button3" stylesheets="@css/button.css" text="Novo" />
-            <Button fx:id="btClose1" layoutX="120.0" layoutY="687.0" mnemonicParsing="false" onAction="#btCloseButtonClick" styleClass="button3" stylesheets="@css/button.css" text="Fechar" />
+            <Button fx:id="btClose1" layoutX="214.0" layoutY="687.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btCloseButtonClick" styleClass="button3" stylesheets="@css/button.css" text="Fechar" />
             <TextField fx:id="textFieldText" layoutX="14.0" layoutY="12.0" prefHeight="25.0" prefWidth="628.0" />
             <Button fx:id="buttonPesquisa" layoutX="658.0" layoutY="12.0" mnemonicParsing="false" styleClass="button3" stylesheets="@css/button.css" text="Pesquisar" />
             <Label layoutX="14.0" layoutY="51.0" text="Pesquisar por - " />
@@ -46,6 +46,7 @@
             <RadioButton fx:id="rbParteNome" layoutX="193.0" layoutY="51.0" mnemonicParsing="false" text="Parte nome " />
             <RadioButton fx:id="rbCPF" layoutX="311.0" layoutY="51.0" mnemonicParsing="false" text="CPF" />
             <RadioButton fx:id="rbCNPJ" layoutX="381.0" layoutY="51.0" mnemonicParsing="false" text="CNPJ" />
+            <Button fx:id="btSelecionar" layoutX="114.0" layoutY="687.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtSelecionar" styleClass="button3" stylesheets="@css/button.css" text="Selecionar" />
          </children></AnchorPane>
       <Label layoutX="12.0" layoutY="11.0" text="Lista de Clientes">
          <font>

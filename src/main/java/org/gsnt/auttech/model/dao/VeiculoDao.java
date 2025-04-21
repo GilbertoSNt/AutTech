@@ -1,19 +1,20 @@
 package org.gsnt.auttech.model.dao;
 
-import org.gsnt.auttech.model.entities.Veículo;
+import org.gsnt.auttech.model.entities.Veiculo;
 
 import java.util.List;
 
 public interface VeiculoDao {
 
-    List<Veículo> findAll();
-    Veículo findById(String placa);
+    List<Veiculo> findAll();
 
-    Boolean saveVeiculo(Veículo veiculo);
+    Veiculo findById(String placa);
+
+    Integer saveVeiculo(Veiculo veiculo);
 
     Boolean desativaPLaca(String placa);
 
-    Boolean editPLaca(Veículo veiculo);
+    Boolean editPLaca(Veiculo veiculo);
 
     Boolean desassociaPLaca(String placa);
 

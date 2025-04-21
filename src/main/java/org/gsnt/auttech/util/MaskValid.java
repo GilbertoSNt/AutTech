@@ -465,4 +465,72 @@ public class MaskValid {
 
     }
 
+    public void maskPlaca(TextField textField){
+
+        textField.setOnKeyTyped(new EventHandler<KeyEvent>() {
+            private int a = 1;
+            private int b = 0;
+            private String delta1 = "";
+            @Override
+            public void handle(KeyEvent event) {
+
+                if ("0123456789".contains(event.getCharacter()) && a <= 3) {
+                    event.consume();
+                }else if(a <= 2) {
+                    a++;
+                    delta1 = delta1 + event.getCharacter().toUpperCase();
+                }else if(a == 3) {
+                    delta1 = delta1 + event.getCharacter().toUpperCase();
+                    a++;
+                    delta1 = delta1 + "-";
+                    a++;
+                }else if (a == 4) {
+                    delta1 = delta1 + "-";
+                    a++;
+                }else if (a == 5 && "0123456789".contains(event.getCharacter())) {
+                    delta1 = delta1 + event.getCharacter().toUpperCase();
+                    a++;
+                } else if(a==6  && "0123456789".contains(event.getCharacter())){
+                    delta1 = delta1 + event.getCharacter();
+                    a++;
+                }else if(a==6  && !"0123456789".contains(event.getCharacter())){
+                    delta1 = delta1 + event.getCharacter().toUpperCase();
+                    a++;
+                }else if(a==7  && "0123456789".contains(event.getCharacter())){
+                    delta1 = delta1 + event.getCharacter().toUpperCase();
+                    a++;
+                }else if(a==7  && !"0123456789".contains(event.getCharacter())){
+                    event.consume();
+                }else if(a==8  && "0123456789".contains(event.getCharacter())){
+                    delta1 = delta1 + event.getCharacter().toUpperCase();
+                    a++;
+                }else if(a==8  && !"0123456789".contains(event.getCharacter())){
+                    event.consume();
+                }
+
+                if("\b".contains(event.getCharacter()) && textField.getLength() >= 0 && b>=0){
+
+                    delta1 = textField.getText();
+                    b=delta1.length();
+                    delta1 = delta1.substring(0,b);
+                    a=b+1;
+
+                }else{
+                    event.consume();
+                }
+
+                textField.setText(delta1);
+                textField.positionCaret(delta1.length());
+
+            }
+        });
+    }
+
+
 }
+
+
+
+
+
+

@@ -140,6 +140,33 @@ public class ClienteService implements ClienteDao {
     }
 
     @Override
+    public Cliente findById(int id) {
+
+        Cliente cli = new Cliente();
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try{
+
+            st = conn.prepareStatement("Select cod, nome, apelido from tabcliente where cod = "+id);
+            rs = st.executeQuery();
+            rs.next();
+            cli.setCod(rs.getInt("cod"));
+            cli.setNome(rs.getString("nome"));
+            cli.setApelido(rs.getString("apelido"));
+
+        }
+        catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB2.closeStatement(st);
+            DB2.closeResultSet(rs);
+        }
+        return cli;
+
+    }
+
+    @Override
     public List<EmailCliente> findEmailById(int id) {
         return List.of();
     }
@@ -250,5 +277,58 @@ public class ClienteService implements ClienteDao {
     @Override
     public Boolean excluirTelCliente(TelCliente telefone) {
         return null;
+    }
+
+    @Override
+    public void associacaoVeicCliente(int codVeic, int codCliente) {
+
+        PreparedStatement st = null;
+        int resultado = 0;
+        try {
+            st = conn.prepareStatement("INSERT INTO public.tabveiccliente(" +
+                            "codcliente, codveiculo)" +
+                            "VALUES (?, ?)",
+                    Statement.RETURN_GENERATED_KEYS);
+            st.setInt(1, codVeic);
+            st.setInt(2, codCliente);
+
+            int rowsaffected = st.executeUpdate();
+            if (rowsaffected > 0) {
+                ResultSet rs = st.getGeneratedKeys();
+                if (rs.next()) {
+                    resultado = rs.getInt(1);
+                }
+                DB2.closeResultSet(rs);
+            }
+        }
+        catch (SQLException a){
+            throw new DbException(a.getMessage());
+        } finally {
+            DB2.closeStatement(st);
+        }
+
+    }
+
+    @Override
+    public int findIdClienteByIdVeiculo(int codVeic) {
+
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try{
+            st = conn.prepareStatement("Select codcliente from tabveiccliente where codveiculo = "+codVeic);
+            rs = st.executeQuery();
+            rs.next();
+
+            System.out.println(rs.getInt("codcliente")+"");
+
+            return rs.getInt("codcliente");
+        }
+        catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB2.closeStatement(st);
+            DB2.closeResultSet(rs);
+        }
     }
 }

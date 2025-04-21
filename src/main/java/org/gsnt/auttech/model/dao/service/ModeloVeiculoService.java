@@ -28,6 +28,7 @@ public class ModeloVeiculoService implements org.gsnt.auttech.model.dao.ModeloVe
 
     @Override
     public List<ModeloVeiculo> findByIdMarca(int id) {
+
         PreparedStatement st = null;
         ResultSet rs = null;
         List<ModeloVeiculo> list = new ArrayList<>();
@@ -49,4 +50,53 @@ public class ModeloVeiculoService implements org.gsnt.auttech.model.dao.ModeloVe
         }
         return list;
     }
+
+    @Override
+    public Integer findIdByModelo(String modelo) {
+
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try{
+            st = conn.prepareStatement("select cod from modelo where marca = ? ");
+            st.setString(1,modelo);
+            rs = st.executeQuery();
+            rs.next();
+            return rs.getInt("cod");
+
+        }
+        catch (SQLException a){
+            throw new DbException(a.getMessage());
+        }
+        finally{
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
+
+    }
+
+    @Override
+    public String findModeloById(Integer cod) {
+
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try{
+            st = conn.prepareStatement("select modelo from modelo where cod = ? ");
+            st.setInt(1,cod);
+            rs = st.executeQuery();
+            rs.next();
+            return rs.getString("modelo");
+
+        }
+        catch (SQLException a){
+            throw new DbException(a.getMessage());
+        }
+        finally{
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
+
+    }
+
 }

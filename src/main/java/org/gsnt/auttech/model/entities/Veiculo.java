@@ -2,10 +2,11 @@ package org.gsnt.auttech.model.entities;
 
 import java.io.Serializable;
 
-public class Veículo implements Serializable {
+public class Veiculo implements Serializable {
 
-    public Veículo(){};
+    public Veiculo(){};
 
+    private int cod;
     private String placa;
     private int marca;
     private int modelo;
@@ -29,6 +30,50 @@ public class Veículo implements Serializable {
     private boolean travaElet;
     private boolean tracao;
     private boolean teto;
+    private boolean controleTracao;
+
+    public Veiculo(String placa) {
+        this.placa = placa;
+    }
+
+    public Veiculo(String placa, int marca, int modelo, String anof, String anom, String motor) {
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.anof = anof;
+        this.anom = anom;
+        this.motor = motor;
+    }
+
+    public Veiculo(String placa, int marca, int modelo, String chassi, String motor, String cv, String anof,
+                   String anom, String renavan, boolean turbo, boolean emLinha, boolean emV, boolean arQuente,
+                   boolean airBag, boolean freioABS, boolean alarme, boolean arCond, boolean dirHid, boolean dirElet,
+                   boolean vidroElet, boolean travaElet, boolean tracao, boolean teto, boolean controleTracao) {
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.chassi = chassi;
+        this.motor = motor;
+        this.cv = cv;
+        this.anof = anof;
+        this.anom = anom;
+        this.renavan = renavan;
+        this.turbo = turbo;
+        this.emLinha = emLinha;
+        this.emV = emV;
+        this.arQuente = arQuente;
+        this.airBag = airBag;
+        this.freioABS = freioABS;
+        this.alarme = alarme;
+        this.arCond = arCond;
+        this.dirHid = dirHid;
+        this.dirElet = dirElet;
+        this.vidroElet = vidroElet;
+        this.travaElet = travaElet;
+        this.tracao = tracao;
+        this.teto = teto;
+        this.controleTracao = controleTracao;
+    }
 
     public String getPlaca() {
         return placa;
@@ -212,5 +257,21 @@ public class Veículo implements Serializable {
 
     public void setTeto(boolean teto) {
         this.teto = teto;
+    }
+
+    public boolean isControleTracao() {
+        return controleTracao;
+    }
+
+    public void setControleTracao(boolean controleTracao) {
+        this.controleTracao = controleTracao;
+    }
+
+    public int getCod() {
+        return cod;
+    }
+
+    public void setCod(int cod) {
+        this.cod = cod;
     }
 }

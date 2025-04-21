@@ -1,10 +1,27 @@
 package org.gsnt.auttech.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.gsnt.auttech.model.dao.ClienteDao;
+import org.gsnt.auttech.model.dao.DaoFactory;
+import org.gsnt.auttech.model.dao.OrdemServicoDao;
+import org.gsnt.auttech.model.dao.VeiculoDao;
+import org.gsnt.auttech.model.entities.Agenda;
 
-public class CriaOsController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class CriaOsController implements Initializable {
+
+    private ClienteDao clienteservice = DaoFactory.createClienteDao();
+    private VeiculoDao veiculoService = DaoFactory.createVeiculoDao();
+    private OrdemServicoDao ordemServicoService = DaoFactory.createOrdemServicoDao();
+
+
+    public CriaOsController(){}
+
 
     @FXML
     private TextField txtPlaca;
@@ -19,7 +36,7 @@ public class CriaOsController {
     private Button btCadVeiculo;
 
     @FXML
-    private Button btCadastraCliente;
+    private Button btCadCliente;
 
     @FXML
     private Button btGravar;
@@ -33,7 +50,8 @@ public class CriaOsController {
     @FXML
     private Button btClose;
 
-    protected void btCloseButtonClick(){
+    @FXML
+    protected void onbtCloseButtonClick(){
         Stage stage = (Stage)btClose.getScene().getWindow();
         stage.close();
     }
@@ -89,6 +107,44 @@ public class CriaOsController {
     @FXML
     private CheckBox cbCliente;
 
+    //
+    //   ainda falta dados(Busca cadastro)
+    //
 
 
+    public void preencheDadosAgenda(Agenda agenda){
+
+        txtPlaca.setText(agenda.getPlaca());
+        cbRevisao.setSelected(agenda.getsRevisao());
+        cbSusp.setSelected(agenda.getsSuspensao());
+        cbInjElet.setSelected(agenda.getsInjecao());
+        cbAlinBalan.setSelected(agenda.getsPneus());
+        cbTrcOleo.setSelected(agenda.getsPneus());
+        cbFreio.setSelected(agenda.getsFreio());
+        cbElet.setSelected(agenda.getsEletrico());
+        cbMec.setSelected(agenda.getsMecanico());
+        cbMotor.setSelected(agenda.getsMotor());
+        cbCaixa.setSelected(agenda.getsCaixa());
+        cbSocMec.setSelected(agenda.getAssSocMecanico());
+        cbSocElet.setSelected(agenda.getAssSocEletrico());
+        cbGuincho.setSelected(agenda.getAssGuincho());
+        cbBusVei.setSelected(agenda.getAssBuscar());
+        cbLevVei.setSelected(agenda.getAssLevar());
+        cbCliente.setSelected(agenda.getAssClienteTraz());
+        txaDescricao.setText(agenda.getObs());
+
+    }
+
+
+
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        if (txtPlaca.getText() != null){
+
+        }
+
+    }
 }

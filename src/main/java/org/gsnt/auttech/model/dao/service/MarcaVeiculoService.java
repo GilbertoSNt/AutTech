@@ -47,4 +47,53 @@ public class MarcaVeiculoService implements MarcaVeiculoDao {
         return list;
     }
 
+    @Override
+    public Integer findIdByMarca(String nomemarca) {
+
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try{
+            st = conn.prepareStatement("select cod from marcacarro where nomemarca = ? ");
+            st.setString(1, nomemarca);
+            rs = st.executeQuery();
+            rs.next();
+            return rs.getInt("cod");
+
+        }
+        catch (SQLException a){
+            throw new DbException(a.getMessage());
+        }
+        finally{
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
+
+
+    }
+
+    @Override
+    public String findMarcaById(Integer cod) {
+
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try{
+            st = conn.prepareStatement("select nomemarca  from marcacarro where cod = ? ");
+            st.setInt(1, cod);
+            rs = st.executeQuery();
+            rs.next();
+            return rs.getString("nomemarca");
+
+        }
+        catch (SQLException a){
+            throw new DbException(a.getMessage());
+        }
+        finally{
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
+    }
+
+
 }

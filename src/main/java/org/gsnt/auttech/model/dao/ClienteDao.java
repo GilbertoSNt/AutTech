@@ -15,6 +15,7 @@ public interface ClienteDao {
     List<Cliente> findAllPart(String part);//implementado mas não testado
     Cliente findByCPF(String CPF);
     Cliente findByCNPJ(String CNPJ);
+    Cliente findById(int id);
     List<EmailCliente> findEmailById(int id);
     EndCliente findEndById(int id);
     List<TelCliente> findTelById(int id);
@@ -35,5 +36,9 @@ public interface ClienteDao {
     Boolean DesativaCliente(String CPF);
     Boolean excluiEmailCliente(EmailCliente email);
     Boolean excluirTelCliente(TelCliente telefone);
+
+    //Associações
+    void associacaoVeicCliente(int codVeic, int codCliente);
+    int findIdClienteByIdVeiculo(int codVeic);
 
 }

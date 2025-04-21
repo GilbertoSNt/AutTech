@@ -68,6 +68,18 @@ public class ListaClienteController implements Initializable {
     protected Button buttonNovo;
 
     @FXML
+    protected Button btSelecionar;
+
+    @FXML
+    private void onBtSelecionar(){
+
+       // falta seleção aqui
+
+
+        btCloseButtonClick();
+    }
+
+    @FXML
     protected Button btClose1;
 
     @FXML
@@ -204,6 +216,17 @@ public class ListaClienteController implements Initializable {
            //     excluiButton.setOnAction(event->);
             }
         } );
+    }
+
+    public Cliente getClienteSelecionado(){
+
+        Cliente cliente = new Cliente();
+        cliente.setCod(tableViewListClient.getSelectionModel().getSelectedItem().getCod());
+        cliente.setNome(tableViewListClient.getSelectionModel().getSelectedItem().getNome());
+        cliente.setApelido(tableViewListClient.getSelectionModel().getSelectedItem().getApelido());
+
+        return cliente;
+
     }
 
 

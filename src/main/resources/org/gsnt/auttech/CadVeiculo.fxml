@@ -42,7 +42,7 @@
             <TextField fx:id="txtRenavan" layoutX="450.0" layoutY="127.0" prefHeight="25.0" prefWidth="143.0" stylesheets="@css/TextField.css" />
             <Label layoutX="16.0" layoutY="169.0" text="Cliente -" />
             <TextField fx:id="txtCodCli" layoutX="70.0" layoutY="165.0" prefHeight="25.0" prefWidth="95.0" promptText="Código" stylesheets="@css/TextField.css" />
-            <Button fx:id="btProcurar" layoutX="174.0" layoutY="165.0" mnemonicParsing="false" stylesheets="@css/button.css" text="Procurar" />
+            <Button fx:id="btProcurar" layoutX="170.0" layoutY="165.0" mnemonicParsing="false" onAction="#onBtProcurar" stylesheets="@css/button.css" text="Procurar" />
             <TextField fx:id="txtNomeCli" layoutX="246.0" layoutY="165.0" prefHeight="25.0" prefWidth="346.0" promptText="Nome" stylesheets="@css/TextField.css" />
             <AnchorPane layoutX="2.0" layoutY="204.0" prefHeight="153.0" prefWidth="607.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
                <children>
@@ -65,11 +65,11 @@
 
                </children>
             </AnchorPane>
-            <Button fx:id="btGravar" layoutX="51.0" layoutY="373.0" mnemonicParsing="false" styleClass="button3" stylesheets="@css/button.css" text="Gravar" />
+            <Button fx:id="btGravar" layoutX="51.0" layoutY="373.0" mnemonicParsing="false" onAction="#onBtGravar" styleClass="button3" stylesheets="@css/button.css" text="Gravar" />
             <Button fx:id="btAlterar" layoutX="155.0" layoutY="373.0" mnemonicParsing="false" styleClass="button3" stylesheets="@css/button.css" text="Alterar" />
             <Button fx:id="btDesativar" layoutX="259.0" layoutY="373.0" mnemonicParsing="false" styleClass="button3" stylesheets="@css/button.css" text="Desativar" />
             <Button fx:id="btHistorico" layoutX="363.0" layoutY="373.0" mnemonicParsing="false" styleClass="button3" stylesheets="@css/button.css" text="Histórico" />
-            <Button fx:id="btCancelar" layoutX="467.0" layoutY="373.0" mnemonicParsing="false" styleClass="button3" stylesheets="@css/button.css" text="Cancelar" />
+            <Button fx:id="btCancelar" layoutX="467.0" layoutY="373.0" mnemonicParsing="false" onAction="#btCloseButtonClick" styleClass="button3" stylesheets="@css/button.css" text="Cancelar" />
 
          </children></AnchorPane>
       <Label layoutX="12.0" layoutY="11.0" text="Cadastro de veículos" textFill="WHITE">

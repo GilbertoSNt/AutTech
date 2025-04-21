@@ -73,4 +73,26 @@ public class DaoFactory {
         }
     }
 
+    public static VeiculoDao createVeiculoDao(){
+        try {
+            return new VeiculoService(DB2.getConnection()) {};
+
+        }
+        catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static VeiculoDao createVeiculoDaoGeral(){
+        try {
+            return new VeiculoService(DB.getConnection()) {};
+
+        }
+        catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
 }

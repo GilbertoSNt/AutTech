@@ -17,6 +17,7 @@ import org.gsnt.auttech.TelaPrincipal;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.AgendaDao;
 import org.gsnt.auttech.model.dao.DaoFactory;
+import org.gsnt.auttech.model.dao.OrdemServicoDao;
 import org.gsnt.auttech.model.dao.service.ClienteService;
 import org.gsnt.auttech.model.dao.service.OrcamentoService;
 import org.gsnt.auttech.model.dao.service.OrdemServicoService;
@@ -160,6 +161,37 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     protected Button btReceberVeic;
+
+    //
+    //    aqui  --  erro na implementação  --
+    //
+
+    @FXML
+    protected void onBtReceberVeic(){
+
+        if(tvAgenda.getSelectionModel().getSelectedItem() != null) {
+
+            Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
+            Agenda dado = agendaService.findByPlacaData(tt.getPlaca());
+            Optional<ButtonType> result = Alerts.showConfirmation("Confirmação de abertura de O.S.", "Realmente deseja abrir ordem de serviço para a placa "+tt.getPlaca());
+
+            if(result.get() == ButtonType.OK) {
+
+                try {
+                    loadView("/org/gsnt/auttech/CriaOs.fxml", (CriaOsController criaOsController) -> {
+                        criaOsController.preencheDadosAgenda(dado);
+                        agendaService.excluiAgenda(tt);
+                        updateTableView();
+                    });}
+                    catch(Exception d){
+                        System.out.println(d);
+                    }
+
+             }else{
+                 Alerts.showAlert("Confirmação de abertura de O.S.", "Você deve selecionar uma linha na tabela agenda", null, Alert.AlertType.INFORMATION);
+             }
+        }
+    }
 
     @FXML
     protected Button btEnvioSocorro;
@@ -534,6 +566,7 @@ public class TelaPrincipalController implements Initializable {
         try {
             loadView("/org/gsnt/auttech/ListaCliente.fxml", (ListaClienteController cliController) -> {
                 cliController.setClienteService(new ClienteService());
+
                 cliController.updateTableView();
             });
         }catch (Exception d){

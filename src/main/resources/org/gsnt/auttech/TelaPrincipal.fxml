@@ -162,7 +162,7 @@
                               </ScrollPane>
                               <Button fx:id="btAgenda" layoutX="961.0" layoutY="8.0" mnemonicParsing="false" onAction="#onBtAgenda" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Agendar" />
                               <Button fx:id="btCancAgenda" layoutX="961.0" layoutY="87.0" mnemonicParsing="false" onAction="#onBtCancelarAgenda" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancelar agendamento" />
-                              <Button fx:id="btReceberVeic" layoutX="961.0" layoutY="126.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Criar O.S. pelo agendamento" />
+                              <Button fx:id="btReceberVeic" layoutX="961.0" layoutY="126.0" mnemonicParsing="false" onAction="#onBtReceberVeic" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Criar O.S. pelo agendamento" />
                               <Button fx:id="btEnvioSocorro" layoutX="961.0" layoutY="166.0" mnemonicParsing="false" onAction="#onBtConfirmaEnvioSocorro" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Confirmar envio do socorro" />
                               <Circle fx:id="circleSem11" fill="INDIANRED" layoutX="975.0" layoutY="284.0" radius="8.0" stroke="INDIANRED" strokeType="INSIDE" strokeWidth="3.0" />
                               <Circle fx:id="circleRevisao11" fill="#70c3a7" layoutX="975.0" layoutY="257.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />

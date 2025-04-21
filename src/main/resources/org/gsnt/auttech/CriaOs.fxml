@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="anchorpane" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.controller.CriaOsController">
    <children>
-      <Button fx:id="btClose" layoutX="964.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btCloseButtonClick" prefHeight="25.0" prefWidth="25.0" styleClass="btn1" stylesheets="@css/button.css" text="X">
+      <Button fx:id="btClose" layoutX="964.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCloseButtonClick" prefHeight="25.0" prefWidth="25.0" styleClass="btn1" stylesheets="@css/button.css" text="X">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
@@ -41,11 +41,11 @@
             <TextArea fx:id="txaDescricao" layoutX="14.0" layoutY="293.0" prefHeight="214.0" prefWidth="966.0" stylesheets="@css/tableview.css" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
             <Button fx:id="btGravar" layoutX="22.0" layoutY="541.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Gravar" />
             <Button fx:id="btCancel" layoutX="144.0" layoutY="541.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Cancelar" />
-            <Button fx:id="btFechar" layoutX="265.0" layoutY="541.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btCloseButtonClick" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Fechar" />
+            <Button fx:id="btFechar" layoutX="265.0" layoutY="541.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCloseButtonClick" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Fechar" />
             <Label layoutX="21.0" layoutY="269.0" text="Descrição / Defeitos" />
             <AnchorPane layoutX="497.0" layoutY="87.0" prefHeight="99.0" prefWidth="486.0" styleClass="anchorpane" stylesheets="@css/panel.css">
                <children>
-                  <Label layoutX="14.0" layoutY="10.0" text="Assitências / Deslocamento" />
+                  <Label layoutX="14.0" layoutY="10.0" text="Assitências aplicadas / Deslocamento" />
                   <CheckBox fx:id="cbSocMec" layoutX="14.0" layoutY="31.0" mnemonicParsing="false" text="Socorro mecânico" />
                   <CheckBox fx:id="cbSocElet" layoutX="209.0" layoutY="31.0" mnemonicParsing="false" text="Socorro elétrico" />
                   <CheckBox fx:id="cbBusVei" layoutX="15.0" layoutY="58.0" mnemonicParsing="false" text="Buscar veículo" />
@@ -58,7 +58,7 @@
             <Label fx:id="lblVeiculo" layoutX="82.0" layoutY="55.0" />
             <Button fx:id="btCadVeiculo" layoutX="260.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="button5" stylesheets="@css/button.css">
                <graphic>
-                  <ImageView fx:id="btCadVeiculo" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imCadVeiculo" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icones/icons8-car-50.png" />
                      </image>
