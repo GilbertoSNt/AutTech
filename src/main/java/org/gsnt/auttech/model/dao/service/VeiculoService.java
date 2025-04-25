@@ -30,54 +30,46 @@ public class VeiculoService implements VeiculoDao {
         Veiculo veiculo = new Veiculo();
         ResultSet rs = null;
         PreparedStatement st = null;
-        try{
-            st = conn.prepareStatement("SELECT * FROM tabveiculo " +
-                    "WHERE placa = ?");
+            try{
+            st = conn.prepareStatement("SELECT * FROM tabveiculo WHERE placa = ?");
             st.setString(1, placa);
             rs = st.executeQuery();
-            if (rs.getFetchSize() == 0){
-                return null;
-            }else {
-                rs.next();
+            rs.next();
 
-                veiculo.setCod(rs.getInt("cod"));
-                veiculo.setPlaca(rs.getString("placa"));
-                veiculo.setMarca(rs.getInt("marca"));
-                veiculo.setModelo(rs.getInt("modelo"));
-                veiculo.setChassi(rs.getString("chassi"));
-                veiculo.setMotor(rs.getString("motor"));
-                veiculo.setCv(rs.getString("cv"));
-                veiculo.setTurbo(rs.getBoolean("turbo"));
-                veiculo.setEmLinha(rs.getBoolean("emlinha"));
-                veiculo.setEmV(rs.getBoolean("emv"));
-                veiculo.setAnof(rs.getString("anof"));
-                veiculo.setAnom(rs.getString("anom"));
-                veiculo.setRenavan(rs.getString("renavam"));
-                veiculo.setArQuente(rs.getBoolean("arquente"));
-                veiculo.setAirBag(rs.getBoolean("airbag"));
-                veiculo.setFreioABS(rs.getBoolean("freioabs"));
-                veiculo.setAlarme(rs.getBoolean("alarme"));
-                veiculo.setArCond(rs.getBoolean("arcond"));
-                veiculo.setDirHid(rs.getBoolean("dirhid"));
-                veiculo.setDirElet(rs.getBoolean("direlet"));
-                veiculo.setVidroElet(rs.getBoolean("vidroelet"));
-                veiculo.setTravaElet(rs.getBoolean("travaelet"));
-                veiculo.setTracao(rs.getBoolean("tracao4"));
-                veiculo.setTeto(rs.getBoolean("teto"));
-                veiculo.setControleTracao(rs.getBoolean("controletracao"));
-
-                return veiculo;
-            }
-
+            veiculo.setCod(rs.getInt("cod"));
+            veiculo.setPlaca(rs.getString("placa"));
+            veiculo.setMarca(rs.getInt("marca"));
+            veiculo.setModelo(rs.getInt("modelo"));
+            veiculo.setChassi(rs.getString("chassi"));
+            veiculo.setMotor(rs.getString("motor"));
+            veiculo.setCv(rs.getString("cv"));
+            veiculo.setTurbo(rs.getBoolean("turbo"));
+            veiculo.setEmLinha(rs.getBoolean("emlinha"));
+            veiculo.setEmV(rs.getBoolean("emv"));
+            veiculo.setAnof(rs.getString("anof"));
+            veiculo.setAnom(rs.getString("anom"));
+            veiculo.setRenavan(rs.getString("renavam"));
+            veiculo.setArQuente(rs.getBoolean("arquente"));
+            veiculo.setAirBag(rs.getBoolean("airbag"));
+            veiculo.setFreioABS(rs.getBoolean("freioabs"));
+            veiculo.setAlarme(rs.getBoolean("alarme"));
+            veiculo.setArCond(rs.getBoolean("arcond"));
+            veiculo.setDirHid(rs.getBoolean("dirhid"));
+            veiculo.setDirElet(rs.getBoolean("direlet"));
+            veiculo.setVidroElet(rs.getBoolean("vidroelet"));
+            veiculo.setTravaElet(rs.getBoolean("travaelet"));
+            veiculo.setTracao(rs.getBoolean("tracao4"));
+            veiculo.setTeto(rs.getBoolean("teto"));
+            veiculo.setControleTracao(rs.getBoolean("controletracao"));
         }
         catch (SQLException e){
-            throw new DbException(e.getMessage());
+            throw new DbException(e.getMessage()+" findbyid Veiculo");
         }
         finally {
             DB2.closeStatement(st);
         }
+        return veiculo;
 
-        //return veiculo;
     }
 
     @Override
@@ -121,9 +113,8 @@ public class VeiculoService implements VeiculoDao {
 
             return st.executeUpdate();
 
-
         }catch (SQLException e){
-            throw new DbException(e.getMessage()+" insertVeiculo");
+            throw new DbException(e.getMessage()+" insert Veiculo");
         }
         finally {
             DB2.closeStatement(st);
@@ -146,5 +137,74 @@ public class VeiculoService implements VeiculoDao {
         return null;
     }
 
+    @Override
+    public Integer verificaPlaca(String placa) {
+
+        Veiculo veiculo = new Veiculo();
+        ResultSet rs = null;
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement("select count(placa) FROM tabveiculo WHERE placa = ?");
+            st.setString(1, placa);
+            rs = st.executeQuery();
+            rs.next();
+            return rs.getInt("count");
+        }
+        catch (SQLException e){
+            throw new DbException(e.getMessage()+" Verifica placa veiculoService");
+        }
+        finally {
+            DB2.closeStatement(st);
+            DB2.closeResultSet(rs);
+        }
+    }
+
+    @Override
+    public Veiculo findByCod(int cod) {
+
+        Veiculo veiculo = new Veiculo();
+        ResultSet rs = null;
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement("SELECT * FROM tabveiculo WHERE cod = ?");
+            st.setInt(1, cod);
+            rs = st.executeQuery();
+            rs.next();
+
+            veiculo.setCod(rs.getInt("cod"));
+            veiculo.setPlaca(rs.getString("placa"));
+            veiculo.setMarca(rs.getInt("marca"));
+            veiculo.setModelo(rs.getInt("modelo"));
+            veiculo.setChassi(rs.getString("chassi"));
+            veiculo.setMotor(rs.getString("motor"));
+            veiculo.setCv(rs.getString("cv"));
+            veiculo.setTurbo(rs.getBoolean("turbo"));
+            veiculo.setEmLinha(rs.getBoolean("emlinha"));
+            veiculo.setEmV(rs.getBoolean("emv"));
+            veiculo.setAnof(rs.getString("anof"));
+            veiculo.setAnom(rs.getString("anom"));
+            veiculo.setRenavan(rs.getString("renavam"));
+            veiculo.setArQuente(rs.getBoolean("arquente"));
+            veiculo.setAirBag(rs.getBoolean("airbag"));
+            veiculo.setFreioABS(rs.getBoolean("freioabs"));
+            veiculo.setAlarme(rs.getBoolean("alarme"));
+            veiculo.setArCond(rs.getBoolean("arcond"));
+            veiculo.setDirHid(rs.getBoolean("dirhid"));
+            veiculo.setDirElet(rs.getBoolean("direlet"));
+            veiculo.setVidroElet(rs.getBoolean("vidroelet"));
+            veiculo.setTravaElet(rs.getBoolean("travaelet"));
+            veiculo.setTracao(rs.getBoolean("tracao4"));
+            veiculo.setTeto(rs.getBoolean("teto"));
+            veiculo.setControleTracao(rs.getBoolean("controletracao"));
+        }
+        catch (SQLException e){
+            throw new DbException(e.getMessage()+" findbycod Veiculo");
+        }
+        finally {
+            DB2.closeStatement(st);
+            DB2.closeResultSet(rs);
+        }
+        return veiculo;
+    }
 
 }

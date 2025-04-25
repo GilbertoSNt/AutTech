@@ -4,6 +4,17 @@ import org.gsnt.auttech.util.Circulos;
 
 public class OrdemServico {
 
+    /*
+    * Status da ordem de serviço
+    * 1 - Aberta
+    * 2 - Cancelada
+    * 3 - Fechada
+    * 4 - Paga
+    * 5 - Pendente Pagamento
+    * 6 - Faturada
+    * */
+
+
     private Integer numero;
     private String placa;
     private String modelo;
@@ -51,12 +62,10 @@ public class OrdemServico {
     private Integer sPneus3;
     private Integer sTrOleo3;
     private Integer lavacao;
-    /*
-        * Integer numero, String placa, String modelo, Boolean sEletrico, Boolean sInjecao,
-          Boolean sCamAut, Boolean sCamMec, Boolean sFreioDt, Boolean sFreioTr, Boolean sMotor,
-          Boolean sSuspDt, Boolean sSuspTr, Boolean sPneus, Boolean sTrOleo, Integer lavacao
-        *
-    */
+
+
+
+
 
     public OrdemServico(Integer numero, String placa, String modelo, Circulos sEletrico2, Circulos sInjecao2,
     Circulos sCamAut2, Circulos sCamMec2, Circulos sFreioDt2, Circulos sFreioTr2, Circulos sMotor2, Circulos sRevisao2,

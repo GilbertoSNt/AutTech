@@ -10,6 +10,8 @@ public interface VeiculoDao {
 
     Veiculo findById(String placa);
 
+    Veiculo findByCod(int cod);
+
     Integer saveVeiculo(Veiculo veiculo);
 
     Boolean desativaPLaca(String placa);
@@ -17,5 +19,7 @@ public interface VeiculoDao {
     Boolean editPLaca(Veiculo veiculo);
 
     Boolean desassociaPLaca(String placa);
+
+    Integer verificaPlaca(String placa);
 
 }

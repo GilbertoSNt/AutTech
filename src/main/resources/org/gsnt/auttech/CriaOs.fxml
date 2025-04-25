@@ -21,7 +21,7 @@
          <children>
             <Label layoutX="22.0" layoutY="16.0" text="Placa Veículo" />
             <TextField fx:id="txtPlaca" layoutX="102.0" layoutY="12.0" styleClass="text-field" stylesheets="@css/TextField.css" />
-            <Label layoutX="22.0" layoutY="55.0" text="Veículo - " />
+            <Label layoutX="338.0" layoutY="45.0" text="Veículo - " />
             <Label layoutX="338.0" layoutY="16.0" text="Nome - " />
             <AnchorPane layoutX="14.0" layoutY="87.0" prefHeight="155.0" prefWidth="475.0" styleClass="anchorpane" stylesheets="@css/panel.css" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="505.0">
                <children>
@@ -40,7 +40,7 @@
             </AnchorPane>
             <TextArea fx:id="txaDescricao" layoutX="14.0" layoutY="293.0" prefHeight="214.0" prefWidth="966.0" stylesheets="@css/tableview.css" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
             <Button fx:id="btGravar" layoutX="22.0" layoutY="541.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Gravar" />
-            <Button fx:id="btCancel" layoutX="144.0" layoutY="541.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Cancelar" />
+            <Button fx:id="btCancel" layoutX="144.0" layoutY="541.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCloseButtonClick" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Cancelar" />
             <Button fx:id="btFechar" layoutX="265.0" layoutY="541.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCloseButtonClick" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Fechar" />
             <Label layoutX="21.0" layoutY="269.0" text="Descrição / Defeitos" />
             <AnchorPane layoutX="497.0" layoutY="87.0" prefHeight="99.0" prefWidth="486.0" styleClass="anchorpane" stylesheets="@css/panel.css">
@@ -54,22 +54,13 @@
                   <CheckBox fx:id="cbCliente" layoutX="379.0" layoutY="58.0" mnemonicParsing="false" text="Cliente traz" />
                </children>
             </AnchorPane>
-            <Label fx:id="lblNomeCliente" layoutX="389.0" layoutY="16.0" />
-            <Label fx:id="lblVeiculo" layoutX="82.0" layoutY="55.0" />
-            <Button fx:id="btCadVeiculo" layoutX="260.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="button5" stylesheets="@css/button.css">
+            <Label fx:id="lblNomeCliente" layoutX="395.0" layoutY="15.0" prefHeight="17.0" prefWidth="589.0" />
+            <Label fx:id="lblVeiculo" layoutX="395.0" layoutY="45.0" prefHeight="17.0" prefWidth="589.0" />
+            <Button fx:id="btCadVeiculo" layoutX="260.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCadastraVeiculo" prefHeight="25.0" prefWidth="25.0" styleClass="button5" stylesheets="@css/button.css">
                <graphic>
                   <ImageView fx:id="imCadVeiculo" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icones/icons8-car-50.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="btCadCliente" layoutX="861.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="button5" stylesheets="@css/button.css">
-               <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@icones/cliente.png" />
                      </image>
                   </ImageView>
                </graphic>

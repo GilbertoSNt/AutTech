@@ -7,7 +7,9 @@ import org.gsnt.auttech.util.Circulos;
 import org.gsnt.auttech.util.Moka;
 
 import java.sql.Connection;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class OrdemServicoService implements OrdemServicoDao {
@@ -315,7 +317,7 @@ public class OrdemServicoService implements OrdemServicoDao {
     }
 
     @Override
-    public Boolean saveOrdemServico(OrdemServico item) {
+    public Integer saveOrdemServico(OrdemServico item) {
         return null;
     }
 
@@ -328,5 +330,26 @@ public class OrdemServicoService implements OrdemServicoDao {
     public Boolean saveAlterOrdemServico(OrdemServico Item) {
         return null;
     }
+
+    @Override
+    public void encerraOs(Date data, Time hora) {
+
+    }
+
+    @Override
+    public void financeiroOs(int parcelas) {
+
+    }
+
+    @Override
+    public void baixaParcelasOs() {
+
+    }
+
+    @Override
+    public void encaminharOs() {
+
+    }
+
 
 }

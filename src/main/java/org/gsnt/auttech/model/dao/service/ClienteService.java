@@ -46,7 +46,7 @@ public class ClienteService implements ClienteDao {
 
         }
         catch (SQLException a){
-            throw new DbException(a.getMessage());
+            throw new DbException(a.getMessage()+" Cliente - findAll");
         }
         finally{
             DB2.closeStatement(st);
@@ -72,7 +72,7 @@ public class ClienteService implements ClienteDao {
 
         }
         catch (SQLException a){
-            throw new DbException(a.getMessage());
+            throw new DbException(a.getMessage()+" Cliente - findAllPart");
         }
         finally{
             DB2.closeStatement(st);
@@ -101,7 +101,7 @@ public class ClienteService implements ClienteDao {
 
         }
         catch (SQLException e){
-            throw new DbException(e.getMessage());
+            throw new DbException(e.getMessage()+" Cliente - findByCPF");
         }
         finally {
             DB2.closeStatement(st);
@@ -130,7 +130,7 @@ public class ClienteService implements ClienteDao {
             cli.setDataCad(rs.getString("datacad"));
         }
         catch (SQLException e){
-            throw new DbException(e.getMessage());
+            throw new DbException(e.getMessage()+" Cliente - findByCNPJ");
         }
         finally {
             DB2.closeStatement(st);
@@ -156,7 +156,7 @@ public class ClienteService implements ClienteDao {
 
         }
         catch (SQLException e){
-            throw new DbException(e.getMessage());
+            throw new DbException(e.getMessage()+" Cliente - findById");
         }
         finally {
             DB2.closeStatement(st);
@@ -213,7 +213,7 @@ public class ClienteService implements ClienteDao {
 
         }
         catch (SQLException a){
-            throw new DbException(a.getMessage());
+            throw new DbException(a.getMessage()+" Cliente - saveCliente");
         }
         catch (ParseException b){
             throw new DbException(b.getMessage());
@@ -283,7 +283,7 @@ public class ClienteService implements ClienteDao {
     public void associacaoVeicCliente(int codVeic, int codCliente) {
 
         PreparedStatement st = null;
-        int resultado = 0;
+        //int resultado = 0;
         try {
             st = conn.prepareStatement("INSERT INTO public.tabveiccliente(" +
                             "codcliente, codveiculo)" +
@@ -296,13 +296,13 @@ public class ClienteService implements ClienteDao {
             if (rowsaffected > 0) {
                 ResultSet rs = st.getGeneratedKeys();
                 if (rs.next()) {
-                    resultado = rs.getInt(1);
+          //          resultado = rs.getInt(1);
                 }
                 DB2.closeResultSet(rs);
             }
         }
         catch (SQLException a){
-            throw new DbException(a.getMessage());
+            throw new DbException(a.getMessage()+" Cliente - associacaoVeicCliente");
         } finally {
             DB2.closeStatement(st);
         }
@@ -318,13 +318,11 @@ public class ClienteService implements ClienteDao {
             st = conn.prepareStatement("Select codcliente from tabveiccliente where codveiculo = "+codVeic);
             rs = st.executeQuery();
             rs.next();
-
-            System.out.println(rs.getInt("codcliente")+"");
-
             return rs.getInt("codcliente");
+
         }
         catch (SQLException e){
-            throw new DbException(e.getMessage());
+            throw new DbException(e.getMessage()+" Cliente - findIdClienteByIdVeiculo");
         }
         finally {
             DB2.closeStatement(st);

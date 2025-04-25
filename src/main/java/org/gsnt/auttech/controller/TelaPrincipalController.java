@@ -1,7 +1,6 @@
 package org.gsnt.auttech.controller;
 
 
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,7 +16,6 @@ import org.gsnt.auttech.TelaPrincipal;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.AgendaDao;
 import org.gsnt.auttech.model.dao.DaoFactory;
-import org.gsnt.auttech.model.dao.OrdemServicoDao;
 import org.gsnt.auttech.model.dao.service.ClienteService;
 import org.gsnt.auttech.model.dao.service.OrcamentoService;
 import org.gsnt.auttech.model.dao.service.OrdemServicoService;
@@ -30,7 +28,7 @@ import org.gsnt.auttech.util.Circulos;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
+
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
@@ -179,8 +177,9 @@ public class TelaPrincipalController implements Initializable {
 
                 try {
                     loadView("/org/gsnt/auttech/CriaOs.fxml", (CriaOsController criaOsController) -> {
+
                         criaOsController.preencheDadosAgenda(dado);
-                        agendaService.excluiAgenda(tt);
+  // ativar aqui novamente                      agendaService.excluiAgenda(tt);
                         updateTableView();
                     });}
                     catch(Exception d){
@@ -190,6 +189,8 @@ public class TelaPrincipalController implements Initializable {
              }else{
                  Alerts.showAlert("Confirmação de abertura de O.S.", "Você deve selecionar uma linha na tabela agenda", null, Alert.AlertType.INFORMATION);
              }
+        }else{
+            Alerts.showAlert("Confirmação de abertura de O.S.", "Você deve selecionar uma linha na tabela agenda", null, Alert.AlertType.INFORMATION);
         }
     }
 
@@ -219,7 +220,6 @@ public class TelaPrincipalController implements Initializable {
                     agendaService.reverteEnvioGuincho(tt);
                 }
             }
-
         }
         else{
             Alerts.showAlert("Atenção","Agendamento não tem registro da necessidade do guinho / socorro para o veículo",null, Alert.AlertType.ERROR);
@@ -301,7 +301,6 @@ public class TelaPrincipalController implements Initializable {
         }
 
     }
-
 
 
     // Inicio da table view(Veículo a serem iniciados)
@@ -541,7 +540,6 @@ public class TelaPrincipalController implements Initializable {
     protected void btIconifiedButtonClick() {
     }
 
-
     @FXML
     protected Button btCliente;
 
@@ -582,7 +580,6 @@ public class TelaPrincipalController implements Initializable {
 
     }
 
-
     @FXML
     protected Button btListarProfissionais;
 
@@ -590,8 +587,6 @@ public class TelaPrincipalController implements Initializable {
     protected void onbtListarProfissionais(){
 
     }
-
-
 
     public void updateTableView() {
 
@@ -640,10 +635,8 @@ public class TelaPrincipalController implements Initializable {
         accordionSerIniciados();
         accordionOrcamento();
         accordionEmServico();
+
     }
-
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle rB) {
@@ -740,8 +733,6 @@ public class TelaPrincipalController implements Initializable {
         tcLavacao4.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("lavacao1"));
     }
 
-
-
     private synchronized<T> void loadView(String absoluteName, Consumer<T> inicializingAction) {
         try {
 
@@ -766,8 +757,5 @@ public class TelaPrincipalController implements Initializable {
             System.out.println(e.getMessage());
         }
     }
-
-
-
 
 }

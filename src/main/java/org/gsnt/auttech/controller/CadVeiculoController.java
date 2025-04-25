@@ -49,6 +49,8 @@ public class CadVeiculoController implements Initializable {
 
     private ClienteDao clienteService = DaoFactory.createClienteDao();
 
+    private int codVeiculo = 0;
+
     public CadVeiculoController(){}
 
     public CadVeiculoController(int cad, String nome){
@@ -81,12 +83,14 @@ public class CadVeiculoController implements Initializable {
 
     @FXML
     private void onBtProcurar(){
+
         telaLista();
         txtNomeCli.requestFocus();
         if (txtCodCli.getText()!=null){
             btGravar.setDisable(false);
         }
     }
+
 
     @FXML
     protected TextField txtPlaca;
@@ -259,12 +263,12 @@ public class CadVeiculoController implements Initializable {
 
             if(txtPlaca.getLength()==8) {
                 if (KeyEvent.getCode() == KeyCode.ENTER) {
+                    int teste = veiculoService.verificaPlaca(txtPlaca.getText());
+                    Veiculo veic = veiculoService.findById(txtPlaca.getText());
 
-                        Veiculo teste = veiculoService.findById(txtPlaca.getText());
-
-                    if (teste != null) {
-                        Cliente cli = clienteService.findById(clienteService.findIdClienteByIdVeiculo(teste.getCod()));
-                        carregaVeiculo(teste, cli);
+                    if (teste != 0) {
+                        Cliente cli = clienteService.findById(clienteService.findIdClienteByIdVeiculo(veic.getCod()));
+                        carregaVeiculo(veic, cli);
                         btProcurar.requestFocus();
                     }else {
                         cbMarca.show();
@@ -386,14 +390,13 @@ public class CadVeiculoController implements Initializable {
         cad.setTracao(ckTracao.isSelected());
         cad.setTeto(ckTeto.isSelected());
 
-        Integer codVeículo;
-        Integer codCliente;
-        codVeículo = veiculoServiceGeral.saveVeiculo(cad);
-        codVeículo = 0;
-        codVeículo = veiculoService.saveVeiculo(cad);
+        int codCliente;
+        codVeiculo = veiculoServiceGeral.saveVeiculo(cad);
+        codVeiculo = 0;
+        codVeiculo = veiculoService.saveVeiculo(cad);
         codCliente = Integer.valueOf(txtCodCli.getText());
 
-        clienteService.associacaoVeicCliente(codVeículo,codCliente);
+        clienteService.associacaoVeicCliente(codVeiculo,codCliente);
 
         btCloseButtonClick();
 
@@ -447,7 +450,7 @@ public class CadVeiculoController implements Initializable {
                 cliController.updateTableView();
             });
         }catch (Exception d){
-            System.out.println(d);
+            System.out.println(d+" cadVeiculoController - telaLista");
         }
 
     }
@@ -484,14 +487,9 @@ public class CadVeiculoController implements Initializable {
             }
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()+" cadVeiculoController - loadView");
         }
     }
-
-
-
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -499,6 +497,13 @@ public class CadVeiculoController implements Initializable {
         desabilitarBotoes();
         carregarComboMarca();
         controlTab();
+
+    }
+
+
+    public int getDadosOs(){
+
+        return codVeiculo;
 
     }
 }

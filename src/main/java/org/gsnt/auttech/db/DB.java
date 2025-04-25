@@ -14,7 +14,6 @@ public class DB {
             try {
                 Properties props = loadProperties();
                 String url = "jdbc:postgresql://192.168.0.180:5432/bancoempresabase";
-             //   String url = props.getProperty("local");
                 conn = DriverManager.getConnection(url, props);
             } catch (SQLException e) {
                 throw new DbException(e.getMessage());
