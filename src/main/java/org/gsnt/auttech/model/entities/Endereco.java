@@ -3,11 +3,19 @@ package org.gsnt.auttech.model.entities;
 
 import java.io.Serializable;
 
-public class EndCliente implements Serializable {
+public class Endereco implements Serializable {
 
-    public EndCliente(){};
+    /*
+    * Tipo caso
+    * 1 - Cliente
+    * 2 - Fornecedor
+    * 3 - Funcionarios
+    */
 
-    private int codCliente;
+    public Endereco(){};
+
+    private int codClienteForn;
+    private int tipoCaso;
     private int tipoEnd;
     private String endereco;
     private String numero;
@@ -17,12 +25,12 @@ public class EndCliente implements Serializable {
     private String complemento;
     private String cep;
 
-    public int getCodCliente() {
-        return codCliente;
+    public int getCodClienteForn() {
+        return codClienteForn;
     }
 
-    public void setCodCliente(int codCliente) {
-        this.codCliente = codCliente;
+    public void setCodClienteForn(int codCliente) {
+        this.codClienteForn = codCliente;
     }
 
     public int getTipoEnd() {
@@ -87,5 +95,13 @@ public class EndCliente implements Serializable {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public int getTipoCaso() {
+        return tipoCaso;
+    }
+
+    public void setTipoCaso(int tipoCaso) {
+        this.tipoCaso = tipoCaso;
     }
 }

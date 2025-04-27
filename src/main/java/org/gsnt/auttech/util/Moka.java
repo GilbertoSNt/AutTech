@@ -27,26 +27,7 @@ public class Moka {
 
 
 
-    public static List<Agenda> dadosTelaAgenda(){
-        List<Agenda> list = new ArrayList<>();
 
-        /* construtor do banco de dados
-                  String data, String hora, String nome, String veiculo, String placa, Boolean sRevisao,
-                  Boolean sSuspensao, Boolean sInjecao, Boolean sPneus, Boolean sTrocaOleo, Boolean sFreio,
-                  Boolean sEletrico, Boolean sMecanico, Boolean sMotor, Boolean sCaixa, Boolean assSocMecanico,
-                  Boolean assSocEletrico, Boolean assLevar, Boolean assGuincho, Boolean assBuscar,
-
-        */
-    ;
-
-        list.add(new Agenda("2025-03-04","08:16","Teste1","veiculo1","AAA-0A00", true, false,false, false, false, true, false, false, false, false, false, false, false, true, false, false, true));
-        list.add(new Agenda("2025-03-04","13:16","Teste2","veiculo2","BBB-0B00", false, true,false, false, true, false, true, false, false, false, false, false, false, true, false, true, true));
-        list.add(new Agenda("2025-03-04","10:17","Teste3","veiculo3","CCC-0C00", false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, true, true));
-        list.add(new Agenda("2025-03-03","08:00","Teste4","veiculo4","DDD-0D00", false, false, false, true, false, false, false, false, false, false, true, false, true, false, true, true, true));
-        list.add(new Agenda("2025-03-05","11:00","Teste5","veiculo5","EEE-0E00", false, false, true, false, false, false, false, false, false, false, false, true, false, false, false, false, true));
-        return list;
-
-    }
 
     public List<OrdemServico> dadosTelaSerIniciados(){
 

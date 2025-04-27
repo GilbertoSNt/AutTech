@@ -172,7 +172,7 @@ public class ClienteService implements ClienteDao {
     }
 
     @Override
-    public EndCliente findEndById(int id) {
+    public Endereco findEndById(int id) {
         return null;
     }
 
@@ -235,7 +235,7 @@ public class ClienteService implements ClienteDao {
     }
 
     @Override
-    public Boolean endCliente(EndCliente endereco, int cod) {
+    public Boolean endCliente(Endereco endereco, int cod) {
         return null;
     }
 
@@ -255,7 +255,7 @@ public class ClienteService implements ClienteDao {
     }
 
     @Override
-    public Boolean endAlterCliente(EndCliente endereco) {
+    public Boolean endAlterCliente(Endereco endereco) {
         return null;
     }
 

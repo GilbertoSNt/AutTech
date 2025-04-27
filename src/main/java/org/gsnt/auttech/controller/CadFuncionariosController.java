@@ -173,9 +173,6 @@ public class CadFuncionariosController implements Initializable {
     protected TextField txtQuantFilho;
 
     @FXML
-    protected TextField txtTelefoneMae;
-
-    @FXML
     protected TextField txtTelefoneConjuge;
 
     @FXML

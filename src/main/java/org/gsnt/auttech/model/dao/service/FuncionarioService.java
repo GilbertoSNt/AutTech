@@ -1,4 +1,14 @@
 package org.gsnt.auttech.model.dao.service;
 
-public class FuncionarioService {
+import org.gsnt.auttech.model.dao.FuncionarioDao;
+
+public class FuncionarioService implements FuncionarioDao {
+
+    @Override
+    public void saveFuncionario() {
+
+    }
+
+
+
 }
