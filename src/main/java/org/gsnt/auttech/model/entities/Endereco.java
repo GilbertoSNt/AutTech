@@ -14,7 +14,7 @@ public class Endereco implements Serializable {
 
     public Endereco(){};
 
-    private int codClienteForn;
+    private int cod;
     private int tipoCaso;
     private int tipoEnd;
     private String endereco;
@@ -25,12 +25,12 @@ public class Endereco implements Serializable {
     private String complemento;
     private String cep;
 
-    public int getCodClienteForn() {
-        return codClienteForn;
+    public int getCod() {
+        return cod;
     }
 
-    public void setCodClienteForn(int codCliente) {
-        this.codClienteForn = codCliente;
+    public void setCod(int cod) {
+        this.cod = cod;
     }
 
     public int getTipoEnd() {
