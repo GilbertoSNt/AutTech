@@ -167,7 +167,7 @@ public class ClienteService implements ClienteDao {
     }
 
     @Override
-    public List<EmailCliente> findEmailById(int id) {
+    public List<Email> findEmailById(int id) {
         return List.of();
     }
 
@@ -229,7 +229,7 @@ public class ClienteService implements ClienteDao {
     }
 
     @Override
-    public Boolean emailCliente(List<EmailCliente> email, int codCliente) {
+    public Boolean emailCliente(List<Email> email, int codCliente) {
 
         return null;
     }
@@ -250,7 +250,7 @@ public class ClienteService implements ClienteDao {
     }
 
     @Override
-    public Boolean emailAlterCliente(List<EmailCliente> email) {
+    public Boolean emailAlterCliente(List<Email> email) {
         return null;
     }
 
@@ -270,7 +270,7 @@ public class ClienteService implements ClienteDao {
     }
 
     @Override
-    public Boolean excluiEmailCliente(EmailCliente email) {
+    public Boolean excluiEmailCliente(Email email) {
         return null;
     }
 

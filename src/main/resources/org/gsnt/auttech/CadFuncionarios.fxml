@@ -35,7 +35,7 @@
                               <Label layoutX="317.0" layoutY="59.0" text="RG -" />
                               <TextField fx:id="txtRg" layoutX="353.0" layoutY="55.0" prefHeight="25.0" prefWidth="241.0" stylesheets="@css/TextField.css" />
                               <Label layoutX="616.0" layoutY="59.0" text="Data de Nascimento - " />
-                              <DatePicker fx:id="dpDataNasc" layoutX="742.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onHidden="#hiddendpDataNasc" prefHeight="25.0" prefWidth="180.0" stylesheets="@css/datepicker.css" />
+                              <DatePicker fx:id="dpDataNasc" layoutX="742.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onHidden="#hiddendpDataNasc" prefHeight="25.0" prefWidth="180.0" promptText="__/__/__" stylesheets="@css/datepicker.css" />
                               <ComboBox fx:id="cbTipoEndereco" layoutX="17.0" layoutY="151.0" onHidden="#hiddencbTipoEndereco" onHiding="#hiddencbTipoEndereco" prefHeight="25.0" prefWidth="149.0" promptText="Tipo end." stylesheets="@css/combobox.css" />
                               <TextField fx:id="txtEnd" layoutX="179.0" layoutY="151.0" prefHeight="25.0" prefWidth="783.0" stylesheets="@css/TextField.css" />
                               <TextField fx:id="txtNum" layoutX="80.0" layoutY="189.0" prefHeight="25.0" prefWidth="104.0" stylesheets="@css/TextField.css" />
@@ -50,8 +50,8 @@
                               <Label layoutX="10.0" layoutY="274.0" text="CEP - " />
                               <TextField fx:id="txtCep" layoutX="81.0" layoutY="270.0" stylesheets="@css/TextField.css" />
                               <Label layoutX="10.0" layoutY="193.0" text="Número - " />
-                              <Label layoutX="15.0" layoutY="419.0" text="Observações - " />
-                              <TextArea fx:id="txaObs" layoutX="14.0" layoutY="438.0" prefHeight="138.0" prefWidth="946.0" styleClass="text-field" stylesheets="@css/TextField.css" />
+                              <Label layoutX="15.0" layoutY="423.0" text="Observações - " />
+                              <TextArea fx:id="txaObs" layoutX="14.0" layoutY="451.0" prefHeight="125.0" prefWidth="946.0" styleClass="text-field" stylesheets="@css/TextField.css" />
                               <Label fx:id="labelAlertaCPF" layoutX="86.0" layoutY="80.0" text="CPF Inválido - Informação requerida" textFill="RED" />
                               <Label layoutX="263.0" layoutY="274.0" text="Telefone -" />
                               <TextField fx:id="txtTelefone" layoutX="329.0" layoutY="270.0" stylesheets="@css/TextField.css" />
@@ -67,6 +67,8 @@
                               <Label layoutX="12.0" layoutY="387.0" text="Telefone conjuge -" />
                               <RadioButton fx:id="rbFeminino" layoutX="77.0" layoutY="98.0" mnemonicParsing="false" text="Feminino" />
                               <RadioButton fx:id="rbMasculino" layoutX="203.0" layoutY="98.0" mnemonicParsing="false" text="Masculino" />
+                              <Label layoutX="317.0" layoutY="98.0" text="Email -" />
+                              <TextField fx:id="txtEmail" layoutX="357.0" layoutY="94.0" prefHeight="25.0" prefWidth="565.0" stylesheets="@css/TextField.css" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -140,7 +142,7 @@
                 <Font size="24.0" />
             </font>
         </Label>
-      <Button fx:id="btGravar" layoutX="22.0" layoutY="735.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" stylesheets="@css/button.css" text="Gravar" />
+      <Button fx:id="btGravar" layoutX="22.0" layoutY="735.0" mnemonicParsing="false" onAction="#onBtGravar" prefHeight="25.0" prefWidth="100.0" stylesheets="@css/button.css" text="Gravar" />
       <Button fx:id="btEditar" layoutX="132.0" layoutY="735.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" stylesheets="@css/button.css" text="Editar" />
       <Button fx:id="btDesativar" layoutX="242.0" layoutY="735.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" stylesheets="@css/button.css" text="Excluir" />
       <Button fx:id="btCancelar" layoutX="351.0" layoutY="735.0" mnemonicParsing="false" onAction="#btCancelarOnButtonClick" prefHeight="25.0" prefWidth="100.0" stylesheets="@css/button.css" text="Cancelar" />

@@ -15,6 +15,7 @@ public class Endereco implements Serializable {
     public Endereco(){};
 
     private int cod;
+    private int codExterno;
     private int tipoCaso;
     private int tipoEnd;
     private String endereco;
@@ -103,5 +104,13 @@ public class Endereco implements Serializable {
 
     public void setTipoCaso(int tipoCaso) {
         this.tipoCaso = tipoCaso;
+    }
+
+    public int getCodExterno() {
+        return codExterno;
+    }
+
+    public void setCodExterno(int codExterno) {
+        this.codExterno = codExterno;
     }
 }

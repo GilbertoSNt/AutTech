@@ -9,12 +9,16 @@ public class Email implements Serializable {
      * 1 - Cliente
      * 2 - Fornecedor
      * 3 - Funcionarios
+     *
+     * Tipo email
+     * 0 - geral
      */
 
     public Email(){};
 
     private int cod;
-    private int tipoCaso;
+    private int codExterno;
+    private int codCaso;
     private int tipo;
     private String email;
 
@@ -26,12 +30,12 @@ public class Email implements Serializable {
         this.cod = cod;
     }
 
-    public int getTipoCaso() {
-        return tipoCaso;
+    public int getCodCaso() {
+        return codCaso;
     }
 
-    public void setTipoCaso(int tipoCaso) {
-        this.tipoCaso = tipoCaso;
+    public void setTipoCaso(int codCaso) {
+        this.codCaso = codCaso;
     }
 
     public int getTipo() {
@@ -50,4 +54,15 @@ public class Email implements Serializable {
         this.email = email;
     }
 
+    public int getCodExterno() {
+        return codExterno;
+    }
+
+    public void setCodExterno(int codExterno) {
+        this.codExterno = codExterno;
+    }
+
+    public void setCodCaso(int codCaso) {
+        this.codCaso = codCaso;
+    }
 }

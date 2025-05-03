@@ -2,6 +2,16 @@ package org.gsnt.auttech.model.entities;
 
 public class Funcionario {
 
+    /*
+    * Tipo funcionário
+    *
+    * 1 - Administrativo
+    * 2 - Administrativo(auxiliar)
+    * 3 - produtivo
+    * 4 - Proditivo(Auxiliar)
+    * 5 - Aprendiz
+    * */
+
 
     private int cod;
     private String nome;
@@ -11,7 +21,6 @@ public class Funcionario {
     private Boolean status;
     private Boolean genero;
     private int tipoFunc;
-    private Integer codEndereco;
     private String telefone;
     private String telConjuge;
     private String mae;
@@ -366,11 +375,5 @@ public class Funcionario {
         this.status = status;
     }
 
-    public Integer getCodEndereco() {
-        return codEndereco;
-    }
 
-    public void setCodEndereco(Integer codEndereco) {
-        this.codEndereco = codEndereco;
-    }
 }

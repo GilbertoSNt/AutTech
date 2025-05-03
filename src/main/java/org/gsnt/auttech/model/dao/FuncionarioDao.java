@@ -1,9 +1,19 @@
 package org.gsnt.auttech.model.dao;
 
+import org.gsnt.auttech.model.entities.Endereco;
 import org.gsnt.auttech.model.entities.Funcionario;
+
+import java.util.List;
 
 public interface FuncionarioDao {
 
-    void saveFuncionario(Funcionario funcionario);
+    int saveFuncionario(Funcionario funcionario);
+
+    List<Funcionario> findByEspecializacao();
+
+    Funcionario findByCod(Integer cod);
+
+    void alterFuncionario(Funcionario funcionario, int cod);
+
 
 }

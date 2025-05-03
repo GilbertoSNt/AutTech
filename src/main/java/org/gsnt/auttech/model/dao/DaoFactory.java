@@ -95,4 +95,38 @@ public class DaoFactory {
         }
     }
 
+    public static EnderecoDao createEnderecoDao(){
+        try {
+            return new EnderecoService(DB2.getConnection()) {};
+
+        }
+        catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static FuncionarioDao createFuncionarioDao(){
+        try {
+            return new FuncionarioService(DB2.getConnection()) {};
+
+        }
+        catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static EmailDao createEmailDao(){
+        try {
+            return new EmailService(DB2.getConnection()) {};
+
+        }
+        catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package org.gsnt.auttech.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -8,6 +10,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import org.gsnt.auttech.model.dao.DaoFactory;
+import org.gsnt.auttech.model.dao.EmailDao;
+import org.gsnt.auttech.model.dao.EnderecoDao;
+import org.gsnt.auttech.model.dao.FuncionarioDao;
+import org.gsnt.auttech.model.entities.*;
+import org.gsnt.auttech.util.DadosCombos;
+import org.gsnt.auttech.util.MaskValid;
 
 import java.awt.*;
 import java.net.URL;
@@ -16,184 +26,252 @@ import java.util.ResourceBundle;
 public class CadFuncionariosController implements Initializable {
 
 
-    @FXML
-    protected Button btClose;
+    private FuncionarioDao funcService = DaoFactory.createFuncionarioDao();
+
+    private EnderecoDao endService = DaoFactory.createEnderecoDao();
+
+    private EmailDao emailService = DaoFactory.createEmailDao();
 
     @FXML
-    protected void onBtClose(){
+    private Button btClose;
+
+    @FXML
+    private void onBtClose(){
         Stage stage = (Stage)btClose.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    protected Button btGravar;
+    private Button btGravar;
 
     @FXML
-    protected Button btEditar;
+    private void onBtGravar(){
+        try {
+            cadastraFuncionario(coletaDadosFuncionario(false, 0), coletaDadosEndereco(false,0), coletaDadosEmail(false,0));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 
     @FXML
-    protected Button btDesativar;
+    private Button btEditar;
+
 
     @FXML
-    protected Button btCancelar;
+    private Button btDesativar;
 
     @FXML
-    protected TextField txtNome;
+    private Button btCancelar;
 
     @FXML
-    protected TextField txtCpf;
+    private TextField txtNome;
 
     @FXML
-    protected TextField txtRg;
+    private TextField txtCpf;
 
     @FXML
-    protected DatePicker dpDataNasc;
+    private TextField txtRg;
 
     @FXML
-    protected ComboBox cbTipoEndereco;
+    private DatePicker dpDataNasc;
 
     @FXML
-    protected TextField txtEnd;
+    private ComboBox<TipoEndereco> cbTipoEndereco;
 
     @FXML
-    protected TextField txtNum;
+    private TextField txtEnd;
 
     @FXML
-    protected TextField txtComplemento;
+    private TextField txtNum;
 
     @FXML
-    protected TextField txtBairro;
+    private TextField txtComplemento;
 
     @FXML
-    protected TextField txtCidade;
+    private TextField txtBairro;
 
     @FXML
-    protected ComboBox cbEstado;
+    private TextField txtCidade;
 
     @FXML
-    protected TextField txtCep;
+    private ComboBox<Estados> cbEstado;
 
     @FXML
-    protected TextArea txaObs;
+    private TextField txtCep;
 
     @FXML
-    protected DatePicker dpAdmissao;
+    private TextArea txaObs;
 
     @FXML
-    protected DatePicker dpDesligamento;
+    private DatePicker dpAdmissao;
 
     @FXML
-    protected TextField txtNumCartProf;
+    private DatePicker dpDesligamento;
 
     @FXML
-    protected TextField txtDataEmis;
+    private TextField txtNumCartProf;
 
     @FXML
-    protected TextField txtFuncao;
+    private TextField txtDataEmis;
 
     @FXML
-    protected TextField txtCargo;
+    private TextField txtFuncao;
 
     @FXML
-    protected TextArea txaObsProf;
+    private TextField txtCargo;
 
     @FXML
-    protected CheckBox cbCaixaMec;
+    private TextArea txaObsProf;
 
     @FXML
-    protected CheckBox cbCaixaAut;
+    private CheckBox cbCaixaMec;
 
     @FXML
-    protected CheckBox cbEletrica;
+    private CheckBox cbCaixaAut;
 
     @FXML
-    protected CheckBox cbFreio;
+    private CheckBox cbEletrica;
 
     @FXML
-    protected CheckBox cbInjDiesel;
+    private CheckBox cbFreio;
 
     @FXML
-    protected CheckBox cbInjFlex;
+    private CheckBox cbInjDiesel;
 
     @FXML
-    protected CheckBox cbMotorDiesel;
+    private CheckBox cbInjFlex;
 
     @FXML
-    protected CheckBox cbMotorFlex;
+    private CheckBox cbMotorDiesel;
 
     @FXML
-    protected CheckBox cbPneu;
+    private CheckBox cbMotorFlex;
 
     @FXML
-    protected CheckBox cbSuspensao;
+    private CheckBox cbPneu;
 
     @FXML
-    protected CheckBox cbSocorro;
+    private CheckBox cbSuspensao;
 
     @FXML
-    protected CheckBox cbVeicEletrico;
+    private CheckBox cbSocorro;
 
     @FXML
-    protected CheckBox cbMotoristaLeva;
+    private CheckBox cbVeicEletrico;
 
     @FXML
-    protected CheckBox cbMotoristaGuincho;
+    private CheckBox cbMotoristaLeva;
 
     @FXML
-    protected RadioButton rbAdm;
+    private CheckBox cbMotoristaGuincho;
 
     @FXML
-    protected RadioButton rbProd;
+    private RadioButton rbAdm;
 
     @FXML
-    protected RadioButton rbAdmAux;
+    private RadioButton rbProd;
 
     @FXML
-    protected RadioButton rbProdAux;
+    private RadioButton rbAdmAux;
 
     @FXML
-    protected RadioButton rbApre;
+    private RadioButton rbProdAux;
 
     @FXML
-    protected Label labelAlertaCPF;
+    private RadioButton rbApre;
 
     @FXML
-    protected TextField txtTelefone;
+    private Label labelAlertaCPF;
 
     @FXML
-    protected TextField txtMae;
+    private TextField txtTelefone;
 
     @FXML
-    protected TextField txtPai;
+    private TextField txtMae;
 
     @FXML
-    protected TextField txtEsposa;
+    private TextField txtPai;
 
     @FXML
-    protected TextField txtQuantFilho;
+    private TextField txtEsposa;
 
     @FXML
-    protected TextField txtTelefoneConjuge;
+    private TextField txtQuantFilho;
 
     @FXML
-    protected RadioButton rbMasculino;
+    private TextField txtTelefoneConjuge;
 
     @FXML
-    protected RadioButton rbFeminino;
+    private RadioButton rbMasculino;
 
     @FXML
-    protected CheckBox cbComissao;
+    private RadioButton rbFeminino;
 
     @FXML
-    protected TextField txtComissaoPecas;
+    private CheckBox cbComissao;
 
     @FXML
-    protected TextField txtComissaoServico;
+    private TextField txtComissaoPecas;
 
     @FXML
-    protected TextField txtSalario;
+    private TextField txtComissaoServico;
+
+    @FXML
+    private TextField txtEmail;
+
+    @FXML
+    private TextField txtSalario;
+
+    private DadosCombos dadosCombos = new DadosCombos();
+
+    private ObservableList<TipoEndereco> obsListTipoEndereco;
+
+    private ObservableList<Estados> obsListEstados;
+
+    private MaskValid mascara = new MaskValid();
+
+    private void carregaCombo(){
+
+        obsListTipoEndereco = FXCollections.observableList(dadosCombos.tipoEndereco());
+        cbTipoEndereco.setItems(obsListTipoEndereco);
+        Callback<ListView<TipoEndereco>, ListCell<TipoEndereco>> factory = lv -> new ListCell<TipoEndereco>() {
+            @Override
+            protected void updateItem(TipoEndereco tipo, boolean empty){
+                super.updateItem(tipo, empty);
+                setText(empty ? "" : tipo.getTipo());
+            }
+        };
+        cbTipoEndereco.setCellFactory(factory);
+        cbTipoEndereco.setButtonCell(factory.call(null));
+
+        obsListEstados = FXCollections.observableList(dadosCombos.dadoEstados());
+        cbEstado.setItems(obsListEstados);
+        Callback<ListView<Estados>, ListCell<Estados>> factory1 = lv -> new ListCell<Estados>() {
+            @Override
+            protected void updateItem(Estados estado, boolean empty){
+                super.updateItem(estado, empty);
+                setText(empty ? "" : estado.getSigla());
+            }
+        };
+        cbEstado.setCellFactory(factory1);
+        cbEstado.setButtonCell(factory1.call(null));
+
+    }
+
+    private void carregaMascara(){
+
+        mascara.maskData(dpDataNasc);
+        mascara.maskData(dpAdmissao);
+        mascara.maskData(dpDesligamento);
+        mascara.maskCPF(txtCpf);
+        mascara.maskkCEP(txtCep);
+        mascara.maskTel9Dig(txtTelefone);
+        mascara.maskTel9Dig(txtTelefoneConjuge);
+
+    }
 
     protected void radio(){
+
         ToggleGroup radioGroup = new ToggleGroup();
         rbAdm.setToggleGroup(radioGroup);
         rbProd.setToggleGroup(radioGroup);
@@ -207,10 +285,120 @@ public class CadFuncionariosController implements Initializable {
 
     }
 
+    private Funcionario coletaDadosFuncionario(Boolean editar, int cod){
+
+        Funcionario func = new Funcionario();
+        func.setNome(txtNome.getText());
+        func.setCpf(txtCpf.getText());
+        func.setRg(txtRg.getText());
+        func.setDataNasc(dpDataNasc.getValue().toString());
+        if(rbFeminino.isSelected()){
+            func.setGenero(true);
+        }else if(rbMasculino.isSelected()){
+            func.setGenero(false);
+        }
+        if(dpDesligamento.getValue() == null) {
+            func.setStatus(true);
+        }else{
+            func.setStatus(false);
+        }
+        func.setTelefone(txtTelefone.getText());
+        func.setMae(txtMae.getText());
+        func.setPai(txtPai.getText());
+        func.setConjuge(txtEsposa.getText());
+        func.setQtdFilhos(Integer.parseInt(txtQuantFilho.getText()));
+        func.setTelConjuge(txtTelefoneConjuge.getText());
+        func.setObs(txaObs.getText());
+        func.setDataAdm(dpAdmissao.getValue().toString());
+        func.setDataDesl(dpDesligamento.getValue().toString());
+        int tipoFuncionario = 0;
+        if(rbAdm.isSelected()){
+            tipoFuncionario = 1;
+        }else if(rbAdmAux.isSelected()){
+            tipoFuncionario = 2;
+        }else if(rbProd.isSelected()){
+            tipoFuncionario = 3;
+        }else if(rbProdAux.isSelected()){
+            tipoFuncionario = 4;
+        }else if(rbApre.isSelected()){
+            tipoFuncionario = 5;
+        }
+        func.setTipoFunc(tipoFuncionario);
+        func.setCartProfissional(txtNumCartProf.getText());
+        func.setDataemissao(txtDataEmis.getText());
+        func.setFuncao(txtFuncao.getText());
+        func.setCargo(txtCargo.getText());
+        func.setComissao(cbComissao.isSelected());
+        func.setComissaoPecas(txtComissaoPecas.getText());
+        func.setComissaoServicos(txtComissaoServico.getText());
+        func.setSalario(txtSalario.getText());
+        func.setObsProf(txaObsProf.getText());
+        func.setCaixaMec(cbCaixaMec.isSelected());
+        func.setCaixaAut(cbCaixaAut.isSelected());
+        func.setEletrica(cbEletrica.isSelected());
+        func.setFreio(cbFreio.isSelected());
+        func.setInjFlex(cbInjFlex.isSelected());
+        func.setInjDiesel(cbInjDiesel.isSelected());
+        func.setMotorDiesel(cbMotorDiesel.isSelected());
+        func.setMotorFlex(cbMotorFlex.isSelected());
+        func.setPneus(cbPneu.isSelected());
+        func.setSuspensao(cbSuspensao.isSelected());
+        func.setSocorro(cbSocorro.isSelected());
+        func.setVeicEletricos(cbVeicEletrico.isSelected());
+        func.setMotLeva(cbMotoristaLeva.isSelected());
+        func.setMotguincho(cbMotoristaGuincho.isSelected());
+        return func;
+    }
+
+    private Endereco coletaDadosEndereco(Boolean editar, int cod){
+
+        Endereco end = new Endereco();
+        end.setTipoCaso(3);
+        end.setTipoEnd(cbTipoEndereco.getValue().getId());
+        end.setEndereco(txtEnd.getText());
+        end.setNumero(txtNum.getText());
+        end.setBairro(txtBairro.getText());
+        end.setCep(txtCep.getText());
+        end.setComplemento(txtComplemento.getText());
+        end.setCidade(txtCidade.getText());
+        end.setEstado(cbEstado.getValue().getId());
+        return end;
+
+    }
+
+    private Email coletaDadosEmail(Boolean editar,int cod){
+
+        Email email = new Email();
+        email.setCodCaso(3);
+        email.setTipo(0);
+        email.setEmail(txtEmail.getText());
+        return email;
+
+    }
+
+    public void cadastraFuncionario(Funcionario func, Endereco end, Email email1){
+
+        // Caso tem de ser 3
+        Funcionario funcionario = func;
+        Endereco endereco = end;
+        Email email = email1;
+        int codigo = funcService.saveFuncionario(funcionario);
+        endereco.setCodExterno(codigo);
+        email.setCodExterno(codigo);
+        endService.saveEndereco(endereco);
+        emailService.saveEmail(email);
+
+    }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        carregaMascara();
+        carregaCombo();
         labelAlertaCPF.setVisible(false);
         radio();
+
     }
 }
