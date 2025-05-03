@@ -13,6 +13,15 @@ public class Funcionario {
     * */
 
 
+    public Funcionario(){}
+
+    public Funcionario(int cod, String nome, int tipoFunc){
+        this.cod = cod;
+        this.nome = nome;
+        this.tipoFunc = tipoFunc;
+    }
+
+
     private int cod;
     private String nome;
     private String cpf;

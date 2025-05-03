@@ -21,15 +21,11 @@ import java.util.ResourceBundle;
 
 public class ListaClienteController implements Initializable {
 
-
-
-    private Moka mok = new Moka();
+    @FXML
+    protected TextField txtDado;
 
     @FXML
-    protected TextField textFieldText;
-
-    @FXML
-    protected Button buttonPesquisa;
+    protected Button btPesquisa;
 
     @FXML
     protected RadioButton rbNome;
@@ -90,12 +86,6 @@ public class ListaClienteController implements Initializable {
         Stage stage = (Stage)btClose.getScene().getWindow();
         stage.close();
     }
-
-    @FXML
-    protected ImageView teste;
-
-    @FXML
-    protected Button btTeste;
 
 
     private void radio(){
