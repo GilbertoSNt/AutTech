@@ -47,6 +47,8 @@ public class EnderecoService implements EnderecoDao {
             st.setString(8,e.getComplemento());
             st.setString(9,e.getCep());
             st.setInt(10, e.getTipoCaso());
+
+            st.executeUpdate();
         }catch (SQLException e1){
             throw new DbException(e1.getMessage()+" Endereço Service - save ");
         }

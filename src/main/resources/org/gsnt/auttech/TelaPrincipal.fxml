@@ -83,7 +83,10 @@
                            <children>
                               <Button fx:id="btCadProfissionais" layoutX="10.0" layoutY="16.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCadProfissionais" styleClass="button4" stylesheets="@css/button.css" text="Cadastro de Profissional Funcionário" wrapText="true">
                                  <graphic>
-                                    <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icones/funcionarios.png" />
+                                       </image></ImageView>
                                  </graphic>
                               </Button>
                               <Button fx:id="btListarProfissionais" layoutX="10.0" layoutY="139.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtListarProfissionais" styleClass="button4" stylesheets="@css/button.css" text="Listar funcionários" wrapText="true">

@@ -577,7 +577,7 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     protected void onbtCadProfissionais(){
-
+        loadView("/org/gsnt/auttech/CadFuncionarios.fxml",x->{});
     }
 
     @FXML

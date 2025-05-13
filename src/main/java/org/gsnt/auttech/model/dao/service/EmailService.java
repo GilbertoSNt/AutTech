@@ -32,6 +32,8 @@ public class EmailService implements EmailDao {
            st.setInt(2,em.getTipo());
            st.setString(3, em.getEmail());
            st.setInt(4, em.getCodCaso());
+
+           st.executeUpdate();
        }catch (SQLException e1){
            throw new DbException(e1.getMessage()+" EmailService - save ");
        }

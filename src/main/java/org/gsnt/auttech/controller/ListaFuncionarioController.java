@@ -8,11 +8,15 @@ import javafx.stage.Stage;
 import org.gsnt.auttech.model.entities.Cliente;
 import org.gsnt.auttech.model.entities.Funcionario;
 import org.gsnt.auttech.util.Botoes;
+import org.gsnt.auttech.util.MaskValid;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ListaFuncionarioController implements Initializable {
+
+
+    MaskValid mask = new MaskValid();
 
     @FXML
     private Button btClose;
@@ -150,6 +154,7 @@ public class ListaFuncionarioController implements Initializable {
             }
         } );
     }
+
 
 
     @Override

@@ -5,19 +5,22 @@ import org.gsnt.auttech.model.dao.FuncionarioDao;
 import org.gsnt.auttech.model.entities.Endereco;
 import org.gsnt.auttech.model.entities.Funcionario;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
-import java.sql.PreparedStatement;
 
 public class FuncionarioService implements FuncionarioDao {
 
 	private Connection conn;
 
+	private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
 	public FuncionarioService(Connection conn){
 		this.conn = conn;
 	}
+
+
 
 
     @Override
@@ -30,11 +33,11 @@ public class FuncionarioService implements FuncionarioDao {
 		try{
 			st = conn.prepareStatement("INSERT INTO tabfuncionario(cpf, rg, nome, datanasc, " +
 					"genero, status, tipo, telefone, telefoneconjuge, mae, pai, conjuge, qtdfilhos,dataadm, " +
-					"datadesl, obs, cartprofissional, dataamissao, cargo, funcao, comissaopecas, comissaoservicos," +
+					"datadesl, obs, cartprofissional, dataemissao,cargo, funcao, comissaopecas, comissaoservicos," +
 					"salario, comissao, obsprof, caixamec, caixaaut, eletrica, freio, injdiesel, injflex, motordiesel," +
-					"motorflex, pneus, suspensao, socorro, veiceletrico, motleva, motguincho)VALUES (?, " +
+					"motorflex, pneus, suspensao, socorro, veiceletrico, motleva, motguincho)VALUES (" +
 					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?," +
-					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?",
+					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 
 				st.setString(1, f.getCpf());
@@ -77,11 +80,21 @@ public class FuncionarioService implements FuncionarioDao {
 				st.setBoolean(38, f.getMotLeva());
 				st.setBoolean(39, f.getMotguincho());
 
-				return st.executeUpdate();
+				int resultado = 0;
+				int rowsaffected = st.executeUpdate();
+				if(rowsaffected > 0){
+					ResultSet rs = st.getGeneratedKeys();
+					if(rs.next()){
+					resultado = rs.getInt(1);
+				}
+					DB2.closeResultSet(rs);
+				}
+
+				return resultado;
 
 		}catch(SQLException e){
 			throw new DbException(e.getMessage()+" insert funcionarios");
-		}finally {
+        } finally {
 			DB2.closeStatement(st);
 		}
 

@@ -1,5 +1,7 @@
 package org.gsnt.auttech.model.entities;
 
+import java.util.Date;
+
 public class Funcionario {
 
     /*
@@ -10,6 +12,11 @@ public class Funcionario {
     * 3 - produtivo
     * 4 - Proditivo(Auxiliar)
     * 5 - Aprendiz
+    *
+    * TipoCaso
+    *
+    * 3 - Funcionário
+    *
     * */
 
 

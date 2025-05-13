@@ -342,6 +342,78 @@ public class MaskValid {
 
     }
 
+    public void maskValor(TextField textField){
+
+        textField.setOnKeyTyped(new EventHandler<KeyEvent>() {
+            private int a = 0;
+            private int b = 0;
+            private int c = 0;
+            private int d = 0;
+            private String mostrado = "";
+            private String delta1 = "";
+            private String reserva = "";
+            @Override
+            public void handle(KeyEvent event) {
+
+                if ("0123456789".contains(event.getCharacter())&& a<=20){
+
+                    reserva = reserva+event.getCharacter();
+                    delta1 = reserva;
+                    a = delta1.length();
+                    b = a-2;
+                    c = b-3;
+                    d = c-3;
+
+                    if(a == 1){
+                        mostrado = "R$ "+"0,0"+delta1;
+                    }else if(a == 2){
+                        mostrado = "R$ "+"0,"+delta1;
+                    }else if(a >= 3 && a<=5){
+                        mostrado = "R$ "+delta1.substring(0,b)+","+delta1.substring(b,a);
+                    }else if(a >= 6 && a<=8){
+                    mostrado = "R$ "+delta1.substring(0,c)+"."+delta1.substring(c,b)+","+delta1.substring(b,a);
+                    }else if(a >= 9 && a<=11){
+                    mostrado = "R$ "+delta1.substring(0,d)+"."+delta1.substring(d,c)+"."+delta1.substring(c,b)+","+delta1.substring(b,a);
+                    }
+
+
+                } else if("\b".contains(event.getCharacter()) && reserva.length() != 0){
+
+                    int calculo = reserva.length();
+                    delta1 = reserva.substring(0,(calculo-1));
+                    reserva = delta1;
+                    a = delta1.length();
+                    b = a-2;
+                    c = b-3;
+                    d = c-3;
+                    if(a == 0){
+                        mostrado = "R$ "+"0,00";
+                    }else if(a == 1){
+                        mostrado = "R$ "+"0,0"+delta1;
+                    }else if(a == 2){
+                        mostrado = "R$ "+"0,"+delta1;
+                    }else if(a >= 3 && a<=5){
+                        mostrado = "R$ "+delta1.substring(0,b)+","+delta1.substring(b,a);
+                    }else if(a >= 6 && a<=8){
+                        mostrado = "R$ "+delta1.substring(0,c)+"."+delta1.substring(c,b)+","+delta1.substring(b,a);
+                    }else if(a >= 9 && a<=11){
+                        mostrado = "R$ "+delta1.substring(0,d)+"."+delta1.substring(d,c)+"."+delta1.substring(c,b)+","+delta1.substring(b,a);
+                    }
+
+                }else{
+                    event.consume();
+                }
+
+                textField.setText(mostrado);
+                textField.positionCaret(mostrado.length());
+
+            }
+        });
+
+    }
+
+
+
 
     public Boolean isCPF(String CPF){
 

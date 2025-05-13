@@ -190,8 +190,8 @@ public class ClienteService implements ClienteDao {
         try {
             st = conn.prepareStatement("insert into tabcliente (cpf, rg,"
                                             +" nome, apelido, dataini, status,"
-                                            + "tipo, perfil, datacad) values ?,"
-                                            +"?,?,?,?,?,?,?,? ",
+                                            + "tipo, perfil, datacad) values (?,"
+                                            +"?,?,?,?,?,?,?,? )",
                                             Statement.RETURN_GENERATED_KEYS);
             st.setString(1,cli.getCpf());
             st.setString(2,cli.getRg());
