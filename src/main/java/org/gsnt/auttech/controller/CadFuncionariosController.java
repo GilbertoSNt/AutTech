@@ -33,43 +33,20 @@ public class CadFuncionariosController implements Initializable {
 
     private EmailDao emailService = DaoFactory.createEmailDao();
 
-
-
     @FXML
     private Button btClose;
-
-    @FXML
-    private void onBtClose(){
-        Stage stage = (Stage)btClose.getScene().getWindow();
-        stage.close();
-    }
 
     @FXML
     private Button btGravar;
 
     @FXML
-    private void onBtGravar(){
-        try {
-            cadastraFuncionario(coletaDadosFuncionario(false, 0), coletaDadosEndereco(false,0), coletaDadosEmail(false,0));
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @FXML
     private Button btEditar;
-
 
     @FXML
     private Button btDesativar;
 
     @FXML
     private Button btCancelar;
-
-    @FXML
-    private void btCancelarOnButtonClick(){
-        onBtClose();
-    }
 
     @FXML
     private TextField txtNome;
@@ -84,17 +61,7 @@ public class CadFuncionariosController implements Initializable {
     private DatePicker dpDataNasc;
 
     @FXML
-    private void hiddendpDataNasc(){
-        rbMasculino.requestFocus();
-    }
-
-    @FXML
     private ComboBox<TipoEndereco> cbTipoEndereco;
-
-    @FXML
-    private void hiddencbTipoEndereco(){
-        txtEnd.requestFocus();
-    }
 
     @FXML
     private TextField txtEnd;
@@ -115,11 +82,6 @@ public class CadFuncionariosController implements Initializable {
     private ComboBox<Estados> cbEstado;
 
     @FXML
-    private void hiddencbEstado(){
-        txtCep.requestFocus();
-    }
-
-    @FXML
     private TextField txtCep;
 
     @FXML
@@ -127,11 +89,6 @@ public class CadFuncionariosController implements Initializable {
 
     @FXML
     private DatePicker dpAdmissao;
-
-    @FXML
-    private void hiddendpDataAdmissao(){
-        rbProd.requestFocus();
-    }
 
     @FXML
     private DatePicker dpDesligamento;
@@ -256,6 +213,50 @@ public class CadFuncionariosController implements Initializable {
     @FXML
     private Tab tabDadosEsp;
 
+
+    // Eventos de botões e seleção
+
+    @FXML
+    private void onBtClose(){
+        Stage stage = (Stage)btClose.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void onBtGravar(){
+        try {
+            cadastraFuncionario(coletaDadosFuncionario(false, 0), coletaDadosEndereco(false,0), coletaDadosEmail(false,0));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void hiddendpDataAdmissao(){
+        rbProd.requestFocus();
+    }
+
+    @FXML
+    private void hiddencbEstado(){
+        txtCep.requestFocus();
+    }
+
+    @FXML
+    private void hiddencbTipoEndereco(){
+        txtEnd.requestFocus();
+    }
+
+    @FXML
+    private void hiddendpDataNasc(){
+        rbMasculino.requestFocus();
+    }
+
+    @FXML
+    private void btCancelarOnButtonClick(){
+        onBtClose();
+    }
+
+
     private DadosCombos dadosCombos = new DadosCombos();
 
     private ObservableList<TipoEndereco> obsListTipoEndereco;
@@ -294,15 +295,20 @@ public class CadFuncionariosController implements Initializable {
 
     private void carregaMascara(){
 
+        dpDataNasc.setPromptText("__/__/____");
         mascara.maskData(dpDataNasc);
         mascara.maskData(dpAdmissao);
         mascara.maskData(dpDesligamento);
+        txtCpf.setPromptText("___.___.___-__");
         mascara.maskCPF(txtCpf);
+        txtCep.setPromptText("__.___-___");
         mascara.maskkCEP(txtCep);
+        txtTelefone.setPromptText("(__)_____-____");
         mascara.maskTel9Dig(txtTelefone);
+        txtTelefoneConjuge.setPromptText("(__)_____-____");
         mascara.maskTel9Dig(txtTelefoneConjuge);
+        txtSalario.setPromptText("R$ 0,00");
         mascara.maskValor(txtSalario);
-
 
     }
 
@@ -349,7 +355,11 @@ public class CadFuncionariosController implements Initializable {
         func.setMae(txtMae.getText());
         func.setPai(txtPai.getText());
         func.setConjuge(txtEsposa.getText());
-        func.setQtdFilhos(Integer.parseInt(txtQuantFilho.getText()));
+        if (txtQuantFilho.getText()==""){
+            func.setQtdFilhos(0);
+        }else {
+            func.setQtdFilhos(Integer.parseInt(txtQuantFilho.getText()));
+        }
         func.setTelConjuge(txtTelefoneConjuge.getText());
         func.setObs(txaObs.getText());
         if (dpAdmissao.getValue() == null){

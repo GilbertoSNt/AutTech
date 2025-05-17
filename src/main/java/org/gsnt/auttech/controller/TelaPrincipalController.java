@@ -121,12 +121,9 @@ public class TelaPrincipalController implements Initializable {
     protected void onBtAlteraAgenda(){
 
         if(tvAgenda.getSelectionModel().getSelectedItem() != null) {
-
             Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
             Optional<ButtonType> result = Alerts.showConfirmation("Confirmação de alteração", "Realmente deseja alterar o agendamento da placa " + tt.getPlaca());
-
             if(result.get() == ButtonType.OK) {
-
                 loadView("/org/gsnt/auttech/Agenda.fxml", (AgendaController agendaController) -> {
                     agendaController.preencheDados(tt.getPlaca(), 1);
                 });
@@ -144,17 +141,16 @@ public class TelaPrincipalController implements Initializable {
     protected void onBtCancelarAgenda(){
 
         if(tvAgenda.getSelectionModel().getSelectedItem() != null) {
-
-        Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
-        Optional<ButtonType> result = Alerts.showConfirmation("Confirmação de exclusão", "Realmente deseja excluir o agendamento da placa "+tt.getPlaca());
-
-      if(result.get() == ButtonType.OK) {
-          agendaService.excluiAgenda(tt);
-          updateTableView();
-      }
+            Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
+            Optional<ButtonType> result = Alerts.showConfirmation("Confirmação de exclusão", "Realmente deseja excluir o agendamento da placa "+tt.getPlaca());
+                if(result.get() == ButtonType.OK) {
+                    agendaService.excluiAgenda(tt);
+                    updateTableView();
+                }
         }else{
             Alerts.showAlert("Cancelar agendamento", "Você deve selecionar uma linha na tabela agenda", null, Alert.AlertType.INFORMATION);
         }
+
     }
 
     @FXML
@@ -168,24 +164,18 @@ public class TelaPrincipalController implements Initializable {
     protected void onBtReceberVeic(){
 
         if(tvAgenda.getSelectionModel().getSelectedItem() != null) {
-
             Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
             Agenda dado = agendaService.findByPlacaData(tt.getPlaca());
             Optional<ButtonType> result = Alerts.showConfirmation("Confirmação de abertura de O.S.", "Realmente deseja abrir ordem de serviço para a placa "+tt.getPlaca());
-
             if(result.get() == ButtonType.OK) {
-
-                try {
-                    loadView("/org/gsnt/auttech/CriaOs.fxml", (CriaOsController criaOsController) -> {
-
-                        criaOsController.preencheDadosAgenda(dado);
+                try {loadView("/org/gsnt/auttech/CriaOs.fxml", (CriaOsController criaOsController) -> {
+                     criaOsController.preencheDadosAgenda(dado);
   // ativar aqui novamente                      agendaService.excluiAgenda(tt);
-                        updateTableView();
+                      //  updateTableView();
                     });}
                     catch(Exception d){
                         System.out.println(d);
                     }
-
              }else{
                  Alerts.showAlert("Confirmação de abertura de O.S.", "Você deve selecionar uma linha na tabela agenda", null, Alert.AlertType.INFORMATION);
              }
@@ -201,20 +191,15 @@ public class TelaPrincipalController implements Initializable {
     protected void onBtConfirmaEnvioSocorro(){
 
         Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
-
         Agenda status = agendaService.verStatusAssistencias(tt.getPlaca());
 
         if(tt.getGuincho() != null || tt.getSocMecanico() != null || tt.getSocEletrico() != null){
-
             if(!status.getAssEnvioGuincho()) {
-
                 Optional<ButtonType> result = Alerts.showConfirmation("Confirmação do envio de guincho / socorro do veículo", "Confirma o envio do guincho / socorro para o veículo " + tt.getPlaca());
                 if (result.get() == ButtonType.OK) {
                     agendaService.saveEnvioGuincho(tt);
                 }
-
             }else if(status.getAssEnvioGuincho()){
-
                 Optional<ButtonType> result = Alerts.showConfirmation("Confirmação do envio de guincho / socorro do veículo", "Confirma o envio do guincho / socorro para o veículo " + tt.getPlaca());
                 if (result.get() == ButtonType.OK) {
                     agendaService.reverteEnvioGuincho(tt);
@@ -234,33 +219,23 @@ public class TelaPrincipalController implements Initializable {
     protected void onBtConfirmaEnvioBusca(){
 
         Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
-
         Agenda status = agendaService.verStatusAssistencias(tt.getPlaca());
-
         if(tt.getBuscar() != null) {
-
             if (!status.getAssEnvioDeslocamento()) {
-
                 Optional<ButtonType> result = Alerts.showConfirmation("Confirmação da Mudança do status do recolhimento do veículo", "Confirma o novo status da equipe de recolhimento para o veículo " + tt.getPlaca());
-
                 if (result.get() == ButtonType.OK) {
                     agendaService.saveEnvioRecolhimento(tt);
                 }
-
             } else if(status.getAssEnvioDeslocamento()) {
-
                 Optional<ButtonType> result = Alerts.showConfirmation("Confirmação da Mudança do status do recolhimento do veículo", "Confirma o novo status da equipe de recolhimento para o veículo "+tt.getPlaca());
-
                 if(result.get() == ButtonType.OK) {
                     agendaService.reverterEnvioRecolhimento(tt);
                 }
             }
-
         }
         else{
             Alerts.showAlert("Atenção","Agendamento não tem registro da necessidade de buscar o veículo",null, Alert.AlertType.ERROR);
         }
-
         updateTableView();
 
     }
@@ -268,40 +243,36 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     protected void onClickTableAgenda(){
 
-        Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
+        if (tvAgenda.getSelectionModel().getSelectedItem() != null) {
+            Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
 
-        Agenda status = agendaService.verStatusAssistencias(tt.getPlaca());
+            Agenda status = agendaService.verStatusAssistencias(tt.getPlaca());
 
+            if (tt.getGuincho() != null || tt.getSocMecanico() != null || tt.getSocEletrico() != null) {
+                btEnvioSocorro.setDisable(false);
+            } else if (tt.getGuincho() == null || tt.getSocMecanico() == null || tt.getSocEletrico() == null) {
+                btEnvioSocorro.setDisable(true);
+            }
 
-        if(tt.getGuincho() != null || tt.getSocMecanico() != null || tt.getSocEletrico() != null){
-            btEnvioSocorro.setDisable(false);
-        }
-        else if(tt.getGuincho() == null || tt.getSocMecanico() == null || tt.getSocEletrico() == null){
-            btEnvioSocorro.setDisable(true);
-        }
+            if (tt.getLevar() != null || tt.getBuscar() != null) {
+                btEnvioBusca.setDisable(false);
+            } else if (tt.getLevar() == null || tt.getBuscar() == null) {
+                btEnvioBusca.setDisable(true);
+            }
 
-        if(tt.getLevar() != null || tt.getBuscar() != null){
-            btEnvioBusca.setDisable(false);
-        }
-        else if(tt.getLevar() == null || tt.getBuscar() == null){
-            btEnvioBusca.setDisable(true);
-        }
-
-       if (status.getAssEnvioGuincho()){
+            if (status.getAssEnvioGuincho()) {
                 btEnvioSocorro.setText("Reverter envio socorro");
-        }else if (!status.getAssEnvioGuincho()){
-           btEnvioSocorro.setText("Confirma envio do socorro");
-       }
+            } else if (!status.getAssEnvioGuincho()) {
+                btEnvioSocorro.setText("Confirma envio do socorro");
+            }
 
-        if(status.getAssEnvioDeslocamento()){
-            btEnvioBusca.setText("Reverter busca veículo");
+            if (status.getAssEnvioDeslocamento()) {
+                btEnvioBusca.setText("Reverter busca veículo");
+            } else if (!status.getAssEnvioDeslocamento()) {
+                btEnvioBusca.setText("Confirma a busca veículo");
+            }
         }
-        else if(!status.getAssEnvioDeslocamento()){
-            btEnvioBusca.setText("Confirma a busca veículo");
-        }
-
     }
-
 
     // Inicio da table view(Veículo a serem iniciados)
 
@@ -668,9 +639,7 @@ public class TelaPrincipalController implements Initializable {
             tcBuscar.setCellValueFactory(new PropertyValueFactory<Agenda, Circulos>("buscar"));
             tcLevar.setCellValueFactory(new PropertyValueFactory<Agenda, Circulos>("levar"));
             tcStatus.setCellValueFactory(new PropertyValueFactory<Agenda, Circulos>("status"));
-
         }
-
         catch (Exception a){
             System.out.println(a.getMessage()+"  erro no initializeNodes TelaPrincipalController");
         }
@@ -697,7 +666,6 @@ public class TelaPrincipalController implements Initializable {
             tcOleo2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sTrOleo2"));
 
         }
-
         catch (Exception a){
             System.out.println(a.getMessage()+"  erro no initializeNodes TelaPrincipalController");
         }
@@ -705,7 +673,6 @@ public class TelaPrincipalController implements Initializable {
     }
 
     private void accordionOrcamento(){
-
 
         tcPlaca3.setCellValueFactory(new PropertyValueFactory<Orcamento,String>("placa"));
         tcVeiculo3.setCellValueFactory(new PropertyValueFactory<Orcamento,String>("modelo"));

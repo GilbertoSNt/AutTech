@@ -35,8 +35,7 @@ public class CriaOsController implements Initializable {
 
     private MaskValid mascara = new MaskValid();
 
-    public CriaOsController(){}
-
+   // public CriaOsController(){}
 
     @FXML
     private TextField txtPlaca;
@@ -53,7 +52,7 @@ public class CriaOsController implements Initializable {
     @FXML
     private void onbtCadastraVeiculo(){
         verificaCadastro(txtPlaca.getText());
-    };
+    }
 
     @FXML
     private Button btGravar;
@@ -128,7 +127,6 @@ public class CriaOsController implements Initializable {
     //   ainda falta dados(Busca cadastro)
     //
 
-
     public void preencheDadosAgenda(Agenda agenda){
 
         txtPlaca.setText(agenda.getPlaca());
@@ -156,7 +154,6 @@ public class CriaOsController implements Initializable {
     private void verificaCadastro(String placa){
 
         int teste = veiculoService.verificaPlaca(placa);
-
         if(teste != 0){
             Veiculo veiculo =  veiculoService.findById(placa);
             Cliente cli = clienteService.findById(clienteService.findIdClienteByIdVeiculo(veiculo.getCod()));
@@ -170,16 +167,10 @@ public class CriaOsController implements Initializable {
             Alerts.showAlert("Atenção","Placa fora do padrão, redigite a placa",null, Alert.AlertType.ERROR);
             cadastraVeiculo();
         }
-
     }
 
-
-
-
     private void cadastraVeiculo(){
-
         loadView("/org/gsnt/auttech/CadVeiculo.fxml",x->{});
-
     }
 
     private void cadastraVeiculo(String placa){
@@ -213,13 +204,11 @@ public class CriaOsController implements Initializable {
             stage1.showAndWait();
 
             codVeiculo = cadVeiculoController.getDadosOs();
-
             if (codVeiculo != 0){
                 Veiculo veiculo =  veiculoService.findByCod(codVeiculo);
                 Cliente cli = clienteService.findById(clienteService.findIdClienteByIdVeiculo(codVeiculo));
                 preencheTelaComplemento(veiculo,cli);
             }
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -237,7 +226,6 @@ public class CriaOsController implements Initializable {
 
         mascara.maskPlaca(txtPlaca);
         txtPlaca.setPromptText("___-____");
-
 
     }
 }
