@@ -37,7 +37,7 @@ public class Moka {
         list.add(new OrdemServico(2,"BBB0B00","Veículo2",true, true, false,false,false,true, false,false,false,false,true,true));
         list.add(new OrdemServico(3,"CCC0C00","Veículo3",false, false, false,false,true,false, false,false,true,false,false,true));
         list.add(new OrdemServico(4,"DDD0D00","Veículo4",false, true, false,false,false,false, false,true,false,false,false,false));
-        list.add(new OrdemServico(5,"EEE0E00","Veículo5",true, false, true,false,false,false, false,true,false,false,false,false));
+
 
         return list;
     }
