@@ -26,6 +26,14 @@ public class OrdemServicoService implements OrdemServicoDao {
     @Override
     public List<OrdemServico> findTelaPrincipal() {
         //Tela Inicial de Ordem de Serviço a serem iniciados
+        /*
+        * 1 - Serviço sem direcionamento - Vermelho - cd5c5c
+        * 2 - Direcionamento sem confirmação - Vermelho - Amarelo - cd5c5c/f9d428
+        * 3 - OS com orçamento pendente - Amarelo - f9d428
+        * 4 - Orçamento aguardando liberação - verde - 70c3a7
+        * 5 - Orçamento lib. aguardando peças - verde - verde escuro - 70c3a7/3f676d
+        * 6 - Orçamento lib. aguardando início - verde escuro - 3f676d
+        */
         Moka mok = new Moka();
         List<OrdemServico> a = mok.dadosTelaSerIniciados();
         List<OrdemServico> correta = new ArrayList<>();
@@ -33,85 +41,280 @@ public class OrdemServicoService implements OrdemServicoDao {
         for(Integer b = 0; b<a.size(); b++){
 
             Circulos sEletrico = null;
-            if(a.get(b).getsEletrico()){
-                sEletrico = new Circulos("#f9d428");
+            switch (a.get(b).getsEletrico()) {
+                case 0:
+                    break;
+                case 1:
+                    sEletrico = new Circulos("#cd5c5c");
+                    break;
+                case 2:
+                    sEletrico = new Circulos("#cd5c5c","#f9d428");
+                    break;
+                case 3:
+                    sEletrico = new Circulos("#f9d428");
+                    break;
+                case 4:
+                    sEletrico = new Circulos("#70c3a7");
+                    break;
+                case 5:
+                    sEletrico = new Circulos("#70c3a7","#3f676d");
+                    break;
+                case 6:
+                    sEletrico = new Circulos("#3f676d");
+                    break;
             }
 
             Circulos sInjecao = null;
-            if(a.get(b).getsInjecao()){
-                sInjecao = new Circulos("#f9d428");
+            switch (a.get(b).getsInjecao()) {
+                case 0:
+                    break;
+                case 1:
+                    sEletrico = new Circulos("#cd5c5c");
+                    break;
+                case 2:
+                    sEletrico = new Circulos("#cd5c5c","#f9d428");
+                    break;
+                case 3:
+                    sEletrico = new Circulos("#f9d428");
+                    break;
+                case 4:
+                    sEletrico = new Circulos("#70c3a7");
+                    break;
+                case 5:
+                    sEletrico = new Circulos("#70c3a7","#3f676d");
+                    break;
+                case 6:
+                    sEletrico = new Circulos("#3f676d");
+                    break;
             }
 
-            Circulos sCamAut = null;
-            if(a.get(b).getsCamAut()){
-                sCamAut = new Circulos("#f9d428");
-            }
-
-            Circulos sCamMec = null;
-            if(a.get(b).getsCamAut()){
-                sCamMec = new Circulos("#f9d428");
+            Circulos sCambio = null;
+            switch (a.get(b).getsCambio()) {
+                case 0:
+                    break;
+                case 1:
+                    sEletrico = new Circulos("#cd5c5c");
+                    break;
+                case 2:
+                    sEletrico = new Circulos("#cd5c5c","#f9d428");
+                    break;
+                case 3:
+                    sEletrico = new Circulos("#f9d428");
+                    break;
+                case 4:
+                    sEletrico = new Circulos("#70c3a7");
+                    break;
+                case 5:
+                    sEletrico = new Circulos("#70c3a7","#3f676d");
+                    break;
+                case 6:
+                    sEletrico = new Circulos("#3f676d");
+                    break;
             }
 
             Circulos sFreioDt = null;
-            if(a.get(b).getsFreioDt()){
-                sFreioDt = new Circulos("#f9d428");
+            switch (a.get(b).getsFreioDt()) {
+                case 0:
+                    break;
+                case 1:
+                    sEletrico = new Circulos("#cd5c5c");
+                    break;
+                case 2:
+                    sEletrico = new Circulos("#cd5c5c","#f9d428");
+                    break;
+                case 3:
+                    sEletrico = new Circulos("#f9d428");
+                    break;
+                case 4:
+                    sEletrico = new Circulos("#70c3a7");
+                    break;
+                case 5:
+                    sEletrico = new Circulos("#70c3a7","#3f676d");
+                    break;
+                case 6:
+                    sEletrico = new Circulos("#3f676d");
+                    break;
             }
 
             Circulos sFreioTr = null;
-            if(a.get(b).getsFreioTr()){
-                sFreioTr = new Circulos("#f9d428");
+            switch (a.get(b).getsFreioTr()) {
+                case 0:
+                    break;
+                case 1:
+                    sEletrico = new Circulos("#cd5c5c");
+                    break;
+                case 2:
+                    sEletrico = new Circulos("#cd5c5c","#f9d428");
+                    break;
+                case 3:
+                    sEletrico = new Circulos("#f9d428");
+                    break;
+                case 4:
+                    sEletrico = new Circulos("#70c3a7");
+                    break;
+                case 5:
+                    sEletrico = new Circulos("#70c3a7","#3f676d");
+                    break;
+                case 6:
+                    sEletrico = new Circulos("#3f676d");
+                    break;
             }
 
             Circulos sMotor = null;
-            if(a.get(b).getsMotor()){
-                sMotor = new Circulos("#f9d428");
+            switch (a.get(b).getsMotor()) {
+                case 0:
+                    break;
+                case 1:
+                    sEletrico = new Circulos("#cd5c5c");
+                    break;
+                case 2:
+                    sEletrico = new Circulos("#cd5c5c","#f9d428");
+                    break;
+                case 3:
+                    sEletrico = new Circulos("#f9d428");
+                    break;
+                case 4:
+                    sEletrico = new Circulos("#70c3a7");
+                    break;
+                case 5:
+                    sEletrico = new Circulos("#70c3a7","#3f676d");
+                    break;
+                case 6:
+                    sEletrico = new Circulos("#3f676d");
+                    break;
             }
 
             Circulos sSuspDt = null;
-            if(a.get(b).getsSuspDt()){
-                sSuspDt = new Circulos("#f9d428");
+            switch (a.get(b).getsSuspDt()) {
+                case 0:
+                    break;
+                case 1:
+                    sEletrico = new Circulos("#cd5c5c");
+                    break;
+                case 2:
+                    sEletrico = new Circulos("#cd5c5c","#f9d428");
+                    break;
+                case 3:
+                    sEletrico = new Circulos("#f9d428");
+                    break;
+                case 4:
+                    sEletrico = new Circulos("#70c3a7");
+                    break;
+                case 5:
+                    sEletrico = new Circulos("#70c3a7","#3f676d");
+                    break;
+                case 6:
+                    sEletrico = new Circulos("#3f676d");
+                    break;
             }
 
             Circulos sSuspTr = null;
-            if(a.get(b).getsSuspTr()){
-                sSuspTr = new Circulos("#f9d428");
+            switch (a.get(b).getsSuspTr()) {
+                case 0:
+                    break;
+                case 1:
+                    sEletrico = new Circulos("#cd5c5c");
+                    break;
+                case 2:
+                    sEletrico = new Circulos("#cd5c5c","#f9d428");
+                    break;
+                case 3:
+                    sEletrico = new Circulos("#f9d428");
+                    break;
+                case 4:
+                    sEletrico = new Circulos("#70c3a7");
+                    break;
+                case 5:
+                    sEletrico = new Circulos("#70c3a7","#3f676d");
+                    break;
+                case 6:
+                    sEletrico = new Circulos("#3f676d");
+                    break;
             }
 
             Circulos sPneus = null;
-            if(a.get(b).getsPneus()){
-                sPneus = new Circulos("#f9d428");
+            switch (a.get(b).getsPneus()) {
+                case 0:
+                    break;
+                case 1:
+                    sEletrico = new Circulos("#cd5c5c");
+                    break;
+                case 2:
+                    sEletrico = new Circulos("#cd5c5c","#f9d428");
+                    break;
+                case 3:
+                    sEletrico = new Circulos("#f9d428");
+                    break;
+                case 4:
+                    sEletrico = new Circulos("#70c3a7");
+                    break;
+                case 5:
+                    sEletrico = new Circulos("#70c3a7","#3f676d");
+                    break;
+                case 6:
+                    sEletrico = new Circulos("#3f676d");
+                    break;
             }
 
             Circulos sTrOleo = null;
-            if(a.get(b).getsTrOleo()){
-                sTrOleo = new Circulos("#f9d428");
+            switch (a.get(b).getsTrOleo()) {
+                case 0:
+                    break;
+                case 1:
+                    sEletrico = new Circulos("#cd5c5c");
+                    break;
+                case 2:
+                    sEletrico = new Circulos("#cd5c5c","#f9d428");
+                    break;
+                case 3:
+                    sEletrico = new Circulos("#f9d428");
+                    break;
+                case 4:
+                    sEletrico = new Circulos("#70c3a7");
+                    break;
+                case 5:
+                    sEletrico = new Circulos("#70c3a7","#3f676d");
+                    break;
+                case 6:
+                    sEletrico = new Circulos("#3f676d");
+                    break;
             }
 
             Circulos sRevisao = null;
-            if(a.get(b).getsRevisao()){
-                sRevisao = new Circulos("#f9d428","#70c3a7");
-                sEletrico = new Circulos("#f9d428");
-                sInjecao = new Circulos("#f9d428");
-                sCamAut = new Circulos("#f9d428");
-                sCamMec = new Circulos("#f9d428");
-                sFreioDt = new Circulos("#f9d428");
-                sFreioTr = new Circulos("#f9d428");
-                sMotor = new Circulos("#f9d428");
-                sSuspDt = new Circulos("#f9d428");
-                sSuspTr = new Circulos("#f9d428");
-                sPneus = new Circulos("#f9d428");
-                sTrOleo = new Circulos("#f9d428");
-
+            switch (a.get(b).getsRevisao()) {
+                case 0:
+                    break;
+                case 1:
+                    sRevisao = new Circulos("#cd5c5c");
+                    break;
+                case 2:
+                    sRevisao = new Circulos("#cd5c5c","#f9d428");
+                    break;
+                case 3:
+                    sRevisao = new Circulos("#f9d428");
+                    break;
+                case 4:
+                    sRevisao = new Circulos("#70c3a7");
+                    break;
+                case 5:
+                    sRevisao = new Circulos("#70c3a7","#3f676d");
+                    break;
+                case 6:
+                    sRevisao = new Circulos("#3f676d");
+                    break;
             }
 
             correta.add(new OrdemServico(a.get(b).getNumero(), a.get(b).getPlaca(), a.get(b).getModelo(),
-                    sEletrico, sInjecao, sCamAut, sCamMec, sFreioDt, sFreioTr, sMotor, sRevisao,sSuspDt,
+                    sEletrico, sInjecao, sCambio, sFreioDt, sFreioTr, sMotor, sRevisao,sSuspDt,
                     sSuspTr, sPneus,sTrOleo));
-
         }
 
         return correta;
     }
+
+
+    ///////////////// refatorar tudo aqui
+
 
     @Override
     public List<OrdemServico> findTelaPrincipalEmServiço() {
@@ -124,7 +327,7 @@ public class OrdemServicoService implements OrdemServicoDao {
         for (Integer b = 0; b < a.size(); b++) {
 
             Circulos sEletrico = null;
-            switch (a.get(b).getsEletrico3()) {
+            switch (a.get(b).getsEletrico()) {
                 case 0:
                     break;
                 case 1:
@@ -139,7 +342,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             }
 
             Circulos sInjecao = null;
-            switch (a.get(b).getsInjecao3()) {
+            switch (a.get(b).getsInjecao()) {
                 case 0:
                     break;
                 case 1:
@@ -153,33 +356,19 @@ public class OrdemServicoService implements OrdemServicoDao {
                     break;
             }
 
-            Circulos sCamMec = null;
-            if (a.get(b).getsCamAut3() != 0) {
-                switch (a.get(b).getsCamAut3()) {
+            Circulos sCambio = null;
+            if (a.get(b).getsCambio() != 0) {
+                switch (a.get(b).getsCambio()) {
                     case 0:
                         break;
                     case 1:
-                        sCamMec = new Circulos("#cd5c5c");
+                        sCambio = new Circulos("#cd5c5c");
                         break;
                     case 2:
-                        sCamMec = new Circulos("#f9d428");
+                        sCambio = new Circulos("#f9d428");
                         break;
                     case 3:
-                        sCamMec = new Circulos("#70c3a7");
-                        break;
-                }
-            } else if (a.get(b).getsCamMec3() != 0) {
-                switch (a.get(b).getsCamMec3()) {
-                    case 0:
-                        break;
-                    case 1:
-                        sCamMec = new Circulos("#cd5c5c");
-                        break;
-                    case 2:
-                        sCamMec = new Circulos("#f9d428");
-                        break;
-                    case 3:
-                        sCamMec = new Circulos("#70c3a7");
+                        sCambio = new Circulos("#70c3a7");
                         break;
                 }
             }
@@ -189,36 +378,36 @@ public class OrdemServicoService implements OrdemServicoDao {
             Integer trocaoleo = 0;
             Integer result = 0;
 
-            if (a.get(b).getsFreioDt3() != 0 || a.get(b).getsFreioTr3() != 0){
+            if (a.get(b).getsFreioDt() != 0 || a.get(b).getsFreioTr() != 0){
 
-                if(a.get(b).getsFreioDt3() == 0){
-                    freio = a.get(b).getsFreioTr3();
-                }else if(a.get(b).getsFreioTr3() == 0){
-                    freio = a.get(b).getsFreioDt3();
-                }else if ((a.get(b).getsFreioDt3() >= a.get(b).getsFreioTr3()) && a.get(b).getsFreioTr3()!=0){
-                    freio = a.get(b).getsFreioTr3();
-                }else if ((a.get(b).getsFreioDt3() <= a.get(b).getsFreioTr3()) && a.get(b).getsFreioDt3()!=0){
-                    freio = a.get(b).getsFreioDt3();
+                if(a.get(b).getsFreioDt() == 0){
+                    freio = a.get(b).getsFreioTr();
+                }else if(a.get(b).getsFreioTr() == 0){
+                    freio = a.get(b).getsFreioDt();
+                }else if ((a.get(b).getsFreioDt() >= a.get(b).getsFreioTr()) && a.get(b).getsFreioTr()!=0){
+                    freio = a.get(b).getsFreioTr();
+                }else if ((a.get(b).getsFreioDt() <= a.get(b).getsFreioTr()) && a.get(b).getsFreioDt()!=0){
+                    freio = a.get(b).getsFreioDt();
                 }
 
             }
 
-            if (a.get(b).getsSuspDt3() != 0 || a.get(b).getsSuspTr3() != 0){
+            if (a.get(b).getsSuspDt() != 0 || a.get(b).getsSuspTr() != 0){
 
-                if(a.get(b).getsSuspDt3() == 0){
-                    suspensao = a.get(b).getsSuspTr3();
-                }else if(a.get(b).getsSuspTr3() == 0){
-                    suspensao = a.get(b).getsSuspDt3();
-                }else if((a.get(b).getsSuspDt3() >= a.get(b).getsSuspTr3()) && a.get(b).getsSuspTr3() != 0){
-                    suspensao = a.get(b).getsSuspTr3();
-                }else if((a.get(b).getsSuspDt3() <= a.get(b).getsSuspTr3()) && a.get(b).getsSuspDt3() != 0){
-                    suspensao = a.get(b).getsSuspDt3();
+                if(a.get(b).getsSuspDt() == 0){
+                    suspensao = a.get(b).getsSuspTr();
+                }else if(a.get(b).getsSuspTr() == 0){
+                    suspensao = a.get(b).getsSuspDt();
+                }else if((a.get(b).getsSuspDt() >= a.get(b).getsSuspTr()) && a.get(b).getsSuspTr() != 0){
+                    suspensao = a.get(b).getsSuspTr();
+                }else if((a.get(b).getsSuspDt() <= a.get(b).getsSuspTr()) && a.get(b).getsSuspDt() != 0){
+                    suspensao = a.get(b).getsSuspDt();
                 }
 
             }
 
-            if (a.get(b).getsTrOleo3() != 0) {
-                trocaoleo = a.get(b).getsTrOleo3();
+            if (a.get(b).getsTrOleo() != 0) {
+                trocaoleo = a.get(b).getsTrOleo();
             }
 
             if(freio != 0){
@@ -247,7 +436,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             }
 
             Circulos sMotor = null;
-            switch (a.get(b).getsMotor3()) {
+            switch (a.get(b).getsMotor()) {
                 case 0:
                     break;
                 case 1:
@@ -262,7 +451,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             }
 
             Circulos sPneus = null;
-            switch (a.get(b).getsPneus3()) {
+            switch (a.get(b).getsPneus()) {
                 case 0:
                     break;
                 case 1:
@@ -305,7 +494,7 @@ public class OrdemServicoService implements OrdemServicoDao {
         */
 
             correta.add(new OrdemServico(a.get(b).getNumero(), a.get(b).getPlaca(), a.get(b).getModelo(),
-                    sEletrico, sInjecao, sMotor, sMecanico, sCamMec, sPneus, sLavacao));
+                    sEletrico, sInjecao, sMotor, sMecanico, sCambio, sPneus, sLavacao));
         }
 
         return correta;

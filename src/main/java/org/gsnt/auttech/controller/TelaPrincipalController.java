@@ -156,10 +156,6 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     protected Button btReceberVeic;
 
-    //
-    //    aqui  --  erro na implementação  --
-    //
-
     @FXML
     protected void onBtReceberVeic(){
 
@@ -359,6 +355,26 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     protected Button btDirTecnico;
 
+    @FXML
+    protected Button btOsSemOrc;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // implementação tableview em orçamento
 
     private OrcamentoService orcamentoService;
@@ -528,6 +544,14 @@ public class TelaPrincipalController implements Initializable {
     }
 
     @FXML
+    protected Button btAbrirOS2;
+
+    @FXML
+    protected void onbtAbrirOS() {
+        loadView("/org/gsnt/auttech/CriaOs.fxml",x->{});
+    }
+
+    @FXML
     protected Button btListaClientes;
 
     @FXML
@@ -535,7 +559,6 @@ public class TelaPrincipalController implements Initializable {
         try {
             loadView("/org/gsnt/auttech/ListaCliente.fxml", (ListaClienteController cliController) -> {
                 cliController.setClienteService(new ClienteService());
-
                 cliController.updateTableView();
             });
         }catch (Exception d){

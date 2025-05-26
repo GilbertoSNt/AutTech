@@ -12,6 +12,7 @@ public class OrdemServico {
     * 4 - Paga
     * 5 - Pendente Pagamento
     * 6 - Faturada
+    *
     * */
 
 
@@ -19,136 +20,98 @@ public class OrdemServico {
     private String placa;
     private String modelo;
 
-    private Circulos sEletrico2;
-    private Circulos sInjecao2;
-    private Circulos sCamAut2;
-    private Circulos sCamMec2;
-    private Circulos sFreioDt2;
-    private Circulos sFreioTr2;
-    private Circulos sMotor2;
+    private Circulos sEletrico1;
+    private Circulos sInjecao1;
+    private Circulos sCambio1;
+    private Circulos sFreioDt1;
+    private Circulos sFreioTr1;
+    private Circulos sMotor1;
     private Circulos mecanico1;
-    private Circulos sRevisao2;
-    private Circulos sSuspDt2;
-    private Circulos sSuspTr2;
-    private Circulos sPneus2;
-    private Circulos sTrOleo2;
+    private Circulos sRevisao1;
+    private Circulos sSuspDt1;
+    private Circulos sSuspTr1;
+    private Circulos sPneus1;
+    private Circulos sTrOleo1;
     private Circulos lavacao1;
-
-    private Boolean sEletrico;
-    private Boolean sInjecao;
-    private Boolean sCamAut;
-    private Boolean sCamMec;
-    private Boolean sFreioDt;
-    private Boolean sFreioTr;
-    private Boolean sMotor;
-    private Boolean sRevisao;
-    private Boolean sSuspDt;
-    private Boolean sSuspTr;
-    private Boolean sPneus;
-    private Boolean sTrOleo;
 
     private String telefone;
     private String status;
 
-    private Integer sEletrico3;
-    private Integer sInjecao3;
-    private Integer sCamAut3;
-    private Integer sCamMec3;
-    private Integer sFreioDt3;
-    private Integer sFreioTr3;
-    private Integer sMotor3;
-    private Integer sSuspDt3;
-    private Integer sSuspTr3;
-    private Integer sPneus3;
-    private Integer sTrOleo3;
+    private Integer sEletrico;
+    private Integer sInjecao;
+    private Integer sCambio;
+    private Integer sFreioDt;
+    private Integer sFreioTr;
+    private Integer sMotor;
+    private Integer sSuspDt;
+    private Integer sSuspTr;
+    private Integer sPneus;
+    private Integer sTrOleo;
     private Integer lavacao;
+    private Integer sRevisao;
 
 
 
-
-
-    public OrdemServico(Integer numero, String placa, String modelo, Circulos sEletrico2, Circulos sInjecao2,
-    Circulos sCamAut2, Circulos sCamMec2, Circulos sFreioDt2, Circulos sFreioTr2, Circulos sMotor2, Circulos sRevisao2,
-    Circulos sSuspDt2, Circulos sSuspTr2, Circulos sPneus2, Circulos sTrOleo2){
-
-        this.numero = numero;
-        this.placa = placa;
-        this.modelo = modelo;
-        this.sEletrico2 = sEletrico2;
-        this.sInjecao2 = sInjecao2;
-        this.sCamAut2 = sCamAut2;
-        this.sCamMec2 = sCamMec2;
-        this.sFreioDt2 = sFreioDt2;
-        this.sFreioTr2 = sFreioTr2;
-        this.sMotor2 = sMotor2;
-        this.sRevisao2 = sRevisao2;
-        this.sSuspDt2 = sSuspDt2;
-        this.sSuspTr2 = sSuspTr2;
-        this.sPneus2 = sPneus2;
-        this.sTrOleo2 = sTrOleo2;
-
-    }
-
-    public OrdemServico(Integer numero, String placa, String modelo, Boolean sEletrico, Boolean sInjecao,
-                        Boolean sCamAut, Boolean sCamMec, Boolean sFreioDt, Boolean sFreioTr, Boolean sMotor,
-                        Boolean sRevisao, Boolean sSuspDt, Boolean sSuspTr, Boolean sPneus, Boolean sTrOleo) {
+    public OrdemServico(Integer numero, String placa, String modelo, Circulos sEletrico1, Circulos sInjecao1,
+    Circulos sCambio1, Circulos sFreioDt1, Circulos sFreioTr1, Circulos sMotor1, Circulos sRevisao1,
+    Circulos sSuspDt1, Circulos sSuspTr1, Circulos sPneus1, Circulos sTrOleo1){
 
         this.numero = numero;
         this.placa = placa;
         this.modelo = modelo;
-        this.sEletrico = sEletrico;
-        this.sInjecao = sInjecao;
-        this.sCamAut = sCamAut;
-        this.sCamMec = sCamMec;
-        this.sFreioDt = sFreioDt;
-        this.sFreioTr = sFreioTr;
-        this.sMotor = sMotor;
-        this.sRevisao = sRevisao;
-        this.sSuspDt = sSuspDt;
-        this.sSuspTr = sSuspTr;
-        this.sPneus = sPneus;
-        this.sTrOleo = sTrOleo;
+        this.sEletrico1 = sEletrico1;
+        this.sInjecao1 = sInjecao1;
+        this.sCambio1 = sCambio1;
+        this.sFreioDt1 = sFreioDt1;
+        this.sFreioTr1 = sFreioTr1;
+        this.sMotor1 = sMotor1;
+        this.sRevisao1 = sRevisao1;
+        this.sSuspDt1 = sSuspDt1;
+        this.sSuspTr1 = sSuspTr1;
+        this.sPneus1 = sPneus1;
+        this.sTrOleo1 = sTrOleo1;
 
     }
+
+/////   modificado aqui implementar integer;
 
     //
     /////Construtor tela veículo em serviços
     //
-    public OrdemServico(Integer numero, String placa, String modelo, Integer sEletrico3, Integer sInjecao3,
-                        Integer sCamAut3, Integer sCamMec3, Integer sFreioDt3, Integer sFreioTr3, Integer sMotor3,
-                        Integer sSuspDt3, Integer sSuspTr3, Integer sPneus3, Integer sTrOleo3, Integer lavacao) {
+    public OrdemServico(Integer numero, String placa, String modelo, Integer sEletrico, Integer sInjecao,
+                        Integer sCambio, Integer sFreioDt, Integer sFreioTr, Integer sMotor,
+                        Integer sSuspDt, Integer sSuspTr, Integer sPneus, Integer sTrOleo, Integer lavacao) {
 
         this.numero = numero;
         this.placa = placa;
         this.modelo = modelo;
-        this.sCamAut3 = sCamAut3;
-        this.sCamMec3 = sCamMec3;
-        this.sEletrico3 = sEletrico3;
-        this.sFreioDt3 = sFreioDt3;
-        this.sFreioTr3 = sFreioTr3;
-        this.sInjecao3 = sInjecao3;
-        this.sMotor3 = sMotor3;
-        this.sSuspDt3 = sSuspDt3;
-        this.sSuspTr3 = sSuspTr3;
-        this.sPneus3 = sPneus3;
-        this.sTrOleo3 = sTrOleo3;
+        this.sCambio = sCambio;
+        this.sEletrico = sEletrico;
+        this.sFreioDt = sFreioDt;
+        this.sFreioTr = sFreioTr;
+        this.sInjecao = sInjecao;
+        this.sMotor = sMotor;
+        this.sSuspDt = sSuspDt;
+        this.sSuspTr = sSuspTr;
+        this.sPneus = sPneus;
+        this.sTrOleo = sTrOleo;
         this.lavacao = lavacao;
 
     }
 
-    public OrdemServico(Integer numero, String placa, String modelo, Circulos sEletrico2, Circulos sInjecao2,
-                        Circulos sMotor2, Circulos sMecanico, Circulos sCamMec2, Circulos sPneus2, Circulos lavacao1){
+    public OrdemServico(Integer numero, String placa, String modelo, Circulos sEletrico1, Circulos sInjecao1,
+                        Circulos sMotor1, Circulos sMecanico1, Circulos sCambio1, Circulos sPneus1, Circulos lavacao1){
 
         this.numero = numero;
         this.placa = placa;
         this.modelo = modelo;
-        this.sCamMec2 = sCamMec2;
-        this.sEletrico2 = sEletrico2;
-        this.sInjecao2 = sInjecao2;
+        this.sCambio1 = sCambio1;
+        this.sEletrico1 = sEletrico1;
+        this.sInjecao1 = sInjecao1;
         this.lavacao1 = lavacao1;
-        this.sMotor2 = sMotor2;
-        this.mecanico1 = sMecanico;
-        this.sPneus2 = sPneus2;
+        this.sMotor1 = sMotor1;
+        this.mecanico1 = sMecanico1;
+        this.sPneus1 = sPneus1;
 
     }
 
@@ -190,196 +153,108 @@ public class OrdemServico {
         this.modelo = modelo;
     }
 
-    public Circulos getSEletrico2() {
-        return sEletrico2;
+    public Circulos getsEletrico1() {
+        return sEletrico1;
     }
 
-    public void setSEletrico2(Circulos sEletrico2) {
-        this.sEletrico2 = sEletrico2;
+    public void setsEletrico1(Circulos sEletrico1) {
+        this.sEletrico1 = sEletrico1;
     }
 
-    public Circulos getSInjecao2() {
-        return sInjecao2;
+    public Circulos getsInjecao1() {
+        return sInjecao1;
     }
 
-    public void setSInjecao2(Circulos sInjecao2) {
-        this.sInjecao2 = sInjecao2;
+    public void setsInjecao1(Circulos sInjecao1) {
+        this.sInjecao1 = sInjecao1;
     }
 
-    public Circulos getSCamAut2() {
-        return sCamAut2;
+    public Circulos getsCambio1() {
+        return sCambio1;
     }
 
-    public void setSCamAut2(Circulos sCamAut2) {
-        this.sCamAut2 = sCamAut2;
+    public void setsCambio1(Circulos sCambio1) {
+        this.sCambio1 = sCambio1;
     }
 
-    public Circulos getSCamMec2() {
-        return sCamMec2;
+    public Circulos getsFreioDt1() {
+        return sFreioDt1;
     }
 
-    public void setSCamMec2(Circulos sCamMec2) {
-        this.sCamMec2 = sCamMec2;
+    public void setsFreioDt1(Circulos sFreioDt1) {
+        this.sFreioDt1 = sFreioDt1;
     }
 
-    public Circulos getSFreioDt2() {
-        return sFreioDt2;
+    public Circulos getsFreioTr1() {
+        return sFreioTr1;
     }
 
-    public void setSFreioDt2(Circulos sFreioDt2) {
-        this.sFreioDt2 = sFreioDt2;
+    public void setsFreioTr1(Circulos sFreioTr1) {
+        this.sFreioTr1 = sFreioTr1;
     }
 
-    public Circulos getSFreioTr2() {
-        return sFreioTr2;
+    public Circulos getsMotor1() {
+        return sMotor1;
     }
 
-    public void setSFreioTr2(Circulos sFreioTr2) {
-        this.sFreioTr2 = sFreioTr2;
+    public void setsMotor1(Circulos sMotor1) {
+        this.sMotor1 = sMotor1;
     }
 
-    public Circulos getSMotor2() {
-        return sMotor2;
+    public Circulos getMecanico1() {
+        return mecanico1;
     }
 
-    public void setSMotor2(Circulos sMotor2) {
-        this.sMotor2 = sMotor2;
+    public void setMecanico1(Circulos mecanico1) {
+        this.mecanico1 = mecanico1;
     }
 
-    public Circulos getSRevisao2() {
-        return sRevisao2;
+    public Circulos getsRevisao1() {
+        return sRevisao1;
     }
 
-    public void setSRevisao2(Circulos sRevisao2) {
-        this.sRevisao2 = sRevisao2;
+    public void setsRevisao1(Circulos sRevisao1) {
+        this.sRevisao1 = sRevisao1;
     }
 
-    public Circulos getSSuspDt2() {
-        return sSuspDt2;
+    public Circulos getsSuspDt1() {
+        return sSuspDt1;
     }
 
-    public void setSSuspDt2(Circulos sSuspDt2) {
-        this.sSuspDt2 = sSuspDt2;
+    public void setsSuspDt1(Circulos sSuspDt1) {
+        this.sSuspDt1 = sSuspDt1;
     }
 
-    public Circulos getSSuspTr2() {
-        return sSuspTr2;
+    public Circulos getsSuspTr1() {
+        return sSuspTr1;
     }
 
-    public void setSSuspTr2(Circulos sSuspTr2) {
-        this.sSuspTr2 = sSuspTr2;
+    public void setsSuspTr1(Circulos sSuspTr1) {
+        this.sSuspTr1 = sSuspTr1;
     }
 
-    public Circulos getSPneus2() {
-        return sPneus2;
+    public Circulos getsPneus1() {
+        return sPneus1;
     }
 
-    public void setSPneus2(Circulos sPneus2) {
-        this.sPneus2 = sPneus2;
+    public void setsPneus1(Circulos sPneus1) {
+        this.sPneus1 = sPneus1;
     }
 
-    public Circulos getSTrOleo2() {
-        return sTrOleo2;
+    public Circulos getsTrOleo1() {
+        return sTrOleo1;
     }
 
-    public void setSTrOleo2(Circulos sTrOleo2) {
-        this.sTrOleo2 = sTrOleo2;
+    public void setsTrOleo1(Circulos sTrOleo1) {
+        this.sTrOleo1 = sTrOleo1;
     }
 
-    public Boolean getsEletrico() {
-        return sEletrico;
+    public Circulos getLavacao1() {
+        return lavacao1;
     }
 
-    public void setsEletrico(Boolean sEletrico) {
-        this.sEletrico = sEletrico;
-    }
-
-    public Boolean getsInjecao() {
-        return sInjecao;
-    }
-
-    public void setsInjecao(Boolean sInjecao) {
-        this.sInjecao = sInjecao;
-    }
-
-    public Boolean getsCamAut() {
-        return sCamAut;
-    }
-
-    public void setsCamAut(Boolean sCamAut) {
-        this.sCamAut = sCamAut;
-    }
-
-    public Boolean getsCamMec() {
-        return sCamMec;
-    }
-
-    public void setsCamMec(Boolean sCamMec) {
-        this.sCamMec = sCamMec;
-    }
-
-    public Boolean getsFreioDt() {
-        return sFreioDt;
-    }
-
-    public void setsFreioDt(Boolean sFreioDt) {
-        this.sFreioDt = sFreioDt;
-    }
-
-    public Boolean getsFreioTr() {
-        return sFreioTr;
-    }
-
-    public void setsFreioTr(Boolean sFreioTr) {
-        this.sFreioTr = sFreioTr;
-    }
-
-    public Boolean getsMotor() {
-        return sMotor;
-    }
-
-    public void setsMotor(Boolean sMotor) {
-        this.sMotor = sMotor;
-    }
-
-    public Boolean getsRevisao() {
-        return sRevisao;
-    }
-
-    public void setsRevisao(Boolean sRevisao) {
-        this.sRevisao = sRevisao;
-    }
-
-    public Boolean getsSuspDt() {
-        return sSuspDt;
-    }
-
-    public void setsSuspDt(Boolean sSuspDt) {
-        this.sSuspDt = sSuspDt;
-    }
-
-    public Boolean getsSuspTr() {
-        return sSuspTr;
-    }
-
-    public void setsSuspTr(Boolean sSuspTr) {
-        this.sSuspTr = sSuspTr;
-    }
-
-    public Boolean getsPneus() {
-        return sPneus;
-    }
-
-    public void setsPneus(Boolean sPneus) {
-        this.sPneus = sPneus;
-    }
-
-    public Boolean getsTrOleo() {
-        return sTrOleo;
-    }
-
-    public void setsTrOleo(Boolean sTrOleo) {
-        this.sTrOleo = sTrOleo;
+    public void setLavacao1(Circulos lavacao1) {
+        this.lavacao1 = lavacao1;
     }
 
     public String getTelefone() {
@@ -398,92 +273,84 @@ public class OrdemServico {
         this.status = status;
     }
 
-    public Integer getsEletrico3() {
-        return sEletrico3;
+    public Integer getsEletrico() {
+        return sEletrico;
     }
 
-    public void setsEletrico3(Integer sEletrico3) {
-        this.sEletrico3 = sEletrico3;
+    public void setsEletrico(Integer sEletrico) {
+        this.sEletrico = sEletrico;
     }
 
-    public Integer getsInjecao3() {
-        return sInjecao3;
+    public Integer getsInjecao() {
+        return sInjecao;
     }
 
-    public void setsInjecao3(Integer sInjecao3) {
-        this.sInjecao3 = sInjecao3;
+    public void setsInjecao(Integer sInjecao) {
+        this.sInjecao = sInjecao;
     }
 
-    public Integer getsCamAut3() {
-        return sCamAut3;
+    public Integer getsCambio() {
+        return sCambio;
     }
 
-    public void setsCamAut3(Integer sCamAut3) {
-        this.sCamAut3 = sCamAut3;
+    public void setsCambio(Integer sCambio) {
+        this.sCambio = sCambio;
     }
 
-    public Integer getsCamMec3() {
-        return sCamMec3;
+    public Integer getsFreioDt() {
+        return sFreioDt;
     }
 
-    public void setsCamMec3(Integer sCamMec3) {
-        this.sCamMec3 = sCamMec3;
+    public void setsFreioDt(Integer sFreioDt) {
+        this.sFreioDt = sFreioDt;
     }
 
-    public Integer getsFreioDt3() {
-        return sFreioDt3;
+    public Integer getsFreioTr() {
+        return sFreioTr;
     }
 
-    public void setsFreioDt3(Integer sFreioDt3) {
-        this.sFreioDt3 = sFreioDt3;
+    public void setsFreioTr(Integer sFreioTr) {
+        this.sFreioTr = sFreioTr;
     }
 
-    public Integer getsFreioTr3() {
-        return sFreioTr3;
+    public Integer getsMotor() {
+        return sMotor;
     }
 
-    public void setsFreioTr3(Integer sFreioTr3) {
-        this.sFreioTr3 = sFreioTr3;
+    public void setsMotor(Integer sMotor) {
+        this.sMotor = sMotor;
     }
 
-    public Integer getsMotor3() {
-        return sMotor3;
+    public Integer getsSuspDt() {
+        return sSuspDt;
     }
 
-    public void setsMotor3(Integer sMotor3) {
-        this.sMotor3 = sMotor3;
+    public void setsSuspDt(Integer sSuspDt) {
+        this.sSuspDt = sSuspDt;
     }
 
-    public Integer getsSuspDt3() {
-        return sSuspDt3;
+    public Integer getsSuspTr() {
+        return sSuspTr;
     }
 
-    public void setsSuspDt3(Integer sSuspDt3) {
-        this.sSuspDt3 = sSuspDt3;
+    public void setsSuspTr(Integer sSuspTr) {
+        this.sSuspTr = sSuspTr;
     }
 
-    public Integer getsSuspTr3() {
-        return sSuspTr3;
+    public Integer getsPneus() {
+        return sPneus;
     }
 
-    public void setsSuspTr3(Integer sSuspTr3) {
-        this.sSuspTr3 = sSuspTr3;
+    public void setsPneus(Integer sPneus) {
+        this.sPneus = sPneus;
     }
 
-    public Integer getsPneus3() {
-        return sPneus3;
+    public Integer getsTrOleo() {
+        return sTrOleo;
     }
 
-    public void setsPneus3(Integer sPneus3) {
-        this.sPneus3 = sPneus3;
-    }
-
-    public Integer getsTrOleo3() {
-        return sTrOleo3;
-    }
-
-    public void setsTrOleo3(Integer sTrOleo3) {
-        this.sTrOleo3 = sTrOleo3;
+    public void setsTrOleo(Integer sTrOleo) {
+        this.sTrOleo = sTrOleo;
     }
 
     public Integer getLavacao() {
@@ -494,115 +361,11 @@ public class OrdemServico {
         this.lavacao = lavacao;
     }
 
-    public Circulos getsEletrico2() {
-        return sEletrico2;
+    public Integer getsRevisao() {
+        return sRevisao;
     }
 
-    public void setsEletrico2(Circulos sEletrico2) {
-        this.sEletrico2 = sEletrico2;
-    }
-
-    public Circulos getsInjecao2() {
-        return sInjecao2;
-    }
-
-    public void setsInjecao2(Circulos sInjecao2) {
-        this.sInjecao2 = sInjecao2;
-    }
-
-    public Circulos getsCamAut2() {
-        return sCamAut2;
-    }
-
-    public void setsCamAut2(Circulos sCamAut2) {
-        this.sCamAut2 = sCamAut2;
-    }
-
-    public Circulos getsCamMec2() {
-        return sCamMec2;
-    }
-
-    public void setsCamMec2(Circulos sCamMec2) {
-        this.sCamMec2 = sCamMec2;
-    }
-
-    public Circulos getsFreioDt2() {
-        return sFreioDt2;
-    }
-
-    public void setsFreioDt2(Circulos sFreioDt2) {
-        this.sFreioDt2 = sFreioDt2;
-    }
-
-    public Circulos getsFreioTr2() {
-        return sFreioTr2;
-    }
-
-    public void setsFreioTr2(Circulos sFreioTr2) {
-        this.sFreioTr2 = sFreioTr2;
-    }
-
-    public Circulos getsMotor2() {
-        return sMotor2;
-    }
-
-    public void setsMotor2(Circulos sMotor2) {
-        this.sMotor2 = sMotor2;
-    }
-
-    public Circulos getMecanico1() {
-        return mecanico1;
-    }
-
-    public void setMecanico1(Circulos mecanico1) {
-        this.mecanico1 = mecanico1;
-    }
-
-    public Circulos getsRevisao2() {
-        return sRevisao2;
-    }
-
-    public void setsRevisao2(Circulos sRevisao2) {
-        this.sRevisao2 = sRevisao2;
-    }
-
-    public Circulos getsSuspDt2() {
-        return sSuspDt2;
-    }
-
-    public void setsSuspDt2(Circulos sSuspDt2) {
-        this.sSuspDt2 = sSuspDt2;
-    }
-
-    public Circulos getsSuspTr2() {
-        return sSuspTr2;
-    }
-
-    public void setsSuspTr2(Circulos sSuspTr2) {
-        this.sSuspTr2 = sSuspTr2;
-    }
-
-    public Circulos getsPneus2() {
-        return sPneus2;
-    }
-
-    public void setsPneus2(Circulos sPneus2) {
-        this.sPneus2 = sPneus2;
-    }
-
-    public Circulos getsTrOleo2() {
-        return sTrOleo2;
-    }
-
-    public void setsTrOleo2(Circulos sTrOleo2) {
-        this.sTrOleo2 = sTrOleo2;
-    }
-
-    public Circulos getLavacao1() {
-        return lavacao1;
-    }
-
-    public void setsLavacao(Circulos lavacao1) {
-        this.lavacao1 = lavacao1;
+    public void setsRevisao(Integer sRevisao) {
+        this.sRevisao = sRevisao;
     }
 }

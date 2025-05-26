@@ -8,6 +8,7 @@ import org.gsnt.auttech.model.entities.Funcionario;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FuncionarioService implements FuncionarioDao {
@@ -102,7 +103,52 @@ public class FuncionarioService implements FuncionarioDao {
 
 	@Override
 	public List<Funcionario> findByEspecializacao() {
-		return List.of();
+
+		Funcionario retorno;
+		List<Funcionario> retornoFunc = new ArrayList<>();
+
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+
+            st = conn.prepareStatement(
+                    "SELECT nome, caixamec, caixaaut, eletrica, freio, injdiesel, injflex, motordiesel," +
+							" motorflex, pneus, suspensao, socorro, veiceletrico, motleva,motguincho " +
+							"FROM tabfuncionario WHERE datadesl=''");
+
+            rs = st.executeQuery();
+
+			while (rs.next()) {
+				retorno = new Funcionario();
+				retorno.setNome(rs.getString("nome"));
+				retorno.setCaixaMec(rs.getBoolean("caixamec"));
+				retorno.setCaixaAut(rs.getBoolean("caixaaut"));
+				retorno.setEletrica(rs.getBoolean("eletrica"));
+				retorno.setFreio(rs.getBoolean("freio"));
+				retorno.setInjDiesel(rs.getBoolean("injdiesel"));
+				retorno.setInjFlex(rs.getBoolean("injflex"));
+				retorno.setMotorDiesel(rs.getBoolean("motordiesel"));
+				retorno.setMotorFlex(rs.getBoolean("motorflex"));
+				retorno.setPneus(rs.getBoolean("pneus"));
+				retorno.setSuspensao(rs.getBoolean("suspensao"));
+				retorno.setSocorro(rs.getBoolean("socorro"));
+				retorno.setVeicEletricos(rs.getBoolean("veiceletrico"));
+				retorno.setMotLeva(rs.getBoolean("motleva"));
+				retorno.setMotguincho(rs.getBoolean("motguincho"));
+
+				retornoFunc.add(retorno);
+			}
+        }
+        catch (SQLException e){
+            throw new DbException(e.getMessage()+" findByEspecialização");
+        }
+        finally {
+			DB2.closeResultSet(rs);
+			DB2.closeStatement(st);
+        }
+
+		return retornoFunc;
 	}
 
 	@Override

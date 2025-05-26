@@ -22,12 +22,35 @@ public class Funcionario {
 
     public Funcionario(){}
 
+    public Funcionario(String nome) {
+        this.nome = nome;
+    }
+
     public Funcionario(int cod, String nome, int tipoFunc){
         this.cod = cod;
         this.nome = nome;
         this.tipoFunc = tipoFunc;
     }
 
+    public Funcionario(String nome, Boolean caixaMec, Boolean caixaAut, Boolean eletrica, Boolean freio,
+                       Boolean injDiesel, Boolean injFlex, Boolean motorDiesel, Boolean motorFlex, Boolean pneus,
+                       Boolean suspensao, Boolean socorro, Boolean veicEletricos, Boolean motLeva, Boolean motguincho) {
+        this.nome = nome;
+        this.caixaMec = caixaMec;
+        this.caixaAut = caixaAut;
+        this.eletrica = eletrica;
+        this.freio = freio;
+        this.injDiesel = injDiesel;
+        this.injFlex = injFlex;
+        this.motorDiesel = motorDiesel;
+        this.motorFlex = motorFlex;
+        this.pneus = pneus;
+        this.suspensao = suspensao;
+        this.socorro = socorro;
+        this.veicEletricos = veicEletricos;
+        this.motLeva = motLeva;
+        this.motguincho = motguincho;
+    }
 
     private int cod;
     private String nome;
