@@ -26,22 +26,6 @@ public class Moka {
     }
 
 
-
-
-
-    public List<OrdemServico> dadosTelaSerIniciados(){
-
-        List<OrdemServico> list = new ArrayList<>();
-
-        list.add(new OrdemServico(1,"AAA0A00","Veículo1",false, false, false,false,false,false, false,true,false,false,false,false));
-        list.add(new OrdemServico(2,"BBB0B00","Veículo2",true, true, false,false,false,true, false,false,false,false,true,true));
-        list.add(new OrdemServico(3,"CCC0C00","Veículo3",false, false, false,false,true,false, false,false,true,false,false,true));
-        list.add(new OrdemServico(4,"DDD0D00","Veículo4",false, true, false,false,false,false, false,true,false,false,false,false));
-
-
-        return list;
-    }
-
     public List<Orcamento> dadosTelaOrcamento(){
         /*
         * Integer cod, String placa, String modelo, String statusCliente, Integer statusOrc,
@@ -67,7 +51,7 @@ public class Moka {
         Integer sCamAut3, Integer sCamMec3, Integer sFreioDt3, Integer sFreioTr3, Integer sMotor3,
         Integer sSuspDt3, Integer sSuspTr3, Integer sPneus3, Integer sTrOleo3, Integer lavacao
         */
-
+/*
         List<OrdemServico> list = new ArrayList<>();
         list.add(new OrdemServico(1,"AAA0A00","Veículo1",1,1,1,1,1,1,1,1,1,1,1,1));
         list.add(new OrdemServico(2,"BBB0B00","Veículo2",2,2,2,2,2,2,2,2,2,2,2,2));
@@ -79,7 +63,8 @@ public class Moka {
         list.add(new OrdemServico(3,"CCC0C00","Veículo8",0,0,0,0,0,0,0,0,0,0,3,1));
         list.add(new OrdemServico(3,"CCC0C00","Veículo9",0,0,0,0,1,0,0,0,0,1,3,0));
         return list;
-
+*/
+        return List.of();
     }
 
 

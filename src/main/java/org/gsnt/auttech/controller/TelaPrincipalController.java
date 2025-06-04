@@ -22,6 +22,7 @@ import org.gsnt.auttech.model.dao.service.OrdemServicoService;
 import org.gsnt.auttech.model.entities.Agenda;
 import org.gsnt.auttech.model.entities.Orcamento;
 import org.gsnt.auttech.model.entities.OrdemServico;
+import org.gsnt.auttech.model.entities.StatusAtendimento;
 import org.gsnt.auttech.util.Alerts;
 import org.gsnt.auttech.util.Circulos;
 
@@ -287,16 +288,16 @@ public class TelaPrincipalController implements Initializable {
     protected TableView tvFuturos;
 
     @FXML
-    protected TableColumn<OrdemServico,Integer> tcOs;
+    protected TableColumn<StatusAtendimento,Integer> tcOs;
 
     @FXML
     protected TableColumn tcDdVeiculos;
 
     @FXML
-    protected TableColumn<OrdemServico, String> tcPlaca2;
+    protected TableColumn<StatusAtendimento, String> tcPlaca2;
 
     @FXML
-    protected TableColumn<OrdemServico, String> tcModelo2;
+    protected TableColumn<StatusAtendimento, String> tcModelo2;
 
     @FXML
     protected TableColumn tcTipoServico;
@@ -305,46 +306,40 @@ public class TelaPrincipalController implements Initializable {
     protected TableColumn tcMec2;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcElet2;
+    protected TableColumn<StatusAtendimento, Circulos> tcElet2;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcInj2;
+    protected TableColumn<StatusAtendimento, Circulos> tcInj2;
 
     @FXML
-    protected TableColumn tcCambio2;
-
-    @FXML
-    protected TableColumn<OrdemServico, Circulos> tcCbAut;
-
-    @FXML
-    protected TableColumn<OrdemServico, Circulos> tcCbMec;
+    protected TableColumn<StatusAtendimento, Circulos> tcCambio2;
 
     @FXML
     protected TableColumn tcFreio2;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcFreioDt;
+    protected TableColumn<StatusAtendimento, Circulos> tcFreioDt;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcFreioTr;
+    protected TableColumn<StatusAtendimento, Circulos> tcFreioTr;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcMotor2;
+    protected TableColumn<StatusAtendimento, Circulos> tcMotor2;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcRevisao2;
+    protected TableColumn<StatusAtendimento, Circulos> tcRevisao2;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcPneus2;
+    protected TableColumn<StatusAtendimento, Circulos> tcPneus2;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcOleo2;
+    protected TableColumn<StatusAtendimento, Circulos> tcOleo2;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcSuspDiant;
+    protected TableColumn<StatusAtendimento, Circulos> tcSuspDiant;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcSuspTras;
+    protected TableColumn<StatusAtendimento, Circulos> tcSuspTras;
 
     @FXML
     protected Button btAbrirOS;
@@ -672,21 +667,20 @@ public class TelaPrincipalController implements Initializable {
     private void accordionSerIniciados(){
 
         try {
-            tcOs.setCellValueFactory(new PropertyValueFactory<OrdemServico, Integer>("numero"));
-            tcPlaca2.setCellValueFactory(new PropertyValueFactory<OrdemServico, String>("placa"));
-            tcModelo2.setCellValueFactory(new PropertyValueFactory<OrdemServico, String>("modelo"));
-            tcElet2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sEletrico2"));
-            tcInj2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sInjecao2"));
-            tcCbAut.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sCamAut2"));
-            tcCbMec.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sCamMec2"));
-            tcFreioDt.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sFreioDt2"));
-            tcFreioTr.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sFreioTr2"));
-            tcMotor2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sMotor2"));
-            tcRevisao2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sRevisao2"));
-            tcSuspDiant.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sSuspDt2"));
-            tcSuspTras.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sSuspTr2"));
-            tcPneus2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sPneus2"));
-            tcOleo2.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sTrOleo2"));
+            tcOs.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Integer>("codOs"));
+            tcPlaca2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, String>("placa"));
+            tcModelo2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, String>("veiculo"));
+            tcElet2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sEletrico1"));
+            tcInj2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sInjecao1"));
+            tcCambio2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sCambio1"));
+            tcFreioDt.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sFreioDt1"));
+            tcFreioTr.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sFreioTr1"));
+            tcMotor2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sMotor1"));
+            tcRevisao2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sRevisao1"));
+            tcSuspDiant.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sSuspDt1"));
+            tcSuspTras.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sSuspTr1"));
+            tcPneus2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sPneus1"));
+            tcOleo2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sTrOleo1"));
 
         }
         catch (Exception a){

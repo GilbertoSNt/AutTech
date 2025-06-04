@@ -128,5 +128,15 @@ public class DaoFactory {
         }
     }
 
+    public static StatusAtendimentoDao createStatusAtendimentoDao(){
+        try {
+            return new StatusAtendimentoService(DB2.getConnection()) {};
+
+        }
+        catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 
 }

@@ -129,6 +129,7 @@
                                     <CheckBox fx:id="cbMotoristaGuincho" layoutX="261.0" layoutY="249.0" mnemonicParsing="false" text="Motorista guincho" />
                                     <CheckBox fx:id="cbSocorro" layoutX="14.0" layoutY="178.0" mnemonicParsing="false" text="Socorro mecânico" />
                                     <Label layoutX="14.0" layoutY="220.0" text="Motoristas" />
+                                    <CheckBox fx:id="cbTrOleo" layoutX="518.0" layoutY="39.0" mnemonicParsing="false" text="Troca de óleo" />
                                  </children>
                               </AnchorPane>
                            </children></AnchorPane>

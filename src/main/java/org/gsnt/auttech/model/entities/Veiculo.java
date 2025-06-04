@@ -36,6 +36,11 @@ public class Veiculo implements Serializable {
         this.placa = placa;
     }
 
+    public Veiculo(String placa, int modelo) {
+        this.placa = placa;
+        this.modelo = modelo;
+    }
+
     public Veiculo(String placa, int marca, int modelo, String anof, String anom, String motor) {
         this.placa = placa;
         this.marca = marca;

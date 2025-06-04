@@ -140,6 +140,9 @@ public class CriaOsController implements Initializable {
     private CheckBox cbCliente;
 
     @FXML
+    private CheckBox cbTrOleo;
+
+    @FXML
     private ComboBox<String> cbxCaixa;
 
     @FXML
@@ -165,6 +168,9 @@ public class CriaOsController implements Initializable {
 
     @FXML
     private ComboBox<String> cbxBalan;
+
+    @FXML
+    private ComboBox<String> cbxTrocaOleo;
 
     //
     //   ainda falta dados(Busca cadastro)
@@ -268,7 +274,7 @@ public class CriaOsController implements Initializable {
 
         List<Funcionario> funci = funcionarioServ.findByEspecializacao();
 
-        Funcionario indicador;
+        //Funcionario indicador;
         List<String> caixa = new ArrayList<>();
         List<String> freio = new ArrayList<>();
         List<String> suspensao = new ArrayList<>();
@@ -278,40 +284,48 @@ public class CriaOsController implements Initializable {
         List<String> pneus = new ArrayList<>();
         List<String> alin = new ArrayList<>();
         List<String> balan = new ArrayList<>();
+        List<String> trocaOleo = new ArrayList<>();
+
+        //
+        // implementar troca de óleo
+        //
 
         for(int z = 0; z<funci.size();z++) {
 
-            if (funci.get(z).getCaixaMec()){
-                caixa.add(funci.get(z).getNome()+" (Mec)");
+            if (funci.get(z).getCaixaMec()) {
+                caixa.add(funci.get(z).getNome() + " (Mec)");
             }
-            if (funci.get(z).getCaixaAut()){
-                caixa.add(funci.get(z).getNome()+" (Aut)");
+            if (funci.get(z).getCaixaAut()) {
+                caixa.add(funci.get(z).getNome() + " (Aut)");
             }
-            if (funci.get(z).getFreio()){
+            if (funci.get(z).getFreio()) {
                 freio.add(funci.get(z).getNome());
             }
-            if (funci.get(z).getSuspensao()){
+            if (funci.get(z).getSuspensao()) {
                 suspensao.add(funci.get(z).getNome());
             }
-            if (funci.get(z).getMotorDiesel()){
-                motor.add(funci.get(z).getNome()+" (Diesel)");
+            if (funci.get(z).getMotorDiesel()) {
+                motor.add(funci.get(z).getNome() + " (Diesel)");
             }
-            if (funci.get(z).getMotorFlex()){
-                motor.add(funci.get(z).getNome()+" (Flex)");
+            if (funci.get(z).getMotorFlex()) {
+                motor.add(funci.get(z).getNome() + " (Flex)");
             }
-            if (funci.get(z).getEletrica()){
+            if (funci.get(z).getEletrica()) {
                 eletrico.add(funci.get(z).getNome());
             }
-            if (funci.get(z).getInjDiesel()){
-                injecao.add(funci.get(z).getNome()+" (Diesel)");
+            if (funci.get(z).getInjDiesel()) {
+                injecao.add(funci.get(z).getNome() + " (Diesel)");
             }
-            if (funci.get(z).getInjFlex()){
-                injecao.add(funci.get(z).getNome()+" (Flex)");
+            if (funci.get(z).getInjFlex()) {
+                injecao.add(funci.get(z).getNome() + " (Flex)");
             }
             if (funci.get(z).getPneus()) {
                 pneus.add(funci.get(z).getNome());
                 alin.add(funci.get(z).getNome());
                 balan.add(funci.get(z).getNome());
+            }
+            if (funci.get(z).getTrocaOleo()) {
+                trocaOleo.add(funci.get(z).getNome());
             }
         }
 
@@ -324,6 +338,7 @@ public class CriaOsController implements Initializable {
         comboPneus(pneus);
         comboAlin(alin);
         comboBalan(balan);
+        combotrocaOleo(trocaOleo);
     }
 
     private void comboBalan(List balan){
@@ -467,6 +482,22 @@ public class CriaOsController implements Initializable {
         };
         cbxCaixa.setCellFactory(factoryCaixa);
         cbxCaixa.setButtonCell(factoryCaixa.call(null));
+
+    }
+
+    private void combotrocaOleo(List trocaOleo){
+
+        ObservableList obsComboTrocaOleo = FXCollections.observableList(trocaOleo);
+        cbxTrocaOleo.setItems(obsComboTrocaOleo);
+        Callback<ListView<String>, ListCell<String>> factoryTrocaOleo = lv -> new ListCell<String>(){
+            @Override
+            protected void updateItem(String funcionario9, boolean empty){
+                super.updateItem(funcionario9, empty);
+                setText(empty ?"":funcionario9);
+            }
+        };
+        cbxTrocaOleo.setCellFactory(factoryTrocaOleo);
+        cbxTrocaOleo.setButtonCell(factoryTrocaOleo.call(null));
 
     }
 

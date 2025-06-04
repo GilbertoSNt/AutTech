@@ -356,6 +356,7 @@ public class AgendaService implements AgendaDao {
         }
         finally {
             DB2.closeStatement(st);
+            DB2.closeResultSet(rs);
         }
 
         return agenda;
@@ -475,10 +476,10 @@ public class AgendaService implements AgendaDao {
         }
         finally {
             DB2.closeStatement(st);
+            DB2.closeResultSet(rs);
         }
 
         return retorno;
     }
-
 
 }

@@ -2,6 +2,10 @@ package org.gsnt.auttech.model.entities;
 
 public class ModeloVeiculo {
 
+    public ModeloVeiculo(String modelo){
+        this.modelo = modelo;
+    }
+
     public ModeloVeiculo(int cod, String modelo) {
         this.cod = cod;
         this.modelo = modelo;

@@ -22,4 +22,5 @@ public interface VeiculoDao {
 
     Integer verificaPlaca(String placa);
 
+    Veiculo verPlacaModelo(Integer cod);
 }

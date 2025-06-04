@@ -2,6 +2,9 @@ package org.gsnt.auttech.model.entities;
 
 import org.gsnt.auttech.util.Circulos;
 
+import java.sql.Time;
+import java.util.Date;
+
 public class OrdemServico {
 
     /*
@@ -14,119 +17,138 @@ public class OrdemServico {
     * 6 - Faturada
     *
     * */
-
+/*INSERT INTO public.tabos(
+	cod, codcliente, codveiculo, dataabertura, datafechamento,
+	vtpecas, vtservicos, vtos, revisao, suspensao, injecao, pneus, trocaoleo, freio, eletrico, mecanico, motor, caixa, socmecanico,
+	soceletrico, asslevar, assguincho, assbuscar, assclientetraz, assenvioguincho, assenviodeslocamento,
+	obsos, statusos)
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);*/
 
     private Integer numero;
-    private String placa;
-    private String modelo;
-
-    private Circulos sEletrico1;
-    private Circulos sInjecao1;
-    private Circulos sCambio1;
-    private Circulos sFreioDt1;
-    private Circulos sFreioTr1;
-    private Circulos sMotor1;
-    private Circulos mecanico1;
-    private Circulos sRevisao1;
-    private Circulos sSuspDt1;
-    private Circulos sSuspTr1;
-    private Circulos sPneus1;
-    private Circulos sTrOleo1;
-    private Circulos lavacao1;
-
+    private Integer codCliente;
+    private Integer CodVeiculo;
+    private Date dataAbertura;
+    private Time horaAbertura;
+    private Time horafechamento;
+    private Date dataFechamento;
+    private Integer vtPecas;
+    private Integer vtServicos;
+    private Integer vtOs;
+    private Byte revisao;
+    private Byte suspensaoDt;
+    private Byte suspensaoTr;
+    private Byte injecao;
+    private Byte pneus;
+    private Byte trocaOleo;
+    private Byte freioDt;
+    private Byte freioTr;
+    private Byte eletrico;
+    private Byte mecanico;
+    private Byte motor;
+    private Byte caixa;
+    private Byte socMecanico;
+    private Byte socEletrico;
+    private Byte assLevar;
+    private Byte assGuincho;
+    private Byte assBuscar;
+    private Byte assClienteTraz;
+    private Byte assEnvioGuincho;
+    private Byte assEnvioDeslocamento;
+    private String obsOs;
+    private Byte statusOs;
     private String telefone;
-    private String status;
+    private String placa;
+    private String veiculo;
+    private Byte lavacao;
+    private String nomeCliente;
 
-    private Integer sEletrico;
-    private Integer sInjecao;
-    private Integer sCambio;
-    private Integer sFreioDt;
-    private Integer sFreioTr;
-    private Integer sMotor;
-    private Integer sSuspDt;
-    private Integer sSuspTr;
-    private Integer sPneus;
-    private Integer sTrOleo;
-    private Integer lavacao;
-    private Integer sRevisao;
+    private Byte fCaixa;
+    private Byte fFreio;
+    private Byte fMotor;
+    private Byte fSuspensao;
+    private Byte fEletrico;
+    private Byte finjecao;
+    private Byte fPneus;
+    private Byte fAlinhamento;
+    private Byte fBalanceamento;
 
 
+    public OrdemServico(){}
+// Construtor tela a serem iniciados
 
-    public OrdemServico(Integer numero, String placa, String modelo, Circulos sEletrico1, Circulos sInjecao1,
-    Circulos sCambio1, Circulos sFreioDt1, Circulos sFreioTr1, Circulos sMotor1, Circulos sRevisao1,
-    Circulos sSuspDt1, Circulos sSuspTr1, Circulos sPneus1, Circulos sTrOleo1){
-
+    public OrdemServico(Integer numero, String placa, String veiculo, Byte revisao, Byte suspensaoDt,
+                        Byte suspensaoTr, Byte injecao, Byte pneus, Byte trocaOleo, Byte freioDt,
+                        Byte freioTr, Byte eletrico, Byte motor, Byte caixa) {
         this.numero = numero;
         this.placa = placa;
-        this.modelo = modelo;
-        this.sEletrico1 = sEletrico1;
-        this.sInjecao1 = sInjecao1;
-        this.sCambio1 = sCambio1;
-        this.sFreioDt1 = sFreioDt1;
-        this.sFreioTr1 = sFreioTr1;
-        this.sMotor1 = sMotor1;
-        this.sRevisao1 = sRevisao1;
-        this.sSuspDt1 = sSuspDt1;
-        this.sSuspTr1 = sSuspTr1;
-        this.sPneus1 = sPneus1;
-        this.sTrOleo1 = sTrOleo1;
-
+        this.veiculo = veiculo;
+        this.revisao = revisao;
+        this.suspensaoDt = suspensaoDt;
+        this.suspensaoTr = suspensaoTr;
+        this.injecao = injecao;
+        this.pneus = pneus;
+        this.trocaOleo = trocaOleo;
+        this.freioDt = freioDt;
+        this.freioTr = freioTr;
+        this.eletrico = eletrico;
+        this.motor = motor;
+        this.caixa = caixa;
     }
 
-/////   modificado aqui implementar integer;
+// Construtor da tela em serviços
 
-    //
-    /////Construtor tela veículo em serviços
-    //
-    public OrdemServico(Integer numero, String placa, String modelo, Integer sEletrico, Integer sInjecao,
-                        Integer sCambio, Integer sFreioDt, Integer sFreioTr, Integer sMotor,
-                        Integer sSuspDt, Integer sSuspTr, Integer sPneus, Integer sTrOleo, Integer lavacao) {
-
-        this.numero = numero;
+    public OrdemServico(String veiculo, String placa, Byte caixa, Byte eletrico, Byte injecao, Byte mecanico, Byte motor, Byte pneus, Byte lavacao) {
+        this.veiculo = veiculo;
         this.placa = placa;
-        this.modelo = modelo;
-        this.sCambio = sCambio;
-        this.sEletrico = sEletrico;
-        this.sFreioDt = sFreioDt;
-        this.sFreioTr = sFreioTr;
-        this.sInjecao = sInjecao;
-        this.sMotor = sMotor;
-        this.sSuspDt = sSuspDt;
-        this.sSuspTr = sSuspTr;
-        this.sPneus = sPneus;
-        this.sTrOleo = sTrOleo;
+        this.caixa = caixa;
+        this.eletrico = eletrico;
+        this.injecao = injecao;
+        this.mecanico = mecanico;
+        this.motor = motor;
+        this.pneus = pneus;
         this.lavacao = lavacao;
-
     }
 
-    public OrdemServico(Integer numero, String placa, String modelo, Circulos sEletrico1, Circulos sInjecao1,
-                        Circulos sMotor1, Circulos sMecanico1, Circulos sCambio1, Circulos sPneus1, Circulos lavacao1){
+    //Construtor veículos prontos
 
-        this.numero = numero;
+    public OrdemServico(String placa, String veiculo, String nomeCliente, String telefone, Byte statusOs) {
         this.placa = placa;
-        this.modelo = modelo;
-        this.sCambio1 = sCambio1;
-        this.sEletrico1 = sEletrico1;
-        this.sInjecao1 = sInjecao1;
-        this.lavacao1 = lavacao1;
-        this.sMotor1 = sMotor1;
-        this.mecanico1 = sMecanico1;
-        this.sPneus1 = sPneus1;
-
-    }
-
-    //
-    /////Tela de veículos prontos
-    //
-    public OrdemServico(Integer numero, String placa, String modelo, String telefone, String status) {
-
-        this.numero = numero;
-        this.placa = placa;
-        this.modelo = modelo;
+        this.veiculo = veiculo;
+        this.nomeCliente = nomeCliente;
         this.telefone = telefone;
-        this.status = status;
+        this.statusOs = statusOs;
+    }
 
+    //Construtor da gravação da tela
 
+    public OrdemServico(Integer codCliente, Integer codVeiculo, Date dataAbertura, Time horaAbertura, Byte revisao,
+                        Byte suspensaoDt, Byte suspensaoTr, Byte injecao, Byte pneus, Byte trocaOleo, Byte freioDt,
+                        Byte freioTr, Byte eletrico, Byte motor, Byte mecanico, Byte caixa, Byte socMecanico,
+                        Byte assBuscar, Byte socEletrico, Byte assLevar, Byte assGuincho, Byte assClienteTraz,
+                        String obsOs) {
+        this.codCliente = codCliente;
+        this.CodVeiculo = codVeiculo;
+        this.dataAbertura = dataAbertura;
+        this.horaAbertura = horaAbertura;
+        this.revisao = revisao;
+        this.suspensaoDt = suspensaoDt;
+        this.suspensaoTr = suspensaoTr;
+        this.injecao = injecao;
+        this.pneus = pneus;
+        this.trocaOleo = trocaOleo;
+        this.freioDt = freioDt;
+        this.freioTr = freioTr;
+        this.eletrico = eletrico;
+        this.motor = motor;
+        this.mecanico = mecanico;
+        this.caixa = caixa;
+        this.socMecanico = socMecanico;
+        this.assBuscar = assBuscar;
+        this.socEletrico = socEletrico;
+        this.assLevar = assLevar;
+        this.assGuincho = assGuincho;
+        this.assClienteTraz = assClienteTraz;
+        this.obsOs = obsOs;
     }
 
     public Integer getNumero() {
@@ -137,124 +159,204 @@ public class OrdemServico {
         this.numero = numero;
     }
 
-    public String getPlaca() {
-        return placa;
+    public Integer getCodCliente() {
+        return codCliente;
     }
 
-    public void setPlaca(String placa) {
-        this.placa = placa;
+    public void setCodCliente(Integer codCliente) {
+        this.codCliente = codCliente;
     }
 
-    public String getModelo() {
-        return modelo;
+    public Integer getCodVeiculo() {
+        return CodVeiculo;
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
+    public void setCodVeiculo(Integer codVeiculo) {
+        CodVeiculo = codVeiculo;
     }
 
-    public Circulos getsEletrico1() {
-        return sEletrico1;
+    public Date getDataAbertura() {
+        return dataAbertura;
     }
 
-    public void setsEletrico1(Circulos sEletrico1) {
-        this.sEletrico1 = sEletrico1;
+    public void setDataAbertura(Date dataAbertura) {
+        this.dataAbertura = dataAbertura;
     }
 
-    public Circulos getsInjecao1() {
-        return sInjecao1;
+    public Date getDataFechamento() {
+        return dataFechamento;
     }
 
-    public void setsInjecao1(Circulos sInjecao1) {
-        this.sInjecao1 = sInjecao1;
+    public void setDataFechamento(Date dataFechamento) {
+        this.dataFechamento = dataFechamento;
     }
 
-    public Circulos getsCambio1() {
-        return sCambio1;
+    public Integer getVtPecas() {
+        return vtPecas;
     }
 
-    public void setsCambio1(Circulos sCambio1) {
-        this.sCambio1 = sCambio1;
+    public void setVtPecas(Integer vtPecas) {
+        this.vtPecas = vtPecas;
     }
 
-    public Circulos getsFreioDt1() {
-        return sFreioDt1;
+    public Integer getVtServicos() {
+        return vtServicos;
     }
 
-    public void setsFreioDt1(Circulos sFreioDt1) {
-        this.sFreioDt1 = sFreioDt1;
+    public void setVtServicos(Integer vtServicos) {
+        this.vtServicos = vtServicos;
     }
 
-    public Circulos getsFreioTr1() {
-        return sFreioTr1;
+    public Integer getVtOs() {
+        return vtOs;
     }
 
-    public void setsFreioTr1(Circulos sFreioTr1) {
-        this.sFreioTr1 = sFreioTr1;
+    public void setVtOs(Integer vtOs) {
+        this.vtOs = vtOs;
     }
 
-    public Circulos getsMotor1() {
-        return sMotor1;
+    public Byte getRevisao() {
+        return revisao;
     }
 
-    public void setsMotor1(Circulos sMotor1) {
-        this.sMotor1 = sMotor1;
+    public void setRevisao(Byte revisao) {
+        this.revisao = revisao;
     }
 
-    public Circulos getMecanico1() {
-        return mecanico1;
+    public Byte getInjecao() {
+        return injecao;
     }
 
-    public void setMecanico1(Circulos mecanico1) {
-        this.mecanico1 = mecanico1;
+    public void setInjecao(Byte injecao) {
+        this.injecao = injecao;
     }
 
-    public Circulos getsRevisao1() {
-        return sRevisao1;
+    public Byte getPneus() {
+        return pneus;
     }
 
-    public void setsRevisao1(Circulos sRevisao1) {
-        this.sRevisao1 = sRevisao1;
+    public void setPneus(Byte pneus) {
+        this.pneus = pneus;
     }
 
-    public Circulos getsSuspDt1() {
-        return sSuspDt1;
+    public Byte getTrocaOleo() {
+        return trocaOleo;
     }
 
-    public void setsSuspDt1(Circulos sSuspDt1) {
-        this.sSuspDt1 = sSuspDt1;
+    public void setTrocaOleo(Byte trocaOleo) {
+        this.trocaOleo = trocaOleo;
     }
 
-    public Circulos getsSuspTr1() {
-        return sSuspTr1;
+    public Byte getEletrico() {
+        return eletrico;
     }
 
-    public void setsSuspTr1(Circulos sSuspTr1) {
-        this.sSuspTr1 = sSuspTr1;
+    public void setEletrico(Byte eletrico) {
+        this.eletrico = eletrico;
     }
 
-    public Circulos getsPneus1() {
-        return sPneus1;
+    public Byte getMecanico() {
+        return mecanico;
     }
 
-    public void setsPneus1(Circulos sPneus1) {
-        this.sPneus1 = sPneus1;
+    public void setMecanico(Byte mecanico) {
+        this.mecanico = mecanico;
     }
 
-    public Circulos getsTrOleo1() {
-        return sTrOleo1;
+    public Byte getMotor() {
+        return motor;
     }
 
-    public void setsTrOleo1(Circulos sTrOleo1) {
-        this.sTrOleo1 = sTrOleo1;
+    public void setMotor(Byte motor) {
+        this.motor = motor;
     }
 
-    public Circulos getLavacao1() {
-        return lavacao1;
+    public Byte getCaixa() {
+        return caixa;
     }
 
-    public void setLavacao1(Circulos lavacao1) {
-        this.lavacao1 = lavacao1;
+    public void setCaixa(Byte caixa) {
+        this.caixa = caixa;
+    }
+
+    public Byte getSocMecanico() {
+        return socMecanico;
+    }
+
+    public void setSocMecanico(Byte socMecanico) {
+        this.socMecanico = socMecanico;
+    }
+
+    public Byte getSocEletrico() {
+        return socEletrico;
+    }
+
+    public void setSocEletrico(Byte socEletrico) {
+        this.socEletrico = socEletrico;
+    }
+
+    public Byte getAssLevar() {
+        return assLevar;
+    }
+
+    public void setAssLevar(Byte assLevar) {
+        this.assLevar = assLevar;
+    }
+
+    public Byte getAssGuincho() {
+        return assGuincho;
+    }
+
+    public void setAssGuincho(Byte assGuincho) {
+        this.assGuincho = assGuincho;
+    }
+
+    public Byte getAssBuscar() {
+        return assBuscar;
+    }
+
+    public void setAssBuscar(Byte assBuscar) {
+        this.assBuscar = assBuscar;
+    }
+
+    public Byte getAssClienteTraz() {
+        return assClienteTraz;
+    }
+
+    public void setAssClienteTraz(Byte assClienteTraz) {
+        this.assClienteTraz = assClienteTraz;
+    }
+
+    public Byte getAssEnvioGuincho() {
+        return assEnvioGuincho;
+    }
+
+    public void setAssEnvioGuincho(Byte assEnvioGuincho) {
+        this.assEnvioGuincho = assEnvioGuincho;
+    }
+
+    public Byte getAssEnvioDeslocamento() {
+        return assEnvioDeslocamento;
+    }
+
+    public void setAssEnvioDeslocamento(Byte assEnvioDeslocamento) {
+        this.assEnvioDeslocamento = assEnvioDeslocamento;
+    }
+
+    public String getObsOs() {
+        return obsOs;
+    }
+
+    public void setObsOs(String obsOs) {
+        this.obsOs = obsOs;
+    }
+
+    public Byte getStatusOs() {
+        return statusOs;
+    }
+
+    public void setStatusOs(Byte statusOs) {
+        this.statusOs = statusOs;
     }
 
     public String getTelefone() {
@@ -265,107 +367,83 @@ public class OrdemServico {
         this.telefone = telefone;
     }
 
-    public String getStatus() {
-        return status;
+    public Byte getSuspensaoDt() {
+        return suspensaoDt;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setSuspensaoDt(Byte suspensaoDt) {
+        this.suspensaoDt = suspensaoDt;
     }
 
-    public Integer getsEletrico() {
-        return sEletrico;
+    public Byte getSuspensaoTr() {
+        return suspensaoTr;
     }
 
-    public void setsEletrico(Integer sEletrico) {
-        this.sEletrico = sEletrico;
+    public void setSuspensaoTr(Byte suspensaoTr) {
+        this.suspensaoTr = suspensaoTr;
     }
 
-    public Integer getsInjecao() {
-        return sInjecao;
+    public Byte getFreioDt() {
+        return freioDt;
     }
 
-    public void setsInjecao(Integer sInjecao) {
-        this.sInjecao = sInjecao;
+    public void setFreioDt(Byte freioDt) {
+        this.freioDt = freioDt;
     }
 
-    public Integer getsCambio() {
-        return sCambio;
+    public Byte getFreioTr() {
+        return freioTr;
     }
 
-    public void setsCambio(Integer sCambio) {
-        this.sCambio = sCambio;
+    public void setFreioTr(Byte freioTr) {
+        this.freioTr = freioTr;
     }
 
-    public Integer getsFreioDt() {
-        return sFreioDt;
+    public String getPlaca() {
+        return placa;
     }
 
-    public void setsFreioDt(Integer sFreioDt) {
-        this.sFreioDt = sFreioDt;
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 
-    public Integer getsFreioTr() {
-        return sFreioTr;
+    public String getVeiculo() {
+        return veiculo;
     }
 
-    public void setsFreioTr(Integer sFreioTr) {
-        this.sFreioTr = sFreioTr;
+    public void setVeiculo(String veiculo) {
+        this.veiculo = veiculo;
     }
 
-    public Integer getsMotor() {
-        return sMotor;
-    }
-
-    public void setsMotor(Integer sMotor) {
-        this.sMotor = sMotor;
-    }
-
-    public Integer getsSuspDt() {
-        return sSuspDt;
-    }
-
-    public void setsSuspDt(Integer sSuspDt) {
-        this.sSuspDt = sSuspDt;
-    }
-
-    public Integer getsSuspTr() {
-        return sSuspTr;
-    }
-
-    public void setsSuspTr(Integer sSuspTr) {
-        this.sSuspTr = sSuspTr;
-    }
-
-    public Integer getsPneus() {
-        return sPneus;
-    }
-
-    public void setsPneus(Integer sPneus) {
-        this.sPneus = sPneus;
-    }
-
-    public Integer getsTrOleo() {
-        return sTrOleo;
-    }
-
-    public void setsTrOleo(Integer sTrOleo) {
-        this.sTrOleo = sTrOleo;
-    }
-
-    public Integer getLavacao() {
+    public Byte getLavacao() {
         return lavacao;
     }
 
-    public void setLavacao(Integer lavacao) {
+    public void setLavacao(Byte lavacao) {
         this.lavacao = lavacao;
     }
 
-    public Integer getsRevisao() {
-        return sRevisao;
+    public String getNomeCliente() {
+        return nomeCliente;
     }
 
-    public void setsRevisao(Integer sRevisao) {
-        this.sRevisao = sRevisao;
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public Time getHoraAbertura() {
+        return horaAbertura;
+    }
+
+    public void setHoraAbertura(Time horaAbertura) {
+        this.horaAbertura = horaAbertura;
+    }
+
+    public Time getHorafechamento() {
+        return horafechamento;
+    }
+
+    public void setHorafechamento(Time horafechamento) {
+        this.horafechamento = horafechamento;
     }
 }

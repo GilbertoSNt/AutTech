@@ -207,4 +207,29 @@ public class VeiculoService implements VeiculoDao {
         return veiculo;
     }
 
+    @Override
+    public Veiculo verPlacaModelo(Integer cod) {
+
+        Veiculo veiculo = new Veiculo();
+        ResultSet rs = null;
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement("SELECT placa,modelo FROM tabveiculo WHERE cod = ?");
+            st.setInt(1, cod);
+            rs = st.executeQuery();
+            rs.next();
+
+            veiculo.setPlaca(rs.getString("placa"));
+            veiculo.setModelo(rs.getInt("modelo"));
+        }
+        catch (SQLException e){
+            throw new DbException(e.getMessage()+" ver placa - VeiculoService");
+        }
+        finally {
+            DB2.closeStatement(st);
+            DB2.closeResultSet(rs);
+        }
+        return veiculo;
+
+    }
 }

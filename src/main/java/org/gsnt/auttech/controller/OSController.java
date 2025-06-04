@@ -192,7 +192,4 @@ public class OSController {
     @FXML
     private TextArea txaObservacoes;
 
-
-
-
 }

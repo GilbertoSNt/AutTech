@@ -1,52 +1,88 @@
 package org.gsnt.auttech.model.dao.service;
 
-
-import org.gsnt.auttech.model.dao.OrdemServicoDao;
+import org.gsnt.auttech.db.DB2;
+import org.gsnt.auttech.db.DbException;
+import org.gsnt.auttech.model.dao.DaoFactory;
+import org.gsnt.auttech.model.dao.ModeloVeiculoDao;
+import org.gsnt.auttech.model.dao.StatusAtendimentoDao;
+import org.gsnt.auttech.model.dao.VeiculoDao;
 import org.gsnt.auttech.model.entities.OrdemServico;
 import org.gsnt.auttech.model.entities.StatusAtendimento;
+import org.gsnt.auttech.model.entities.Veiculo;
 import org.gsnt.auttech.util.Circulos;
-import org.gsnt.auttech.util.Moka;
 
 import java.sql.Connection;
-import java.sql.Time;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class OrdemServicoService implements OrdemServicoDao {
+public class StatusAtendimentoService implements StatusAtendimentoDao {
 
     private Connection conn;
 
-    public OrdemServicoService(){}
+   // public StatusAtendimentoService(){}
 
-    public OrdemServicoService(Connection conn){
+    public StatusAtendimentoService(Connection conn){
         this.conn = conn;
     }
 
-    /*
+    private ModeloVeiculoDao modelo = DaoFactory.createModeloVeiculoDao();
+    private VeiculoDao veic = DaoFactory.createVeiculoDao();
+
     @Override
     public List<StatusAtendimento> findTelaPrincipal() {
+
         //Tela Inicial de Ordem de Serviço a serem iniciados
         /*
-        * 1 - Serviço sem direcionamento - Vermelho - cd5c5c
-        * 2 - Direcionamento sem confirmação - Vermelho - Amarelo - cd5c5c/f9d428
-        * 3 - OS com orçamento pendente - Amarelo - f9d428
-        * 4 - Orçamento aguardando liberação - verde - 70c3a7
-        * 5 - Orçamento lib. aguardando peças - verde - verde escuro - 70c3a7/3f676d
-        * 6 - Orçamento lib. aguardando início - verde escuro - 3f676d
-        */
+         * 1 - Serviço sem direcionamento - Vermelho - cd5c5c
+         * 2 - Direcionamento sem confirmação - Vermelho - Amarelo - cd5c5c/f9d428
+         * 3 - OS com orçamento pendente - Amarelo - f9d428
+         * 4 - Orçamento aguardando liberação - verde - 70c3a7
+         * 5 - Orçamento lib. aguardando peças - verde - verde escuro - 70c3a7/3f676d
+         * 6 - Orçamento lib. aguardando início - verde escuro - 3f676d
+         */
+        List<StatusAtendimento> a = new ArrayList<>();
+        List<StatusAtendimento> correta = new ArrayList<>();
+        StatusAtendimento b;
+        Veiculo veiculo;
 
-        //Moka mok = new Moka();
-        //List<OrdemServico> a = mok.dadosTelaSerIniciados();
-        //List<OrdemServico> correta = new ArrayList<>();
+        PreparedStatement st = null;
+        ResultSet rs = null;
 
-        //
+        try {
 
-      /*
-        for(Integer b = 0; b<a.size(); b++){
+            st = conn.prepareStatement("SELECT codos, codveiculo, eletrico, injecao, caixa, freiodt," +
+                    " freiotr, motor, revisao, suspensaodt, suspensaotr, pneus, trocaoleo, " +
+                    "FROM tabstatusatendimento where tipo = 2"
+            );
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+
+                veiculo = veic.verPlacaModelo(rs.getInt("codveiculo"));
+
+                a.add(new StatusAtendimento(rs.getInt("codos"), veiculo.getPlaca(),
+                      modelo.findModeloById(veiculo.getModelo()), rs.getByte("eletrico"),
+                      rs.getByte("injecao"), rs.getByte("caixa"),rs.getByte("freiodt"),
+                      rs.getByte("freiotr"), rs.getByte("motor"), rs.getByte("revisao"),
+                      rs.getByte("suspensaodt"), rs.getByte("suspensaotr"),
+                      rs.getByte("pneus"),rs.getByte("trocaoleo")));
+            }
+        }
+        catch (SQLException e){
+            throw new DbException(e.getMessage()+" findTelaPrincipal - statusatendimentoservice");
+        }
+        finally {
+            DB2.closeStatement(st);
+            DB2.closeResultSet(rs);
+        }
+
+        for(Integer z = 0; z<a.size(); z++){
 
             Circulos sEletrico = null;
-            switch (a.get(b).getsEletrico()) {
+            switch (a.get(z).getEletrico()) {
                 case 0:
                     break;
                 case 1:
@@ -70,7 +106,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             }
 
             Circulos sInjecao = null;
-            switch (a.get(b).getsInjecao()) {
+            switch (a.get(z).getInjecao()) {
                 case 0:
                     break;
                 case 1:
@@ -94,7 +130,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             }
 
             Circulos sCambio = null;
-            switch (a.get(b).getsCambio()) {
+            switch (a.get(z).getCaixa()) {
                 case 0:
                     break;
                 case 1:
@@ -118,7 +154,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             }
 
             Circulos sFreioDt = null;
-            switch (a.get(b).getsFreioDt()) {
+            switch (a.get(z).getFreioDt()) {
                 case 0:
                     break;
                 case 1:
@@ -142,7 +178,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             }
 
             Circulos sFreioTr = null;
-            switch (a.get(b).getsFreioTr()) {
+            switch (a.get(z).getFreioTr()) {
                 case 0:
                     break;
                 case 1:
@@ -166,7 +202,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             }
 
             Circulos sMotor = null;
-            switch (a.get(b).getsMotor()) {
+            switch (a.get(z).getMotor()) {
                 case 0:
                     break;
                 case 1:
@@ -190,7 +226,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             }
 
             Circulos sSuspDt = null;
-            switch (a.get(b).getsSuspDt()) {
+            switch (a.get(z).getSuspensaoDt()) {
                 case 0:
                     break;
                 case 1:
@@ -214,7 +250,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             }
 
             Circulos sSuspTr = null;
-            switch (a.get(b).getsSuspTr()) {
+            switch (a.get(z).getSuspensaoTr()) {
                 case 0:
                     break;
                 case 1:
@@ -238,7 +274,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             }
 
             Circulos sPneus = null;
-            switch (a.get(b).getsPneus()) {
+            switch (a.get(z).getPneus()) {
                 case 0:
                     break;
                 case 1:
@@ -262,7 +298,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             }
 
             Circulos sTrOleo = null;
-            switch (a.get(b).getsTrOleo()) {
+            switch (a.get(z).getTrocaOleo()) {
                 case 0:
                     break;
                 case 1:
@@ -286,7 +322,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             }
 
             Circulos sRevisao = null;
-            switch (a.get(b).getsRevisao()) {
+            switch (a.get(z).getRevisao()) {
                 case 0:
                     break;
                 case 1:
@@ -309,252 +345,12 @@ public class OrdemServicoService implements OrdemServicoDao {
                     break;
             }
 
-            correta.add(new OrdemServico(a.get(b).getNumero(), a.get(b).getPlaca(), a.get(b).getModelo(),
+            correta.add(new StatusAtendimento(a.get(z).getCod(), a.get(z).getPlaca(), a.get(z).getVeiculo(),
                     sEletrico, sInjecao, sCambio, sFreioDt, sFreioTr, sMotor, sRevisao,sSuspDt,
                     sSuspTr, sPneus,sTrOleo));
         }
 
         return correta;
-    }*/
-
-
-    ///////////////// refatorar tudo aqui
-
-    //excluir este metodo
-    @Override
-    public List<OrdemServico> findTelaPrincipal() {
-        return List.of();
-    }
-
-    @Override
-    public List<OrdemServico> findTelaPrincipalEmServiço() {
-        return List.of();
-    }
-
-    //
-/*
-    @Override
-    public List<OrdemServico> findTelaPrincipalEmServiço() {
-        //Tela Inicial de Ordem de Serviço em produção
-
-        Moka mok = new Moka();
-        List<OrdemServico> a = mok.dadosTelaOsProducao();
-        List<OrdemServico> correta = new ArrayList<>();
-
-        for (Integer b = 0; b < a.size(); b++) {
-
-            Circulos sEletrico = null;
-            switch (a.get(b).getsEletrico()) {
-                case 0:
-                    break;
-                case 1:
-                    sEletrico = new Circulos("#cd5c5c");
-                    break;
-                case 2:
-                    sEletrico = new Circulos("#f9d428");
-                    break;
-                case 3:
-                    sEletrico = new Circulos("#70c3a7");
-                    break;
-            }
-
-            Circulos sInjecao = null;
-            switch (a.get(b).getsInjecao()) {
-                case 0:
-                    break;
-                case 1:
-                    sInjecao = new Circulos("#cd5c5c");
-                    break;
-                case 2:
-                    sInjecao = new Circulos("#f9d428");
-                    break;
-                case 3:
-                    sInjecao = new Circulos("#70c3a7");
-                    break;
-            }
-
-            Circulos sCambio = null;
-            if (a.get(b).getsCambio() != 0) {
-                switch (a.get(b).getsCambio()) {
-                    case 0:
-                        break;
-                    case 1:
-                        sCambio = new Circulos("#cd5c5c");
-                        break;
-                    case 2:
-                        sCambio = new Circulos("#f9d428");
-                        break;
-                    case 3:
-                        sCambio = new Circulos("#70c3a7");
-                        break;
-                }
-            }
-
-            Integer freio = 0;
-            Integer suspensao = 0;
-            Integer trocaoleo = 0;
-            Integer result = 0;
-
-            if (a.get(b).getsFreioDt() != 0 || a.get(b).getsFreioTr() != 0){
-
-                if(a.get(b).getsFreioDt() == 0){
-                    freio = a.get(b).getsFreioTr();
-                }else if(a.get(b).getsFreioTr() == 0){
-                    freio = a.get(b).getsFreioDt();
-                }else if ((a.get(b).getsFreioDt() >= a.get(b).getsFreioTr()) && a.get(b).getsFreioTr()!=0){
-                    freio = a.get(b).getsFreioTr();
-                }else if ((a.get(b).getsFreioDt() <= a.get(b).getsFreioTr()) && a.get(b).getsFreioDt()!=0){
-                    freio = a.get(b).getsFreioDt();
-                }
-
-            }
-
-            if (a.get(b).getsSuspDt() != 0 || a.get(b).getsSuspTr() != 0){
-
-                if(a.get(b).getsSuspDt() == 0){
-                    suspensao = a.get(b).getsSuspTr();
-                }else if(a.get(b).getsSuspTr() == 0){
-                    suspensao = a.get(b).getsSuspDt();
-                }else if((a.get(b).getsSuspDt() >= a.get(b).getsSuspTr()) && a.get(b).getsSuspTr() != 0){
-                    suspensao = a.get(b).getsSuspTr();
-                }else if((a.get(b).getsSuspDt() <= a.get(b).getsSuspTr()) && a.get(b).getsSuspDt() != 0){
-                    suspensao = a.get(b).getsSuspDt();
-                }
-
-            }
-
-            if (a.get(b).getsTrOleo() != 0) {
-                trocaoleo = a.get(b).getsTrOleo();
-            }
-
-            if(freio != 0){
-                result = freio;
-            }
-            if ((suspensao != 0) && (suspensao > result && result == 0)){
-                result = suspensao;
-            }
-            if ((trocaoleo != 0) && (trocaoleo > result && result == 0)){
-                result = trocaoleo;
-            }
-
-            Circulos sMecanico = null;
-            switch (result) {
-                case 0:
-                    break;
-                case 1:
-                    sMecanico = new Circulos("#cd5c5c");
-                    break;
-                case 2:
-                    sMecanico = new Circulos("#f9d428");
-                    break;
-                case 3:
-                    sMecanico = new Circulos("#70c3a7");
-                    break;
-            }
-
-            Circulos sMotor = null;
-            switch (a.get(b).getsMotor()) {
-                case 0:
-                    break;
-                case 1:
-                    sMotor = new Circulos("#cd5c5c");
-                    break;
-                case 2:
-                    sMotor = new Circulos("#f9d428");
-                    break;
-                case 3:
-                    sMotor = new Circulos("#70c3a7");
-                    break;
-            }
-
-            Circulos sPneus = null;
-            switch (a.get(b).getsPneus()) {
-                case 0:
-                    break;
-                case 1:
-                    sPneus = new Circulos("#cd5c5c");
-                    break;
-                case 2:
-                    sPneus = new Circulos("#f9d428");
-                    break;
-                case 3:
-                    sPneus = new Circulos("#70c3a7");
-                    break;
-            }
-
-            Circulos sLavacao = null;
-            switch (a.get(b).getLavacao()) {
-                case 0:
-                    break;
-                case 1:
-                    sLavacao = new Circulos("#cd5c5c");
-                    break;
-                case 2:
-                    sLavacao = new Circulos("#f9d428");
-                    break;
-                case 3:
-                    sLavacao = new Circulos("#70c3a7");
-                    break;
-            }
-
-/*
-        Integer numero, String placa, String modelo, Integer sEletrico3, Integer sInjecao3,
-        Integer sCamAut3, Integer sCamMec3, Integer sFreioDt3, Integer sFreioTr3, Integer sMotor3,
-        Integer sSuspDt3, Integer sSuspTr3, Integer sPneus3, Integer sTrOleo3, Integer lavacao
-
-        * Integer numero, String placa, String modelo, Circulos sEletrico2, Circulos sInjecao2,
-          Circulos sMotor2, Circulos sMecanico, Circulos sCamMec2, Circulos sPneus2, Circulos sLavacao
-            0 = sem serviço
-            1 = não iniciado #cd5c5c
-            2 = em serviço   #f9d428
-            3 = pronto       #70c3a7
-        */
-/*
-            correta.add(new OrdemServico(a.get(b).getNumero(), a.get(b).getPlaca(), a.get(b).getModelo(),
-                    sEletrico, sInjecao, sMotor, sMecanico, sCambio, sPneus, sLavacao));
-        }
-
-        return correta;
-    }
-*/
-    @Override
-    public List<OrdemServico> findLista() {
-        return List.of();
-    }
-
-    @Override
-    public Integer saveOrdemServico(OrdemServico item) {
-        return null;
-    }
-
-    @Override
-    public Boolean excluiOrdemServico(OrdemServico Item) {
-        return null;
-    }
-
-    @Override
-    public Boolean saveAlterOrdemServico(OrdemServico Item) {
-        return null;
-    }
-
-    @Override
-    public void encerraOs(Date data, Time hora) {
-
-    }
-
-    @Override
-    public void financeiroOs(int parcelas) {
-
-    }
-
-    @Override
-    public void baixaParcelasOs() {
-
-    }
-
-    @Override
-    public void encaminharOs() {
-
     }
 
 }

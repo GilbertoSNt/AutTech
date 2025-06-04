@@ -100,7 +100,7 @@
                         </AnchorPane>
                   </content>
                 </TitledPane>
-                <TitledPane animated="false" styleClass="titledpane" stylesheets="@css/panel.css" text="Profissionais Pneu / linhamento / Balanceamento">
+                <TitledPane animated="false" styleClass="titledpane" stylesheets="@css/panel.css" text="Profissionais Pneu / linhamento / Balanceamento / Troca óleo ">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -113,6 +113,8 @@
                               <CheckBox fx:id="cbTudoPneu" layoutX="271.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" textOverrun="CENTER_WORD_ELLIPSIS" />
                               <Label layoutX="296.0" layoutY="16.0" text="Passar todo o serviço mecânico" />
                               <Label layoutX="297.0" layoutY="35.0" text="para um unico profissional" />
+                              <Label layoutX="10.0" layoutY="175.0" text="Troca de óleo" />
+                              <ComboBox fx:id="cbxTrocaOleo" layoutX="11.0" layoutY="199.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" stylesheets="@css/combobox.css" />
                            </children>
                         </AnchorPane>
                   </content>

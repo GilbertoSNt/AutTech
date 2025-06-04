@@ -36,7 +36,7 @@ public class FuncionarioService implements FuncionarioDao {
 					"genero, status, tipo, telefone, telefoneconjuge, mae, pai, conjuge, qtdfilhos,dataadm, " +
 					"datadesl, obs, cartprofissional, dataemissao,cargo, funcao, comissaopecas, comissaoservicos," +
 					"salario, comissao, obsprof, caixamec, caixaaut, eletrica, freio, injdiesel, injflex, motordiesel," +
-					"motorflex, pneus, suspensao, socorro, veiceletrico, motleva, motguincho)VALUES (" +
+					"motorflex, pneus, suspensao, socorro, veiceletrico, motleva, motguincho, trocaoleo)VALUES (" +
 					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?," +
 					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
@@ -80,6 +80,7 @@ public class FuncionarioService implements FuncionarioDao {
 				st.setBoolean(37, f.getVeicEletricos());
 				st.setBoolean(38, f.getMotLeva());
 				st.setBoolean(39, f.getMotguincho());
+				st.setBoolean(40, f.getTrocaOleo());
 
 				int resultado = 0;
 				int rowsaffected = st.executeUpdate();
@@ -114,12 +115,13 @@ public class FuncionarioService implements FuncionarioDao {
 
             st = conn.prepareStatement(
                     "SELECT nome, caixamec, caixaaut, eletrica, freio, injdiesel, injflex, motordiesel," +
-							" motorflex, pneus, suspensao, socorro, veiceletrico, motleva,motguincho " +
+							" motorflex, pneus, suspensao, socorro, veiceletrico, motleva,motguincho, trocaoleo " +
 							"FROM tabfuncionario WHERE datadesl=''");
 
             rs = st.executeQuery();
 
 			while (rs.next()) {
+
 				retorno = new Funcionario();
 				retorno.setNome(rs.getString("nome"));
 				retorno.setCaixaMec(rs.getBoolean("caixamec"));
@@ -136,6 +138,7 @@ public class FuncionarioService implements FuncionarioDao {
 				retorno.setVeicEletricos(rs.getBoolean("veiceletrico"));
 				retorno.setMotLeva(rs.getBoolean("motleva"));
 				retorno.setMotguincho(rs.getBoolean("motguincho"));
+				retorno.setTrocaOleo(rs.getBoolean("trocaoleo"));
 
 				retornoFunc.add(retorno);
 			}
@@ -169,8 +172,8 @@ public class FuncionarioService implements FuncionarioDao {
 							"dataadm=?, datadesl=?, obs=?, cartprofissional=?, dataamissao=?, cargo=?, funcao=?, " +
 							"comissaopecas=?, comissaoservicos=?, salario=?, comissao=?, obsprof=?, caixamec=?, " +
 							"caixaaut=?, eletrica=?, freio=?, injdiesel=?, injflex=?, motordiesel=?, motorflex=?, " +
-							"pneus=?, suspensao=?, socorro=?, veiceletrico=?, motleva=?, motguincho=?" +
-							"WHERE cod = ?");
+							"pneus=?, suspensao=?, socorro=?, veiceletrico=?, motleva=?, motguincho=?," +
+							" trocaoleo=? WHERE cod = ?");
 
 			st.setString(1, f.getCpf());
 			st.setString(2, f.getRg());
@@ -211,7 +214,8 @@ public class FuncionarioService implements FuncionarioDao {
 			st.setBoolean(37, f.getVeicEletricos());
 			st.setBoolean(38, f.getMotLeva());
 			st.setBoolean(39, f.getMotguincho());
-			st.setInt(40,cod);
+			st.setBoolean(40, f.getTrocaOleo());
+			st.setInt(41,cod);
 			st.executeUpdate();
 
 		}catch(SQLException e){
