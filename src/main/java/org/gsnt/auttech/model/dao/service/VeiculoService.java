@@ -232,4 +232,28 @@ public class VeiculoService implements VeiculoDao {
         return veiculo;
 
     }
+
+    @Override
+    public Integer findCodById(String placa) {
+
+        Integer cod;
+        ResultSet rs = null;
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement("SELECT cod FROM tabveiculo WHERE placa = ?");
+            st.setString(1, placa);
+            rs = st.executeQuery();
+            rs.next();
+
+            cod = rs.getInt("cod");
+        }
+        catch (SQLException e){
+            throw new DbException(e.getMessage()+" ver cod por placa - VeiculoService");
+        }
+        finally {
+            DB2.closeStatement(st);
+            DB2.closeResultSet(rs);
+        }
+        return cod;
+    }
 }

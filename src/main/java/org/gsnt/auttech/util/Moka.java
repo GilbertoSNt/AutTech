@@ -34,12 +34,6 @@ public class Moka {
 
         List<Orcamento> list = new ArrayList<>();
 
-        list.add(new Orcamento(1,"AAA0A00","Veículo1",1,1,0,1,1,1,1,1));
-        list.add(new Orcamento(2,"BBB0B00","Veículo2",3,6,3,0,1,0,2,1));
-        list.add(new Orcamento(3,"CCC0C00","Veículo3",2,4,0,1,2,0,1,2));
-        list.add(new Orcamento(4,"DDD0D00","Veículo4",2,4,1,1,1,0,0,1));
-        list.add(new Orcamento(5,"EEE0E00","Veículo5",2,4,2,0,2,0,0,0));
-        list.add(new Orcamento(6,"FFF0F00","Veículo6",1,6,1,1,1,1,2,2));
 
         return list;
     }

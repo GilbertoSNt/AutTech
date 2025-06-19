@@ -185,28 +185,32 @@ public class TelaPrincipalController implements Initializable {
     protected Button btEnvioSocorro;
 
     @FXML
-    protected void onBtConfirmaEnvioSocorro(){
+    protected void onBtConfirmaEnvioSocorro() {
 
-        Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
-        Agenda status = agendaService.verStatusAssistencias(tt.getPlaca());
+        if(tvAgenda.getSelectionModel().getSelectedItem() != null) {
+            Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
+            Agenda status = agendaService.verStatusAssistencias(tt.getPlaca());
 
-        if(tt.getGuincho() != null || tt.getSocMecanico() != null || tt.getSocEletrico() != null){
-            if(!status.getAssEnvioGuincho()) {
-                Optional<ButtonType> result = Alerts.showConfirmation("Confirmação do envio de guincho / socorro do veículo", "Confirma o envio do guincho / socorro para o veículo " + tt.getPlaca());
-                if (result.get() == ButtonType.OK) {
-                    agendaService.saveEnvioGuincho(tt);
+
+            if (tt.getGuincho() != null || tt.getSocMecanico() != null || tt.getSocEletrico() != null) {
+                if (!status.getAssEnvioGuincho()) {
+                    Optional<ButtonType> result = Alerts.showConfirmation("Confirmação do envio de guincho / socorro do veículo", "Confirma o envio do guincho / socorro para o veículo " + tt.getPlaca());
+                    if (result.get() == ButtonType.OK) {
+                        agendaService.saveEnvioGuincho(tt);
+                    }
+                } else if (status.getAssEnvioGuincho()) {
+                    Optional<ButtonType> result = Alerts.showConfirmation("Confirmação do envio de guincho / socorro do veículo", "Confirma o envio do guincho / socorro para o veículo " + tt.getPlaca());
+                    if (result.get() == ButtonType.OK) {
+                        agendaService.reverteEnvioGuincho(tt);
+                    }
                 }
-            }else if(status.getAssEnvioGuincho()){
-                Optional<ButtonType> result = Alerts.showConfirmation("Confirmação do envio de guincho / socorro do veículo", "Confirma o envio do guincho / socorro para o veículo " + tt.getPlaca());
-                if (result.get() == ButtonType.OK) {
-                    agendaService.reverteEnvioGuincho(tt);
-                }
+            } else {
+                Alerts.showAlert("Atenção", "Agendamento não tem registro da necessidade do guinho / socorro para o veículo", null, Alert.AlertType.ERROR);
             }
+            updateTableView();
+        }else{
+            Alerts.showAlert("Confirmação de envio do socorro", "Você deve selecionar uma linha na tabela agenda", null, Alert.AlertType.INFORMATION);
         }
-        else{
-            Alerts.showAlert("Atenção","Agendamento não tem registro da necessidade do guinho / socorro para o veículo",null, Alert.AlertType.ERROR);
-        }
-        updateTableView();
     }
 
     @FXML
@@ -214,27 +218,29 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     protected void onBtConfirmaEnvioBusca(){
-
-        Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
-        Agenda status = agendaService.verStatusAssistencias(tt.getPlaca());
-        if(tt.getBuscar() != null) {
-            if (!status.getAssEnvioDeslocamento()) {
-                Optional<ButtonType> result = Alerts.showConfirmation("Confirmação da Mudança do status do recolhimento do veículo", "Confirma o novo status da equipe de recolhimento para o veículo " + tt.getPlaca());
-                if (result.get() == ButtonType.OK) {
-                    agendaService.saveEnvioRecolhimento(tt);
-                }
-            } else if(status.getAssEnvioDeslocamento()) {
-                Optional<ButtonType> result = Alerts.showConfirmation("Confirmação da Mudança do status do recolhimento do veículo", "Confirma o novo status da equipe de recolhimento para o veículo "+tt.getPlaca());
-                if(result.get() == ButtonType.OK) {
-                    agendaService.reverterEnvioRecolhimento(tt);
+        if(tvAgenda.getSelectionModel().getSelectedItem() != null) {
+            Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
+            Agenda status = agendaService.verStatusAssistencias(tt.getPlaca());
+            if(tt.getBuscar() != null) {
+                if (!status.getAssEnvioDeslocamento()) {
+                    Optional<ButtonType> result = Alerts.showConfirmation("Confirmação da Mudança do status do recolhimento do veículo", "Confirma o novo status da equipe de recolhimento para o veículo " + tt.getPlaca());
+                    if (result.get() == ButtonType.OK) {
+                        agendaService.saveEnvioRecolhimento(tt);
+                    }
+                } else if(status.getAssEnvioDeslocamento()) {
+                    Optional<ButtonType> result = Alerts.showConfirmation("Confirmação da Mudança do status do recolhimento do veículo", "Confirma o novo status da equipe de recolhimento para o veículo "+tt.getPlaca());
+                    if(result.get() == ButtonType.OK) {
+                        agendaService.reverterEnvioRecolhimento(tt);
+                    }
                 }
             }
-        }
-        else{
-            Alerts.showAlert("Atenção","Agendamento não tem registro da necessidade de buscar o veículo",null, Alert.AlertType.ERROR);
-        }
-        updateTableView();
-
+            else{
+                Alerts.showAlert("Atenção","Agendamento não tem registro da necessidade de buscar o veículo",null, Alert.AlertType.ERROR);
+            }
+            updateTableView();
+            }else{
+                Alerts.showAlert("Confirmação de envio do deslocamento", "Você deve selecionar uma linha na tabela agenda", null, Alert.AlertType.INFORMATION);
+           }
     }
 
     @FXML
@@ -402,7 +408,7 @@ public class TelaPrincipalController implements Initializable {
     protected TableColumn<Orcamento, Circulos> tcElet3;
 
     @FXML
-    protected TableColumn<Orcamento, Circulos> tcFreio3;
+    protected TableColumn<Orcamento, Circulos> tcMotor3;
 
     @FXML
     protected TableColumn<Orcamento, Circulos> tcInjecao3;
@@ -519,7 +525,9 @@ public class TelaPrincipalController implements Initializable {
     protected Button btIconified;
 
     @FXML
-    protected void btIconifiedButtonClick() {
+    private void onbtIconified(){
+        Stage stage = (Stage)btIconified.getScene().getWindow();
+        stage.setIconified(true);
     }
 
     @FXML
@@ -695,7 +703,7 @@ public class TelaPrincipalController implements Initializable {
         tcVeiculo3.setCellValueFactory(new PropertyValueFactory<Orcamento,String>("modelo"));
         tcCambio3.setCellValueFactory(new PropertyValueFactory<Orcamento,Circulos>("orcCambio2"));
         tcElet3.setCellValueFactory(new PropertyValueFactory<Orcamento,Circulos>("orcEletrico2"));
-        tcFreio3.setCellValueFactory(new PropertyValueFactory<Orcamento,Circulos>("orcFreio2"));
+        tcMotor3.setCellValueFactory(new PropertyValueFactory<Orcamento,Circulos>("orcMotor2"));
         tcInjecao3.setCellValueFactory(new PropertyValueFactory<Orcamento,Circulos>("orcInjecao2"));
         tcMecanica3.setCellValueFactory(new PropertyValueFactory<Orcamento,Circulos>("orcMecanico2"));
         tcPneus3.setCellValueFactory(new PropertyValueFactory<Orcamento,Circulos>("orcPneu2"));

@@ -22,7 +22,7 @@ public interface OrdemServicoDao {
 
     Boolean saveAlterOrdemServico(OrdemServico Item);
 
-
+    Integer criaOrdemServico(OrdemServico os);
     void encerraOs(Date data, Time hora);
     void financeiroOs(int parcelas);
     void baixaParcelasOs();

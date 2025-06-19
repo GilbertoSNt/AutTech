@@ -8,129 +8,134 @@ import org.gsnt.auttech.model.dao.service.*;
 
 public class DaoFactory {
 
-    public static MarcaVeiculoDao createMarcaVeiculoDao(){
+    public static MarcaVeiculoDao createMarcaVeiculoDao() {
         try {
             return new MarcaVeiculoService(DB.getConnection());
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
         }
 
     }
 
-    public static ModeloVeiculoDao createModeloVeiculoDao(){
+    public static ModeloVeiculoDao createModeloVeiculoDao() {
 
         try {
             return new ModeloVeiculoService(DB.getConnection());
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
         }
 
     }
 
-    public static ClienteDao createClienteDao(){
+    public static ClienteDao createClienteDao() {
 
         try {
             return new ClienteService(DB2.getConnection());
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
         }
 
     }
 
-    public static AgendaDao createAgendaDao(){
+    public static AgendaDao createAgendaDao() {
         try {
             return new AgendaService(DB2.getConnection());
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
 
-    public static OrdemServicoDao createOrdemServicoDao(){
+    public static OrdemServicoDao createOrdemServicoDao() {
         try {
             return new OrdemServicoService(DB2.getConnection());
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
 
-    public static OrcamentoDao createOrcamentoDao(){
+    public static OrcamentoDao createOrcamentoDao() {
         try {
             return new OrcamentoService(DB2.getConnection());
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
 
-    public static VeiculoDao createVeiculoDao(){
+    public static VeiculoDao createVeiculoDao() {
         try {
-            return new VeiculoService(DB2.getConnection()) {};
+            return new VeiculoService(DB2.getConnection()) {
+            };
 
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
 
-    public static VeiculoDao createVeiculoDaoGeral(){
+    public static VeiculoDao createVeiculoDaoGeral() {
         try {
-            return new VeiculoService(DB.getConnection()) {};
+            return new VeiculoService(DB.getConnection()) {
+            };
 
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
 
-    public static EnderecoDao createEnderecoDao(){
+    public static EnderecoDao createEnderecoDao() {
         try {
-            return new EnderecoService(DB2.getConnection()) {};
+            return new EnderecoService(DB2.getConnection()) {
+            };
 
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
 
-    public static FuncionarioDao createFuncionarioDao(){
+    public static FuncionarioDao createFuncionarioDao() {
         try {
-            return new FuncionarioService(DB2.getConnection()) {};
+            return new FuncionarioService(DB2.getConnection()) {
+            };
 
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
 
-    public static EmailDao createEmailDao(){
+    public static EmailDao createEmailDao() {
         try {
-            return new EmailService(DB2.getConnection()) {};
+            return new EmailService(DB2.getConnection()) {
+            };
 
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
 
-    public static StatusAtendimentoDao createStatusAtendimentoDao(){
+    public static StatusAtendimentoDao createStatusAtendimentoDao() {
         try {
-            return new StatusAtendimentoService(DB2.getConnection()) {};
+            return new StatusAtendimentoService(DB2.getConnection()) {
+            };
+
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static DirecionadosDao createDirecionadosDao(){
+        try {
+            return new DirecionadosService(DB2.getConnection()) {};
 
         }
         catch (RuntimeException e){
@@ -138,5 +143,4 @@ public class DaoFactory {
             return null;
         }
     }
-
 }

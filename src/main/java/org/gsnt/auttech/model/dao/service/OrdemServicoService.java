@@ -1,15 +1,12 @@
 package org.gsnt.auttech.model.dao.service;
 
-
+import org.gsnt.auttech.db.DB2;
+import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.OrdemServicoDao;
 import org.gsnt.auttech.model.entities.OrdemServico;
 import org.gsnt.auttech.model.entities.StatusAtendimento;
-import org.gsnt.auttech.util.Circulos;
-import org.gsnt.auttech.util.Moka;
 
-import java.sql.Connection;
-import java.sql.Time;
-import java.util.ArrayList;
+import java.sql.*;
 import java.util.Date;
 import java.util.List;
 
@@ -557,4 +554,46 @@ public class OrdemServicoService implements OrdemServicoDao {
 
     }
 
+    @Override
+    public Integer criaOrdemServico(OrdemServico os1) {
+
+        int resultado = 0;
+        StatusAtendimento sa = new StatusAtendimento();
+        OrdemServico os = os1;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try{
+            st = conn.prepareStatement("INSERT INTO tabos(codcliente, codveiculo," +
+                            "obsos, statusos, orcamento, dataabertura, horaabertura," +
+                            "asslevas) " +
+                            "VALUES ( ?, ?, ?, ?, ?, ?, ?,?);",
+                    Statement.RETURN_GENERATED_KEYS);
+
+            st.setInt(1,os.getCodCliente());
+            st.setInt(2,os.getCodVeiculo());
+            st.setString(3,os.getObsOs());
+            st.setInt(4, os.getStatusOs());
+            st.setBoolean(5,os.getNecOrcamento());
+            st.setString(6,os.getDataAbertura());
+            st.setString(7,os.getHoraAbertura());
+            st.setBoolean(8, os1.getAssLevarVeiculo());
+
+            int rowsaffected = st.executeUpdate();
+            if(rowsaffected > 0){
+                rs = st.getGeneratedKeys();
+                if(rs.next()){
+                    resultado = rs.getInt(1);
+                }
+            }
+
+            return resultado;
+
+        }catch(SQLException e){
+            throw new DbException(e.getMessage()+" insert funcionarios");
+        } finally {
+            DB2.closeResultSet(rs);
+            DB2.closeStatement(st);
+        }
+
+    }
 }

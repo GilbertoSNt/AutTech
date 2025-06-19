@@ -24,7 +24,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btIconified" layoutX="843.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="btn2" stylesheets="@css/button.css" text="_" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0">
+      <Button fx:id="btIconified" layoutX="843.0" layoutY="15.0" mnemonicParsing="false" onAction="#onbtIconified" prefHeight="25.0" prefWidth="25.0" styleClass="btn2" stylesheets="@css/button.css" text="_" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
@@ -236,17 +236,17 @@
                               <Button fx:id="btAbrirOS" layoutX="961.0" layoutY="8.0" mnemonicParsing="false" onAction="#onbtAbrirOS" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Abrir ordem de serviços" />
                               <Button fx:id="btCancOS" layoutX="961.0" layoutY="52.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancelar ordem de serviço" />
                               <Button fx:id="btDirTecnico" layoutX="961.0" layoutY="93.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Altera/Direciona OS aos técnico(s)" />
-                              <Circle fx:id="circleSem" fill="INDIANRED" layoutX="969.0" layoutY="179.0" radius="8.0" stroke="INDIANRED" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Circle fx:id="circleRevisao" fill="#f9d428" layoutX="969.0" layoutY="206.0" radius="8.0" stroke="INDIANRED" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Circle fx:id="circleSem" fill="#f50505" layoutX="969.0" layoutY="179.0" radius="8.0" stroke="#f50505" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Circle fx:id="circleRevisao" fill="#f9d428" layoutX="969.0" layoutY="206.0" radius="8.0" stroke="#f50505" strokeType="INSIDE" strokeWidth="3.0" />
                               <Label layoutX="983.0" layoutY="171.0" text="Serviço sem direcionamento" />
                               <Label layoutX="984.0" layoutY="198.0" text="Direcionamento sem confirmação" />
                               <Circle fx:id="circleParcial" fill="#f9d428" layoutX="969.0" layoutY="233.0" radius="8.0" stroke="#f9d428" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="985.0" layoutY="225.0" text="OS com orçamento pendente" />
-                              <Circle fx:id="circleDirecionado" fill="#70c3a7" layoutX="969.0" layoutY="259.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="985.0" layoutY="225.0" text="OS conf. com  orç. pendente" />
+                              <Circle fx:id="circleDirecionado" fill="#7c2d91" layoutX="969.0" layoutY="259.0" radius="8.0" stroke="#7c2d91" strokeType="INSIDE" strokeWidth="3.0" />
                               <Label layoutX="985.0" layoutY="251.0" text="Orçamento aguardando liberação" />
                               <Circle fx:id="circleDirecionado2" fill="#3f676d" layoutX="969.0" layoutY="311.0" radius="8.0" stroke="#3f676d" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="985.0" layoutY="303.0" text="Orçamento lib. aguardando início" />
-                              <Circle fx:id="circleDirecionado3" fill="#70c3a7" layoutX="969.0" layoutY="285.0" radius="8.0" stroke="#3f676d" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="985.0" layoutY="303.0" text="Orçamento lib. cliente aguard." />
+                              <Circle fx:id="circleDirecionado3" fill="#7c2d91" layoutX="969.0" layoutY="285.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
                               <Label layoutX="985.0" layoutY="277.0" text="Orçamento lib. aguardando peças" />
                               <Button fx:id="btOsSemOrc" layoutX="961.0" layoutY="134.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Direciona OS sem orçamento" />
                            </children>
@@ -266,7 +266,7 @@
                                              <columns>
                                                 <TableColumn fx:id="tcCambio3" prefWidth="75.0" style="-fx-alignment: center;" text="Câmbio" />
                                                 <TableColumn fx:id="tcElet3" prefWidth="75.0" style="-fx-alignment: center;" text="Elétrico" />
-                                                <TableColumn fx:id="tcFreio3" prefWidth="75.0" style="-fx-alignment: center;" text="Freio" />
+                                                <TableColumn fx:id="tcMotor3" prefWidth="75.0" style="-fx-alignment: center;" text="Motor" />
                                                 <TableColumn fx:id="tcInjecao3" prefWidth="75.0" style="-fx-alignment: center;" text="Injeção" />
                                                 <TableColumn fx:id="tcMecanica3" prefWidth="75.0" style="-fx-alignment: center;" text="Mecânica" />
                                                 <TableColumn fx:id="tcPneus3" prefWidth="75.0" style="-fx-alignment: center;" text="Pneus" />
@@ -281,12 +281,14 @@
                               <Button fx:id="btAltOrc" layoutX="961.0" layoutY="9.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Alterar orçamento" />
                               <Button fx:id="btAutrzOrc" layoutX="961.0" layoutY="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Autorizar orçamento" />
                               <Button fx:id="btCnclOrc" layoutX="961.0" layoutY="92.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancelar serviço" />
-                              <Circle fx:id="circleSem1" fill="#f9d428" layoutX="969.0" layoutY="256.0" radius="8.0" stroke="#f9d428" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Circle fx:id="circleRevisao1" fill="#f9d428" layoutX="969.0" layoutY="284.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="983.0" layoutY="249.0" text="Aguardando profissional" />
-                              <Label layoutX="983.0" layoutY="276.0" text="Em preparação" />
+                              <Circle fx:id="circleSem1" fill="#f9d428" layoutX="969.0" layoutY="230.0" radius="8.0" stroke="#f9d428" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Circle fx:id="circleRevisao1" fill="#f9d428" layoutX="969.0" layoutY="258.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="983.0" layoutY="223.0" text="Aguardando profissional" />
+                              <Label layoutX="983.0" layoutY="250.0" text="Em preparação" />
                               <Circle fx:id="circleParcial1" fill="#70c3a7" layoutX="969.0" layoutY="311.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="985.0" layoutY="303.0" text="Liberado para o cliente" />
+                              <Label layoutX="985.0" layoutY="303.0" text="Liberado pelo cliente não iniciado" />
+                              <Circle fx:id="circleRevisao12" fill="#7c2d91" layoutX="969.0" layoutY="285.0" radius="8.0" stroke="#7c2d91" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="985.0" layoutY="277.0" text="Aguardando liberação cliente" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -319,12 +321,14 @@
                               <Button fx:id="btFnlzServ" layoutX="961.0" layoutY="97.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Finalizar todos os serviço" />
                               <Button fx:id="btCncOS" layoutX="961.0" layoutY="54.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancela Ordem de Serviço" />
                               <Button fx:id="btAlteraOS" layoutX="961.0" layoutY="11.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Altera Ordem de Serviço" />
-                              <Circle fx:id="circleSem12" fill="#f9d428" layoutX="970.0" layoutY="284.0" radius="8.0" stroke="#f9d428" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Circle fx:id="circleSem12" fill="#70c3a7" layoutX="970.0" layoutY="284.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
                               <Label layoutX="987.0" layoutY="277.0" text="Em produção" />
-                              <Circle fx:id="circleDirecionado12" fill="#70c3a7" layoutX="970.0" layoutY="312.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Circle fx:id="circleDirecionado12" fill="#3f676d" layoutX="970.0" layoutY="312.0" radius="8.0" stroke="#3f676d" strokeType="INSIDE" strokeWidth="3.0" />
                               <Label layoutX="988.0" layoutY="304.0" text="Serviço pronto" />
-                              <Circle fx:id="circleDirecionado111" fill="INDIANRED" layoutX="971.0" layoutY="258.0" radius="8.0" stroke="INDIANRED" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Circle fx:id="circleDirecionado111" fill="#54d6f0" layoutX="971.0" layoutY="258.0" radius="8.0" stroke="#54d6f0" strokeType="INSIDE" strokeWidth="3.0" />
                               <Label layoutX="988.0" layoutY="250.0" text="Não iniciado" />
+                              <Circle fx:id="circleDirecionado1111" fill="#f50505" layoutX="971.0" layoutY="232.0" radius="8.0" stroke="#f50505" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="988.0" layoutY="224.0" text="Tudo disp. veículo com cliente" />
                            </children>
                         </AnchorPane>
                      </content>

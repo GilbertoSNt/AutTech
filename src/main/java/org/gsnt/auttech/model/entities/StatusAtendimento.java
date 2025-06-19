@@ -5,49 +5,58 @@ import org.gsnt.auttech.util.Circulos;
 public class StatusAtendimento {
 
     /*
-     * Tipo
-     * 1 - orçamento
-     * 2 - serviço
      *
-     * Status da ordem de serviço
+     * Status geral da ordem de serviço
+     *
+     *  0 - não solicitado
      * 1 - serviço não iniciado
      * 2 - Serviço já iniciado análise
      * 3 - serviço em orçamento
      * 4 - serviço liberado
      * 5 - Cancelada
      * 6 - Fechada
-     * 7 - Paga
-     * 8 - Pendente Pagamento
+     * 7 - Veículo pronto
+     * 8 - Cliente avisado
      * 9 - Faturada
+     * 10 - Paga
+     * 11 - Pendente Pagamento
      *
      * Status do atendimento
+     *
      * Tela serviços a serem iniciados
      *
-     * 1 - Serviço sem direcionamento
-     * 2 - Direcionamento sem confirmação
-     * 3 - OS com orçamento pendente
-     * 4 - Orçamento aguardando liberação
-     * 5 - Orçamento liberado aguardandor peças
-     * 6 - Orçamento liberado aguardando o inicio do serviço
+     * 0 - não solicitado (nulo)
+     * 1 - Serviço sem direcionamento -  Vermelho - f50505
+     * 2 - Direcionamento sem confirmação - Amarelo - f9d428 / Vermelho - f50505
+     * 3 - veículo sendo analisado ou com orçamento pendente - Amarelo - f9d428
+     * 4 - Orçamento aguardando liberação  - lilas - 7c2d91
+     * 5 - Orçamento liberado aguardando peças - verde - 70c3a7 / lilas - 7c2d91
+     * 6 - veículo com cliente aguardando pecas  - verde escuro - 3f676d
+     *
      *
      * Tela serviços iniciados
-     * 7 - Não iniciado
-     * 8 - Em produção
-     * 9 - Servciço pronto sem aviso ao cliente
+     *
+     * 7 - Orçamento liberado peças disponíveis aguardando retorno veículo - Vermelho - f50505
+     * 8 - Não iniciado - veículo disponível  - Azul claro - 54d6f0
+     * 9 - Em produção - verde - 70c3a7
+     * 10 - Serviço pronto sem aviso ao cliente   - verde escuro - 3f676d
      *
      * Veículos em orçamento
-     * 10 - Aguardando profissional
-     * 11 - Em preparação
-     * 12 - Liberado para o cliente
+     * 11 - Aguardando profissional - Amarelo - f9d428
+     * 12 - Em preparação - Amarelo - f9d428 / verde - 70c3a7
+     * 13 - Aguardando liberação - lilas - 7c2d91
+     * 14 - Liberado para o cliente - verde - 70c3a7
      *
-     * Status geral do atendimento
-     * 1 - Aberta
-     * 2 - Cancelada
-     * 3 - Fechada
-     * 4 - Paga
-     * 5 - Pendente Pagamento
-     * 6 - Faturada
-     * */
+     *      >>>>>>Verificar coluna status cliente<<<<<<<
+     *
+     * Status orçamento cliente
+     * 0 - orçamento não enviado ao cliente
+     * 1 - orçamento enviado para cliente
+     * 2 - orçamento liberado
+     * 3 - orçamento liberado parcial
+     * 4 - orçamento recusado
+     *
+     */
 
     private Integer cod;
     private byte tipo;
@@ -65,13 +74,20 @@ public class StatusAtendimento {
     private byte revisao;
     private byte suspensaoDt;
     private byte suspensaoTr;
+    private byte alinBalan;
     private byte pneus;
     private byte trocaOleo;
     private byte lavacao;
+    private byte mecanico;
     private byte assLevar;
+
+    private String cliente;
+    private String telefone;
+    private String statuAviso;
+
     private byte orCambio;
     private byte orEletrico;
-    private byte orFreio;
+    private byte orMotor;
     private byte orInjecao;
     private byte orMecanica;
     private byte orPneu;
@@ -80,34 +96,53 @@ public class StatusAtendimento {
     private byte stAviso;
     private byte stGeralAtend;
 
-    private Circulos sEletrico1;
-    private Circulos sInjecao1;
-    private Circulos sCambio1;
-    private Circulos sFreioDt1;
-    private Circulos sFreioTr1;
-    private Circulos sMotor1;
+    private Circulos sEletrico;
+    private Circulos sInjecao;
+    private Circulos sCambio;
+    private Circulos sFreioDt;
+    private Circulos sFreioTr;
+    private Circulos sMotor;
     private Circulos mecanico1;
-    private Circulos sRevisao1;
-    private Circulos sSuspDt1;
-    private Circulos sSuspTr1;
-    private Circulos sPneus1;
-    private Circulos sTrOleo1;
+    private Circulos sRevisao;
+    private Circulos sSuspDt;
+    private Circulos sSuspTr;
+    private Circulos sPneus;
+    private Circulos sTrOleo;
     private Circulos lavacao1;
+    private Circulos montOrc;
+    private Circulos stCliente;
 
-   // public StatusAtendimento(){}
+    public StatusAtendimento(){}
 
-    public StatusAtendimento(Integer cod, byte tipo, Integer codOs, String placa, String veiculo, Integer codOrcamento,
-                             Integer codVeiculo, byte stGeralAtend, byte eletrico, byte injecao, byte caixa,
+    //>>>>>> usado na tela a serem iniciados <<<<<<<
+
+    public StatusAtendimento(Integer cod, String placa, String veiculo, Circulos sEletrico, Circulos sInjecao,
+                             Circulos sCambio, Circulos sFreioDt, Circulos sFreioTr, Circulos sMotor,
+                             Circulos sRevisao, Circulos sSuspDt, Circulos sSuspTr, Circulos sPneus, Circulos sTrOleo) {
+
+        this.cod = cod;
+        this.placa = placa;
+        this.veiculo = veiculo;
+        this.sEletrico = sEletrico;
+        this.sInjecao = sInjecao;
+        this.sCambio = sCambio;
+        this.sFreioDt = sFreioDt;
+        this.sFreioTr = sFreioTr;
+        this.sMotor = sMotor;
+        this.sRevisao = sRevisao;
+        this.sSuspDt = sSuspDt;
+        this.sSuspTr = sSuspTr;
+        this.sPneus = sPneus;
+        this.sTrOleo = sTrOleo;
+    }
+
+    public StatusAtendimento(Integer codOs, String placa,  String veiculo, byte eletrico, byte injecao, byte caixa,
                              byte freioDt, byte freioTr, byte motor, byte revisao, byte suspensaoDt, byte suspensaoTr,
-                             byte pneus, byte trocaOleo, byte lavacao, byte assLevar) {
-        this.cod = cod;
-        this.tipo = tipo;
+                             byte pneus, byte trocaOleo) {
         this.codOs = codOs;
-        this.codOrcamento = codOrcamento;
         this.placa = placa;
-        this.codVeiculo = codVeiculo;
-        this.stGeralAtend = stGeralAtend;
         this.eletrico = eletrico;
+        this.veiculo = veiculo;
         this.injecao = injecao;
         this.caixa = caixa;
         this.freioDt = freioDt;
@@ -118,65 +153,62 @@ public class StatusAtendimento {
         this.suspensaoTr = suspensaoTr;
         this.pneus = pneus;
         this.trocaOleo = trocaOleo;
+    }
+
+    //>>>>>> usado na tela em orçamento <<<<<<<
+
+    public StatusAtendimento(String placa, String veiculo, byte orCambio, byte orEletrico, byte orMotor,
+                             byte orInjecao, byte orMecanica, byte orPneu, byte orStCliente, byte orMontagem) {
+        this.placa = placa;
+        this.veiculo = veiculo;
+        this.orCambio = orCambio;
+        this.orEletrico = orEletrico;
+        this.orMotor = orMotor;
+        this.orInjecao = orInjecao;
+        this.orMecanica = orMecanica;
+        this.orPneu = orPneu;
+        this.orStCliente = orStCliente;
+        this.orMontagem = orMontagem;
+    }
+
+    // Conatrutor de circulos usa o mesmo do status em serviços
+
+    //>>>>>> usado na tela em serviços <<<<<<<
+
+    public StatusAtendimento(String placa, String veiculo, byte caixa, byte eletrico, byte injecao,
+                             byte mecanico, byte motor, byte pneus, byte lavacao) {
+        this.placa = placa;
+        this.veiculo = veiculo;
+        this.caixa = caixa;
+        this.eletrico = eletrico;
+        this.injecao = injecao;
+        this.mecanico = mecanico;
+        this.motor = motor;
+        this.pneus = pneus;
         this.lavacao = lavacao;
-        this.assLevar = assLevar;
-        this.veiculo = veiculo;
     }
 
-    public StatusAtendimento(Integer codOs, String placa, String veiculo, byte eletrico, byte injecao,
-                             byte caixa, byte freioDt, byte freioTr, byte motor, byte revisao, byte suspensaoDt,
-                            byte suspensaoTr, byte pneus, byte trocaOleo) {
-        //Verificado
-        this.codOs = codOs;
+    public StatusAtendimento(String placa, String veiculo, Circulos sCambio, Circulos sEletrico, Circulos sInjecao,
+                             Circulos mecanico1, Circulos sMotor, Circulos sPneus, Circulos lavacao1) {
         this.placa = placa;
         this.veiculo = veiculo;
-        this.eletrico = eletrico;
-        this.injecao = injecao;
-        this.caixa = caixa;
-        this.freioDt = freioDt;
-        this.freioTr = freioTr;
-        this.motor = motor;
-        this.revisao = revisao;
-        this.suspensaoDt = suspensaoDt;
-        this.suspensaoTr = suspensaoTr;
-        this.pneus = pneus;
-        this.trocaOleo = trocaOleo;
-
+        this.sCambio = sCambio;
+        this.sEletrico = sEletrico;
+        this.sInjecao = sInjecao;
+        this.mecanico1 = mecanico1;
+        this.sMotor = sMotor;
+        this.sPneus = sPneus;
+        this.lavacao1 = lavacao1;
     }
 
-    public StatusAtendimento(Integer cod, byte tipo, Integer codOs, String placa, Integer codOrcamento, Integer codVeiculo,
-                             String veiculo, byte stAviso, byte stGeralAtend) {
-        this.cod = cod;
-        this.tipo = tipo;
-        this.codOs = codOs;
-        this.placa = placa;
-        this.codOrcamento = codOrcamento;
-        this.codVeiculo = codVeiculo;
-        this.stAviso = stAviso;
-        this.stGeralAtend = stGeralAtend;
-        this.veiculo = veiculo;
-    }
+    //>>>>>> usado na tela em prontos <<<<<<<
 
-
-    public StatusAtendimento(Integer codOs, String placa, String veiculo, Circulos sEletrico1, Circulos sInjecao1,
-                             Circulos sCambio1, Circulos sFreioDt1, Circulos sFreioTr1, Circulos sMotor1,
-                             Circulos sRevisao1, Circulos sSuspDt1, Circulos sSuspTr1, Circulos sPneus1,
-                             Circulos sTrOleo1){
-        //Verificado
-        this.codOs = codOs;
+    public StatusAtendimento(String placa, String veiculo, String cliente, String telefone, String statuAviso) {
         this.placa = placa;
         this.veiculo = veiculo;
-        this.sEletrico1 = sEletrico1;
-        this.sInjecao1 = sInjecao1;
-        this.sCambio1 = sCambio1;
-        this.sFreioDt1 = sFreioDt1;
-        this.sFreioTr1 = sFreioTr1;
-        this.sMotor1 = sMotor1;
-        this.sRevisao1 = sRevisao1;
-        this.sSuspDt1 = sSuspDt1;
-        this.sSuspTr1 = sSuspTr1;
-        this.sPneus1 = sPneus1;
-        this.sTrOleo1 = sTrOleo1;
+        this.cliente = cliente;
+        this.telefone = telefone;
+        this.statuAviso = statuAviso;
     }
 
     public String getVeiculo() {
@@ -347,12 +379,12 @@ public class StatusAtendimento {
         this.orEletrico = orEletrico;
     }
 
-    public byte getOrFreio() {
-        return orFreio;
+    public byte getOrMotor() {
+        return orMotor;
     }
 
-    public void setOrFreio(byte orFreio) {
-        this.orFreio = orFreio;
+    public void setOrMotor(byte orMotor) {
+        this.orMotor = orMotor;
     }
 
     public byte getOrInjecao() {
@@ -419,52 +451,52 @@ public class StatusAtendimento {
         this.placa = placa;
     }
 
-    public Circulos getsEletrico1() {
-        return sEletrico1;
+    public Circulos getsEletrico() {
+        return sEletrico;
     }
 
-    public void setsEletrico1(Circulos sEletrico1) {
-        this.sEletrico1 = sEletrico1;
+    public void setsEletrico(Circulos sEletrico) {
+        this.sEletrico = sEletrico;
     }
 
-    public Circulos getsInjecao1() {
-        return sInjecao1;
+    public Circulos getsInjecao() {
+        return sInjecao;
     }
 
-    public void setsInjecao1(Circulos sInjecao1) {
-        this.sInjecao1 = sInjecao1;
+    public void setsInjecao(Circulos sInjecao) {
+        this.sInjecao = sInjecao;
     }
 
-    public Circulos getsCambio1() {
-        return sCambio1;
+    public Circulos getsCambio() {
+        return sCambio;
     }
 
-    public void setsCambio1(Circulos sCambio1) {
-        this.sCambio1 = sCambio1;
+    public void setsCambio(Circulos sCambio) {
+        this.sCambio = sCambio;
     }
 
-    public Circulos getsFreioDt1() {
-        return sFreioDt1;
+    public Circulos getsFreioDt() {
+        return sFreioDt;
     }
 
-    public void setsFreioDt1(Circulos sFreioDt1) {
-        this.sFreioDt1 = sFreioDt1;
+    public void setsFreioDt(Circulos sFreioDt) {
+        this.sFreioDt = sFreioDt;
     }
 
-    public Circulos getsFreioTr1() {
-        return sFreioTr1;
+    public Circulos getsFreioTr() {
+        return sFreioTr;
     }
 
-    public void setsFreioTr1(Circulos sFreioTr1) {
-        this.sFreioTr1 = sFreioTr1;
+    public void setsFreioTr(Circulos sFreioTr) {
+        this.sFreioTr = sFreioTr;
     }
 
-    public Circulos getsMotor1() {
-        return sMotor1;
+    public Circulos getsMotor() {
+        return sMotor;
     }
 
-    public void setsMotor1(Circulos sMotor1) {
-        this.sMotor1 = sMotor1;
+    public void setsMotor(Circulos sMotor1) {
+        this.sMotor = sMotor1;
     }
 
     public Circulos getMecanico1() {
@@ -475,44 +507,44 @@ public class StatusAtendimento {
         this.mecanico1 = mecanico1;
     }
 
-    public Circulos getsRevisao1() {
-        return sRevisao1;
+    public Circulos getsRevisao() {
+        return sRevisao;
     }
 
-    public void setsRevisao1(Circulos sRevisao1) {
-        this.sRevisao1 = sRevisao1;
+    public void setsRevisao(Circulos sRevisao) {
+        this.sRevisao = sRevisao;
     }
 
-    public Circulos getsSuspDt1() {
-        return sSuspDt1;
+    public Circulos getsSuspDt() {
+        return sSuspDt;
     }
 
-    public void setsSuspDt1(Circulos sSuspDt1) {
-        this.sSuspDt1 = sSuspDt1;
+    public void setsSuspDt(Circulos sSuspDt) {
+        this.sSuspDt = sSuspDt;
     }
 
-    public Circulos getsSuspTr1() {
-        return sSuspTr1;
+    public Circulos getsSuspTr() {
+        return sSuspTr;
     }
 
-    public void setsSuspTr1(Circulos sSuspTr1) {
-        this.sSuspTr1 = sSuspTr1;
+    public void setsSuspTr(Circulos sSuspTr) {
+        this.sSuspTr = sSuspTr;
     }
 
-    public Circulos getsPneus1() {
-        return sPneus1;
+    public Circulos getsPneus() {
+        return sPneus;
     }
 
-    public void setsPneus1(Circulos sPneus1) {
-        this.sPneus1 = sPneus1;
+    public void setsPneus(Circulos sPneus) {
+        this.sPneus = sPneus;
     }
 
-    public Circulos getsTrOleo1() {
-        return sTrOleo1;
+    public Circulos getsTrOleo() {
+        return sTrOleo;
     }
 
-    public void setsTrOleo1(Circulos sTrOleo1) {
-        this.sTrOleo1 = sTrOleo1;
+    public void setsTrOleo(Circulos sTrOleo) {
+        this.sTrOleo = sTrOleo;
     }
 
     public Circulos getLavacao1() {
@@ -521,5 +553,61 @@ public class StatusAtendimento {
 
     public void setLavacao1(Circulos lavacao1) {
         this.lavacao1 = lavacao1;
+    }
+
+    public byte getAlinBalan() {
+        return alinBalan;
+    }
+
+    public void setAlinBalan(byte alinBalan) {
+        this.alinBalan = alinBalan;
+    }
+
+    public byte getMecanico() {
+        return mecanico;
+    }
+
+    public void setMecanico(byte mecanico) {
+        this.mecanico = mecanico;
+    }
+
+    public Circulos getMontOrc() {
+        return montOrc;
+    }
+
+    public void setMontOrc(Circulos montOrc) {
+        montOrc = montOrc;
+    }
+
+    public Circulos getStCliente() {
+        return stCliente;
+    }
+
+    public void setStCliente(Circulos stCliente) {
+        stCliente = stCliente;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getStatuAviso() {
+        return statuAviso;
+    }
+
+    public void setStatuAviso(String statuAviso) {
+        this.statuAviso = statuAviso;
     }
 }

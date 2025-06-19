@@ -29,7 +29,7 @@ public class OrcamentoService implements OrcamentoDao {
         a = mok.dadosTelaOrcamento();
         List<Orcamento> correta = new ArrayList<>();
         String statusFrase = null;
-
+/*
         for(Integer b=0; b<a.size();b++) {
             statusFrase = "";
 
@@ -77,19 +77,19 @@ public class OrcamentoService implements OrcamentoDao {
                     break;
             }
 
-            Circulos orcFreio2 = null;
+            Circulos orcMotor2 = null;
 
-            switch (a.get(b).getOrcFreio()){
+            switch (a.get(b).getOrcMotor()){
                 case 0:
                     break;
                 case 1:
-                    orcFreio2 = new Circulos("f9d428");
+                    orcMotor2 = new Circulos("f9d428");
                     break;
                 case 2:
-                    orcFreio2 = new Circulos("f9d428","70c3a7");
+                    orcMotor2 = new Circulos("f9d428","70c3a7");
                     break;
                 case 3:
-                    orcFreio2 = new Circulos("70c3a7","f9d428");
+                    orcMotor2 = new Circulos("70c3a7","f9d428");
                     break;
             }
 
@@ -167,30 +167,19 @@ public class OrcamentoService implements OrcamentoDao {
             }
 
             correta.add(new Orcamento(a.get(b).getCod(), a.get(b).getPlaca(),a.get(b).getModelo(), statusFrase,
-                    orcCambio2, orcEletrico2, orcFreio2, orcInjecao2, orcMecanico2, orcPneu2, statusOrc2));
+                    orcCambio2, orcEletrico2, orcMotor2, orcInjecao2, orcMecanico2, orcPneu2, statusOrc2));
         }
-        /*
-        * Integer cod, String placa, String modelo, String statusCliente, Integer statusOrc,
-        * Integer orcPneu, Integer orcMecanico, Integer orcInjecao, Integer orcFreio,
-        * Integer orcEletrico, Integer orcCambio
-          *
-        * Integer cod, String placa, String modelo, String statusCliente, Circulos orcCambio2,
-        * Circulos orcEletrico2, Circulos orcFreio2, Circulos orcInjecao2, Circulos orcMecanico2,
-        * Circulos orcPneu2, Circulos statusOrc2
-
-         * 1 - Aguardando profissional
-         * 2 - Em preparação
-         * 3 - liberado para o cliente
-         *
-         * 4 - Orçamento liberado
-         * 5 - Orçamento liberado parcial
-         * 6 - Orçamento recusado
-         *
-         * Status cliente
-         * 1 - aguardando
-         * 2 - Liberado
-         * 3 - Recusado
-         */
+*/
         return correta;
+    }
+
+    @Override
+    public void criaOrcamento(Orcamento or) {
+
+    }
+
+    @Override
+    public void relacaoOrOs(Integer os, Integer or) {
+
     }
 }
