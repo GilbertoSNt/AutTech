@@ -20,9 +20,9 @@ public class AgendaController implements Initializable {
 
     public AgendaController(){}
 
-    private MaskValid maskValid = new MaskValid();
+    private final MaskValid maskValid = new MaskValid();
 
-    private AgendaDao agendaService = DaoFactory.createAgendaDao();
+    private final AgendaDao agendaService = DaoFactory.createAgendaDao();
 
     private LocalDate a = null;
     private LocalDate b = null;
@@ -40,7 +40,7 @@ public class AgendaController implements Initializable {
 
         a = dpData.getValue();
         b = LocalDate.now();
-        if (a.compareTo(b) < 0){
+        if (a.isBefore(b)){
             dpData.show();
             lblConfirma.setText("Data escolhida deve ser superior ou igual a data atual");
         }else {
@@ -175,7 +175,7 @@ public class AgendaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lblNumAgenda.setVisible(false);
-
+        maskValid.maskPlaca(txtPlaca);
         maskValid.maskTel9Dig(txtTelefone);
         maskValid.maskHora(txtHora);
 

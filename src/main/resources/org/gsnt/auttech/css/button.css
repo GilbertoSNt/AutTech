@@ -103,12 +103,22 @@
 
 .btn3{
     -fx-background-color:-fx-primary-color;
+    -fx-background-radius:20;
+    -fx-border-width:0;
+    -fx-border-weight:0;
+    -fx-font-weight:bold;
+
+    -fx-text-fill: -fx-fifth-color;
+}
+
+.btn4{
+    -fx-background-color:#d4dbdc;
     -fx-background-radius:30;
     -fx-border-width:0;
     -fx-border-weight:0;
     -fx-font-weight:bold;
     -fx-border-radius:7 7 7 7;
-    -fx-text-fill: -fx-fifth-color;
+    -fx-text-fill:#000000;
 }
 
 

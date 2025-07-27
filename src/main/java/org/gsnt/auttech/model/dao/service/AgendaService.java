@@ -251,6 +251,7 @@ public class AgendaService implements AgendaDao {
             throw new DbException(e.getMessage());
         }
         finally {
+            DB2.closeResultSet(rs);
             DB2.closeStatement(st);
         }
 

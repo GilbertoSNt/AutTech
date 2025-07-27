@@ -2,11 +2,9 @@ package org.gsnt.auttech.model.dao.service;
 import org.gsnt.auttech.db.DB2;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.FuncionarioDao;
-import org.gsnt.auttech.model.entities.Endereco;
 import org.gsnt.auttech.model.entities.Funcionario;
 
 import java.sql.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +19,6 @@ public class FuncionarioService implements FuncionarioDao {
 		this.conn = conn;
 	}
 
-
-
-
     @Override
     public int saveFuncionario(Funcionario funcionario) {
 
@@ -36,9 +31,9 @@ public class FuncionarioService implements FuncionarioDao {
 					"genero, status, tipo, telefone, telefoneconjuge, mae, pai, conjuge, qtdfilhos,dataadm, " +
 					"datadesl, obs, cartprofissional, dataemissao,cargo, funcao, comissaopecas, comissaoservicos," +
 					"salario, comissao, obsprof, caixamec, caixaaut, eletrica, freio, injdiesel, injflex, motordiesel," +
-					"motorflex, pneus, suspensao, socorro, veiceletrico, motleva, motguincho, trocaoleo)VALUES (" +
+					"motorflex, pneus, suspensao, socorro, veiceletrico, motleva, motguincho, trocaoleo, apelido)VALUES (" +
 					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?," +
-					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 
 				st.setString(1, f.getCpf());
@@ -81,6 +76,7 @@ public class FuncionarioService implements FuncionarioDao {
 				st.setBoolean(38, f.getMotLeva());
 				st.setBoolean(39, f.getMotguincho());
 				st.setBoolean(40, f.getTrocaOleo());
+				st.setString(41, f.getApelido());
 
 				int resultado = 0;
 				int rowsaffected = st.executeUpdate();
@@ -114,7 +110,7 @@ public class FuncionarioService implements FuncionarioDao {
         try {
 
             st = conn.prepareStatement(
-                    "SELECT nome, caixamec, caixaaut, eletrica, freio, injdiesel, injflex, motordiesel," +
+                    "SELECT apelido, caixamec, caixaaut, eletrica, freio, injdiesel, injflex, motordiesel," +
 							" motorflex, pneus, suspensao, socorro, veiceletrico, motleva,motguincho, trocaoleo " +
 							"FROM tabfuncionario WHERE datadesl=''");
 
@@ -123,7 +119,7 @@ public class FuncionarioService implements FuncionarioDao {
 			while (rs.next()) {
 
 				retorno = new Funcionario();
-				retorno.setNome(rs.getString("nome"));
+				retorno.setNome(rs.getString("apelido"));
 				retorno.setCaixaMec(rs.getBoolean("caixamec"));
 				retorno.setCaixaAut(rs.getBoolean("caixaaut"));
 				retorno.setEletrica(rs.getBoolean("eletrica"));
@@ -173,7 +169,7 @@ public class FuncionarioService implements FuncionarioDao {
 							"comissaopecas=?, comissaoservicos=?, salario=?, comissao=?, obsprof=?, caixamec=?, " +
 							"caixaaut=?, eletrica=?, freio=?, injdiesel=?, injflex=?, motordiesel=?, motorflex=?, " +
 							"pneus=?, suspensao=?, socorro=?, veiceletrico=?, motleva=?, motguincho=?," +
-							" trocaoleo=? WHERE cod = ?");
+							" trocaoleo=?, apelido = ? WHERE cod = ?");
 
 			st.setString(1, f.getCpf());
 			st.setString(2, f.getRg());
@@ -215,12 +211,44 @@ public class FuncionarioService implements FuncionarioDao {
 			st.setBoolean(38, f.getMotLeva());
 			st.setBoolean(39, f.getMotguincho());
 			st.setBoolean(40, f.getTrocaOleo());
-			st.setInt(41,cod);
+			st.setString(41,f.getApelido());
+			st.setInt(42,cod);
 			st.executeUpdate();
 
 		}catch(SQLException e){
 			throw new DbException(e.getMessage()+" alter funcionarios");
 		}finally {
+			DB2.closeStatement(st);
+		}
+
+	}
+
+	@Override
+	public Integer findFuncByApelido(String apelido) {
+
+		Integer a = 0;
+
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try{
+			st = conn.prepareStatement(" SELECT cod" +
+					" from tabfuncionario" +
+					" where" +
+					" apelido = ?" );
+
+			st.setString(1,apelido);
+			rs = st.executeQuery();
+			rs.next();
+
+			return rs.getInt("cod");
+
+		}
+		catch (SQLException e){
+			throw new DbException(e.getMessage()+" FuncionarioService - findFuncByApelido");
+		}
+		finally {
+			DB2.closeResultSet(rs);
 			DB2.closeStatement(st);
 		}
 

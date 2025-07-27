@@ -3,7 +3,7 @@ package org.gsnt.auttech.model.dao.service;
 import org.gsnt.auttech.db.DB;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.MarcaVeiculoDao;
-import org.gsnt.auttech.model.entities.MarcaVeiculo;
+import org.gsnt.auttech.model.entities.entitiesgenerics.MarcaVeiculo;
 
 
 import java.sql.Connection;

@@ -1,0 +1,51 @@
+Dar sequência
+
+ok - implementar campo alinBalam no banco de dados >> ver como vai ficar na tela como unir a informação na tela 2 do status
+
+ok - terminar coleta dados
+
+ok - implementação das funções da tela de criaOS
+
+ok - implementando tela de direcionamento
+
+ok - ao gravar a os implementar primeiro status no sistema
+ao direcionar gravar statusnovo
+
+ok - chamar tela direcionamento
+
+implementar funções da tela direcionamento
+
+                * montar lista de mecânicos ocupados
+                * tabela montada(alterada com tempo previsto)
+                * View ocupação para teste criada, falta refinar
+                * implementado tela de ocupação
+
+            - falta gravação do direcionamento
+
+
+
+- falta implementar na rotina do método (private void onbtCnclOrc() tela principal)
+
+
+
+desenvolvimento no momento
+
+chamada da tela de direcionamento
+
+    carregar quantos serviços tem para cada profissional
+    carregar combos
+    gravar direcionamento
+    criar ordenação na ordem de prioridade
+
+serem iniciados - iniciar função botão direcionamento
+
+
+
+Descritivo
+
+
+
+
+
+
+

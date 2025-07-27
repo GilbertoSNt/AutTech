@@ -14,13 +14,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.gsnt.auttech.TelaPrincipal;
 import org.gsnt.auttech.db.DbException;
-import org.gsnt.auttech.model.dao.AgendaDao;
-import org.gsnt.auttech.model.dao.DaoFactory;
+import org.gsnt.auttech.model.dao.*;
 import org.gsnt.auttech.model.dao.service.ClienteService;
 import org.gsnt.auttech.model.dao.service.OrcamentoService;
 import org.gsnt.auttech.model.dao.service.OrdemServicoService;
 import org.gsnt.auttech.model.entities.Agenda;
-import org.gsnt.auttech.model.entities.Orcamento;
 import org.gsnt.auttech.model.entities.OrdemServico;
 import org.gsnt.auttech.model.entities.StatusAtendimento;
 import org.gsnt.auttech.util.Alerts;
@@ -36,9 +34,12 @@ import java.util.function.Consumer;
 
 public class TelaPrincipalController implements Initializable {
 
-    AgendaDao agendaService = DaoFactory.createAgendaDao();
+    private final AgendaDao agendaService = DaoFactory.createAgendaDao();
+    private final StatusAtendimentoDao stAtendimento = DaoFactory.createStatusAtendimentoDao();
+    private final OrdemServicoDao osServ = DaoFactory.createOrdemServicoDao();
+    private final OrcamentoDao orcService = DaoFactory.createOrcamentoDao();
 
-    protected ObservableList<Agenda> obsListAgenda;
+    private ObservableList<Agenda> obsListAgenda;
 
     @FXML
     private Accordion accServicos;
@@ -182,10 +183,10 @@ public class TelaPrincipalController implements Initializable {
     }
 
     @FXML
-    protected Button btEnvioSocorro;
+    private Button btEnvioSocorro;
 
     @FXML
-    protected void onBtConfirmaEnvioSocorro() {
+    private void onBtConfirmaEnvioSocorro() {
 
         if(tvAgenda.getSelectionModel().getSelectedItem() != null) {
             Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
@@ -214,10 +215,10 @@ public class TelaPrincipalController implements Initializable {
     }
 
     @FXML
-    protected Button btEnvioBusca;
+    private Button btEnvioBusca;
 
     @FXML
-    protected void onBtConfirmaEnvioBusca(){
+    private void onBtConfirmaEnvioBusca(){
         if(tvAgenda.getSelectionModel().getSelectedItem() != null) {
             Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
             Agenda status = agendaService.verStatusAssistencias(tt.getPlaca());
@@ -244,7 +245,7 @@ public class TelaPrincipalController implements Initializable {
     }
 
     @FXML
-    protected void onClickTableAgenda(){
+    private void onClickTableAgenda(){
 
         if (tvAgenda.getSelectionModel().getSelectedItem() != null) {
             Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
@@ -279,86 +280,123 @@ public class TelaPrincipalController implements Initializable {
 
     // Inicio da table view(Veículo a serem iniciados)
 
-    private OrdemServicoService ordemServicoService;
 
-    protected void setOrdemServicoService(OrdemServicoService ordem){
-        this.ordemServicoService = ordem;
+    private ObservableList<StatusAtendimento> obsListOrdemServico;
+
+    @FXML
+    private TitledPane tpFuturos;
+
+    @FXML
+    private TableView tvFuturos;
+
+    @FXML
+    private TableColumn<StatusAtendimento,Integer> tcOs;
+
+    @FXML
+    private TableColumn tcDdVeiculos;
+
+    @FXML
+    private TableColumn<StatusAtendimento, String> tcPlaca2;
+
+    @FXML
+    private TableColumn<StatusAtendimento, String> tcModelo2;
+
+    @FXML
+    private TableColumn tcTipoServico;
+
+    @FXML
+    private TableColumn tcMec2;
+
+    @FXML
+    private TableColumn<StatusAtendimento, Circulos> tcElet2;
+
+    @FXML
+    private TableColumn<StatusAtendimento, Circulos> tcInj2;
+
+    @FXML
+    private TableColumn<StatusAtendimento, Circulos> tcCambio2;
+
+    @FXML
+    private TableColumn tcFreio2;
+
+    @FXML
+    private TableColumn<StatusAtendimento, Circulos> tcFreioDt;
+
+    @FXML
+    private TableColumn<StatusAtendimento, Circulos> tcFreioTr;
+
+    @FXML
+    private TableColumn<StatusAtendimento, Circulos> tcMotor2;
+
+    @FXML
+    private TableColumn<StatusAtendimento, Circulos> tcRevisao2;
+
+    @FXML
+    private TableColumn<StatusAtendimento, Circulos> tcPneus2;
+
+    @FXML
+    private TableColumn<StatusAtendimento, Circulos> tcOleo2;
+
+    @FXML
+    private TableColumn<StatusAtendimento, Circulos> tcSuspDiant;
+
+    @FXML
+    private TableColumn<StatusAtendimento, Circulos> tcSuspTras;
+
+    @FXML
+    private Button btAbrirOS;
+
+    @FXML
+    private Button btCancOS;
+
+    @FXML
+    private void onbtCancelarOs(){
+
+        if(tvFuturos.getSelectionModel().getSelectedItem() != null) {
+
+            StatusAtendimento st =  (StatusAtendimento) tvFuturos.getSelectionModel().getSelectedItem();
+
+            Optional<ButtonType> result = Alerts.showConfirmation("Confirmação", "Realmente deseja cancelar a OS da placa " + st.getPlaca());
+
+            if(result.get() == ButtonType.OK) {
+
+                orcService.recusaOrcamento(st.getCod());
+                stAtendimento.cancelaAtendimento(st.getCod());
+                osServ.cancelaOrdemServico(st.getCod());
+
+            }
+        }else{
+            Alerts.showAlert("Erro ", "Você deve selecionar uma linha na tabela ordem de serviço", null, Alert.AlertType.INFORMATION);
+        }
+
+        updateTableView();
+
     }
 
-    protected ObservableList<OrdemServico> obsListOrdemServico;
 
     @FXML
-    protected TitledPane tpFuturos;
+    private Button btAltOS;
 
     @FXML
-    protected TableView tvFuturos;
+    private void onbtAltOS(){
+
+    }
 
     @FXML
-    protected TableColumn<StatusAtendimento,Integer> tcOs;
+    private Button btDirecionaOS;
 
     @FXML
-    protected TableColumn tcDdVeiculos;
+    private void onbtDirecionaOS(){
 
-    @FXML
-    protected TableColumn<StatusAtendimento, String> tcPlaca2;
-
-    @FXML
-    protected TableColumn<StatusAtendimento, String> tcModelo2;
-
-    @FXML
-    protected TableColumn tcTipoServico;
-
-    @FXML
-    protected TableColumn tcMec2;
-
-    @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcElet2;
-
-    @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcInj2;
-
-    @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcCambio2;
-
-    @FXML
-    protected TableColumn tcFreio2;
-
-    @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcFreioDt;
-
-    @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcFreioTr;
-
-    @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcMotor2;
-
-    @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcRevisao2;
-
-    @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcPneus2;
-
-    @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcOleo2;
-
-    @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcSuspDiant;
-
-    @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcSuspTras;
-
-    @FXML
-    protected Button btAbrirOS;
-
-    @FXML
-    protected Button btCancOS;
-
-    @FXML
-    protected Button btDirTecnico;
-
-    @FXML
-    protected Button btOsSemOrc;
-
+        try {
+            loadView("/org/gsnt/auttech/Direcionamento.fxml", (DirecionamentoController dirCont) -> {
+                StatusAtendimento st =  (StatusAtendimento) tvFuturos.getSelectionModel().getSelectedItem();
+                dirCont.preencheDadosDir(stAtendimento.stGeralUnico(st.getCod()));
+            });
+        }catch (Exception d){
+            System.out.println(d+" na função onbtDirecionaOS");
+        }
+    }
 
 
 
@@ -378,13 +416,7 @@ public class TelaPrincipalController implements Initializable {
 
     // implementação tableview em orçamento
 
-    private OrcamentoService orcamentoService;
-
-    protected void setOrcamentoService(OrcamentoService orcamento){
-        this.orcamentoService = orcamento;
-    }
-
-    protected ObservableList<Orcamento> obsListOrcamento;
+    protected ObservableList<StatusAtendimento> obsListOrcamento;
 
     @FXML
     protected TitledPane tpEmOrcamento;
@@ -393,46 +425,71 @@ public class TelaPrincipalController implements Initializable {
     protected TableView tvEmOrcamento;
 
     @FXML
-    protected TableColumn<Orcamento,String> tcPlaca3;
+    protected TableColumn<StatusAtendimento,String> tcPlaca3;
 
     @FXML
-    protected TableColumn<Orcamento,String> tcVeiculo3;
+    protected TableColumn<StatusAtendimento,String> tcVeiculo3;
 
     @FXML
     protected TableColumn tcStatus2;
 
     @FXML
-    protected TableColumn<Orcamento, Circulos> tcCambio3;
+    protected TableColumn<StatusAtendimento, Circulos> tcCambio3;
 
     @FXML
-    protected TableColumn<Orcamento, Circulos> tcElet3;
+    protected TableColumn<StatusAtendimento, Circulos> tcElet3;
 
     @FXML
-    protected TableColumn<Orcamento, Circulos> tcMotor3;
+    protected TableColumn<StatusAtendimento, Circulos> tcMotor3;
 
     @FXML
-    protected TableColumn<Orcamento, Circulos> tcInjecao3;
+    protected TableColumn<StatusAtendimento, Circulos> tcInjecao3;
 
     @FXML
-    protected TableColumn<Orcamento, Circulos> tcMecanica3;
+    protected TableColumn<StatusAtendimento, Circulos> tcMecanica3;
 
     @FXML
-    protected TableColumn<Orcamento, Circulos> tcPneus3;
+    protected TableColumn<StatusAtendimento, Circulos> tcPneus3;
 
     @FXML
-    protected TableColumn<Orcamento, Circulos> tcAguardAvaliacao;
+    protected TableColumn<StatusAtendimento, Circulos> tcAguardAvaliacao;
 
     @FXML
-    protected TableColumn<Orcamento, String> tcStatusCliente;
+    protected TableColumn<StatusAtendimento, Circulos> tcStatusCliente;
 
     @FXML
-    protected Button btAltOrc;
+    private Button btAltOrc;
 
     @FXML
-    protected Button btAutrzOrc;
+    private Button btAutrzOrc;
 
     @FXML
-    protected Button btCnclOrc;
+    private Button btCnclOrc;
+
+    @FXML
+    private void onbtCnclOrc(){
+        if(tvEmOrcamento.getSelectionModel().getSelectedItem() != null) {
+
+            StatusAtendimento st =  (StatusAtendimento) tvFuturos.getSelectionModel().getSelectedItem();
+
+            Optional<ButtonType> result = Alerts.showConfirmation("Confirmação", "Realmente deseja rejeitar orçamento e cancelar a OS da placa " + st.getPlaca());
+
+            if(result.get() == ButtonType.OK) {
+
+                orcService.recusaOrcamento(st.getCod());
+                stAtendimento.cancelaAtendimento(st.getCod());
+                osServ.cancelaOrdemServico(st.getCod());
+
+                //falta enviar informação para a tela de entrega do orçamento
+
+            }
+        }else{
+            Alerts.showAlert("Erro ", "Você deve selecionar uma linha na tabela ordem de serviço", null, Alert.AlertType.INFORMATION);
+        }
+
+        updateTableView();
+    }
+
 
 
     // implementação tableview em serviço
@@ -446,40 +503,41 @@ public class TelaPrincipalController implements Initializable {
     protected TableView tvServicos;
 
     @FXML
-    protected TableColumn<OrdemServico, String> tcPlaca4;
+    protected TableColumn<StatusAtendimento, String> tcPlaca4;
 
     @FXML
-    protected TableColumn<OrdemServico, String> tcVeiculo4;
+    protected TableColumn<StatusAtendimento, String> tcVeiculo4;
 
     @FXML
     protected TableColumn tcStatus4;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcCambio4;
+    protected TableColumn<StatusAtendimento, Circulos> tcCambio4;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcElet4;
+    protected TableColumn<StatusAtendimento, Circulos> tcElet4;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcInjecao4;
+    protected TableColumn<StatusAtendimento, Circulos> tcInjecao4;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcMecanica4;
+    protected TableColumn<StatusAtendimento, Circulos> tcMecanica4;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcMotor4;
+    protected TableColumn<StatusAtendimento, Circulos> tcMotor4;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcPneus4;
+    protected TableColumn<StatusAtendimento, Circulos> tcPneus4;
 
     @FXML
-    protected TableColumn<OrdemServico, Circulos> tcLavacao4;
+    protected TableColumn<StatusAtendimento, Circulos> tcLavacao4;
 
     @FXML
     protected Button btAlteraOS;
 
     @FXML
     protected Button btCncOS;
+
 
     @FXML
     protected Button btFnlzServ;
@@ -552,6 +610,7 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     protected void onbtAbrirOS() {
         loadView("/org/gsnt/auttech/CriaOs.fxml",x->{});
+        updateTableView();
     }
 
     @FXML
@@ -560,12 +619,12 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     protected void btListaClientesButtonClick(){
         try {
-            loadView("/org/gsnt/auttech/ListaCliente.fxml", (ListaClienteController cliController) -> {
+                loadView("/org/gsnt/auttech/ListaCliente.fxml", (ListaClienteController cliController) -> {
                 cliController.setClienteService(new ClienteService());
                 cliController.updateTableView();
             });
         }catch (Exception d){
-            System.out.println(d);
+            System.out.println(d+" na função btListaClientesButtonClick()");
         }
     }
 
@@ -587,41 +646,26 @@ public class TelaPrincipalController implements Initializable {
 
     public void updateTableView() {
 
-        try {
-            if (agendaService == null) {
-                throw new IllegalStateException("Agenda estava nulo");
+        try{
+
+            if(stAtendimento == null || osServ == null || agendaService == null){
+                throw new IllegalStateException("Ordem de Serviço Service está nulo");
             }
+            //tela agendamento
             obsListAgenda = FXCollections.observableArrayList(agendaService.findTelaPrincipal());
             tvAgenda.setItems(obsListAgenda);
-        }catch (Exception a){
-            throw new DbException(a.getMessage()+" updateTableView - Tela Agenda");
-        }
-
-
-            setOrdemServicoService(new OrdemServicoService());
-        try{
-            if(ordemServicoService == null){
-                throw new IllegalStateException("Ordem de Serviço Service está nulo");
-            }
-            obsListOrdemServico = FXCollections.observableArrayList(ordemServicoService.findTelaPrincipal());
+            //tela os sem direcionamento
+            obsListOrdemServico = FXCollections.observableArrayList(stAtendimento.statusOrdemServicoTelaSI());
             tvFuturos.setItems(obsListOrdemServico);
-            obsListEmServico = FXCollections.observableArrayList(ordemServicoService.findTelaPrincipalEmServiço());
+            //tela em serviço
+            obsListEmServico = FXCollections.observableArrayList(osServ.findTelaPrincipalEmServiço());
             tvServicos.setItems(obsListEmServico);
-
-
-        }catch (Exception a){
-            throw new DbException(a.getMessage());
-        }
-
-        setOrcamentoService(new OrcamentoService());
-        try{
-            if(orcamentoService == null){
-                throw new IllegalStateException("Ordem de Serviço Service está nulo");
-            }
-            obsListOrcamento = FXCollections.observableArrayList(orcamentoService.findByTela());
+            //tela principal orçamento
+            obsListOrcamento = FXCollections.observableArrayList(stAtendimento.statusOrcamentoTela());
             tvEmOrcamento.setItems(obsListOrcamento);
+
         }catch (Exception a){
-            throw new DbException(a.getMessage());
+            throw new DbException("Tela principal - updateTableView "+a.getMessage());
         }
 
     }
@@ -675,20 +719,20 @@ public class TelaPrincipalController implements Initializable {
     private void accordionSerIniciados(){
 
         try {
-            tcOs.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Integer>("codOs"));
+            tcOs.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Integer>("cod"));
             tcPlaca2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, String>("placa"));
             tcModelo2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, String>("veiculo"));
-            tcElet2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sEletrico1"));
-            tcInj2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sInjecao1"));
-            tcCambio2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sCambio1"));
-            tcFreioDt.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sFreioDt1"));
-            tcFreioTr.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sFreioTr1"));
-            tcMotor2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sMotor1"));
-            tcRevisao2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sRevisao1"));
-            tcSuspDiant.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sSuspDt1"));
-            tcSuspTras.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sSuspTr1"));
-            tcPneus2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sPneus1"));
-            tcOleo2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("sTrOleo1"));
+            tcElet2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirEletrico"));
+            tcInj2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirInjecao"));
+            tcCambio2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirCambio"));
+            tcFreioDt.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirFreioDt"));
+            tcFreioTr.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirFreioTr"));
+            tcMotor2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirMotor"));
+            tcRevisao2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirRevisao"));
+            tcSuspDiant.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirSuspDt"));
+            tcSuspTras.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirSuspTr"));
+            tcPneus2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirPneus"));
+            tcOleo2.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirTrOleo"));
 
         }
         catch (Exception a){
@@ -699,30 +743,30 @@ public class TelaPrincipalController implements Initializable {
 
     private void accordionOrcamento(){
 
-        tcPlaca3.setCellValueFactory(new PropertyValueFactory<Orcamento,String>("placa"));
-        tcVeiculo3.setCellValueFactory(new PropertyValueFactory<Orcamento,String>("modelo"));
-        tcCambio3.setCellValueFactory(new PropertyValueFactory<Orcamento,Circulos>("orcCambio2"));
-        tcElet3.setCellValueFactory(new PropertyValueFactory<Orcamento,Circulos>("orcEletrico2"));
-        tcMotor3.setCellValueFactory(new PropertyValueFactory<Orcamento,Circulos>("orcMotor2"));
-        tcInjecao3.setCellValueFactory(new PropertyValueFactory<Orcamento,Circulos>("orcInjecao2"));
-        tcMecanica3.setCellValueFactory(new PropertyValueFactory<Orcamento,Circulos>("orcMecanico2"));
-        tcPneus3.setCellValueFactory(new PropertyValueFactory<Orcamento,Circulos>("orcPneu2"));
-        tcAguardAvaliacao.setCellValueFactory(new PropertyValueFactory<Orcamento,Circulos>("statusOrc2"));
-        tcStatusCliente.setCellValueFactory(new PropertyValueFactory<Orcamento,String>("statusCliente2"));
+        tcPlaca3.setCellValueFactory(new PropertyValueFactory<StatusAtendimento,String>("placa"));
+        tcVeiculo3.setCellValueFactory(new PropertyValueFactory<StatusAtendimento,String>("veiculo"));
+        tcCambio3.setCellValueFactory(new PropertyValueFactory<StatusAtendimento,Circulos>("cirCambio"));
+        tcElet3.setCellValueFactory(new PropertyValueFactory<StatusAtendimento,Circulos>("cirEletrico"));
+        tcMotor3.setCellValueFactory(new PropertyValueFactory<StatusAtendimento,Circulos>("cirMotor"));
+        tcInjecao3.setCellValueFactory(new PropertyValueFactory<StatusAtendimento,Circulos>("cirInjecao"));
+        tcMecanica3.setCellValueFactory(new PropertyValueFactory<StatusAtendimento,Circulos>("mecanico1"));
+        tcPneus3.setCellValueFactory(new PropertyValueFactory<StatusAtendimento,Circulos>("cirPneus"));
+        tcAguardAvaliacao.setCellValueFactory(new PropertyValueFactory<StatusAtendimento,Circulos>("montOrc"));
+        tcStatusCliente.setCellValueFactory(new PropertyValueFactory<StatusAtendimento,Circulos>("stCliente"));
 
     }
 
     private void accordionEmServico(){
 
-        tcPlaca4.setCellValueFactory(new PropertyValueFactory<OrdemServico,String>("placa"));
-        tcVeiculo4.setCellValueFactory(new PropertyValueFactory<OrdemServico,String>("modelo"));
-        tcCambio4.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sCamMec2"));
-        tcElet4.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sEletrico2"));
-        tcInjecao4.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sInjecao2"));
-        tcMecanica4.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("mecanico1"));
-        tcMotor4.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sMotor2"));
-        tcPneus4.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("sPneus2"));
-        tcLavacao4.setCellValueFactory(new PropertyValueFactory<OrdemServico, Circulos>("lavacao1"));
+        tcPlaca4.setCellValueFactory(new PropertyValueFactory<StatusAtendimento,String>("placa"));
+        tcVeiculo4.setCellValueFactory(new PropertyValueFactory<StatusAtendimento,String>("modelo"));
+        tcCambio4.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirCambio"));
+        tcElet4.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirEletrico"));
+        tcInjecao4.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirInjecao"));
+        tcMecanica4.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("mecanico1"));
+        tcMotor4.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirMotor"));
+        tcPneus4.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirPneus"));
+        tcLavacao4.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("lavacao1"));
     }
 
     private synchronized<T> void loadView(String absoluteName, Consumer<T> inicializingAction) {

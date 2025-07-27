@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import org.gsnt.auttech.model.dao.DaoFactory;
 import org.gsnt.auttech.model.dao.MarcaVeiculoDao;
 import org.gsnt.auttech.model.dao.ModeloVeiculoDao;
-import org.gsnt.auttech.model.entities.*;
+import org.gsnt.auttech.model.entities.entitiesgenerics.*;
 
 import java.util.ArrayList;
 import java.util.List;

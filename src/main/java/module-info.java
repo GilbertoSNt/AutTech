@@ -22,4 +22,5 @@ module org.gsnt.auttech {
     exports org.gsnt.auttech;
     exports org.gsnt.auttech.controller;
     opens org.gsnt.auttech.controller to javafx.fxml;
+    opens org.gsnt.auttech.model.entities.entitiesgenerics to javafx.base;
 }

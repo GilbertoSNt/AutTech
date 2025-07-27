@@ -28,6 +28,12 @@ public class Orcamento {
     private String modelo;
     private Integer orcamXOrdem;
 
+    public Orcamento(String dataAbertura, Integer codVeiculo, Integer codCliente) {
+        this.dataAbertura = dataAbertura;
+        this.codVeiculo = codVeiculo;
+        this.codCliente = codCliente;
+    }
+
     public Integer getCod() {
         return cod;
     }

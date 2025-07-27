@@ -19,12 +19,9 @@ public class Funcionario {
     *
     * */
 
-
-    public Funcionario(){}
-
-
     private int cod;
     private String nome;
+    private String apelido;
     private String cpf;
     private String rg;
     private String dataNasc;
@@ -65,21 +62,23 @@ public class Funcionario {
     private Boolean motLeva;
     private Boolean motguincho;
 
+    public Funcionario(){}
+
     public Funcionario(String nome) {
         this.nome = nome;
     }
 
-    public Funcionario(int cod, String nome, int tipoFunc){
+    public Funcionario(int cod, String apelido, int tipoFunc){
         this.cod = cod;
-        this.nome = nome;
+        this.apelido = apelido;
         this.tipoFunc = tipoFunc;
     }
 
-    public Funcionario(String nome, Boolean caixaMec, Boolean caixaAut, Boolean eletrica, Boolean freio,
+    public Funcionario(String apelido, Boolean caixaMec, Boolean caixaAut, Boolean eletrica, Boolean freio,
                        Boolean injDiesel, Boolean injFlex, Boolean motorDiesel, Boolean motorFlex, Boolean pneus,
                        Boolean suspensao, Boolean socorro, Boolean veicEletricos, Boolean motLeva, Boolean motguincho,
                        Boolean trocaOleo) {
-        this.nome = nome;
+        this.apelido = apelido;
         this.caixaMec = caixaMec;
         this.caixaAut = caixaAut;
         this.eletrica = eletrica;
@@ -425,5 +424,13 @@ public class Funcionario {
 
     public void setTrocaOleo(Boolean trocaOleo) {
         this.trocaOleo = trocaOleo;
+    }
+
+    public String getApelido() {
+        return apelido;
+    }
+
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
     }
 }

@@ -1,31 +1,31 @@
 package org.gsnt.auttech.model.entities;
 
-import java.sql.Time;
-import java.util.Date;
-import java.util.Timer;
-
 public class Direcionados {
 
     private Integer cod;
     private Integer funcionario;
+    private String apelido;
     private String placa;
-    private Date dataPrevista;
-    private Time horaPrevista;
+    private String tmpPrvst; //tempo Previsto
+    private Integer rdmTndmnt; //ordem atendimento
+    private Integer qtdtndmnt; //quantidade atendimento
 
-    public Direcionados(Integer cod, Integer funcionario, String placa, Date dataPrevista, Time horaPrevista) {
-        this.cod = cod;
-        this.funcionario = funcionario;
-        this.placa = placa;
-        this.dataPrevista = dataPrevista;
-        this.horaPrevista = horaPrevista;
+
+    public Direcionados(String apelido, Integer qtdtndmnt) {
+
+        this.apelido = apelido;
+        this.qtdtndmnt = qtdtndmnt;
+
     }
 
-    public Direcionados(Integer funcionario, String placa, Date dataPrevista, Time horaPrevista) {
-        this.funcionario = funcionario;
+    public Direcionados(String placa, String tmpPrvst, Integer rdmTndmnt) {
+
         this.placa = placa;
-        this.dataPrevista = dataPrevista;
-        this.horaPrevista = horaPrevista;
+        this.tmpPrvst = tmpPrvst;
+        this.rdmTndmnt = rdmTndmnt;
+
     }
+
 
     public Integer getCod() {
         return cod;
@@ -51,19 +51,35 @@ public class Direcionados {
         this.placa = placa;
     }
 
-    public Date getDataPrevista() {
-        return dataPrevista;
+    public String getTmpPrvst() {
+        return tmpPrvst;
     }
 
-    public void setDataPrevista(Date dataPrevista) {
-        this.dataPrevista = dataPrevista;
+    public void setTmpPrvst(String tmpPrvst) {
+        this.tmpPrvst = tmpPrvst;
     }
 
-    public Time getHoraPrevista() {
-        return horaPrevista;
+    public Integer getRdmTndmnt() {
+        return rdmTndmnt;
     }
 
-    public void setHoraPrevista(Time horaPrevista) {
-        this.horaPrevista = horaPrevista;
+    public void setRdmTndmnt(Integer rdmTndmnt) {
+        this.rdmTndmnt = rdmTndmnt;
+    }
+
+    public String getApelido() {
+        return apelido;
+    }
+
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
+    }
+
+    public Integer getQtdtndmnt() {
+        return qtdtndmnt;
+    }
+
+    public void setQtdtndmnt(Integer qtdtndmnt) {
+        this.qtdtndmnt = qtdtndmnt;
     }
 }

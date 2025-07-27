@@ -2,9 +2,9 @@ package org.gsnt.auttech.model.dao;
 
 import org.gsnt.auttech.model.entities.Cliente;
 
-import org.gsnt.auttech.model.entities.Email;
-import org.gsnt.auttech.model.entities.Endereco;
-import org.gsnt.auttech.model.entities.TelCliente;
+import org.gsnt.auttech.model.entities.entitiesgenerics.Email;
+import org.gsnt.auttech.model.entities.entitiesgenerics.Endereco;
+import org.gsnt.auttech.model.entities.entitiesgenerics.TelCliente;
 
 import java.util.List;
 

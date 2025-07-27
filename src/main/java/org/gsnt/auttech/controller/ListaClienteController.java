@@ -1,6 +1,5 @@
 package org.gsnt.auttech.controller;
 
-
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,13 +7,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.service.ClienteService;
 import org.gsnt.auttech.model.entities.Cliente;
 import org.gsnt.auttech.util.Botoes;
-import org.gsnt.auttech.util.Moka;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,22 +40,22 @@ public class ListaClienteController implements Initializable {
     protected TableView<Cliente> tableViewListClient;
 
     @FXML
-    public TableColumn<Cliente, Integer> tcCodigo;
+    private TableColumn<Cliente, Integer> tcCodigo;
 
     @FXML
-    public TableColumn<Cliente, String> tcNome;
+    private TableColumn<Cliente, String> tcNome;
 
     @FXML
-    public TableColumn<Cliente, String > tcApelido;
+    private TableColumn<Cliente, String > tcApelido;
 
     @FXML
-    protected TableColumn<Cliente, Cliente> tcBtEditar;
+    private TableColumn<Cliente, Cliente> tcBtEditar;
 
     @FXML
-    protected TableColumn<Cliente, Cliente> tcBtExcluir;
+    private TableColumn<Cliente, Cliente> tcBtExcluir;
 
     @FXML
-    protected TableColumn<Cliente, Cliente> tcBtAcessar;
+    private TableColumn<Cliente, Cliente> tcBtAcessar;
 
     @FXML
     protected Button buttonNovo;
@@ -104,7 +101,7 @@ public class ListaClienteController implements Initializable {
         this.clienteService = cli;
     }
 
-    protected ObservableList<Cliente> obsListCliente;
+    private ObservableList<Cliente> obsListCliente;
 
 
 

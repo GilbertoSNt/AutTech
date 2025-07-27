@@ -1,14 +1,13 @@
 package org.gsnt.auttech.model.dao.service;
 
 import org.gsnt.auttech.model.dao.EnderecoDao;
-import org.gsnt.auttech.model.entities.Endereco;
+import org.gsnt.auttech.model.entities.entitiesgenerics.Endereco;
 import org.gsnt.auttech.db.DB2;
 import org.gsnt.auttech.db.DbException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class EnderecoService implements EnderecoDao {
 

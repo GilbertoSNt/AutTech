@@ -1,4 +1,4 @@
-banco dados empresa embarcado
+/* banco dados empresa embarcado */
 
 CREATE DATABASE bancoempresa
     WITH
@@ -15,10 +15,7 @@ GRANT TEMPORARY, CONNECT ON DATABASE bancoempresa TO PUBLIC;
 GRANT ALL ON DATABASE bancoempresa TO gilberto;
 
 
-
->>>>> Tabela Cliente <<<<<
-
-
+/* >>>>> Tabela Cliente <<<<< */
 
 CREATE SEQUENCE IF NOT EXISTS public.sqcodcliente
     INCREMENT 1
@@ -54,128 +51,102 @@ ALTER TABLE IF EXISTS public.tabcliente
     OWNER to "gilberto";
 
 
+/* >>>>> Tabela Telefone Cliente <<<<< */
 
-
->>>>> Tabela Telefone Cliente <<<<<
-
-
-
-CREATE SEQUENCE IF NOT EXISTS public.sqcodtelcliente
+CREATE SEQUENCE IF NOT EXISTS public.sqcodtelefone
     INCREMENT 1
     START 1
     MINVALUE 1
     MAXVALUE 9223372036854775807
     CACHE 1;
 
-ALTER SEQUENCE public.sqcodtelcliente
+ALTER SEQUENCE public.sqcodtelefone
     OWNER TO "gilberto";
 
-CREATE TABLE IF NOT EXISTS public.tabtelcliente
+CREATE TABLE IF NOT EXISTS public.tabtelefone
 (
-    cod bigint NOT NULL DEFAULT nextval('sqcodtelcliente'::regclass),
-    codcliente bigint NOT null,
+    cod bigint NOT NULL DEFAULT nextval('sqcodtelefone'::regclass),
+    codexterno bigint NOT null,
+	codcaso int NOT null,
 	tipo int NOT NULL,
 	numerotel character varying(15),
-	CONSTRAINT tabtelcliente_pkey PRIMARY KEY (cod)
+	CONSTRAINT tabtelefone_pkey PRIMARY KEY (cod)
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.tabtelcliente
+ALTER TABLE IF EXISTS public.tabtelefone
     OWNER to "gilberto";
 
-ALTER TABLE IF EXISTS public.tabtelcliente
-    ADD CONSTRAINT fktelcliente FOREIGN KEY (codcliente)
-    REFERENCES public.tabcliente (cod) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
 
 
 
->>> Tabela email Cliente <<<<<
+/* >>>>> Tabela email Cliente <<<<< */
 
-
-
-CREATE SEQUENCE IF NOT EXISTS public.sqemailcliente
+CREATE SEQUENCE IF NOT EXISTS public.sqemail
     INCREMENT 1
     START 1
     MINVALUE 1
     MAXVALUE 9223372036854775807
     CACHE 1;
 
-ALTER SEQUENCE public.sqemailcliente
+ALTER SEQUENCE public.sqemail
     OWNER TO "gilberto";
 
-CREATE TABLE IF NOT EXISTS public.tabemailcliente
+CREATE TABLE IF NOT EXISTS public.tabemail
 (
-    cod bigint NOT NULL DEFAULT nextval('sqemailcliente'::regclass),
-    codcliente bigint NOT null,
+    cod bigint NOT NULL DEFAULT nextval('sqemail'::regclass),
+    codexterno bigint NOT null,
+	codcaso int NOT null,
 	tipo int NOT NULL,
 	email character varying(150),
-	CONSTRAINT tabemailcliente_pkey PRIMARY KEY (cod)
+	CONSTRAINT tabemail_pkey PRIMARY KEY (cod)
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.tabemailcliente
+ALTER TABLE IF EXISTS public.tabemail
     OWNER to "gilberto";
 
-ALTER TABLE IF EXISTS public.tabemailcliente
-    ADD CONSTRAINT fkemailcliente FOREIGN KEY (codcliente)
-    REFERENCES public.tabcliente (cod) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
 
 
 
->>>>> Tabela endereço Cliente <<<<<
+/* >>>>> Tabela endereço Cliente <<<<< */
 
-
-
-CREATE SEQUENCE IF NOT EXISTS public.sqcodendcliente
+CREATE SEQUENCE IF NOT EXISTS public.sqcodendereco
     INCREMENT 1
     START 1
     MINVALUE 1
     MAXVALUE 9223372036854775807
     CACHE 1;
 
-ALTER SEQUENCE public.sqcodendcliente
+ALTER SEQUENCE public.sqcodendereco
     OWNER TO "gilberto";
 
-CREATE TABLE IF NOT EXISTS public.tabendcliente
+CREATE TABLE IF NOT EXISTS public.tabendereco
 (
-        cod bigint NOT NULL DEFAULT nextval('sqcodendcliente'::regclass),
-	codcliente bigint NOT null,
+        cod bigint NOT NULL DEFAULT nextval('sqcodendereco'::regclass),
+	codexterno bigint NOT null,
+	codcaso int NOT null,
 	tipoend int NOT null,
 	endereco character varying(150),
 	numero  character varying(10),
 	bairro character varying(80),
 	cidade character varying(80),
 	estado int,
-    complemento character varying(150),
+        complemento character varying(150),
 	cep character varying(10),
-	CONSTRAINT tabendcliente_pkey PRIMARY KEY (cod)
+	CONSTRAINT tabendereco_pkey PRIMARY KEY (cod)
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.tabendcliente
+ALTER TABLE IF EXISTS public.tabenderco
     OWNER to "gilberto";
 
-ALTER TABLE IF EXISTS public.tabendcliente
-    ADD CONSTRAINT fkendcliente FOREIGN KEY (codcliente)
-    REFERENCES public.tabcliente (cod) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
 
 
-
->>>>> Tabela Veículo <<<<<
-
-
+/* >>>>> Tabela Veículo <<<<< */
 
 CREATE SEQUENCE IF NOT EXISTS public.sqcodveiculo
     INCREMENT 1
@@ -225,9 +196,7 @@ ALTER TABLE IF EXISTS public.tabveiculo
 
 
 
->>> Tabela veículo Cliente <<<<<
-
-
+/* >>>>> Tabela veículo Cliente <<<<< */
 
 CREATE SEQUENCE IF NOT EXISTS public.sqcodveiccliente
     INCREMENT 1
@@ -268,10 +237,60 @@ ALTER TABLE IF EXISTS public.tabveiccliente
 
 
 
+/* >>>>> Tabela OS <<<<< */
 
->>>>> Tabela Orçamento cliente <<<<<
+CREATE SEQUENCE IF NOT EXISTS public.sqcodos
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.sqcodos
+    OWNER TO "gilberto";
+
+CREATE TABLE IF NOT EXISTS public.tabos
+(
+    cod bigint NOT NULL DEFAULT nextval('sqcodoscliente'::regclass),
+    codcliente bigint NOT NULL,
+    codveiculo bigint NOT NULL,
+    vtpecas real,
+    vtservicos real,
+    vtos real,
+    asslevas boolean DEFAULT false,
+    obsos text COLLATE pg_catalog."default",
+    statusos integer,
+    orcamento boolean DEFAULT false,
+    dataabertura character varying COLLATE pg_catalog."default",
+    datafechamento character varying COLLATE pg_catalog."default",
+    horaabertura character varying COLLATE pg_catalog."default",
+    horafechamento character varying COLLATE pg_catalog."default",
+    CONSTRAINT taboscliente_pkey PRIMARY KEY (cod)
+)
 
 
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.tabos
+    OWNER to gilberto;
+
+ALTER TABLE IF EXISTS public.tabos
+    ADD CONSTRAINT fkoscliente FOREIGN KEY (codcliente)
+    REFERENCES public.tabcliente (cod) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+ALTER TABLE IF EXISTS public.tabos
+    ADD CONSTRAINT fkosclientes FOREIGN KEY (codveiculo)
+    REFERENCES public.tabveiculo (cod) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+
+/* >>>>> Tabela Orçamento cliente <<<<< */
 
 CREATE SEQUENCE IF NOT EXISTS public.sqcodorcliente
     INCREMENT 1
@@ -285,14 +304,26 @@ ALTER SEQUENCE public.sqcodorcliente
 
 CREATE TABLE IF NOT EXISTS public.taborcliente
 (
-    cod bigint NOT NULL DEFAULT nextval('sqcodorcliente'::regclass),
-    codcliente bigint NOT null,
-	codveiculo bigint NOT NULL,
-	dataabertura date,
-	datafechamento date,
-	vtpecas real,
-	vtservicos real,
-	vtos real,
+   cod bigint NOT NULL DEFAULT nextval('sqcodorcliente'::regclass),
+    codcliente bigint NOT NULL,
+    codveiculo bigint NOT NULL,
+    vtpecas integer,
+    vtservicos integer,
+    vtos integer,
+    stgeralorcamento integer,
+    respcliente integer,
+    datarespcliente character varying COLLATE pg_catalog."default",
+    horarespcliente character varying COLLATE pg_catalog."default",
+    formarespcliente integer,
+    resptecmecanico integer,
+    respteceletrico integer,
+    resptecinjecao integer,
+    resptecpneu integer,
+    respteccambio integer,
+    resptecmotor integer,
+    dataabertura character varying COLLATE pg_catalog."default",
+    datafechamento character varying COLLATE pg_catalog."default",
+    horafechamento character varying COLLATE pg_catalog."default",
 	CONSTRAINT taborcliente_pkey PRIMARY KEY (cod)
 )
 
@@ -317,6 +348,33 @@ ALTER TABLE IF EXISTS public.taborcliente
 
 
 
+/* >>>>> Tabela relação orçamentos x ordem de serviços <<<<< */
+
+
+CREATE SEQUENCE IF NOT EXISTS public.sqcodorcordemserv
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.sqcodorcordemserv
+    OWNER TO "gilberto";
+
+CREATE TABLE IF NOT EXISTS public.taborcordemserv
+(
+    cod bigint NOT NULL DEFAULT nextval('sqcodorcordemserv'::regclass),
+    codordemserv bigint NOT null,
+    codorc bigint NOT NULL,
+    CONSTRAINT taborcordemserv_pkey PRIMARY KEY (cod)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.taborcordemserv
+    OWNER to "gilberto";
+
+
 >>>>> Tabela peças Os <<<<<
 
 >>>>> Tabela serviços Os <<<<<
@@ -325,7 +383,7 @@ ALTER TABLE IF EXISTS public.taborcliente
 
 >>>>> Tabela serviços Or <<<<<
 
->>>>> Tabela Agenda <<<<<
+/* >>>>> Tabela Agenda <<<<< */
 
 
 CREATE SEQUENCE IF NOT EXISTS public.sqcodagenda
@@ -365,7 +423,7 @@ CREATE TABLE IF NOT EXISTS public.tabagenda
 	assbuscar boolean DEFAULT false,
 	assclientetraz boolean DEFAULT false,
 	assenvioguincho Boolean DEFAULT false,
-    assenviodeslocamento Boolean DEFAULT false,
+        assenviodeslocamento Boolean DEFAULT false,
  	CONSTRAINT tabagenda_pkey PRIMARY KEY (cod)
 
 )
@@ -375,72 +433,232 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.tabagenda
     OWNER to "gilberto";
 
->>>>>>>>>> tabOsCliente <<<<<<<<<<
-
->>>>> Tabela OS <<<<< ##################
 
 
+/* >>>>> tabela funcionários <<<<< */
 
-CREATE SEQUENCE IF NOT EXISTS public.sqcodoscliente
+CREATE SEQUENCE IF NOT EXISTS public.sqcodfuncionario
     INCREMENT 1
     START 1
     MINVALUE 1
     MAXVALUE 9223372036854775807
     CACHE 1;
 
-ALTER SEQUENCE public.sqcodoscliente
-    OWNER TO "gilberto";
+ALTER SEQUENCE public.sqcodfuncionario
+    OWNER TO gilberto;
 
-CREATE TABLE IF NOT EXISTS public.taboscliente
+	CREATE TABLE IF NOT EXISTS public.tabfuncionario
 (
-    cod bigint NOT NULL DEFAULT nextval('sqcodoscliente'::regclass),
-    codcliente bigint NOT null,
-	codveiculo bigint NOT NULL,
-	dataabertura date,
-	datafechamento date,
-    revisao boolean DEFAULT false,
-	suspensao boolean DEFAULT false,
-	injecao boolean DEFAULT false,
-	pneus boolean DEFAULT false,
-	trocaoleo boolean DEFAULT false,
-	freio boolean DEFAULT false,
-	eletrico boolean DEFAULT false,
-	mecanico boolean DEFAULT false,
-	motor boolean DEFAULT false,
-	caixa boolean DEFAULT false,
-	socmecanico boolean DEFAULT false,
-	soceletrico boolean DEFAULT false,
-	asslevas boolean DEFAULT false,
-	assguincho boolean DEFAULT false,
-	assbuscar boolean DEFAULT false,
-	assclientetraz boolean DEFAULT false,
-	assenvioguincho Boolean DEFAULT false,
-    assenviodeslocamento Boolean DEFAULT false,
-    obsos text,
-	vtpecas real,
-	vtservicos real,
-	vtos real,
-	CONSTRAINT taboscliente_pkey PRIMARY KEY (cod)
+    cod bigint NOT NULL DEFAULT nextval('sqcodfuncionario'::regclass),
+    cpf character varying(15) COLLATE pg_catalog."default",
+    rg character varying(15) COLLATE pg_catalog."default",
+    nome character varying(180) COLLATE pg_catalog."default" NOT NULL,
+    apelido character varying(60) NOT NULL,
+    genero boolean DEFAULT false,
+    status boolean DEFAULT false,
+    tipo integer,
+    telefone character varying(15) COLLATE pg_catalog."default",
+    telefoneconjuge character varying(15) COLLATE pg_catalog."default",
+    mae character varying(180) COLLATE pg_catalog."default",
+    pai character varying(180) COLLATE pg_catalog."default",
+    conjuge character varying(180) COLLATE pg_catalog."default",
+    qtdfilhos integer,
+    obs text COLLATE pg_catalog."default",
+    cartprofissional character varying(15) COLLATE pg_catalog."default",
+    cargo character varying(180) COLLATE pg_catalog."default",
+    funcao character varying(180) COLLATE pg_catalog."default",
+    comissao boolean DEFAULT false,
+    obsprof text COLLATE pg_catalog."default",
+    caixamec boolean DEFAULT false,
+    caixaaut boolean DEFAULT false,
+    eletrica boolean DEFAULT false,
+    freio boolean DEFAULT false,
+    injdiesel boolean DEFAULT false,
+    injflex boolean DEFAULT false,
+    motordiesel boolean DEFAULT false,
+    motorflex boolean DEFAULT false,
+    pneus boolean DEFAULT false,
+    suspensao boolean DEFAULT false,
+    socorro boolean DEFAULT false,
+    veiceletrico boolean DEFAULT false,
+    motleva boolean DEFAULT false,
+    motguincho boolean DEFAULT false,
+    datanasc character varying(11) COLLATE pg_catalog."default",
+    dataadm character varying(11) COLLATE pg_catalog."default",
+    datadesl character varying(11) COLLATE pg_catalog."default",
+    dataemissao character varying(11) COLLATE pg_catalog."default",
+    comissaopecas character varying(10) COLLATE pg_catalog."default",
+    comissaoservicos character varying(10) COLLATE pg_catalog."default",
+    salario character varying(12) COLLATE pg_catalog."default",
+    trocaoleo boolean DEFAULT false,
+    CONSTRAINT tabfuncionario_pkey PRIMARY KEY (cod)
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.taboscliente
-    OWNER to "gilberto";
-
-ALTER TABLE IF EXISTS public.taboscliente
-    ADD CONSTRAINT fkoscliente FOREIGN KEY (codcliente)
-    REFERENCES public.tabcliente (cod) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-ALTER TABLE IF EXISTS public.taboscliente
-    ADD CONSTRAINT fkosclientes FOREIGN KEY (codveiculo)
-    REFERENCES public.tabveiculo (cod) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
+ALTER TABLE IF EXISTS public.tabfuncionario
+    OWNER to gilberto;
 
 
 
+/* >>>> Tabela status atendimento <<<< */
+
+
+
+CREATE SEQUENCE IF NOT EXISTS public.sqcodstatusatendimento
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.sqcodstatusatendimento
+    OWNER TO "gilberto";
+
+CREATE TABLE IF NOT EXISTS public.tabstatusatendimento
+(
+    cod bigint NOT NULL DEFAULT nextval('sqcodstatusatendimento'::regclass),
+    codos bigint,
+    codorcamento bigint,
+    codveiculo bigint NOT NULL,
+    eletrico integer DEFAULT 0,
+    injecao integer DEFAULT 0,
+    caixa integer DEFAULT 0,
+    freiodt integer DEFAULT 0,
+    freiotr integer DEFAULT 0,
+    motor integer DEFAULT 0,
+    revisao integer DEFAULT 0,
+    suspensaodt integer DEFAULT 0,
+    suspensaotr integer DEFAULT 0,
+    pneus integer DEFAULT 0,
+    trocaoleo integer DEFAULT 0,
+    lavacao integer DEFAULT 0,
+    asslevar integer DEFAULT 0,
+    orcambio integer DEFAULT 0,
+    oreletrico integer DEFAULT 0,
+    ormotor integer DEFAULT 0,
+    orinjecao integer DEFAULT 0,
+    ormecanica integer DEFAULT 0,
+    orpneu integer DEFAULT 0,
+    orstcliente integer DEFAULT 0,
+    ormontagem integer DEFAULT 0,
+    staviso boolean DEFAULT false,
+    stgeralatend integer DEFAULT 0,
+    alinbalan integer DEFAULT 0,
+    dtprvzntrg character varying(10) COLLATE pg_catalog."default",   /* (data prevista para a entrega) */
+    hrprvztrg character varying(10) COLLATE pg_catalog."default"     /* (hora prevista para a entrega) */
+)
+
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.tabstatusatendimento
+    OWNER to gilberto;
+
+
+/* tabela de contagem de ocupação do profissional */
+
+
+CREATE SEQUENCE IF NOT EXISTS public.sqcodocupprfssnl
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.sqcodocupprssnl
+    OWNER TO "gilberto";
+
+CREATE TABLE public.tbocupcprfssnl
+(
+    cod bigint NOT NULL DEFAULT nextval('sqcodocupprfssnl'::regclass),
+    codprof bigint NOT NULL,
+    placa character varying NOT NULL,
+    tmpprvst character varying(4), /*tempo previsto*/
+    rdmtndmnt integer NOT NULL; /*ordem de atedimento*/
+    PRIMARY KEY (cod)
+);
+
+ALTER TABLE IF EXISTS public.tbocupcprfssnl
+    OWNER to gilberto;
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* VIEWS */
+
+CREATE OR REPLACE VIEW public.sereminiciados
+    AS
+     SELECT os.cod,
+    t1.placa,
+    t1.modelo,
+    st.eletrico,
+    st.injecao,
+    st.caixa,
+    st.freiodt,
+    st.freiotr,
+    st.motor,
+    st.revisao,
+    st.suspensaodt,
+    st.suspensaotr,
+    st.pneus,
+    st.trocaoleo
+   FROM tabos os
+     JOIN tabveiculo t1 ON t1.cod = os.codveiculo
+     JOIN tabstatusatendimento st ON st.codos = os.cod
+  WHERE st.stgeralatend < 8
+  ORDER BY os.cod ;
+
+
+
+
+CREATE OR REPLACE VIEW public.statussereminiciados
+    AS
+     SELECT os.cod,
+    t1.placa,
+    t1.modelo,
+    st.eletrico,
+    st.injecao,
+    st.caixa,
+    st.freiodt,
+    st.freiotr,
+    st.motor,
+    st.revisao,
+    st.suspensaodt,
+    st.suspensaotr,
+    st.pneus,
+    st.trocaoleo
+   FROM tabos os
+     JOIN tabveiculo t1 ON t1.cod = os.codveiculo
+     JOIN tabstatusatendimento st ON st.codos = os.cod
+  WHERE st.stgeralatend < 8
+  ORDER BY os.cod ;
+
+
+
+CREATE OR REPLACE VIEW public.statusorcamento
+    AS
+     SELECT st.codveiculo,
+    t1.placa,
+    t1.modelo,
+    st.orcambio,
+    st.oreletrico,
+    st.ormotor,
+    st.orinjecao,
+    st.ormecanica,
+    st.orpneu,
+    st.orstcliente,
+    st.ormontagem
+   FROM tabstatusatendimento st
+     JOIN tabveiculo t1 ON t1.cod = st.codveiculo
+  WHERE st.stgeralatend < 5
+  ORDER BY st.cod ;

@@ -57,7 +57,7 @@
                                        </image>
                                     </ImageView>
                                  </graphic></Button>
-                              <Button fx:id="btAgenda" layoutX="288.0" layoutY="12.0" mnemonicParsing="false" onAction="#onBtAgenda" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Agenda" wrapText="true" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="15.0">
+                              <Button fx:id="btAgenda1" layoutX="288.0" layoutY="12.0" mnemonicParsing="false" onAction="#onBtAgenda" styleClass="button4" stylesheets="@css/button.css" text="Cadastro Agenda" wrapText="true" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="15.0">
                                  <graphic>
                                     <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -90,20 +90,23 @@
                       <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btCadProfissionais" layoutX="10.0" layoutY="16.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCadProfissionais" styleClass="button4" stylesheets="@css/button.css" text="Cadastro de Profissional Funcionário" textAlignment="RIGHT" wrapText="true" />
+                              <Button fx:id="btCadProfissionais" layoutX="10.0" layoutY="16.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCadProfissionais" styleClass="button4" stylesheets="@css/button.css" text="Cadastro de Profissional Funcionário" wrapText="true">
+                                 <graphic>
+                                    <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icones/funcionarios.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                               <Button fx:id="btListarProfissionais" layoutX="10.0" layoutY="139.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtListarProfissionais" styleClass="button4" stylesheets="@css/button.css" text="Listar funcionários" wrapText="true">
                                  <graphic>
                                     <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@icones/ordem.png" />
-                                       </image></ImageView>
+                                       </image>
+                                    </ImageView>
                                  </graphic>
                               </Button>
-                              <ImageView fitHeight="40.0" fitWidth="30.0" layoutX="17.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@icones/funcionarios.png" />
-                                 </image>
-                              </ImageView>
                            </children></AnchorPane>
                       </content>
                   </Tab>
@@ -173,18 +176,18 @@
                                     </TableView>
                                  </content>
                               </ScrollPane>
-                              <Button fx:id="btAgenda" layoutX="961.0" layoutY="8.0" mnemonicParsing="false" onAction="#onBtAgenda" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Agendar" />
-                              <Button fx:id="btCancAgenda" layoutX="961.0" layoutY="87.0" mnemonicParsing="false" onAction="#onBtCancelarAgenda" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancelar agendamento" />
-                              <Button fx:id="btReceberVeic" layoutX="961.0" layoutY="126.0" mnemonicParsing="false" onAction="#onBtReceberVeic" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Criar O.S. pelo agendamento" />
-                              <Button fx:id="btEnvioSocorro" layoutX="961.0" layoutY="166.0" mnemonicParsing="false" onAction="#onBtConfirmaEnvioSocorro" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Confirmar envio do socorro" />
+                              <Button fx:id="btAgenda" layoutX="961.0" layoutY="8.0" mnemonicParsing="false" onAction="#onBtAgenda" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Agendar" />
+                              <Button fx:id="btCancAgenda" layoutX="961.0" layoutY="87.0" mnemonicParsing="false" onAction="#onBtCancelarAgenda" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancelar agendamento" />
+                              <Button fx:id="btReceberVeic" layoutX="961.0" layoutY="126.0" mnemonicParsing="false" onAction="#onBtReceberVeic" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Criar O.S. pelo agendamento" />
+                              <Button fx:id="btEnvioSocorro" layoutX="961.0" layoutY="166.0" mnemonicParsing="false" onAction="#onBtConfirmaEnvioSocorro" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Confirmar envio do socorro" />
                               <Circle fx:id="circleSem11" fill="INDIANRED" layoutX="975.0" layoutY="284.0" radius="8.0" stroke="INDIANRED" strokeType="INSIDE" strokeWidth="3.0" />
                               <Circle fx:id="circleRevisao11" fill="#70c3a7" layoutX="975.0" layoutY="257.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
                               <Label layoutX="991.0" layoutY="248.0" text="Agendado / No horário" />
                               <Label layoutX="992.0" layoutY="276.0" text="Atrasado" />
                               <Circle fx:id="circleSem111" fill="#0047ab" layoutX="975.0" layoutY="309.0" radius="8.0" stroke="#0047ab" strokeType="INSIDE" strokeWidth="3.0" />
                               <Label layoutX="992.0" layoutY="303.0" text="Socorro/Deslocamento enviado" />
-                              <Button fx:id="btEnvioBusca" layoutX="961.0" layoutY="205.0" mnemonicParsing="false" onAction="#onBtConfirmaEnvioBusca" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Confirmar a busca do veículo" />
-                              <Button fx:id="btAlteraAgenda" layoutX="961.0" layoutY="48.0" mnemonicParsing="false" onAction="#onBtAlteraAgenda" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Altera agendamento" />
+                              <Button fx:id="btEnvioBusca" layoutX="961.0" layoutY="205.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtConfirmaEnvioBusca" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Confirmar a busca do veículo" />
+                              <Button fx:id="btAlteraAgenda" layoutX="961.0" layoutY="48.0" mnemonicParsing="false" onAction="#onBtAlteraAgenda" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Altera agendamento" />
                            </children>
                         </AnchorPane>
                      </content></TitledPane>
@@ -233,22 +236,22 @@
                                     </TableView>
                                  </content>
                               </ScrollPane>
-                              <Button fx:id="btAbrirOS" layoutX="961.0" layoutY="8.0" mnemonicParsing="false" onAction="#onbtAbrirOS" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Abrir ordem de serviços" />
-                              <Button fx:id="btCancOS" layoutX="961.0" layoutY="52.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancelar ordem de serviço" />
-                              <Button fx:id="btDirTecnico" layoutX="961.0" layoutY="93.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Altera/Direciona OS aos técnico(s)" />
-                              <Circle fx:id="circleSem" fill="#f50505" layoutX="969.0" layoutY="179.0" radius="8.0" stroke="#f50505" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Circle fx:id="circleRevisao" fill="#f9d428" layoutX="969.0" layoutY="206.0" radius="8.0" stroke="#f50505" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="983.0" layoutY="171.0" text="Serviço sem direcionamento" />
-                              <Label layoutX="984.0" layoutY="198.0" text="Direcionamento sem confirmação" />
-                              <Circle fx:id="circleParcial" fill="#f9d428" layoutX="969.0" layoutY="233.0" radius="8.0" stroke="#f9d428" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="985.0" layoutY="225.0" text="OS conf. com  orç. pendente" />
-                              <Circle fx:id="circleDirecionado" fill="#7c2d91" layoutX="969.0" layoutY="259.0" radius="8.0" stroke="#7c2d91" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="985.0" layoutY="251.0" text="Orçamento aguardando liberação" />
-                              <Circle fx:id="circleDirecionado2" fill="#3f676d" layoutX="969.0" layoutY="311.0" radius="8.0" stroke="#3f676d" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="985.0" layoutY="303.0" text="Orçamento lib. cliente aguard." />
-                              <Circle fx:id="circleDirecionado3" fill="#7c2d91" layoutX="969.0" layoutY="285.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="985.0" layoutY="277.0" text="Orçamento lib. aguardando peças" />
-                              <Button fx:id="btOsSemOrc" layoutX="961.0" layoutY="134.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Direciona OS sem orçamento" />
+                              <Button fx:id="btAbrirOS" layoutX="961.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtAbrirOS" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Abrir ordem de serviços" />
+                              <Button fx:id="btCancOS" layoutX="961.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCancelarOs" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancelar ordem de serviço" />
+                              <Button fx:id="btAltOS" layoutX="961.0" layoutY="103.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtAltOS" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Altera OS" />
+                              <Circle fx:id="circleSem" fill="#f50505" layoutX="969.0" layoutY="205.0" radius="8.0" stroke="#f50505" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Circle fx:id="circleRevisao" fill="#f9d428" layoutX="969.0" layoutY="227.0" radius="8.0" stroke="#f50505" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="983.0" layoutY="197.0" text="Serviço sem direcionamento" />
+                              <Label layoutX="984.0" layoutY="219.0" text="Direcionamento sem confirmação" />
+                              <Circle fx:id="circleParcial" fill="#f9d428" layoutX="969.0" layoutY="249.0" radius="8.0" stroke="#f9d428" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="985.0" layoutY="241.0" text="OS conf. com  orç. pendente" />
+                              <Circle fx:id="circleDirecionado" fill="#7c2d91" layoutX="969.0" layoutY="271.0" radius="8.0" stroke="#7c2d91" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="985.0" layoutY="263.0" text="Orçamento aguardando liberação" />
+                              <Circle fx:id="circleDirecionado2" fill="#3f676d" layoutX="969.0" layoutY="315.0" radius="8.0" stroke="#3f676d" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="985.0" layoutY="307.0" text="Orçamento lib. aguard. cliente" />
+                              <Circle fx:id="circleDirecionado3" fill="#7c2d91" layoutX="969.0" layoutY="293.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="985.0" layoutY="285.0" text="Orçamento lib. aguardando peças" />
+                              <Button fx:id="btDirecionaOS" layoutX="961.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtDirecionaOS" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Direciona OS aos técnicos" />
                            </children>
                         </AnchorPane>
                      </content></TitledPane>
@@ -273,22 +276,30 @@
                                              </columns>
                                           </TableColumn>
                                           <TableColumn fx:id="tcAguardAvaliacao" prefWidth="75.0" style="-fx-alignment: center;" text="Mont. Orç." />
-                                          <TableColumn fx:id="tcStatusCliente" prefWidth="130.0" text="Status cliente" />
+                                          <TableColumn fx:id="tcStatusCliente" prefWidth="130.0" style="-fx-alignment: center;" text="Status cliente" />
                                        </columns>
                                     </TableView>
                                  </content>
                               </ScrollPane>
-                              <Button fx:id="btAltOrc" layoutX="961.0" layoutY="9.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Alterar orçamento" />
-                              <Button fx:id="btAutrzOrc" layoutX="961.0" layoutY="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Autorizar orçamento" />
-                              <Button fx:id="btCnclOrc" layoutX="961.0" layoutY="92.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancelar serviço" />
-                              <Circle fx:id="circleSem1" fill="#f9d428" layoutX="969.0" layoutY="230.0" radius="8.0" stroke="#f9d428" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Circle fx:id="circleRevisao1" fill="#f9d428" layoutX="969.0" layoutY="258.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="983.0" layoutY="223.0" text="Aguardando profissional" />
-                              <Label layoutX="983.0" layoutY="250.0" text="Em preparação" />
-                              <Circle fx:id="circleParcial1" fill="#70c3a7" layoutX="969.0" layoutY="311.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="985.0" layoutY="303.0" text="Liberado pelo cliente não iniciado" />
-                              <Circle fx:id="circleRevisao12" fill="#7c2d91" layoutX="969.0" layoutY="285.0" radius="8.0" stroke="#7c2d91" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="985.0" layoutY="277.0" text="Aguardando liberação cliente" />
+                              <Button fx:id="btAltOrc" layoutX="961.0" layoutY="7.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Alterar orçamento" />
+                              <Button fx:id="btAutrzOrc" layoutX="961.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Autorizar orçamento" />
+                              <Button fx:id="btCnclOrc" layoutX="961.0" layoutY="74.0" mnemonicParsing="false" onAction="#onbtCnclOrc" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Rejeitar orç. /Cancelar serviço" />
+                              <Circle fx:id="circleSem1" fill="#f9d428" layoutX="969.0" layoutY="172.0" radius="8.0" stroke="#f9d428" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Circle fx:id="circleRevisao1" fill="#f9d428" layoutX="969.0" layoutY="193.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="983.0" layoutY="165.0" text="Aguardando profissional" />
+                              <Label layoutX="983.0" layoutY="185.0" text="Em preparação" />
+                              <Circle fx:id="circleParcial1" fill="#70c3a7" layoutX="969.0" layoutY="213.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="985.0" layoutY="205.0" text="Montagem do orç. encerrado" />
+                              <Circle fx:id="circleRevisao12" fill="#7c2d91" layoutX="969.0" layoutY="254.0" radius="8.0" stroke="#7c2d91" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="985.0" layoutY="245.0" text="Aguardando liberação cliente" />
+                              <Circle fx:id="circleParcial11" fill="#f59097" layoutX="969.0" layoutY="233.0" radius="8.0" stroke="#f59097" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="985.0" layoutY="225.0" text="Orçamento não enviado" />
+                              <Circle fx:id="circleParcial111" fill="#e3c9a2" layoutX="969.0" layoutY="274.0" radius="8.0" stroke="#e3c9a2" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="985.0" layoutY="266.0" text="Liberado parcial" />
+                              <Circle fx:id="circleParcial1111" fill="#86fdff" layoutX="970.0" layoutY="295.0" radius="8.0" stroke="#86fdff" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="986.0" layoutY="287.0" text="Liberado Total" />
+                              <Circle fx:id="circleParcial11111" layoutX="970.0" layoutY="314.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
+                              <Label layoutX="986.0" layoutY="306.0" text="Recusado" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -318,9 +329,9 @@
                                     </TableView>
                                  </content>
                               </ScrollPane>
-                              <Button fx:id="btFnlzServ" layoutX="961.0" layoutY="97.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Finalizar todos os serviço" />
-                              <Button fx:id="btCncOS" layoutX="961.0" layoutY="54.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancela Ordem de Serviço" />
-                              <Button fx:id="btAlteraOS" layoutX="961.0" layoutY="11.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Altera Ordem de Serviço" />
+                              <Button fx:id="btFnlzServ" layoutX="961.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Finalizar todos os serviço" />
+                              <Button fx:id="btCncOS" layoutX="961.0" layoutY="41.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancela Ordem de Serviço" />
+                              <Button fx:id="btAlteraOS" layoutX="961.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Altera Ordem de Serviço" />
                               <Circle fx:id="circleSem12" fill="#70c3a7" layoutX="970.0" layoutY="284.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
                               <Label layoutX="987.0" layoutY="277.0" text="Em produção" />
                               <Circle fx:id="circleDirecionado12" fill="#3f676d" layoutX="970.0" layoutY="312.0" radius="8.0" stroke="#3f676d" strokeType="INSIDE" strokeWidth="3.0" />
@@ -350,7 +361,7 @@
                                     </TableView>
                                  </content>
                               </ScrollPane>
-                              <Button fx:id="btFnlzOS" layoutX="961.0" layoutY="11.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/button.css" text="Finalizar ordem de serviço" />
+                              <Button fx:id="btFnlzOS" layoutX="961.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Finalizar ordem de serviço" />
                            </children>
                         </AnchorPane>
                      </content>

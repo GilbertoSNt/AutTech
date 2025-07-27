@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import org.gsnt.auttech.TelaPrincipal;
-import org.gsnt.auttech.model.entities.*;
+import org.gsnt.auttech.model.entities.entitiesgenerics.*;
 import org.gsnt.auttech.util.DadosCombos;
 import org.gsnt.auttech.util.MaskValid;
 

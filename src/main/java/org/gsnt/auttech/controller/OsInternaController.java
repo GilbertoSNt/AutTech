@@ -1,6 +1,5 @@
 package org.gsnt.auttech.controller;
 
-import com.fasterxml.jackson.databind.introspect.TypeResolutionContext;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,8 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
-import org.gsnt.auttech.model.entities.DadosGenericos;
-import org.gsnt.auttech.model.entities.TipoEndereco;
+import org.gsnt.auttech.model.entities.entitiesgenerics.DadosGenericos;
 import org.gsnt.auttech.util.DadosCombos;
 
 import java.net.URL;

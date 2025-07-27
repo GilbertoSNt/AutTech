@@ -1,6 +1,6 @@
 package org.gsnt.auttech.model.dao;
 
-import org.gsnt.auttech.model.entities.Endereco;
+import org.gsnt.auttech.model.entities.entitiesgenerics.Endereco;
 
 public interface EnderecoDao {
 

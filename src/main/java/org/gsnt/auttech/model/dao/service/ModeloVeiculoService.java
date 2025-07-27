@@ -2,7 +2,7 @@ package org.gsnt.auttech.model.dao.service;
 
 import org.gsnt.auttech.db.DB;
 import org.gsnt.auttech.db.DbException;
-import org.gsnt.auttech.model.entities.ModeloVeiculo;
+import org.gsnt.auttech.model.entities.entitiesgenerics.ModeloVeiculo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

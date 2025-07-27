@@ -8,10 +8,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import org.gsnt.auttech.model.entities.Estados;
-import org.gsnt.auttech.model.entities.PerfilFiscal;
-import org.gsnt.auttech.model.entities.TipoEndereco;
-import org.gsnt.auttech.model.entities.TipoTelefone;
+import org.gsnt.auttech.model.entities.entitiesgenerics.Estados;
+import org.gsnt.auttech.model.entities.entitiesgenerics.PerfilFiscal;
+import org.gsnt.auttech.model.entities.entitiesgenerics.TipoEndereco;
+import org.gsnt.auttech.model.entities.entitiesgenerics.TipoTelefone;
 import org.gsnt.auttech.util.DadosCombos;
 import org.gsnt.auttech.util.MaskValid;
 

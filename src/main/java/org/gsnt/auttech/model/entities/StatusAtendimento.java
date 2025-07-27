@@ -12,14 +12,15 @@ public class StatusAtendimento {
      * 1 - serviço não iniciado
      * 2 - Serviço já iniciado análise
      * 3 - serviço em orçamento
-     * 4 - serviço liberado
-     * 5 - Cancelada
-     * 6 - Fechada
-     * 7 - Veículo pronto
-     * 8 - Cliente avisado
-     * 9 - Faturada
-     * 10 - Paga
-     * 11 - Pendente Pagamento
+     * 4 - serviço liberado(Não iniciado)
+     * 5 - serviço iniciado
+     * 6 - Cancelada
+     * 7 - Fechada
+     * 8 - Veículo pronto
+     * 9 - Cliente avisado
+     * 10 - Faturada
+     * 11 - Paga
+     * 12 - Pendente Pagamento
      *
      * Status do atendimento
      *
@@ -33,7 +34,6 @@ public class StatusAtendimento {
      * 5 - Orçamento liberado aguardando peças - verde - 70c3a7 / lilas - 7c2d91
      * 6 - veículo com cliente aguardando pecas  - verde escuro - 3f676d
      *
-     *
      * Tela serviços iniciados
      *
      * 7 - Orçamento liberado peças disponíveis aguardando retorno veículo - Vermelho - f50505
@@ -41,20 +41,15 @@ public class StatusAtendimento {
      * 9 - Em produção - verde - 70c3a7
      * 10 - Serviço pronto sem aviso ao cliente   - verde escuro - 3f676d
      *
-     * Veículos em orçamento
+     * Veículos em orçamento do item 13 em diante coluna status cliente
      * 11 - Aguardando profissional - Amarelo - f9d428
      * 12 - Em preparação - Amarelo - f9d428 / verde - 70c3a7
-     * 13 - Aguardando liberação - lilas - 7c2d91
-     * 14 - Liberado para o cliente - verde - 70c3a7
-     *
-     *      >>>>>>Verificar coluna status cliente<<<<<<<
-     *
-     * Status orçamento cliente
-     * 0 - orçamento não enviado ao cliente
-     * 1 - orçamento enviado para cliente
-     * 2 - orçamento liberado
-     * 3 - orçamento liberado parcial
-     * 4 - orçamento recusado
+     * 13 - Liberado para o cliente - verde - 70c3a7
+     * 14 - Aguardando liberação - lilas - 7c2d91
+     * 15 - orçamento liberado parcial - #e3c9a2
+     * 16 - orçamento recusado - 000000
+     * 17 - orçamento não enviado ao cliente - f59097
+     * 18 - Orçamento liberado total - 86fdff
      *
      */
 
@@ -96,18 +91,18 @@ public class StatusAtendimento {
     private byte stAviso;
     private byte stGeralAtend;
 
-    private Circulos sEletrico;
-    private Circulos sInjecao;
-    private Circulos sCambio;
-    private Circulos sFreioDt;
-    private Circulos sFreioTr;
-    private Circulos sMotor;
+    private Circulos cirEletrico;
+    private Circulos cirInjecao;
+    private Circulos cirCambio;
+    private Circulos cirFreioDt;
+    private Circulos cirFreioTr;
+    private Circulos cirMotor;
     private Circulos mecanico1;
-    private Circulos sRevisao;
-    private Circulos sSuspDt;
-    private Circulos sSuspTr;
-    private Circulos sPneus;
-    private Circulos sTrOleo;
+    private Circulos cirRevisao;
+    private Circulos cirSuspDt;
+    private Circulos cirSuspTr;
+    private Circulos cirPneus;
+    private Circulos cirTrOleo;
     private Circulos lavacao1;
     private Circulos montOrc;
     private Circulos stCliente;
@@ -117,23 +112,23 @@ public class StatusAtendimento {
     //>>>>>> usado na tela a serem iniciados <<<<<<<
 
     public StatusAtendimento(Integer cod, String placa, String veiculo, Circulos sEletrico, Circulos sInjecao,
-                             Circulos sCambio, Circulos sFreioDt, Circulos sFreioTr, Circulos sMotor,
-                             Circulos sRevisao, Circulos sSuspDt, Circulos sSuspTr, Circulos sPneus, Circulos sTrOleo) {
+                             Circulos cirCambio, Circulos cirFreioDt, Circulos cirFreioTr, Circulos cirMotor,
+                             Circulos cirRevisao, Circulos cirSuspDt, Circulos cirSuspTr, Circulos cirPneus, Circulos cirTrOleo) {
 
         this.cod = cod;
         this.placa = placa;
         this.veiculo = veiculo;
-        this.sEletrico = sEletrico;
-        this.sInjecao = sInjecao;
-        this.sCambio = sCambio;
-        this.sFreioDt = sFreioDt;
-        this.sFreioTr = sFreioTr;
-        this.sMotor = sMotor;
-        this.sRevisao = sRevisao;
-        this.sSuspDt = sSuspDt;
-        this.sSuspTr = sSuspTr;
-        this.sPneus = sPneus;
-        this.sTrOleo = sTrOleo;
+        this.cirEletrico = sEletrico;
+        this.cirInjecao = sInjecao;
+        this.cirCambio = cirCambio;
+        this.cirFreioDt = cirFreioDt;
+        this.cirFreioTr = cirFreioTr;
+        this.cirMotor = cirMotor;
+        this.cirRevisao = cirRevisao;
+        this.cirSuspDt = cirSuspDt;
+        this.cirSuspTr = cirSuspTr;
+        this.cirPneus = cirPneus;
+        this.cirTrOleo = cirTrOleo;
     }
 
     public StatusAtendimento(Integer codOs, String placa,  String veiculo, byte eletrico, byte injecao, byte caixa,
@@ -171,7 +166,22 @@ public class StatusAtendimento {
         this.orMontagem = orMontagem;
     }
 
-    // Conatrutor de circulos usa o mesmo do status em serviços
+    public StatusAtendimento(String placa, String veiculo, Circulos cirCambio, Circulos sEletrico, Circulos sInjecao,
+                             Circulos mecanico1, Circulos cirMotor, Circulos cirPneus, Circulos montOrc, Circulos stCliente) {
+        this.placa = placa;
+        this.veiculo = veiculo;
+        this.cirCambio = cirCambio;
+        this.cirEletrico = sEletrico;
+        this.cirInjecao = sInjecao;
+        this.mecanico1 = mecanico1;
+        this.cirMotor = cirMotor;
+        this.cirPneus = cirPneus;
+        this.montOrc = montOrc;
+        this.stCliente = stCliente;
+
+    }
+
+
 
     //>>>>>> usado na tela em serviços <<<<<<<
 
@@ -188,16 +198,16 @@ public class StatusAtendimento {
         this.lavacao = lavacao;
     }
 
-    public StatusAtendimento(String placa, String veiculo, Circulos sCambio, Circulos sEletrico, Circulos sInjecao,
-                             Circulos mecanico1, Circulos sMotor, Circulos sPneus, Circulos lavacao1) {
+    public StatusAtendimento(String placa, String veiculo, Circulos cirCambio, Circulos sEletrico, Circulos sInjecao,
+                             Circulos mecanico1, Circulos cirMotor, Circulos cirPneus, Circulos lavacao1) {
         this.placa = placa;
         this.veiculo = veiculo;
-        this.sCambio = sCambio;
-        this.sEletrico = sEletrico;
-        this.sInjecao = sInjecao;
+        this.cirCambio = cirCambio;
+        this.cirEletrico = sEletrico;
+        this.cirInjecao = sInjecao;
         this.mecanico1 = mecanico1;
-        this.sMotor = sMotor;
-        this.sPneus = sPneus;
+        this.cirMotor = cirMotor;
+        this.cirPneus = cirPneus;
         this.lavacao1 = lavacao1;
     }
 
@@ -451,52 +461,52 @@ public class StatusAtendimento {
         this.placa = placa;
     }
 
-    public Circulos getsEletrico() {
-        return sEletrico;
+    public Circulos getCirEletrico() {
+        return cirEletrico;
     }
 
-    public void setsEletrico(Circulos sEletrico) {
-        this.sEletrico = sEletrico;
+    public void setCirEletrico(Circulos cirEletrico) {
+        this.cirEletrico = cirEletrico;
     }
 
-    public Circulos getsInjecao() {
-        return sInjecao;
+    public Circulos getCirInjecao() {
+        return cirInjecao;
     }
 
-    public void setsInjecao(Circulos sInjecao) {
-        this.sInjecao = sInjecao;
+    public void setCirInjecao(Circulos cirInjecao) {
+        this.cirInjecao = cirInjecao;
     }
 
-    public Circulos getsCambio() {
-        return sCambio;
+    public Circulos getCirCambio() {
+        return cirCambio;
     }
 
-    public void setsCambio(Circulos sCambio) {
-        this.sCambio = sCambio;
+    public void setCirCambio(Circulos cirCambio) {
+        this.cirCambio = cirCambio;
     }
 
-    public Circulos getsFreioDt() {
-        return sFreioDt;
+    public Circulos getCirFreioDt() {
+        return cirFreioDt;
     }
 
-    public void setsFreioDt(Circulos sFreioDt) {
-        this.sFreioDt = sFreioDt;
+    public void setCirFreioDt(Circulos cirFreioDt) {
+        this.cirFreioDt = cirFreioDt;
     }
 
-    public Circulos getsFreioTr() {
-        return sFreioTr;
+    public Circulos getCirFreioTr() {
+        return cirFreioTr;
     }
 
-    public void setsFreioTr(Circulos sFreioTr) {
-        this.sFreioTr = sFreioTr;
+    public void setCirFreioTr(Circulos cirFreioTr) {
+        this.cirFreioTr = cirFreioTr;
     }
 
-    public Circulos getsMotor() {
-        return sMotor;
+    public Circulos getCirMotor() {
+        return cirMotor;
     }
 
-    public void setsMotor(Circulos sMotor1) {
-        this.sMotor = sMotor1;
+    public void setCirMotor(Circulos sMotor1) {
+        this.cirMotor = sMotor1;
     }
 
     public Circulos getMecanico1() {
@@ -507,44 +517,44 @@ public class StatusAtendimento {
         this.mecanico1 = mecanico1;
     }
 
-    public Circulos getsRevisao() {
-        return sRevisao;
+    public Circulos getCirRevisao() {
+        return cirRevisao;
     }
 
-    public void setsRevisao(Circulos sRevisao) {
-        this.sRevisao = sRevisao;
+    public void setCirRevisao(Circulos cirRevisao) {
+        this.cirRevisao = cirRevisao;
     }
 
-    public Circulos getsSuspDt() {
-        return sSuspDt;
+    public Circulos getCirSuspDt() {
+        return cirSuspDt;
     }
 
-    public void setsSuspDt(Circulos sSuspDt) {
-        this.sSuspDt = sSuspDt;
+    public void setCirSuspDt(Circulos cirSuspDt) {
+        this.cirSuspDt = cirSuspDt;
     }
 
-    public Circulos getsSuspTr() {
-        return sSuspTr;
+    public Circulos getCirSuspTr() {
+        return cirSuspTr;
     }
 
-    public void setsSuspTr(Circulos sSuspTr) {
-        this.sSuspTr = sSuspTr;
+    public void setCirSuspTr(Circulos cirSuspTr) {
+        this.cirSuspTr = cirSuspTr;
     }
 
-    public Circulos getsPneus() {
-        return sPneus;
+    public Circulos getCirPneus() {
+        return cirPneus;
     }
 
-    public void setsPneus(Circulos sPneus) {
-        this.sPneus = sPneus;
+    public void setCirPneus(Circulos cirPneus) {
+        this.cirPneus = cirPneus;
     }
 
-    public Circulos getsTrOleo() {
-        return sTrOleo;
+    public Circulos getCirTrOleo() {
+        return cirTrOleo;
     }
 
-    public void setsTrOleo(Circulos sTrOleo) {
-        this.sTrOleo = sTrOleo;
+    public void setCirTrOleo(Circulos cirTrOleo) {
+        this.cirTrOleo = cirTrOleo;
     }
 
     public Circulos getLavacao1() {

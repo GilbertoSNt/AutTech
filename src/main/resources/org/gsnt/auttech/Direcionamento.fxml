@@ -41,11 +41,26 @@
             <Button fx:id="btCancel" layoutX="137.0" layoutY="481.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCloseButtonClick" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Cancelar" />
             <Button fx:id="btFechar" layoutX="258.0" layoutY="481.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCloseButtonClick" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Fechar" />
             <Label fx:id="lblVeiculo" layoutX="73.0" layoutY="11.0" prefHeight="17.0" prefWidth="589.0" />
-            <Accordion layoutX="11.0" layoutY="144.0" prefHeight="326.0" prefWidth="966.0" AnchorPane.leftAnchor="14.0">
+            <ScrollPane layoutY="143.0" prefHeight="326.0" prefWidth="391.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="143.0">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="322.0" prefWidth="388.0">
+                     <children>
+                        <TableView fx:id="tvMecanico" layoutX="14.0" layoutY="6.0" prefHeight="348.0" prefWidth="388.0" stylesheets="@css/tableview.css" AnchorPane.bottomAnchor="-24.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columns>
+                              <TableColumn fx:id="tcMecNome" prefWidth="200.0" text="Nome profissional" />
+                              <TableColumn fx:id="tcMecQuant" prefWidth="100.0" text="Qtd. atend." />
+                              <TableColumn fx:id="tcLista" prefWidth="85.0" text="Lista" style="-fx-alignment: center;" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+            <Accordion layoutX="11.0" layoutY="144.0" prefHeight="326.0" prefWidth="568.0" AnchorPane.leftAnchor="14.0">
               <panes>
                 <TitledPane fx:id="tp1" animated="false" styleClass="titledpane" stylesheets="@css/panel.css" text="Profissionais mecânicos">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="246.0" prefWidth="749.0">
                            <children>
                               <Label layoutX="8.0" layoutY="8.0" text="Caixa de câmbio" AnchorPane.leftAnchor="5.0" />
                               <ComboBox fx:id="cbxCaixa" layoutX="8.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" stylesheets="@css/combobox.css" AnchorPane.leftAnchor="5.0" />
@@ -58,20 +73,6 @@
                               <CheckBox fx:id="cbTudoMec" layoutX="11.0" layoutY="211.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="321.0" text="Passar todo o serviço para um único mecânico" textOverrun="CENTER_WORD_ELLIPSIS" AnchorPane.leftAnchor="5.0" />
                               <Label layoutX="329.0" layoutY="8.0" text="Troca de óleo" AnchorPane.leftAnchor="275.0" />
                               <ComboBox fx:id="cbxTrocaOleo" layoutX="329.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" stylesheets="@css/combobox.css" AnchorPane.leftAnchor="275.0" />
-                              <ScrollPane layoutX="546.0" layoutY="13.0" prefHeight="220.0" prefWidth="400.0" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="231.0" prefWidth="385.0">
-                                       <children>
-                                          <TableView fx:id="tvMecanico" layoutX="14.0" layoutY="6.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/tableview.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <columns>
-                                                <TableColumn fx:id="tcMecNome" prefWidth="170.0" text="Nome profissional" />
-                                                <TableColumn fx:id="tcMecQuant" prefWidth="233.0" text="Quant. de atendimentos" />
-                                             </columns>
-                                          </TableView>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </ScrollPane>
                            </children>
                         </AnchorPane>
                   </content>
@@ -84,20 +85,6 @@
                               <ComboBox fx:id="cbxEletrico" layoutX="8.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" stylesheets="@css/combobox.css" />
                               <Label layoutX="8.0" layoutY="66.0" text="Injeção eletrônica" />
                               <ComboBox fx:id="cbxInjElet" layoutX="8.0" layoutY="87.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" stylesheets="@css/combobox.css" />
-                              <ScrollPane layoutX="546.0" layoutY="13.0" prefHeight="220.0" prefWidth="400.0" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="231.0" prefWidth="385.0">
-                                       <children>
-                                          <TableView fx:id="tvElet" layoutX="14.0" layoutY="6.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/tableview.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <columns>
-                                                <TableColumn fx:id="tcEletNome" prefWidth="170.0" text="Nome profissionais" />
-                                                <TableColumn fx:id="tcEletQuant" prefWidth="233.0" text="Quant. de Atendimentos" />
-                                             </columns>
-                                          </TableView>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </ScrollPane>
                            </children>
                         </AnchorPane>
                   </content>
@@ -113,20 +100,6 @@
                               <Label layoutX="14.0" layoutY="123.0" text="Balanceamento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="110.0" />
                               <ComboBox fx:id="cbxBalan" layoutX="14.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" stylesheets="@css/combobox.css" AnchorPane.leftAnchor="0.0" />
                               <CheckBox fx:id="cbTudoMec1" layoutX="14.0" layoutY="213.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="321.0" text="Passar todo o serviço para um único mecânico" textOverrun="CENTER_WORD_ELLIPSIS" AnchorPane.leftAnchor="5.0" />
-                              <ScrollPane layoutX="546.0" layoutY="13.0" prefHeight="220.0" prefWidth="400.0" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="231.0" prefWidth="385.0">
-                                       <children>
-                                          <TableView fx:id="tvPneus" layoutX="14.0" layoutY="6.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/tableview.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <columns>
-                                              <TableColumn fx:id="tcPneusNome" prefWidth="170.0" text="Nome profissional" />
-                                              <TableColumn fx:id="tcPneusQuant" minWidth="0.0" prefWidth="233.0" text="Quant. de Atendimentos" />
-                                            </columns>
-                                          </TableView>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </ScrollPane>
                            </children>
                         </AnchorPane>
                   </content>

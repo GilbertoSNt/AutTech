@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.gsnt.auttech.model.dao.DaoFactory;
@@ -17,10 +18,13 @@ import org.gsnt.auttech.model.dao.EmailDao;
 import org.gsnt.auttech.model.dao.EnderecoDao;
 import org.gsnt.auttech.model.dao.FuncionarioDao;
 import org.gsnt.auttech.model.entities.*;
+import org.gsnt.auttech.model.entities.entitiesgenerics.Email;
+import org.gsnt.auttech.model.entities.entitiesgenerics.Endereco;
+import org.gsnt.auttech.model.entities.entitiesgenerics.Estados;
+import org.gsnt.auttech.model.entities.entitiesgenerics.TipoEndereco;
 import org.gsnt.auttech.util.DadosCombos;
 import org.gsnt.auttech.util.MaskValid;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -107,6 +111,9 @@ public class CadFuncionariosController implements Initializable {
 
     @FXML
     private TextArea txaObsProf;
+
+    @FXML
+    private TextArea txtApelido;
 
     @FXML
     private CheckBox cbCaixaMec;
@@ -334,6 +341,7 @@ public class CadFuncionariosController implements Initializable {
         Funcionario func = new Funcionario();
 
         func.setNome(txtNome.getText());
+        func.setApelido(txtApelido.getText());
         func.setCpf(txtCpf.getText());
         func.setRg(txtRg.getText());
         if (dpDataNasc.getValue() == null){
@@ -430,7 +438,7 @@ public class CadFuncionariosController implements Initializable {
 
     }
 
-    private Email coletaDadosEmail(Boolean editar,int cod){
+    private Email coletaDadosEmail(Boolean editar, int cod){
 
         Email email = new Email();
         email.setCodCaso(3);
@@ -459,6 +467,12 @@ public class CadFuncionariosController implements Initializable {
     private void teclaEnter(){
 
         txtNome.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtApelido.requestFocus();
+            }
+        });
+
+        txtApelido.setOnKeyPressed((KeyEvent)->{
             if(KeyEvent.getCode() == KeyCode.ENTER){
                 txtCpf.requestFocus();
             }

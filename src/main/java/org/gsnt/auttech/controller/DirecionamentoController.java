@@ -1,57 +1,50 @@
 package org.gsnt.auttech.controller;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import org.gsnt.auttech.TelaPrincipal;
+import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.*;
+import org.gsnt.auttech.model.dao.service.DirecionadosService;
 import org.gsnt.auttech.model.entities.Cliente;
+import org.gsnt.auttech.model.entities.Direcionados;
 import org.gsnt.auttech.model.entities.Funcionario;
-import org.gsnt.auttech.model.entities.Veiculo;
+import org.gsnt.auttech.model.entities.StatusAtendimento;
 import org.gsnt.auttech.util.Alerts;
+import org.gsnt.auttech.util.Botoes;
 import org.gsnt.auttech.util.MaskValid;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
 public class DirecionamentoController implements Initializable {
 
-    private ModeloVeiculoDao modeloService = DaoFactory.createModeloVeiculoDao();
-    private MarcaVeiculoDao marcaService = DaoFactory.createMarcaVeiculoDao();
-    private ClienteDao clienteService = DaoFactory.createClienteDao();
-    private VeiculoDao veiculoService = DaoFactory.createVeiculoDao();
-    private OrdemServicoDao ordemServicoService = DaoFactory.createOrdemServicoDao();
+
     private FuncionarioDao funcionarioServ =  DaoFactory.createFuncionarioDao();
-
-    private ObservableList<Funcionario> obsComboCaixa;
-    private ObservableList<Funcionario> obsComboFreio;
-    private ObservableList<Funcionario> obsComboSuspensao;
-    private ObservableList<Funcionario> obsComboMotor;
-    private ObservableList<Funcionario> obsComboEletrico;
-    private ObservableList<Funcionario> obsComboInjecao;
-    private ObservableList<Funcionario> obsComboPneus;
-    private ObservableList<Funcionario> obsComboAlin;
-    private ObservableList<Funcionario> obsComboBalan;
-
+    private DirecionadosDao dirService = DaoFactory.createDirecionadosDao();
 
     private int codVeiculo = 0;
 
     private MaskValid mascara = new MaskValid();
 
-   // public CriaOsController(){}
 
     @FXML
     private TitledPane tp1;
@@ -146,76 +139,55 @@ public class DirecionamentoController implements Initializable {
     private ComboBox<String> cbxTrocaOleo;
 
     @FXML
-    private TableView tvPneus;
-
-    @FXML
-    private TableColumn tcPneusNome;
-
-    @FXML
-    private TableColumn tcPneusQuant;
-
-    @FXML
     private TableView tvMecanico;
 
     @FXML
-    private TableColumn tcMecNome;
+    private TableColumn<Direcionados, String> tcMecNome;
 
     @FXML
-    private TableColumn tcMecQuant;
+    private TableColumn<Direcionados, Integer> tcMecQuant;
 
     @FXML
-    private TableView tvElet;
+    private TableColumn<Direcionados, Direcionados> tcLista;
 
-    @FXML
-    private TableColumn tcEletNome;
+    private ObservableList<Direcionados> obsDirecionado;
 
-    @FXML
-    private TableColumn tcEletQuant;
+    public void preencheDadosDir(StatusAtendimento st){
 
-    //
-    //   ainda falta dados(Busca cadastro)
-    //
-
-    public void preencheDadosDir(){
-
-    }
-
-
-
-
-    private synchronized<T> void loadView(String absoluteName, Consumer<T> inicializingAction) {
-        try {
-
-            FXMLLoader loader = new FXMLLoader(TelaPrincipal.class.getResource(absoluteName));
-            Scene secundaryScene = new Scene(loader.load());
-
-            CadVeiculoController cadVeiculoController = loader.getController();
-
-            Stage stage1 = new Stage();
-            stage1.setIconified(false);
-            stage1.setResizable(false);
-            stage1.setTitle("");
-            stage1.initStyle(StageStyle.UNDECORATED);
-            stage1.initModality(Modality.APPLICATION_MODAL);
-            stage1.initOwner(TelaPrincipal.getMainScene().getWindow());
-            stage1.setScene(secundaryScene);
-
-            T controller = loader.getController();
-            inicializingAction.accept(controller);
-
-            stage1.showAndWait();
-
-            codVeiculo = cadVeiculoController.getDadosOs();
-            if (codVeiculo != 0){
-                Veiculo veiculo =  veiculoService.findByCod(codVeiculo);
-                Cliente cli = clienteService.findById(clienteService.findIdClienteByIdVeiculo(codVeiculo));
-                //preencheTelaComplemento(veiculo,cli);
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        lblVeiculo.setText("Placa - "+st.getPlaca()+" Modelo - "+st.getVeiculo());
+        if(st.getRevisao()>0){
+            cbRevisao.setSelected(true);
         }
-    }
+        if(st.getTrocaOleo()>0){
+            cbTrcOleo.setSelected(true);
+        }
+        if(st.getSuspensaoDt()>0 || st.getSuspensaoTr()>0){
+            cbSusp.setSelected(true);
+            cbMec.setSelected(true);
+        }
+        if(st.getFreioDt()>0 || st.getFreioTr()>0){
+            cbFreio.setSelected(true);
+            cbMec.setSelected(true);
+        }
+        if(st.getMotor()>0){
+            cbMotor.setSelected(true);
+            cbMec.setSelected(true);
+        }
+        if(st.getInjecao()>0){
+            cbInjElet.setSelected(true);
+        }
+        if(st.getPneus()>0 || st.getAlinBalan()>0){
+            cbAlinBalan.setSelected(true);
+        }
+        if(st.getEletrico()>0){
+            cbElet.setSelected(true);
+        }
+        if(st.getCaixa()>0){
+            cbCaixa.setSelected(true);
+        }
 
+
+    }
 
     private void preencheCombos(){
 
@@ -445,10 +417,93 @@ public class DirecionamentoController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        preencheCombos();
+    private void initializeNodes(){
+        try {
+            tcMecNome.setCellValueFactory(new PropertyValueFactory<Direcionados, String>("apelido"));
+            tcMecQuant.setCellValueFactory(new PropertyValueFactory<Direcionados, Integer>("qtdtndmnt"));
+            buttonColumnLista();
+        }catch (Exception e){
+            System.out.println(e.getMessage()+" DirecionamentoController - initializaNodes");
+        }
     }
 
+    private void updadeTableView(){
+        try {
+            if (dirService == null) {
+                throw new IllegalStateException("Direcionamento esta nulo");
+            }
+            obsDirecionado = FXCollections.observableArrayList(dirService.listaServico());
+            tvMecanico.setItems(obsDirecionado);
+
+        }catch (Exception a){
+            throw new DbException(a.getMessage()+" DirecionamentoController - updateTableView");
+        }
+    }
+
+
+
+    private void buttonColumnLista(){
+        tcLista.setCellValueFactory(param-> new ReadOnlyObjectWrapper<>(param.getValue()));
+        tcLista.setCellFactory(param -> new TableCell<Direcionados, Direcionados>() {
+
+            private final Botoes listaAtend = new Botoes("#70c3a7");
+
+            @Override
+            protected void updateItem(Direcionados dir, boolean empty) {
+
+                super.updateItem(dir, empty);
+                if (dir == null) {
+                    setGraphic(null);
+                    return;
+                }
+                setGraphic(listaAtend);
+
+                listaAtend.setOnAction(event -> {
+
+                    Direcionados dir1 = getTableView().getItems().get(getIndex());
+                    try {
+                        loadView("/org/gsnt/auttech/ListaAtendFunc.fxml", (ListaAtendFuncController lista) -> {
+                            lista.chamada(dir1.getApelido());
+                        });
+                    }catch (Exception d){
+                        System.out.println(d+" DirecionamentoController - buttonColumnLista");
+                    }
+
+                });
+            }
+        });
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initializeNodes();
+        preencheCombos();
+        updadeTableView();
+    }
+
+    private synchronized<T> void loadView(String absoluteName, Consumer<T> inicializingAction) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(TelaPrincipal.class.getResource(absoluteName));
+            Scene secundaryScene = new Scene(loader.load());
+
+            Stage stage1 = new Stage();
+            stage1.setIconified(false);
+            stage1.setResizable(false);
+            stage1.setTitle("");
+            stage1.initStyle(StageStyle.UNDECORATED);
+            stage1.initModality(Modality.APPLICATION_MODAL);
+            stage1.initOwner(TelaPrincipal.getMainScene().getWindow());
+            stage1.setScene(secundaryScene);
+
+            T controller = loader.getController();
+            inicializingAction.accept(controller);
+
+            stage1.showAndWait();
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 }

@@ -4,6 +4,9 @@ import org.gsnt.auttech.db.DB2;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.ClienteDao;
 import org.gsnt.auttech.model.entities.*;
+import org.gsnt.auttech.model.entities.entitiesgenerics.Email;
+import org.gsnt.auttech.model.entities.entitiesgenerics.Endereco;
+import org.gsnt.auttech.model.entities.entitiesgenerics.TelCliente;
 import org.gsnt.auttech.util.Moka;
 
 import java.sql.*;

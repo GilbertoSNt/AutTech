@@ -1,6 +1,6 @@
 package org.gsnt.auttech.model.dao;
 
-import org.gsnt.auttech.model.entities.Email;
+import org.gsnt.auttech.model.entities.entitiesgenerics.Email;
 
 import java.util.List;
 

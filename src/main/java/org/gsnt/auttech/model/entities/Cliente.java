@@ -2,6 +2,8 @@ package org.gsnt.auttech.model.entities;
 
 
 
+import org.gsnt.auttech.model.entities.entitiesgenerics.CPF;
+
 import java.io.Serializable;
 
 public class Cliente implements Serializable {
@@ -65,6 +67,9 @@ public class Cliente implements Serializable {
     private String dataCad;
     private Boolean perfil;
     private Boolean status;
+    private CPF cpf1;
+
+
 
 
 
@@ -173,6 +178,7 @@ public class Cliente implements Serializable {
         this.perfil = perfil;
     }
 
-
-
+    public void setCpf1(CPF cpf1) {
+        this.cpf1 = cpf1;
+    }
 }

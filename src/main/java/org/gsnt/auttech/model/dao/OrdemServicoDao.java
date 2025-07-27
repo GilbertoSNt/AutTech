@@ -1,8 +1,6 @@
 package org.gsnt.auttech.model.dao;
 
-import org.gsnt.auttech.model.entities.Cliente;
 import org.gsnt.auttech.model.entities.OrdemServico;
-import org.gsnt.auttech.model.entities.Veiculo;
 
 import java.sql.Time;
 import java.util.Date;
@@ -18,7 +16,7 @@ public interface OrdemServicoDao {
 
     Integer saveOrdemServico(OrdemServico item);
 
-    Boolean excluiOrdemServico(OrdemServico Item);
+    Boolean cancelaOrdemServico(Integer Item);
 
     Boolean saveAlterOrdemServico(OrdemServico Item);
 
@@ -27,5 +25,7 @@ public interface OrdemServicoDao {
     void financeiroOs(int parcelas);
     void baixaParcelasOs();
     void encaminharOs();
+    void relacaoOsOr(Integer os, Integer or);
+    Integer findOrforOs(Integer os);
 
 }

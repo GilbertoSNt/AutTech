@@ -1,6 +1,6 @@
 package org.gsnt.auttech.model.dao;
 
-import org.gsnt.auttech.model.entities.ModeloVeiculo;
+import org.gsnt.auttech.model.entities.entitiesgenerics.ModeloVeiculo;
 
 import java.util.List;
 

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -30,6 +31,7 @@ public class CriaOsController implements Initializable {
     private VeiculoDao veiculoService = DaoFactory.createVeiculoDao();
     private OrdemServicoDao ordemServicoService = DaoFactory.createOrdemServicoDao();
     private StatusAtendimentoDao statusService = DaoFactory.createStatusAtendimentoDao();
+    private OrcamentoDao orcamentoService = DaoFactory.createOrcamentoDao();
     private Utils ut = new Utils();
 
     private int codVeiculo = 0;
@@ -58,7 +60,10 @@ public class CriaOsController implements Initializable {
 
     @FXML
     private void onbtGravar(){
-        coletaDados(true);
+
+        coletaSalvaDados(cbOrc.isSelected());
+        onbtCloseButtonClick();
+
     }
 
     @FXML
@@ -170,139 +175,149 @@ public class CriaOsController implements Initializable {
 
     }
 
-    private void coletaDados(Boolean cria){
+    private void coletaSalvaDados(Boolean cria){
+        try {
 
-        StatusAtendimento sa = new StatusAtendimento();
-        OrdemServico os = new OrdemServico();
-        StatusAtendimento saOrc = new StatusAtendimento();
-        Veiculo veic;
+            StatusAtendimento sa = new StatusAtendimento();
+            OrdemServico os = new OrdemServico();
 
-        veic = veiculoService.verPlacaModelo(veiculoService.findCodById(txtPlaca.getText()));
-        os.setCodVeiculo(veiculoService.findCodById(txtPlaca.getText()));
-        os.setCodCliente(clienteService.findIdClienteByIdVeiculo(os.getCodVeiculo()));
-        os.setDataAbertura(ut.returnDateSystemBanco());
-        os.setHoraAbertura(ut.returnTimeSystem());
-        sa.setCodVeiculo(os.getCodVeiculo());
+            os.setCodVeiculo(veiculoService.findCodById(txtPlaca.getText()));
+            os.setCodCliente(clienteService.findIdClienteByIdVeiculo(os.getCodVeiculo()));
+            os.setDataAbertura(ut.returnDateSystemBanco());
+            os.setHoraAbertura(ut.returnTimeSystem());
+            sa.setCodVeiculo(os.getCodVeiculo());
 
-        if(cbOrc.isSelected()) {
-            saOrc.setOrMontagem((byte)11);
-            saOrc.setOrStCliente((byte)0);
-        }
+            if (cbOrc.isSelected()) {
+                sa.setOrMontagem((byte) 11);
+                sa.setOrStCliente((byte) 0);
+            }
 
-        if(cbRevisao.isSelected()){
-            sa.setRevisao((byte) 1);
-            sa.setMecanico((byte) 1);
-            sa.setEletrico((byte) 1);
-            sa.setInjecao((byte) 1);
-            sa.setFreioDt((byte) 1);
-            sa.setFreioTr((byte) 1);
-            sa.setSuspensaoDt((byte) 1);
-            sa.setSuspensaoTr((byte) 1);
-            sa.setCaixa((byte) 1);
-            sa.setMotor((byte) 1);
-            sa.setTrocaOleo((byte) 1);
-            sa.setPneus((byte) 1);
-            if(cbOrc.isSelected()){
-                saOrc.setOrCambio((byte)10);
-                saOrc.setOrEletrico((byte)10);
-                saOrc.setOrMotor((byte)10);
-                saOrc.setOrInjecao((byte)10);
-                saOrc.setOrMecanica((byte)10);
-                saOrc.setOrPneu((byte)10);
+            if (cbRevisao.isSelected()) {
+                sa.setRevisao((byte) 1);
+                sa.setMecanico((byte) 1);
+                sa.setEletrico((byte) 1);
+                sa.setInjecao((byte) 1);
+                sa.setFreioDt((byte) 1);
+                sa.setFreioTr((byte) 1);
+                sa.setSuspensaoDt((byte) 1);
+                sa.setSuspensaoTr((byte) 1);
+                sa.setCaixa((byte) 1);
+                sa.setMotor((byte) 1);
+                sa.setTrocaOleo((byte) 1);
+                sa.setPneus((byte) 1);
+                if (cbOrc.isSelected()) {
+                    sa.setOrCambio((byte) 11);
+                    sa.setOrEletrico((byte) 11);
+                    sa.setOrMotor((byte) 11);
+                    sa.setOrInjecao((byte) 11);
+                    sa.setOrMecanica((byte) 11);
+                    sa.setOrPneu((byte) 11);
+                }
             }
-        }
-        if(cbElet.isSelected()){
-            sa.setEletrico((byte) 1);
-            if(cbOrc.isSelected()){
-                saOrc.setOrEletrico((byte)10);
+            if (cbElet.isSelected()) {
+                sa.setEletrico((byte) 1);
+                if (cbOrc.isSelected()) {
+                    sa.setOrEletrico((byte) 11);
+                }
             }
-        }
-        if(cbInjElet.isSelected()){
-            sa.setInjecao((byte) 1);
-            if(cbOrc.isSelected()){
-                saOrc.setOrInjecao((byte)10);
+            if (cbInjElet.isSelected()) {
+                sa.setInjecao((byte) 1);
+                if (cbOrc.isSelected()) {
+                    sa.setOrInjecao((byte) 11);
+                }
             }
-        }
-        if(cbMec.isSelected()){
-            sa.setMecanico((byte) 1);
-            if(cbOrc.isSelected()){
-                saOrc.setOrMecanica((byte)10);
+            if (cbMec.isSelected()) {
+                sa.setMecanico((byte) 1);
+                if (cbOrc.isSelected()) {
+                    sa.setOrMecanica((byte) 11);
+                }
             }
-        }
-        if(cbFreioDt.isSelected()){
-            sa.setFreioDt((byte) 1);
-            sa.setMecanico((byte) 1);
-            if(cbOrc.isSelected()){
-                saOrc.setOrMecanica((byte)10);
+            if (cbFreioDt.isSelected()) {
+                sa.setFreioDt((byte) 1);
+                sa.setMecanico((byte) 1);
+                if (cbOrc.isSelected()) {
+                    sa.setOrMecanica((byte) 11);
+                }
             }
-        }
-        if(cbFreioTr.isSelected()){
-            sa.setFreioTr((byte) 1);
-            sa.setMecanico((byte) 1);
-            if(cbOrc.isSelected()){
-                saOrc.setOrMecanica((byte)10);
+            if (cbFreioTr.isSelected()) {
+                sa.setFreioTr((byte) 1);
+                sa.setMecanico((byte) 1);
+                if (cbOrc.isSelected()) {
+                    sa.setOrMecanica((byte) 11);
+                }
             }
-        }
-        if(cbSuspDt.isSelected()){
-            sa.setSuspensaoDt((byte) 1);
-            sa.setMecanico((byte) 1);
-            if(cbOrc.isSelected()){
-                saOrc.setOrMecanica((byte)10);
+            if (cbSuspDt.isSelected()) {
+                sa.setSuspensaoDt((byte) 1);
+                sa.setMecanico((byte) 1);
+                if (cbOrc.isSelected()) {
+                    sa.setOrMecanica((byte) 11);
+                }
             }
-        }
-        if(cbSuspTr.isSelected()){
-            sa.setSuspensaoTr((byte) 1);
-            sa.setMecanico((byte) 1);
-            if(cbOrc.isSelected()){
-                saOrc.setOrMecanica((byte)10);
+            if (cbSuspTr.isSelected()) {
+                sa.setSuspensaoTr((byte) 1);
+                sa.setMecanico((byte) 1);
+                if (cbOrc.isSelected()) {
+                    sa.setOrMecanica((byte) 11);
+                }
             }
-        }
-        if(cbCaixa.isSelected()){
-            sa.setCaixa((byte) 1);
-            if(cbOrc.isSelected()){
-                saOrc.setOrCambio((byte)10);
+            if (cbCaixa.isSelected()) {
+                sa.setCaixa((byte) 1);
+                if (cbOrc.isSelected()) {
+                    sa.setOrCambio((byte) 11);
+                }
             }
-        }
-        if(cbMotor.isSelected()){
-            sa.setMotor((byte) 1);
-            if(cbOrc.isSelected()){
-                saOrc.setOrMotor((byte)10);
+            if (cbMotor.isSelected()) {
+                sa.setMotor((byte) 1);
+                if (cbOrc.isSelected()) {
+                    sa.setOrMotor((byte) 11);
+                }
             }
-        }
 
-        if(cbTrcOleo.isSelected()){
-            sa.setTrocaOleo((byte) 1);
-            sa.setMecanico((byte) 1);
-            if(cbOrc.isSelected()){
-                saOrc.setOrMecanica((byte)10);
+            if (cbTrcOleo.isSelected()) {
+                sa.setTrocaOleo((byte) 1);
+                sa.setMecanico((byte) 1);
+                if (cbOrc.isSelected()) {
+                    sa.setOrMecanica((byte) 11);
+                }
             }
-        }
 
-        if(cbPneu.isSelected() || cbAlinBalan.isSelected()){
-            sa.setPneus((byte) 1);
-            if(cbOrc.isSelected()){
-                saOrc.setOrPneu((byte)10);
+            if (cbPneu.isSelected() || cbAlinBalan.isSelected()) {
+                sa.setPneus((byte) 1);
+                if (cbOrc.isSelected()) {
+                    sa.setOrPneu((byte) 11);
+                }
             }
-        }
 
-        if(cbLava.isSelected()){sa.setLavacao((byte) 1);}
+            if (cbLava.isSelected()) {
+                sa.setLavacao((byte) 1);
+            }
 
-        os.setNecOrcamento(cbOrc.isSelected());
-        os.setAssLevarVeiculo(cbLevVei.isSelected());
+            os.setNecOrcamento(cbOrc.isSelected());
+            os.setAssLevarVeiculo(cbLevVei.isSelected());
+            sa.setStGeralAtend((byte) 1);
+            if (cria) {
+                Orcamento or1 = new Orcamento(ut.returnDateSystemBanco(), os.getCodVeiculo(), os.getCodCliente());
+                sa.setCodOrcamento(orcamentoService.criaOrcamento(or1));
+                os.setStatusOs((byte) 1);
+                sa.setCodOs(ordemServicoService.criaOrdemServico(os));
 
-        if(cria){
-            os.setStatusOs((byte)1);
-            sa.setCodOs(ordemServicoService.criaOrdemServico(os));
-            if(cbOrc.isSelected()){
-                saOrc.setOrStCliente((byte)0);
-                saOrc.setOrMontagem((byte)11);
-                statusService.statusOsInicial(sa,saOrc);
-            }else{
+                ordemServicoService.relacaoOsOr(sa.getCodOs(), sa.getCodOrcamento());
+                if (cbOrc.isSelected()) {
+                    sa.setOrStCliente((byte) 0);
+                    sa.setOrMontagem((byte) 11);
+                    sa.setOrStCliente((byte) 17);
+                    statusService.statusOsInicial(sa, cbOrc.isSelected());
+                } else {
+                    statusService.statusOsInicial(sa);
+                }
+            } else if (!cbOrc.isSelected()) {
+                sa.setCodOs(ordemServicoService.criaOrdemServico(os));
                 statusService.statusOsInicial(sa);
             }
-        }else if(!cria){
-            sa.setCodOs(ordemServicoService.criaOrdemServico(os));
-            statusService.statusOsInicial(sa);
+            //
+        }
+        catch (RuntimeException e){
+            System.out.println("CriaOs - coletaDados - "+e.getMessage());
         }
 
 
@@ -366,6 +381,14 @@ public class CriaOsController implements Initializable {
 
         mascara.maskPlaca(txtPlaca);
         txtPlaca.setPromptText("___-____");
+
+        txtPlaca.setOnKeyPressed((KeyEvent)->{
+            if(txtPlaca.getLength() == 8) {
+                if (KeyEvent.getCode() == KeyCode.ENTER) {
+                    verificaCadastro(txtPlaca.getText());
+                }
+            }
+        });
 
     }
 

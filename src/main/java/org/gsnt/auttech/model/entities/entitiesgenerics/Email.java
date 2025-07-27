@@ -1,4 +1,4 @@
-package org.gsnt.auttech.model.entities;
+package org.gsnt.auttech.model.entities.entitiesgenerics;
 
 import java.io.Serializable;
 

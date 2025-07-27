@@ -3,7 +3,7 @@ package org.gsnt.auttech.model.dao.service;
 import org.gsnt.auttech.db.DB2;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.EmailDao;
-import org.gsnt.auttech.model.entities.Email;
+import org.gsnt.auttech.model.entities.entitiesgenerics.Email;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
