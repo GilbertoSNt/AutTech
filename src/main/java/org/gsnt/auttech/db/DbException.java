@@ -1,10 +1,18 @@
 package org.gsnt.auttech.db;
 
-public class DbException extends RuntimeException{
+import org.gsnt.auttech.util.LogTxt;
+
+import java.io.IOException;
+
+public class DbException extends RuntimeException {
+
+    private LogTxt log = new LogTxt();
 
     public DbException(String msg){
+
         super(msg);
-        System.out.println(msg);
+        log.escreveErro(msg);
+
     }
 
 }

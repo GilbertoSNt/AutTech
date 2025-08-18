@@ -45,6 +45,17 @@ public class DirecionamentoController implements Initializable {
 
     private MaskValid mascara = new MaskValid();
 
+    private List<String> caixa = new ArrayList<>();
+    private List<String> freio = new ArrayList<>();
+    private List<String> suspensao = new ArrayList<>();
+    private List<String> motor = new ArrayList<>();
+    private List<String> eletrico = new ArrayList<>();
+    private List<String> injecao = new ArrayList<>();
+    private List<String> pneus = new ArrayList<>();
+    private List<String> alin = new ArrayList<>();
+    private List<String> balan = new ArrayList<>();
+    private List<String> trocaOleo = new ArrayList<>();
+
 
     @FXML
     private TitledPane tp1;
@@ -185,24 +196,13 @@ public class DirecionamentoController implements Initializable {
         if(st.getCaixa()>0){
             cbCaixa.setSelected(true);
         }
-
+        check();
 
     }
 
     private void preencheCombos(){
 
         List<Funcionario> funci = funcionarioServ.findByEspecializacao();
-
-        List<String> caixa = new ArrayList<>();
-        List<String> freio = new ArrayList<>();
-        List<String> suspensao = new ArrayList<>();
-        List<String> motor = new ArrayList<>();
-        List<String> eletrico = new ArrayList<>();
-        List<String> injecao = new ArrayList<>();
-        List<String> pneus = new ArrayList<>();
-        List<String> alin = new ArrayList<>();
-        List<String> balan = new ArrayList<>();
-        List<String> trocaOleo = new ArrayList<>();
 
 
         for(int z = 0; z<funci.size();z++) {
@@ -254,6 +254,7 @@ public class DirecionamentoController implements Initializable {
         comboAlin(alin);
         comboBalan(balan);
         combotrocaOleo(trocaOleo);
+
 
     }
 
@@ -422,9 +423,11 @@ public class DirecionamentoController implements Initializable {
             tcMecNome.setCellValueFactory(new PropertyValueFactory<Direcionados, String>("apelido"));
             tcMecQuant.setCellValueFactory(new PropertyValueFactory<Direcionados, Integer>("qtdtndmnt"));
             buttonColumnLista();
+
         }catch (Exception e){
             System.out.println(e.getMessage()+" DirecionamentoController - initializaNodes");
         }
+
     }
 
     private void updadeTableView(){
@@ -439,8 +442,6 @@ public class DirecionamentoController implements Initializable {
             throw new DbException(a.getMessage()+" DirecionamentoController - updateTableView");
         }
     }
-
-
 
     private void buttonColumnLista(){
         tcLista.setCellValueFactory(param-> new ReadOnlyObjectWrapper<>(param.getValue()));
@@ -474,11 +475,74 @@ public class DirecionamentoController implements Initializable {
         });
     }
 
+    @FXML
+    private void onCheck(){
+        check();
+    }
+
+    private void check(){
+
+        if(cbMec.isSelected() || cbRevisao.isSelected()){
+            cbxMotor.setDisable(false);
+            cbxSuspensao.setDisable(false);
+            cbxFreio.setDisable(false);
+        }else {
+            cbxMotor.setDisable(true);
+            cbxSuspensao.setDisable(true);
+            cbxFreio.setDisable(true);
+        }
+        if(cbTrcOleo.isSelected() || cbRevisao.isSelected()){
+            cbxTrocaOleo.setDisable(false);
+        }else{
+            cbxTrocaOleo.setDisable(true);
+        }
+        if(cbCaixa.isSelected() || cbRevisao.isSelected()){
+            cbxCaixa.setDisable(false);
+        }else{
+            cbxCaixa.setDisable(true);
+        }
+        if(cbFreio.isSelected() || cbRevisao.isSelected()){
+            cbxFreio.setDisable(false);
+        }else{
+            cbxFreio.setDisable(true);
+        }
+        if(cbSusp.isSelected() || cbRevisao.isSelected()){
+            cbxSuspensao.setDisable(false);
+        }else{
+            cbxSuspensao.setDisable(true);
+        }
+        if(cbMotor.isSelected() || cbRevisao.isSelected()){
+            cbxMotor.setDisable(false);
+        }else{
+            cbxMotor.setDisable(true);
+        }
+        if(cbElet.isSelected() || cbRevisao.isSelected()){
+            cbxEletrico.setDisable(false);
+        }else{
+            cbxEletrico.setDisable(true);
+        }
+        if(cbInjElet.isSelected() || cbRevisao.isSelected()){
+            cbxInjElet.setDisable(false);
+        }else{
+            cbxInjElet.setDisable(true);
+        }
+        if(cbAlinBalan.isSelected() || cbRevisao.isSelected()){
+            cbxBalan.setDisable(false);
+            cbxAlin.setDisable(false);
+            cbxPneu.setDisable(false);
+        }else{
+            cbxBalan.setDisable(true);
+            cbxAlin.setDisable(true);
+            cbxPneu.setDisable(true);
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeNodes();
         preencheCombos();
         updadeTableView();
+
     }
 
     private synchronized<T> void loadView(String absoluteName, Consumer<T> inicializingAction) {

@@ -68,4 +68,21 @@ public class DB2 {
         }
     }
 
+    public static boolean testBdRemoto() throws SQLException {
+        Connection c2 = null;
+        try {
+            Properties props = loadProperties();
+            String url = "jdbc:postgresql://192.168.0.180:5432/bancoempresabase";
+            c2 = DriverManager.getConnection(url, props);
+            if( c2 != null && !c2.isClosed()){
+                c2.close();
+                return true;
+            }else{
+                return false;
+            }
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
 }

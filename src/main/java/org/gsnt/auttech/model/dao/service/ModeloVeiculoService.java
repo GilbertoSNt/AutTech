@@ -42,7 +42,7 @@ public class ModeloVeiculoService implements org.gsnt.auttech.model.dao.ModeloVe
             }
         }
         catch (SQLException a){
-            throw new DbException(a.getMessage());
+            throw new DbException(a.getMessage()+" findByIdMarca - modeloVeículoService");
         }
         finally{
             DB.closeStatement(st);
@@ -66,7 +66,7 @@ public class ModeloVeiculoService implements org.gsnt.auttech.model.dao.ModeloVe
 
         }
         catch (SQLException a){
-            throw new DbException(a.getMessage());
+            throw new DbException(a.getMessage()+" findIdByModelo - ModeloVeículoService");
         }
         finally{
             DB.closeStatement(st);
@@ -90,7 +90,7 @@ public class ModeloVeiculoService implements org.gsnt.auttech.model.dao.ModeloVe
 
         }
         catch (SQLException a){
-            throw new DbException(a.getMessage());
+            throw new DbException(a.getMessage()+" findModeloById modeloVeículoService");
         }
         finally{
             DB.closeStatement(st);

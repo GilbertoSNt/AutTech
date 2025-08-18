@@ -13,6 +13,7 @@ import org.gsnt.auttech.TelaPrincipal;
 import org.gsnt.auttech.model.dao.*;
 import org.gsnt.auttech.model.entities.*;
 import org.gsnt.auttech.util.Alerts;
+import org.gsnt.auttech.util.ExceptionGenerics;
 import org.gsnt.auttech.util.MaskValid;
 import org.gsnt.auttech.util.Utils;
 
@@ -334,6 +335,7 @@ public class CriaOsController implements Initializable {
         });
             //implementar placa na tela, verificar segunda entrada no banco, verificar segunda chamada do método
     }
+
 
     private synchronized<T> void loadView(String absoluteName, Consumer<T> inicializingAction) {
         try {

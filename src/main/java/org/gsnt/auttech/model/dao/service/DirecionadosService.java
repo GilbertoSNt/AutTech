@@ -45,11 +45,8 @@ public class DirecionadosService implements DirecionadosDao {
         try{
             st = conn.prepareStatement("SELECT * FROM public.nmsrvcprfssnl");
             rs = st.executeQuery();
-
             while(rs.next()){
-
                 drc.add(new Direcionados(rs.getString("apelido"), rs.getInt("total")));
-
             }
         }
         catch (SQLException e){
@@ -59,9 +56,7 @@ public class DirecionadosService implements DirecionadosDao {
             DB2.closeResultSet(rs);
             DB2.closeStatement(st);
         }
-
         return drc;
-
     }
 
     @Override

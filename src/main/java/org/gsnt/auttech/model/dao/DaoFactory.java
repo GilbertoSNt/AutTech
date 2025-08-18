@@ -89,6 +89,17 @@ public class DaoFactory {
         }
     }
 
+    public static IniDAO createIniDao() {
+        try {
+            return new IniService(DB.getConnection()) {
+            };
+
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
     public static EnderecoDao createEnderecoDao() {
         try {
             return new EnderecoService(DB2.getConnection()) {

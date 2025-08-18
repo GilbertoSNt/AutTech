@@ -8,7 +8,9 @@ import javafx.stage.Stage;
 import org.gsnt.auttech.model.dao.AgendaDao;
 import org.gsnt.auttech.model.dao.DaoFactory;
 import org.gsnt.auttech.model.entities.Agenda;
+import org.gsnt.auttech.model.entities.Usuario;
 import org.gsnt.auttech.util.Alerts;
+import org.gsnt.auttech.util.LogTxt;
 import org.gsnt.auttech.util.MaskValid;
 
 import java.net.URL;
@@ -23,6 +25,8 @@ public class AgendaController implements Initializable {
     private final MaskValid maskValid = new MaskValid();
 
     private final AgendaDao agendaService = DaoFactory.createAgendaDao();
+
+    private final LogTxt log = new LogTxt();
 
     private LocalDate a = null;
     private LocalDate b = null;
@@ -54,7 +58,7 @@ public class AgendaController implements Initializable {
     private Label lblNumAgenda;
 
     @FXML
-    protected TextField txtVeiculo;
+    private TextField txtVeiculo;
 
     @FXML
     protected TextField txtPlaca;
@@ -126,7 +130,7 @@ public class AgendaController implements Initializable {
     private Label lblConfirma;
 
     @FXML
-    protected void btCloseButtonClick(){
+    private void btCloseButtonClick(){
         Stage stage = (Stage)btClose.getScene().getWindow();
         stage.close();
     }
@@ -140,8 +144,10 @@ public class AgendaController implements Initializable {
         Boolean confirma = false;
         if (tipoTela == 0){
             confirma = agendaService.insertAgenda(coletaDados());
+            log.escreveLog(Usuario.getUser(),"Gravou novo agendamento para placa "+this.placaTela);
         }else if(tipoTela == 1) {
             confirma = agendaService.saveAlterAgenda(coletaDados(), this.placaTela);
+            log.escreveLog(Usuario.getUser(),"Alterou agendamento para placa "+this.placaTela);
         }
 
         if (confirma){

@@ -16,18 +16,16 @@ import org.gsnt.auttech.TelaPrincipal;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.*;
 import org.gsnt.auttech.model.dao.service.ClienteService;
-import org.gsnt.auttech.model.dao.service.OrcamentoService;
-import org.gsnt.auttech.model.dao.service.OrdemServicoService;
 import org.gsnt.auttech.model.entities.Agenda;
 import org.gsnt.auttech.model.entities.OrdemServico;
 import org.gsnt.auttech.model.entities.StatusAtendimento;
+import org.gsnt.auttech.model.entities.Usuario;
 import org.gsnt.auttech.util.Alerts;
 import org.gsnt.auttech.util.Circulos;
-
+import org.gsnt.auttech.util.LogTxt;
 
 import java.io.IOException;
 import java.net.URL;
-
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
@@ -38,6 +36,7 @@ public class TelaPrincipalController implements Initializable {
     private final StatusAtendimentoDao stAtendimento = DaoFactory.createStatusAtendimentoDao();
     private final OrdemServicoDao osServ = DaoFactory.createOrdemServicoDao();
     private final OrcamentoDao orcService = DaoFactory.createOrcamentoDao();
+    private LogTxt log = new LogTxt();
 
     private ObservableList<Agenda> obsListAgenda;
 
@@ -45,82 +44,85 @@ public class TelaPrincipalController implements Initializable {
     private Accordion accServicos;
 
     @FXML
-    protected TitledPane tpAgenda;
+    private TitledPane tpAgenda;
 
     @FXML
-    protected TableView tvAgenda;
+    private TableView tvAgenda;
 
     @FXML
-    protected TableColumn<Agenda, String> tcDia;
+    private Label lblUser;
 
     @FXML
-    protected TableColumn<Agenda, String> tcHora;
+    private TableColumn<Agenda, String> tcDia;
 
     @FXML
-    protected TableColumn<Agenda, String> tcPlaca;
+    private TableColumn<Agenda, String> tcHora;
 
     @FXML
-    protected TableColumn<Agenda, String> tcNome;
+    private TableColumn<Agenda, String> tcPlaca;
 
     @FXML
-    protected TableColumn<Agenda, String> tcVeiculo;
+    private TableColumn<Agenda, String> tcNome;
 
     @FXML
-    protected TableColumn<Agenda, String> tcDeslocamento;
+    private TableColumn<Agenda, String> tcVeiculo;
 
     @FXML
-    protected TableColumn<Agenda, Circulos> tcSocMec;
+    private TableColumn<Agenda, String> tcDeslocamento;
 
     @FXML
-    protected TableColumn<Agenda, Circulos> tcSocElet;
+    private TableColumn<Agenda, Circulos> tcSocMec;
 
     @FXML
-    protected TableColumn<Agenda, Circulos> tcGuincho;
+    private TableColumn<Agenda, Circulos> tcSocElet;
 
     @FXML
-    protected TableColumn<Agenda, Circulos> tcBuscar;
+    private TableColumn<Agenda, Circulos> tcGuincho;
 
     @FXML
-    protected TableColumn<Agenda, Circulos> tcSocorro;
+    private TableColumn<Agenda, Circulos> tcBuscar;
 
     @FXML
-    protected TableColumn<Agenda, Circulos> tcLevar;
+    private TableColumn<Agenda, Circulos> tcSocorro;
 
     @FXML
-    protected TableColumn<Agenda, Circulos> tcStatus;
+    private TableColumn<Agenda, Circulos> tcLevar;
 
     @FXML
-    protected TableColumn<Agenda, Circulos> tcServElet;
+    private TableColumn<Agenda, Circulos> tcStatus;
 
     @FXML
-    protected TableColumn<Agenda, Circulos> tcServMec;
+    private TableColumn<Agenda, Circulos> tcServElet;
 
     @FXML
-    protected TableColumn<Agenda, Circulos> tcServRev;
+    private TableColumn<Agenda, Circulos> tcServMec;
 
     @FXML
-    protected TableColumn<Agenda, Circulos> tcServInj;
+    private TableColumn<Agenda, Circulos> tcServRev;
 
     @FXML
-    protected TableColumn<Agenda, Circulos> tcServPneu;
+    private TableColumn<Agenda, Circulos> tcServInj;
 
     @FXML
-    protected TableColumn<Agenda, Circulos> tcServOleo;
+    private TableColumn<Agenda, Circulos> tcServPneu;
 
     @FXML
-    protected Button btAgenda;
+    private TableColumn<Agenda, Circulos> tcServOleo;
 
     @FXML
-    protected void onBtAgenda() {
+    private Button btAgenda;
+
+    @FXML
+    private void onBtAgenda() {
         loadView("/org/gsnt/auttech/Agenda.fxml",x->{});
         updateTableView();
     }
 
     @FXML
-    protected Button btAlteraAgenda;
+    private Button btAlteraAgenda;
 
     @FXML
-    protected void onBtAlteraAgenda(){
+    private void onBtAlteraAgenda(){
 
         if(tvAgenda.getSelectionModel().getSelectedItem() != null) {
             Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
@@ -137,10 +139,10 @@ public class TelaPrincipalController implements Initializable {
     }
 
     @FXML
-    protected Button btCancAgenda;
+    private Button btCancAgenda;
 
     @FXML
-    protected void onBtCancelarAgenda(){
+    private void onBtCancelarAgenda(){
 
         if(tvAgenda.getSelectionModel().getSelectedItem() != null) {
             Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
@@ -148,6 +150,7 @@ public class TelaPrincipalController implements Initializable {
                 if(result.get() == ButtonType.OK) {
                     agendaService.excluiAgenda(tt);
                     updateTableView();
+                    log.escreveLog(Usuario.getUser(),"Cancelou agendamento para placa "+tt.getPlaca());
                 }
         }else{
             Alerts.showAlert("Cancelar agendamento", "Você deve selecionar uma linha na tabela agenda", null, Alert.AlertType.INFORMATION);
@@ -156,10 +159,10 @@ public class TelaPrincipalController implements Initializable {
     }
 
     @FXML
-    protected Button btReceberVeic;
+    private Button btReceberVeic;
 
     @FXML
-    protected void onBtReceberVeic(){
+    private void onBtReceberVeic(){
 
         if(tvAgenda.getSelectionModel().getSelectedItem() != null) {
             Agenda tt = (Agenda) tvAgenda.getSelectionModel().getSelectedItem();
@@ -170,9 +173,10 @@ public class TelaPrincipalController implements Initializable {
                      criaOsController.preencheDadosAgenda(dado);
   // ativar aqui novamente                      agendaService.excluiAgenda(tt);
                       //  updateTableView();
+                    log.escreveLog(Usuario.getUser(),"Criou OS para o veículo - "+tt.getPlaca());
                     });}
                     catch(Exception d){
-                        System.out.println(d);
+                        throw new DbException(d.getMessage());
                     }
              }else{
                  Alerts.showAlert("Confirmação de abertura de O.S.", "Você deve selecionar uma linha na tabela agenda", null, Alert.AlertType.INFORMATION);
@@ -205,6 +209,7 @@ public class TelaPrincipalController implements Initializable {
                         agendaService.reverteEnvioGuincho(tt);
                     }
                 }
+                log.escreveLog(Usuario.getUser(),"Alterou o status do envio do socorro para placa "+tt.getPlaca());
             } else {
                 Alerts.showAlert("Atenção", "Agendamento não tem registro da necessidade do guinho / socorro para o veículo", null, Alert.AlertType.ERROR);
             }
@@ -234,6 +239,7 @@ public class TelaPrincipalController implements Initializable {
                         agendaService.reverterEnvioRecolhimento(tt);
                     }
                 }
+                log.escreveLog(Usuario.getUser(),"Alterou o status do deslocamento para placa "+tt.getPlaca());
             }
             else{
                 Alerts.showAlert("Atenção","Agendamento não tem registro da necessidade de buscar o veículo",null, Alert.AlertType.ERROR);
@@ -363,6 +369,7 @@ public class TelaPrincipalController implements Initializable {
                 orcService.recusaOrcamento(st.getCod());
                 stAtendimento.cancelaAtendimento(st.getCod());
                 osServ.cancelaOrdemServico(st.getCod());
+                log.escreveLog(Usuario.getUser()," Cancelou a OS para placa "+st.getPlaca());
 
             }
         }else{
@@ -393,8 +400,8 @@ public class TelaPrincipalController implements Initializable {
                 StatusAtendimento st =  (StatusAtendimento) tvFuturos.getSelectionModel().getSelectedItem();
                 dirCont.preencheDadosDir(stAtendimento.stGeralUnico(st.getCod()));
             });
-        }catch (Exception d){
-            System.out.println(d+" na função onbtDirecionaOS");
+        }catch (Exception e){
+            throw new DbException(e.getMessage()+" TelaPrincipalController -  na função onbtDirecionaOS");
         }
     }
 
@@ -416,46 +423,46 @@ public class TelaPrincipalController implements Initializable {
 
     // implementação tableview em orçamento
 
-    protected ObservableList<StatusAtendimento> obsListOrcamento;
+    private ObservableList<StatusAtendimento> obsListOrcamento;
 
     @FXML
-    protected TitledPane tpEmOrcamento;
+    private TitledPane tpEmOrcamento;
 
     @FXML
-    protected TableView tvEmOrcamento;
+    private TableView tvEmOrcamento;
 
     @FXML
-    protected TableColumn<StatusAtendimento,String> tcPlaca3;
+    private TableColumn<StatusAtendimento,String> tcPlaca3;
 
     @FXML
-    protected TableColumn<StatusAtendimento,String> tcVeiculo3;
+    private TableColumn<StatusAtendimento,String> tcVeiculo3;
 
     @FXML
-    protected TableColumn tcStatus2;
+    private TableColumn tcStatus2;
 
     @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcCambio3;
+    private TableColumn<StatusAtendimento, Circulos> tcCambio3;
 
     @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcElet3;
+    private TableColumn<StatusAtendimento, Circulos> tcElet3;
 
     @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcMotor3;
+    private TableColumn<StatusAtendimento, Circulos> tcMotor3;
 
     @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcInjecao3;
+    private TableColumn<StatusAtendimento, Circulos> tcInjecao3;
 
     @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcMecanica3;
+    private TableColumn<StatusAtendimento, Circulos> tcMecanica3;
 
     @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcPneus3;
+    private TableColumn<StatusAtendimento, Circulos> tcPneus3;
 
     @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcAguardAvaliacao;
+    private TableColumn<StatusAtendimento, Circulos> tcAguardAvaliacao;
 
     @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcStatusCliente;
+    private TableColumn<StatusAtendimento, Circulos> tcStatusCliente;
 
     @FXML
     private Button btAltOrc;
@@ -468,6 +475,7 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private void onbtCnclOrc(){
+
         if(tvEmOrcamento.getSelectionModel().getSelectedItem() != null) {
 
             StatusAtendimento st =  (StatusAtendimento) tvFuturos.getSelectionModel().getSelectedItem();
@@ -479,6 +487,7 @@ public class TelaPrincipalController implements Initializable {
                 orcService.recusaOrcamento(st.getCod());
                 stAtendimento.cancelaAtendimento(st.getCod());
                 osServ.cancelaOrdemServico(st.getCod());
+                log.escreveLog(Usuario.getUser(),"cancelou o orçamento para placa "+st.getPlaca());
 
                 //falta enviar informação para a tela de entrega do orçamento
 
@@ -494,93 +503,93 @@ public class TelaPrincipalController implements Initializable {
 
     // implementação tableview em serviço
 
-    protected ObservableList<OrdemServico> obsListEmServico;
+    private ObservableList<OrdemServico> obsListEmServico;
 
     @FXML
-    protected TitledPane tpServicos;
+    private TitledPane tpServicos;
 
     @FXML
-    protected TableView tvServicos;
+    private TableView tvServicos;
 
     @FXML
-    protected TableColumn<StatusAtendimento, String> tcPlaca4;
+    private TableColumn<StatusAtendimento, String> tcPlaca4;
 
     @FXML
-    protected TableColumn<StatusAtendimento, String> tcVeiculo4;
+    private TableColumn<StatusAtendimento, String> tcVeiculo4;
 
     @FXML
-    protected TableColumn tcStatus4;
+    private TableColumn tcStatus4;
 
     @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcCambio4;
+    private TableColumn<StatusAtendimento, Circulos> tcCambio4;
 
     @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcElet4;
+    private TableColumn<StatusAtendimento, Circulos> tcElet4;
 
     @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcInjecao4;
+    private TableColumn<StatusAtendimento, Circulos> tcInjecao4;
 
     @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcMecanica4;
+    private TableColumn<StatusAtendimento, Circulos> tcMecanica4;
 
     @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcMotor4;
+    private TableColumn<StatusAtendimento, Circulos> tcMotor4;
 
     @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcPneus4;
+    private TableColumn<StatusAtendimento, Circulos> tcPneus4;
 
     @FXML
-    protected TableColumn<StatusAtendimento, Circulos> tcLavacao4;
+    private TableColumn<StatusAtendimento, Circulos> tcLavacao4;
 
     @FXML
-    protected Button btAlteraOS;
+    private Button btAlteraOS;
 
     @FXML
-    protected Button btCncOS;
+    private Button btCncOS;
 
 
     @FXML
-    protected Button btFnlzServ;
+    private Button btFnlzServ;
 
 
     // Implementaçao serviços prontos
 
     @FXML
-    protected TitledPane tpProntos;
+    private TitledPane tpProntos;
 
     @FXML
-    protected TableView tvProntos;
+    private TableView tvProntos;
 
     @FXML
-    protected TableColumn tcPlaca5;
+    private TableColumn tcPlaca5;
 
     @FXML
-    protected TableColumn tcVeiculo5;
+    private TableColumn tcVeiculo5;
 
     @FXML
-    protected TableColumn tcCliente5;
+    private TableColumn tcCliente5;
 
     @FXML
-    protected TableColumn tcTelefone5;
+    private TableColumn tcTelefone5;
 
     @FXML
-    protected TableColumn tcStatus5;
+    private TableColumn tcStatus5;
 
     @FXML
-    protected Button btFnlzOS;
+    private Button btFnlzOS;
 
 
 // restante da tela
     @FXML
-    protected Button btClose;
+    private Button btClose;
 
     @FXML
-    protected void btCloseButtonClick() {
+    private void btCloseButtonClick() {
         System.exit(0);
     }
 
     @FXML
-    protected Button btIconified;
+    private Button btIconified;
 
     @FXML
     private void onbtIconified(){
@@ -589,62 +598,79 @@ public class TelaPrincipalController implements Initializable {
     }
 
     @FXML
-    protected Button btCliente;
+    private Button btCliente;
 
     @FXML
-    protected void btClienteButtonClick() {
+    private void btClienteButtonClick() {
         loadView("/org/gsnt/auttech/TipoPessoa.fxml",x->{});
     }
 
     @FXML
-    protected Button btVeiculo;
+    private Button btVeiculo;
 
     @FXML
-    protected void btVeiculoButtonClick() {
+    private void btVeiculoButtonClick() {
         loadView("/org/gsnt/auttech/CadVeiculo.fxml",x->{});
     }
 
     @FXML
-    protected Button btAbrirOS2;
+    private Button btAbrirOS2;
 
     @FXML
-    protected void onbtAbrirOS() {
+    private void onbtAbrirOS() {
         loadView("/org/gsnt/auttech/CriaOs.fxml",x->{});
         updateTableView();
     }
 
     @FXML
-    protected Button btListaClientes;
+    private Button btListaClientes;
 
     @FXML
-    protected void btListaClientesButtonClick(){
+    private void btListaClientesButtonClick(){
         try {
                 loadView("/org/gsnt/auttech/ListaCliente.fxml", (ListaClienteController cliController) -> {
                 cliController.setClienteService(new ClienteService());
                 cliController.updateTableView();
             });
-        }catch (Exception d){
-            System.out.println(d+" na função btListaClientesButtonClick()");
+        }catch (Exception e){
+            throw new DbException(e.getMessage()+" TelaPrincipalController - btListaClientesButtonClick");
         }
     }
 
     @FXML
-    protected Button btCadProfissionais;
+    private Button btCadProfissionais;
 
     @FXML
-    protected void onbtCadProfissionais(){
+    private void onbtCadProfissionais(){
         loadView("/org/gsnt/auttech/CadFuncionarios.fxml",x->{});
     }
 
+
+
+    /////////////////////////////////////////// gerenciamento de serviços ////////
     @FXML
-    protected Button btListarProfissionais;
+    private Button btListaServico;
 
     @FXML
-    protected void onbtListarProfissionais(){
+    private Button btAssumir;
+
+
+
+
+
+
+
+
+
+    @FXML
+    private Button btListarProfissionais;
+
+    @FXML
+    private void onbtListarProfissionais(){
 
     }
 
-    public void updateTableView() {
+    private void updateTableView() {
 
         try{
 
@@ -670,7 +696,7 @@ public class TelaPrincipalController implements Initializable {
 
     }
 
-    protected void initializeNodes(){
+    private void initializeNodes(){
 
         accordionAgenda();
         accordionSerIniciados();
@@ -684,7 +710,12 @@ public class TelaPrincipalController implements Initializable {
 
         updateTableView();
         initializeNodes();
+
         accServicos.setExpandedPane(tpAgenda);
+
+        Usuario.setUser("Admin");
+
+        lblUser.setText(Usuario.getUser());
 
     }
 
@@ -768,6 +799,8 @@ public class TelaPrincipalController implements Initializable {
         tcPneus4.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("cirPneus"));
         tcLavacao4.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("lavacao1"));
     }
+
+
 
     private synchronized<T> void loadView(String absoluteName, Consumer<T> inicializingAction) {
         try {

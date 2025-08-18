@@ -1,0 +1,113 @@
+2025-08-05 - 23:27:48.505266100 - Location is not set. TelaPrincipalController - btListaClientesButtonClick
+
+2025-08-06 - 21:29:33.517490300 - Cannot invoke "javafx.scene.Scene.getWindow()" because the return value of "org.gsnt.auttech.TelaPrincipal.getMainScene()" is nulllogSistema - TelaprincipalController
+
+2025-08-06 - 21:34:56.133550500 - Cannot invoke "javafx.scene.Scene.getWindow()" because the return value of "org.gsnt.auttech.TelaPrincipal.getMainScene()" is nulllogSistema - TelaprincipalController
+
+2025-08-06 - 21:36:04.490266700 - Cannot invoke "javafx.scene.Scene.getWindow()" because the return value of "org.gsnt.auttech.TelaPrincipal.getMainScene()" is null - logSistema - TelaprincipalController
+
+2025-08-06 - 21:41:13.314039800 - Cannot invoke "javafx.scene.Scene.getWindow()" because the return value of "org.gsnt.auttech.TelaPrincipal.getMainScene()" is null - logSistema - TelaprincipalController
+
+2025-08-11 - 21:57:26.010553700 - Classe Main - Sem Conexão de internet
+
+2025-08-11 - 21:57:26.013560600 - Classe Main - Sem Conexão de internet
+
+2025-08-11 - 21:57:59.923147700 - Classe Main - Sem Conexão de internet
+
+2025-08-11 - 21:57:59.926156100 - Classe Main - Sem Conexão de internet
+
+2025-08-11 - 22:40:13.721607 - Erro no carregamento da tela de login
+
+2025-08-11 - 22:42:13.690290500 - Erro no carregamento da tela de login
+
+2025-08-11 - 22:44:55.083354700 - Erro no carregamento da tela de login
+
+2025-08-11 - 22:46:06.020698 - Erro no carregamento da tela de login
+
+2025-08-11 - 23:05:14.475774200 - Classe Main - Sem Conexão de internet
+
+2025-08-15 - 08:39:05.238178800 - Classe Main - Sem Conexão de internet
+
+2025-08-15 - 08:40:46.502445500 - Classe Main - Sem Conexão de internet
+
+2025-08-15 - 08:42:28.417248100 - A tentativa de conexão falhou.
+
+2025-08-15 - 08:42:28.424714400 - Cannot invoke "java.sql.Connection.close()" because "c1" is null
+
+2025-08-15 - 08:43:04.311925900 - A tentativa de conexão falhou.
+
+2025-08-15 - 08:43:04.323495900 - A tentativa de conexão falhou.
+
+2025-08-15 - 08:43:27.351658100 - Classe Main - Sem Conexão de internet
+
+2025-08-15 - 08:46:22.025276100 - A tentativa de conexão falhou.
+
+2025-08-15 - 08:46:22.031603600 - Cannot invoke "java.sql.Connection.close()" because "c1" is null
+
+2025-08-15 - 08:46:36.118946 - A tentativa de conexão falhou.
+
+2025-08-15 - 08:46:36.124301400 - Cannot invoke "java.sql.Connection.close()" because "c1" is null
+
+2025-08-15 - 08:59:21.837473400 - Classe Main - Sem Conexão de internet 
+
+2025-08-15 - 09:27:08.004741700 - Classe Main - Sem Conexão de internet 
+
+2025-08-15 - 09:27:08.148264500 - A tentativa de conexão falhou.
+
+2025-08-15 - 09:30:17.711985400 - Classe Main - Sem Conexão de internet 
+
+2025-08-15 - 09:30:17.807057500 - A tentativa de conexão falhou.
+
+2025-08-15 - 09:30:40.739033300 - Classe Main - Sem Conexão de internet 
+
+2025-08-15 - 09:30:40.887628300 - A tentativa de conexão falhou.
+
+2025-08-15 - 09:34:45.811260700 - Classe Main - Sem Conexão de internet 
+
+2025-08-15 - 09:34:45.930505600 - A tentativa de conexão falhou.
+
+2025-08-15 - 09:36:10.568071900 - Classe Main - Sem Conexão de internet 
+
+2025-08-15 - 09:36:12.673384300 - A tentativa de conexão falhou.
+
+2025-08-15 - 09:36:43.377355500 - Classe Main - Sem Conexão de internet 
+
+2025-08-15 - 09:36:48.458792100 - A tentativa de conexão falhou.
+
+2025-08-15 - 09:38:32.464703500 - Classe Main - Sem Conexão de internet 
+
+2025-08-15 - 09:38:40.160431700 - A tentativa de conexão falhou.
+
+2025-08-15 - 09:42:44.806588200 - A tentativa de conexão falhou.
+
+2025-08-15 - 09:44:18.602601400 - A tentativa de conexão falhou.
+
+2025-08-15 - 09:55:29.830547600 - A tentativa de conexão falhou.
+
+2025-08-15 - 14:06:25.844790400 - A tentativa de conexão falhou.
+
+2025-08-15 - 14:09:45.479836 - Classe Main - sem conexão no bando de dados principal
+
+2025-08-15 - 14:18:07.864791700 - Classe Main - sem conexão no bando de dados principal
+
+2025-08-15 - 14:56:23.827522900 - Classe Main - Sem conexão com o banco de dados local
+
+2025-08-15 - 14:56:23.909896 - Classe Main - Sem conexão com o banco de dados local
+
+2025-08-15 - 14:56:23.917889400 - A tentativa de conexão falhou.
+
+2025-08-15 - 15:04:51.488357600 - Classe Main - Sem conexão com o banco de dados local
+
+2025-08-15 - 15:14:44.362439700 - FATAL: database "bancoempresa0" does not exist
+
+2025-08-15 - 15:14:44.366171300 - Cannot invoke "java.sql.Connection.close()" because "c2" is null
+
+2025-08-15 - 15:21:19.591889300 - Classe Main - Sem conexão com o banco de dados local
+
+2025-08-17 - 12:57:10.725831 - IniService - Inicio
+
+2025-08-17 - 12:58:22.885403800 - IniService - Inicio
+
+2025-08-17 - 13:00:49.608221800 - IniService - Inicio
+
+2025-08-17 - 13:07:51.674930500 - IniService - Inicio

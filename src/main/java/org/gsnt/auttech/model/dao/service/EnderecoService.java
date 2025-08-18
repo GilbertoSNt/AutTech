@@ -49,7 +49,7 @@ public class EnderecoService implements EnderecoDao {
 
             st.executeUpdate();
         }catch (SQLException e1){
-            throw new DbException(e1.getMessage()+" Endereço Service - save ");
+            throw new DbException(e1.getMessage()+" Endereço Service - saveEndereco");
         }
             finally {
             DB2.closeStatement(st);
@@ -82,7 +82,7 @@ public class EnderecoService implements EnderecoDao {
             st.setInt(11, codRegistro);
 
         }catch (SQLException e1){
-            throw new DbException(e1.getMessage()+" Endereço Service - alter ");
+            throw new DbException(e1.getMessage()+" Endereço Service - alterEndereco");
         }
         finally {
             DB2.closeStatement(st);

@@ -12,8 +12,6 @@ public class VeiculoService implements VeiculoDao {
 
     private Connection conn;
 
-    public VeiculoService(){}
-
     public VeiculoService(Connection conn){
         this.conn = conn;
     }
@@ -63,7 +61,7 @@ public class VeiculoService implements VeiculoDao {
             veiculo.setControleTracao(rs.getBoolean("controletracao"));
         }
         catch (SQLException e){
-            throw new DbException(e.getMessage()+" findbyid Veiculo");
+            throw new DbException(e.getMessage()+" findbyid Veiculo - veiculoService");
         }
         finally {
             DB2.closeStatement(st);
@@ -114,7 +112,7 @@ public class VeiculoService implements VeiculoDao {
             return st.executeUpdate();
 
         }catch (SQLException e){
-            throw new DbException(e.getMessage()+" insert Veiculo");
+            throw new DbException(e.getMessage()+" saveVeiculo - veiculoService");
         }
         finally {
             DB2.closeStatement(st);
@@ -151,7 +149,7 @@ public class VeiculoService implements VeiculoDao {
             return rs.getInt("count");
         }
         catch (SQLException e){
-            throw new DbException(e.getMessage()+" Verifica placa veiculoService");
+            throw new DbException(e.getMessage()+" Verifica placa - veiculoService");
         }
         finally {
             DB2.closeStatement(st);
@@ -198,7 +196,7 @@ public class VeiculoService implements VeiculoDao {
             veiculo.setControleTracao(rs.getBoolean("controletracao"));
         }
         catch (SQLException e){
-            throw new DbException(e.getMessage()+" findbycod Veiculo");
+            throw new DbException(e.getMessage()+" findbycod - VeiculoService");
         }
         finally {
             DB2.closeStatement(st);

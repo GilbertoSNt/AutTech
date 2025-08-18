@@ -17,11 +17,9 @@ import java.util.List;
 
 public class ClienteService implements ClienteDao {
 
-    public ClienteService(){
-
-    }
-
     private Connection conn;
+
+    public ClienteService(){}
 
     public ClienteService(Connection conn){
         this.conn = conn;
@@ -286,7 +284,7 @@ public class ClienteService implements ClienteDao {
     public void associacaoVeicCliente(int codVeic, int codCliente) {
 
         PreparedStatement st = null;
-        //int resultado = 0;
+
         try {
             st = conn.prepareStatement("INSERT INTO public.tabveiccliente(" +
                             "codcliente, codveiculo)" +

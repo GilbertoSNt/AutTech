@@ -6,6 +6,7 @@ import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.AgendaDao;
 import org.gsnt.auttech.model.entities.Agenda;
 import org.gsnt.auttech.util.Circulos;
+import org.gsnt.auttech.util.LogTxt;
 
 
 import java.sql.*;
@@ -18,8 +19,6 @@ import java.util.List;
 public class AgendaService implements AgendaDao {
 
     private Connection conn;
-
-    public AgendaService(){}
 
     public AgendaService(Connection conn){
         this.conn = conn;
@@ -133,7 +132,6 @@ public class AgendaService implements AgendaDao {
                     sTrocaOleo = new Circulos("#70c3a7");
                 }
 
-                //DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 DateTimeFormatter formato2 = DateTimeFormatter.ofPattern("HH:mm");
                 DateTimeFormatter formato3 = DateTimeFormatter.ofPattern("dd/MM");
 
@@ -304,7 +302,7 @@ public class AgendaService implements AgendaDao {
 
             return true;
         }catch (SQLException e){
-            throw new DbException(e.getMessage()+" updateAgenda");
+            throw new DbException(e.getMessage()+" saveAlterAgenda");
         }
         finally {
             DB2.closeStatement(st);
@@ -399,7 +397,7 @@ public class AgendaService implements AgendaDao {
 
         }
         catch (SQLException e){
-            throw new DbException(e.getMessage());
+            throw new DbException(e.getMessage()+" saveEnvioGuincho");
         }
         finally {
             DB2.closeStatement(st);
@@ -421,7 +419,7 @@ public class AgendaService implements AgendaDao {
 
         }
         catch (SQLException e){
-            throw new DbException(e.getMessage());
+            throw new DbException(e.getMessage()+" reverteEnvioGuincho");
         }
         finally {
             DB2.closeStatement(st);
@@ -442,7 +440,7 @@ public class AgendaService implements AgendaDao {
 
         }
         catch (SQLException e){
-            throw new DbException(e.getMessage());
+            throw new DbException(e.getMessage()+" reverterEnvioRecolhimento");
         }
         finally {
             DB2.closeStatement(st);
@@ -473,7 +471,7 @@ public class AgendaService implements AgendaDao {
 
         }
         catch (SQLException e){
-            throw new DbException(e.getMessage()+" findTelaPrincipal");
+            throw new DbException(e.getMessage()+" verStatusAssistencias");
         }
         finally {
             DB2.closeStatement(st);

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class OrcamentoService implements OrcamentoDao {
 
-    //toda ves que criar orçamento replica recusa orçamento anterior
+    //toda vez que criar orçamento replica recusa orçamento anterior
 
 
     private Connection conn;
@@ -57,7 +57,7 @@ public class OrcamentoService implements OrcamentoDao {
             return rs.getInt("cod");
 
         }catch(SQLException e){
-            throw new DbException(e.getMessage()+" Cria orçamento ");
+            throw new DbException(e.getMessage()+" Cria orçamento - OrçamentoService");
         } finally {
             DB2.closeStatement(st);
         }

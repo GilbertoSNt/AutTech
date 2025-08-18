@@ -15,6 +15,24 @@ GRANT TEMPORARY, CONNECT ON DATABASE bancoempresa TO PUBLIC;
 GRANT ALL ON DATABASE bancoempresa TO gilberto;
 
 
+
+/* >>>>> tabela inicial <<<<< */
+
+CREATE TABLE public.tabRegistro
+(
+    cod integer NOT NULL,
+    cnpj character varying(14),
+    cpf character varying(11),
+    "Nome" character varying(180),
+    fantasia character varying(180),
+    PRIMARY KEY (cod)
+);
+
+ALTER TABLE IF EXISTS public.cnpj
+    OWNER to gilberto;
+
+
+
 /* >>>>> Tabela Cliente <<<<< */
 
 CREATE SEQUENCE IF NOT EXISTS public.sqcodcliente
@@ -581,6 +599,34 @@ CREATE TABLE public.tbocupcprfssnl
 
 ALTER TABLE IF EXISTS public.tbocupcprfssnl
     OWNER to gilberto;
+
+
+/* tabela histórico de profissionais / os */
+
+CREATE SEQUENCE public.sqcodosprfssnl
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807;
+
+ALTER SEQUENCE public.sqcodosprfssnl
+    OWNER TO gilberto;
+
+CREATE TABLE public.tabosprfssnl
+(
+    cod bigint NOT NULL DEFAULT nextval('sqcodosprfssnl'::regclass),
+    codos bigint NOT NULL,
+    espec integer NOT NULL,
+    prof bigint NOT NULL,
+    PRIMARY KEY (cod)
+);
+
+ALTER TABLE IF EXISTS public.tabosprfssnl
+    OWNER to gilberto;
+
+
+
+
 
 
 

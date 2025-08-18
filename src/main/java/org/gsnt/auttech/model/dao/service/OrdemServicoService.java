@@ -70,7 +70,7 @@ public class OrdemServicoService implements OrdemServicoDao {
 
         }
         catch (SQLException e){
-            throw new DbException(e.getMessage());
+            throw new DbException(e.getMessage()+" cancelaOrdemServico - OrdemServiçoService");
         }
         finally {
             DB2.closeStatement(st);
@@ -119,7 +119,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             st.execute();
 
         }catch(SQLException e){
-            throw new DbException(e.getMessage()+" OrdemServiçoService - insert relação da Ordem Serviço, Orçamento");
+            throw new DbException(e.getMessage()+" OrdemServiçoService - relacaoOsOr");
         } finally {
             DB2.closeStatement(st);
         }
@@ -146,7 +146,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             return rs.getInt("codorc");
 
         }catch(SQLException e){
-            throw new DbException(e.getMessage()+" OrdemServiçoService - findOrforOs - relação da Ordem Serviço, Orçamento");
+            throw new DbException(e.getMessage()+" OrdemServiçoService - findOrforOs");
         } finally {
             DB2.closeStatement(st);
         }
@@ -188,7 +188,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             return resultado;
 
         }catch(SQLException e){
-            throw new DbException(e.getMessage()+" insert funcionarios");
+            throw new DbException(e.getMessage()+" criaOrdemServico - OrdemServicoService");
         } finally {
             DB2.closeResultSet(rs);
             DB2.closeStatement(st);

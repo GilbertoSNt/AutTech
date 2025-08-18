@@ -68,4 +68,25 @@ public class DB {
         }
     }
 
+    public static boolean testBd() throws SQLException {
+
+        Connection c1 = null;
+
+        try {
+            Properties props = loadProperties();
+            String url = "jdbc:postgresql://192.168.0.180:5432/bancoempresa";
+            c1 = DriverManager.getConnection(url, props);
+            if( c1 != null && !c1.isClosed()){
+                c1.close();
+                return true;
+            }else{
+                return false;
+            }
+
+        } catch (SQLException e) {
+            return false;
+        }
+
+    }
+
 }

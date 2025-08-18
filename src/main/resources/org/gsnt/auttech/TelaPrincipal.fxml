@@ -19,7 +19,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1210.0" styleClass="anchorpane" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.controller.TelaPrincipalController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="AUTTECH - Automação de processos na gestão de oficinas" textFill="WHITE">
+      <Label layoutX="14.0" layoutY="14.0" text="AUTTECH - Automação de processos de gestão em oficinas" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -120,6 +120,32 @@
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                   </content>
                 </Tab>
+                  <Tab closable="false" text="Técnicos / Serviços">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="btAssumir" layoutX="14.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" styleClass="button4" stylesheets="@css/button.css" text="Assumir Serviço" wrapText="true">
+                                 <graphic>
+                                    <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icones/cliente.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btListaServico" layoutX="15.0" layoutY="131.0" mnemonicParsing="false" styleClass="button4" stylesheets="@css/button.css" text="Mostrar lista serviço por técnico e mudar prioridade" wrapText="true">
+                                 <graphic>
+                                    <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icones/ordem.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
               </tabs>
                <padding>
                   <Insets left="10.0" right="10.0" />
@@ -370,5 +396,15 @@
             </Accordion>
          </children>
       </Pane>
+      <Label layoutX="692.0" layoutY="19.0" text="Usuário -" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblUser" layoutX="751.0" layoutY="19.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

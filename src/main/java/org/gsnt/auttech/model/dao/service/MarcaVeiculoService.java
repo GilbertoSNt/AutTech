@@ -38,7 +38,7 @@ public class MarcaVeiculoService implements MarcaVeiculoDao {
 
         }
         catch (SQLException a){
-            throw new DbException(a.getMessage());
+            throw new DbException(a.getMessage()+" findAll - MarcaVeiculo");
         }
         finally{
             DB.closeStatement(st);
@@ -62,7 +62,7 @@ public class MarcaVeiculoService implements MarcaVeiculoDao {
 
         }
         catch (SQLException a){
-            throw new DbException(a.getMessage());
+            throw new DbException(a.getMessage()+" findIdByMarca - MarcaVeiculo");
         }
         finally{
             DB.closeStatement(st);
@@ -87,7 +87,7 @@ public class MarcaVeiculoService implements MarcaVeiculoDao {
 
         }
         catch (SQLException a){
-            throw new DbException(a.getMessage());
+            throw new DbException(a.getMessage()+" findMarcaById - MarcaVeiculo");
         }
         finally{
             DB.closeStatement(st);

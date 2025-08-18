@@ -1,0 +1,3 @@
+
+2025-08-17 - 20:50:45.607108300 - Admin - Alterou agendamento para placa CCC-0C00
+2025-08-17 - 20:54:46.420468700 - Admin - Alterou agendamento para placa AFE-1E54

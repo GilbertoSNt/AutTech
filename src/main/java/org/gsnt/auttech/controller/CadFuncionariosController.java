@@ -113,7 +113,7 @@ public class CadFuncionariosController implements Initializable {
     private TextArea txaObsProf;
 
     @FXML
-    private TextArea txtApelido;
+    private TextField txtApelido;
 
     @FXML
     private CheckBox cbCaixaMec;
