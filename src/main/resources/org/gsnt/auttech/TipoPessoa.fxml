@@ -25,7 +25,7 @@
                </font>
             </Button>
          </children></AnchorPane>
-      <Label layoutX="40.0" layoutY="11.0" text="Escolha tipo Pessoa">
+      <Label layoutX="40.0" layoutY="11.0" text="Escolha tipo Pessoa" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

@@ -9,20 +9,20 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="390.0" styleClass="anchorpane" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.controller.ListaAtendFuncController">
    <children>
-      <AnchorPane layoutY="63.0" prefHeight="257.0" prefWidth="280.0" styleClass="pane" stylesheets="@css/panel.css" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0">
+      <AnchorPane layoutY="63.0" prefHeight="257.0" prefWidth="280.0" styleClass="anchorpane2" stylesheets="@css/panel.css" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0">
          <children>
             <Button fx:id="btClose" layoutX="350.0" layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtClose" prefHeight="25.0" prefWidth="25.0" styleClass="btn4" stylesheets="@css/button.css" text="X" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <ScrollPane layoutX="3.0" layoutY="10.0" prefHeight="182.0" prefWidth="344.0" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="10.0">
+            <ScrollPane layoutX="23.0" layoutY="32.0" prefHeight="163.0" prefWidth="344.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="22.0">
                <content>
                   <TableView fx:id="tvAtendimento" prefHeight="200.0" prefWidth="329.0" stylesheets="@css/tableview.css">
                     <columns>
                       <TableColumn fx:id="tcPlaca" prefWidth="140.0" text="Placa" />
-                      <TableColumn fx:id="tcTempo" prefWidth="100.0" text="Tempo Prev." style="-fx-alignment: center;" />
-                        <TableColumn fx:id="tcPriori" prefWidth="90.0" text="Prioridade" style="-fx-alignment: center;" />
+                      <TableColumn fx:id="tcTempo" prefWidth="100.0" style="-fx-alignment: center;" text="Tempo Prev." />
+                        <TableColumn fx:id="tcPriori" prefWidth="90.0" style="-fx-alignment: center;" text="Prioridade" />
                     </columns>
                   </TableView>
                </content>

@@ -23,12 +23,12 @@
    <children>
       <Pane prefHeight="80.0" prefWidth="200.0" styleClass="anchorpane" stylesheets="@css/panel.css">
          <children>
-            <Label layoutX="40.0" layoutY="23.0" text="CADASTRO PESSOA FÍSICA">
+            <Label layoutX="40.0" layoutY="23.0" text="CADASTRO PESSOA FÍSICA" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <CheckBox fx:id="cbAtivo" layoutX="811.0" layoutY="32.0" mnemonicParsing="false" stylesheets="@css/panel.css" text="Cliente Ativo" />
+            <CheckBox fx:id="cbAtivo" layoutX="811.0" layoutY="32.0" mnemonicParsing="false" stylesheets="@css/panel.css" text="Cliente Ativo" textFill="WHITE" />
             <Button fx:id="btClose" layoutX="964.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btCloseButtonClick" prefHeight="25.0" prefWidth="25.0" styleClass="btn1" stylesheets="@css/button.css" text="X">
                <font>
                   <Font name="Arial Bold" size="12.0" />
@@ -36,7 +36,7 @@
             </Button>
          </children>
       </Pane>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="994.0" styleClass="anchorpane1">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="994.0" styleClass="anchorpane2">
          <children>
             <Label layoutX="11.0" layoutY="18.0" text="Nome - " />
             <TextField fx:id="txtNome" layoutX="83.0" layoutY="14.0" prefHeight="25.0" prefWidth="881.0" stylesheets="@css/TextField.css" />
@@ -72,13 +72,13 @@
             <Insets left="3.0" right="3.0" />
          </VBox.margin>
       </AnchorPane>
-      <Accordion fx:id="accDados" prefHeight="249.0" prefWidth="1000.0" stylesheets="@css/panel.css">
+      <Accordion fx:id="accDados" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="249.0" prefWidth="994.0" stylesheets="@css/panel.css">
         <panes>
-          <TitledPane fx:id="tpDadosBasicos" animated="false" prefHeight="317.0" prefWidth="996.0" styleClass="titledpane" stylesheets="@css/panel.css" text="Dados para contato :">
+          <TitledPane fx:id="tpDadosBasicos" animated="false" prefHeight="317.0" prefWidth="980.0" styleClass="titledpane" stylesheets="@css/panel.css" text="Dados para contato :">
             <content>
               <AnchorPane fx:id="apDados" minHeight="0.0" minWidth="0.0" prefHeight="111.0" prefWidth="994.0" styleClass="anchorpane1">
                      <children>
-                        <Pane layoutX="-3.0" layoutY="-12.0" prefHeight="551.0" prefWidth="1000.0" styleClass="pane">
+                        <Pane layoutX="-3.0" layoutY="-12.0" prefHeight="551.0" prefWidth="980.0" styleClass="pane">
                            <children>
                               <ComboBox fx:id="cbTipoTelefone" layoutX="13.0" layoutY="21.0" onAction="#oncbTipoTelefone" onHidden="#hiddencbTipoTelefone" onHiding="#hiddencbTipoTelefone" prefWidth="150.0" promptText="Tipo telefone" stylesheets="@css/combobox.css" />
                               <TextField fx:id="txtNumTelefone" layoutX="173.0" layoutY="21.0" prefHeight="25.0" prefWidth="143.0" stylesheets="@css/TextField.css" />
@@ -180,8 +180,11 @@
                      </children></AnchorPane>
                </content></TitledPane>
         </panes>
+         <VBox.margin>
+            <Insets left="3.0" right="3.0" />
+         </VBox.margin>
       </Accordion>
-      <Pane prefHeight="60.0" prefWidth="757.0" styleClass="pane1" stylesheets="@css/panel.css">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="994.0" styleClass="pane1" stylesheets="@css/panel.css">
          <children>
             <Button fx:id="btGravar" layoutX="12.0" layoutY="17.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" stylesheets="@css/button.css" text="Gravar" />
             <Button fx:id="btEditar" layoutX="122.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" stylesheets="@css/button.css" text="Editar" />
@@ -189,7 +192,7 @@
             <Button fx:id="btCancelar" layoutX="341.0" layoutY="17.0" mnemonicParsing="false" onAction="#btCancelarOnButtonClick" prefHeight="25.0" prefWidth="100.0" stylesheets="@css/button.css" text="Cancelar" />
          </children>
          <VBox.margin>
-            <Insets bottom="2.0" left="2.0" right="2.0" />
+            <Insets bottom="2.0" left="3.0" right="3.0" />
          </VBox.margin>
       </Pane>
    </children>

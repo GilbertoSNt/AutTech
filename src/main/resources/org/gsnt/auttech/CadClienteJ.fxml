@@ -23,12 +23,12 @@
    <children>
       <Pane prefHeight="80.0" prefWidth="200.0" styleClass="anchorpane" stylesheets="@css/panel.css">
          <children>
-            <Label layoutX="40.0" layoutY="23.0" text="CADASTRO PESSOA JURÍDICA">
+            <Label layoutX="40.0" layoutY="23.0" text="CADASTRO PESSOA JURÍDICA" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <CheckBox fx:id="cbAtivo" layoutX="811.0" layoutY="32.0" mnemonicParsing="false" stylesheets="@css/panel.css" text="Cliente Ativo" />
+            <CheckBox fx:id="cbAtivo" layoutX="811.0" layoutY="32.0" mnemonicParsing="false" stylesheets="@css/panel.css" text="Cliente Ativo" textFill="WHITE" />
             <Button fx:id="btClose" layoutX="964.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btCloseButtonClick" prefHeight="25.0" prefWidth="25.0" styleClass="btn1" stylesheets="@css/button.css" text="X">
                <font>
                   <Font name="Arial Bold" size="12.0" />

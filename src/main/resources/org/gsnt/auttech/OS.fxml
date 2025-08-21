@@ -179,12 +179,12 @@
               </tabs>
             </TabPane>
          </children></AnchorPane>
-      <Label layoutX="12.0" layoutY="11.0" text="Ordem de serviço - Nº ">
+      <Label layoutX="12.0" layoutY="11.0" text="Ordem de serviço - Nº " textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lblNumOs" layoutX="264.0" layoutY="11.0">
+      <Label fx:id="lblNumOs" layoutX="264.0" layoutY="11.0" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

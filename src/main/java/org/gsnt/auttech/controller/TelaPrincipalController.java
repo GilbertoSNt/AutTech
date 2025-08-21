@@ -1,6 +1,5 @@
 package org.gsnt.auttech.controller;
 
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -712,9 +711,6 @@ public class TelaPrincipalController implements Initializable {
         initializeNodes();
 
         accServicos.setExpandedPane(tpAgenda);
-
-        Usuario.setUser("Admin");
-
         lblUser.setText(Usuario.getUser());
 
     }
@@ -823,7 +819,7 @@ public class TelaPrincipalController implements Initializable {
             stage1.showAndWait();
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new DbException("loadView - TelaPrincipalController " +e.getMessage());
         }
     }
 

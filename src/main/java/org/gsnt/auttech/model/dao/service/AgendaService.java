@@ -24,6 +24,9 @@ public class AgendaService implements AgendaDao {
         this.conn = conn;
     }
 
+    private static final String sql_Find_All = "select * from tabagenda order by dataagenda, hora";
+
+
     @Override
     public List<Agenda> findTelaPrincipal() {
 
@@ -34,8 +37,8 @@ public class AgendaService implements AgendaDao {
         ResultSet rs = null;
 
         try{
-            st = conn.prepareStatement(
-                    "select * from tabagenda order by dataagenda, hora"
+            st = conn.prepareStatement(sql_Find_All
+                   // "select * from tabagenda order by dataagenda, hora"
             );
             rs = st.executeQuery();
 

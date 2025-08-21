@@ -179,12 +179,12 @@
               </tabs>
             </TabPane>
          </children></AnchorPane>
-      <Label layoutX="12.0" layoutY="11.0" text="Orçamento - Nº ">
+      <Label layoutX="12.0" layoutY="11.0" text="Orçamento - Nº " textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lblNumOs" layoutX="187.0" layoutY="11.0" prefHeight="35.0" prefWidth="123.0">
+      <Label fx:id="lblNumOs" layoutX="187.0" layoutY="11.0" prefHeight="35.0" prefWidth="123.0" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

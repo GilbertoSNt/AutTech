@@ -43,7 +43,7 @@ public class LoginController implements Initializable {
         if(txtCNPJ.getLength() < 14){
 
             if(pfSenha.getText().equals("admin")) {
-                Usuario.setUser("Admin");
+                Usuario.setUser("Admin1");
                 close(btAcesso);
             }
         }else {

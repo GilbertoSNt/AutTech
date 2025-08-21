@@ -140,7 +140,7 @@
               </tabs>
             </TabPane>
          </children></AnchorPane>
-        <Label layoutX="12.0" layoutY="11.0" text="Cadastro de funcionários">
+        <Label layoutX="12.0" layoutY="11.0" text="Cadastro de funcionários" textFill="WHITE">
             <font>
                 <Font size="24.0" />
             </font>

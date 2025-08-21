@@ -22,7 +22,7 @@
             <Label layoutX="22.0" layoutY="16.0" text="Placa Veículo" />
             <Label layoutX="338.0" layoutY="45.0" text="Veículo - " />
             <Label layoutX="338.0" layoutY="16.0" text="Nome - " />
-            <AnchorPane layoutX="14.0" layoutY="87.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="155.0" prefWidth="640.0" styleClass="anchorpane" stylesheets="@css/panel.css" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="339.0">
+            <AnchorPane layoutX="14.0" layoutY="87.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="155.0" prefWidth="640.0" styleClass="anchorpane2" stylesheets="@css/panel.css" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="339.0">
                <children>
                   <Label layoutX="14.0" layoutY="10.0" text="Tipos de serviços" />
                   <CheckBox fx:id="cbRevisao" layoutX="11.0" layoutY="40.0" mnemonicParsing="false" text="Revisão" />
@@ -44,7 +44,7 @@
             <Button fx:id="btCancel" layoutX="137.0" layoutY="543.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCloseButtonClick" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Cancelar" />
             <Button fx:id="btFechar" layoutX="258.0" layoutY="543.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCloseButtonClick" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Fechar" />
             <Label layoutX="15.0" layoutY="254.0" text="Descrição / Defeitos" />
-            <AnchorPane layoutX="664.0" layoutY="87.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="155.0" prefWidth="316.0" styleClass="anchorpane" stylesheets="@css/panel.css">
+            <AnchorPane layoutX="664.0" layoutY="87.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="155.0" prefWidth="316.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
                <children>
                   <Label layoutX="15.0" layoutY="10.0" text="Assitências aplicadas / Deslocamento" />
                   <CheckBox fx:id="cbLevVei" layoutX="16.0" layoutY="37.0" mnemonicParsing="false" text="Levar veículo" />
@@ -66,7 +66,7 @@
             <TextArea fx:id="txaDescricao" layoutX="14.0" layoutY="279.0" prefHeight="252.0" prefWidth="970.0" stylesheets="@css/tableview.css" />
             <TextField fx:id="txtPlaca" layoutX="102.0" layoutY="12.0" stylesheets="@css/TextField.css" />
          </children></AnchorPane>
-      <Label layoutX="10.0" layoutY="10.0" text="Abertura da ordem de serviço">
+      <Label layoutX="10.0" layoutY="10.0" text="Abertura da ordem de serviço" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

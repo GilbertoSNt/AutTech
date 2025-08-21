@@ -18,7 +18,7 @@
          </font>
       </Button>
       <AnchorPane layoutY="63.0" prefHeight="737.0" prefWidth="1000.0" styleClass="pane" stylesheets="@css/panel.css" />
-      <Label layoutX="12.0" layoutY="11.0" text="Associação de sistemas">
+      <Label layoutX="12.0" layoutY="11.0" text="Associação de sistemas" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
