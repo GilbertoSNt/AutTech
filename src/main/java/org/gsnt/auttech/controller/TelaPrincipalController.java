@@ -36,6 +36,7 @@ public class TelaPrincipalController implements Initializable {
     private final OrdemServicoDao osServ = DaoFactory.createOrdemServicoDao();
     private final OrcamentoDao orcService = DaoFactory.createOrcamentoDao();
     private LogTxt log = new LogTxt();
+    private final ClienteDao cli = DaoFactory.createClienteDao();
 
     private ObservableList<Agenda> obsListAgenda;
 
@@ -628,7 +629,7 @@ public class TelaPrincipalController implements Initializable {
     private void btListaClientesButtonClick(){
         try {
                 loadView("/org/gsnt/auttech/ListaCliente.fxml", (ListaClienteController cliController) -> {
-                cliController.setClienteService(new ClienteService());
+                cliController.setClienteService((ClienteService) cli);
                 cliController.updateTableView();
             });
         }catch (Exception e){

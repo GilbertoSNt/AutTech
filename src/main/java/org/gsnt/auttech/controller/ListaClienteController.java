@@ -114,7 +114,7 @@ public class ListaClienteController implements Initializable {
             obsListCliente = FXCollections.observableArrayList(clienteService.findAllTest());
             tableViewListClient.setItems(obsListCliente);
         }catch (Exception a){
-            throw new DbException(a.getMessage());
+            throw new DbException(a.getMessage()+" updateTableView - ListaClienteController");
         }
     }
 
@@ -128,7 +128,7 @@ public class ListaClienteController implements Initializable {
             buttonColumnAcessar();
             buttonColumnExclui();
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            throw new DbException(e.getMessage()+" initializeNodes - ListaClienteController");
         }
 
     }

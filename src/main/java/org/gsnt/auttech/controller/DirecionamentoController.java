@@ -25,6 +25,7 @@ import org.gsnt.auttech.model.entities.Funcionario;
 import org.gsnt.auttech.model.entities.StatusAtendimento;
 import org.gsnt.auttech.util.Alerts;
 import org.gsnt.auttech.util.Botoes;
+import org.gsnt.auttech.util.ExceptionGenerics;
 import org.gsnt.auttech.util.MaskValid;
 
 import java.io.IOException;
@@ -425,7 +426,7 @@ public class DirecionamentoController implements Initializable {
             buttonColumnLista();
 
         }catch (Exception e){
-            System.out.println(e.getMessage()+" DirecionamentoController - initializaNodes");
+            throw new ExceptionGenerics(e.getMessage()+" DirecionamentoController - initializaNodes");
         }
 
     }
@@ -439,7 +440,7 @@ public class DirecionamentoController implements Initializable {
             tvMecanico.setItems(obsDirecionado);
 
         }catch (Exception a){
-            throw new DbException(a.getMessage()+" DirecionamentoController - updateTableView");
+            throw new ExceptionGenerics(a.getMessage()+" DirecionamentoController - updateTableView");
         }
     }
 
@@ -566,7 +567,7 @@ public class DirecionamentoController implements Initializable {
             stage1.showAndWait();
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new ExceptionGenerics(e.getMessage()+" DirecionamentoController - loadView");
         }
     }
 

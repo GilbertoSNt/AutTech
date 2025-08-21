@@ -20,6 +20,7 @@ import org.gsnt.auttech.model.entities.entitiesgenerics.MarcaVeiculo;
 import org.gsnt.auttech.model.entities.entitiesgenerics.ModeloVeiculo;
 import org.gsnt.auttech.model.entities.Veiculo;
 import org.gsnt.auttech.util.DadosCombos;
+import org.gsnt.auttech.util.ExceptionGenerics;
 import org.gsnt.auttech.util.MaskValid;
 
 import java.io.IOException;
@@ -444,11 +445,12 @@ public class CadVeiculoController implements Initializable {
     private void telaLista(){
         try {
             loadView("/org/gsnt/auttech/ListaCliente.fxml", (ListaClienteController cliController) -> {
-                cliController.setClienteService(new ClienteService());
+               // cliController.setClienteService(new ClienteService());
+                cliController.setClienteService((ClienteService) clienteService);
                 cliController.updateTableView();
             });
         }catch (Exception d){
-            System.out.println(d+" cadVeiculoController - telaLista");
+            throw new ExceptionGenerics(d.getMessage()+" cadVeiculoController - telaLista");
         }
 
     }
@@ -485,7 +487,7 @@ public class CadVeiculoController implements Initializable {
             }
 
         } catch (IOException e) {
-            System.out.println(e.getMessage()+" cadVeiculoController - loadView");
+            throw new ExceptionGenerics(e.getMessage()+" cadVeiculoController - loadView");
         }
     }
 

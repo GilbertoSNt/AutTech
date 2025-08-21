@@ -8,6 +8,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.gsnt.auttech.TelaPrincipal;
+import org.gsnt.auttech.db.DbException;
 
 import java.io.IOException;
 
@@ -51,7 +52,7 @@ public class TipoPessoaController {
             stage1.setScene(secundaryScene);
             stage1.showAndWait();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new DbException(e.getMessage()+" loadView - TipoPessoaController");
         }
     }
 

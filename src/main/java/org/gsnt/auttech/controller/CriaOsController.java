@@ -318,7 +318,7 @@ public class CriaOsController implements Initializable {
             //
         }
         catch (RuntimeException e){
-            System.out.println("CriaOs - coletaDados - "+e.getMessage());
+            throw new ExceptionGenerics(e.getMessage()+" CriaOs - coletaDados");
         }
 
 
@@ -366,7 +366,7 @@ public class CriaOsController implements Initializable {
                 preencheTelaComplemento(veiculo,cli);
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new ExceptionGenerics(e.getMessage()+" loadView - CriaOsController");
         }
     }
 

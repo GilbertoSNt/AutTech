@@ -16,6 +16,7 @@ import javafx.util.Callback;
 import org.gsnt.auttech.TelaPrincipal;
 import org.gsnt.auttech.model.entities.entitiesgenerics.*;
 import org.gsnt.auttech.util.DadosCombos;
+import org.gsnt.auttech.util.ExceptionGenerics;
 import org.gsnt.auttech.util.MaskValid;
 
 import java.io.IOException;
@@ -480,7 +481,7 @@ public class CadClienteFController implements Initializable {
             stage1.setScene(secundaryScene);
             stage1.showAndWait();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new ExceptionGenerics(e.getMessage()+" loadView - CadClienteController");
         }
     }
 }

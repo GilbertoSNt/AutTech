@@ -23,6 +23,7 @@ import org.gsnt.auttech.model.entities.entitiesgenerics.Endereco;
 import org.gsnt.auttech.model.entities.entitiesgenerics.Estados;
 import org.gsnt.auttech.model.entities.entitiesgenerics.TipoEndereco;
 import org.gsnt.auttech.util.DadosCombos;
+import org.gsnt.auttech.util.ExceptionGenerics;
 import org.gsnt.auttech.util.MaskValid;
 
 import java.net.URL;
@@ -234,7 +235,7 @@ public class CadFuncionariosController implements Initializable {
         try {
             cadastraFuncionario(coletaDadosFuncionario(false, 0), coletaDadosEndereco(false,0), coletaDadosEmail(false,0));
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            throw new ExceptionGenerics(e.getMessage()+" CadFuncionariosController - onBtGravar");
         }
     }
 

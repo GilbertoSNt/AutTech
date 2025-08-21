@@ -52,7 +52,7 @@ public class TelaPrincipal extends Application {
                         chamaTela(mainStage);
                     }
                 } catch (SQLException e) {
-                    // sem tratamento
+                    throw new DbException(e.getMessage()+" erro no metodo teste DB - Método main");
                 }
             } else if (result.get() == ButtonType.CANCEL) {
                 System.exit(0);
@@ -77,7 +77,7 @@ public class TelaPrincipal extends Application {
                     chamaTela(mainStage);
                 }
             } catch (Exception e) {
-                throw new DbException(e.getMessage());
+                throw new DbException(e.getMessage()+" teste Db1/2 - Método main");
             }
         }
 
@@ -96,7 +96,7 @@ public class TelaPrincipal extends Application {
             splashStage.showAndWait();
         }
         catch (Exception e){
-            throw new ExceptionGenerics("Erro no carregamento da tela de login");
+            throw new ExceptionGenerics(e.getMessage()+" Erro no carregamento da tela de login");
         }
     }
 
@@ -113,7 +113,7 @@ public class TelaPrincipal extends Application {
             mainStage.show();
         }
         catch (Exception e){
-            throw new ExceptionGenerics("Erro no carregamento da tela de login");
+            throw new ExceptionGenerics(e.getMessage()+" Erro no carregamento da tela de principal");
         }
 
     }
