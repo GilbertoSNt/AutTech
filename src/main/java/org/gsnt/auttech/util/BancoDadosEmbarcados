@@ -642,6 +642,8 @@ ALTER TABLE IF EXISTS public.tabosprfssnl
 
 /* VIEWS */
 
+
+
 CREATE OR REPLACE VIEW public.sereminiciados
     AS
      SELECT os.cod,
@@ -708,3 +710,19 @@ CREATE OR REPLACE VIEW public.statusorcamento
      JOIN tabveiculo t1 ON t1.cod = st.codveiculo
   WHERE st.stgeralatend < 5
   ORDER BY st.cod ;
+
+
+  // consulta para tela de serviços / tempo por profissional
+
+  CREATE OR REPLACE VIEW public.nmsrvcprfssnl
+   AS
+   SELECT fn.apelido,
+      count(pf.placa) AS total
+     FROM tbocupcprfssnl pf
+       JOIN tabfuncionario fn ON fn.cod = pf.codprof
+    GROUP BY fn.cod, fn.apelido
+    ORDER BY (count(pf.placa));
+
+  ALTER TABLE public.nmsrvcprfssnl
+      OWNER TO gilberto;
+

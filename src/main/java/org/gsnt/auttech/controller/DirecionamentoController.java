@@ -166,7 +166,8 @@ public class DirecionamentoController implements Initializable {
 
     public void preencheDadosDir(StatusAtendimento st){
 
-        lblVeiculo.setText("Placa - "+st.getPlaca()+" Modelo - "+st.getVeiculo());
+        lblVeiculo.setText("Código O.S. - "+st.getCodOs()+" Placa - "+st.getPlaca()+" Modelo - "+st.getVeiculo());
+
         if(st.getRevisao()>0){
             cbRevisao.setSelected(true);
         }
@@ -537,6 +538,10 @@ public class DirecionamentoController implements Initializable {
             cbxPneu.setDisable(true);
         }
     }
+
+
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

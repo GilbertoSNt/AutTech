@@ -15,88 +15,90 @@ public class FuncionarioService implements FuncionarioDao {
 
 	private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
-	public FuncionarioService(Connection conn){
+	private static final String sql_Find_Combo = "SELECT cod, apelido FROM tabfuncionario WHERE tipo = ? and tipo2 = ?";
+
+	public FuncionarioService(Connection conn) {
 		this.conn = conn;
 	}
 
-    @Override
-    public int saveFuncionario(Funcionario funcionario) {
+	@Override
+	public int saveFuncionario(Funcionario funcionario) {
 
 		Funcionario f = funcionario;
 
 		PreparedStatement st = null;
 
-		try{
+		try {
 			st = conn.prepareStatement("INSERT INTO tabfuncionario(cpf, rg, nome, datanasc, " +
-					"genero, status, tipo, telefone, telefoneconjuge, mae, pai, conjuge, qtdfilhos,dataadm, " +
-					"datadesl, obs, cartprofissional, dataemissao,cargo, funcao, comissaopecas, comissaoservicos," +
-					"salario, comissao, obsprof, caixamec, caixaaut, eletrica, freio, injdiesel, injflex, motordiesel," +
-					"motorflex, pneus, suspensao, socorro, veiceletrico, motleva, motguincho, trocaoleo, apelido)VALUES (" +
-					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?," +
-					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+							"genero, status, tipo, telefone, telefoneconjuge, mae, pai, conjuge, qtdfilhos,dataadm, " +
+							"datadesl, obs, cartprofissional, dataemissao,cargo, funcao, comissaopecas, comissaoservicos," +
+							"salario, comissao, obsprof, caixamec, caixaaut, eletrica, freio, injdiesel, injflex, motordiesel," +
+							"motorflex, pneus, suspensao, socorro, veiceletrico, motleva, motguincho, trocaoleo, apelido)VALUES (" +
+							"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?," +
+							"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 
-				st.setString(1, f.getCpf());
-				st.setString(2, f.getRg());
-				st.setString(3, f.getNome());
-				st.setString(4,f.getDataNasc());
-				st.setBoolean(5,f.getGenero());
-				st.setBoolean(6,f.getStatus());
-				st.setInt(7, f.getTipoFunc());
-				st.setString(8, f.getTelefone());
-				st.setString(9, f.getTelConjuge());
-				st.setString(10, f.getMae());
-				st.setString(11, f.getPai());
-				st.setString(12, f.getConjuge());
-				st.setInt(13, f.getQtdFilhos());
-				st.setString(14, f.getDataAdm());
-				st.setString(15, f.getDataDesl());
-				st.setString(16, f.getObs());
-				st.setString(17, f.getCartProfissional());
-				st.setString(18, f.getDataemissao());
-				st.setString(19, f.getCargo());
-				st.setString(20,f.getFuncao());
-				st.setString(21,f.getComissaoPecas());
-				st.setString(22,f.getComissaoServicos());
-				st.setString(23,f.getSalario());
-				st.setBoolean(24,f.getComissao());
-				st.setString(25, f.getObsProf());
-				st.setBoolean(26, f.getCaixaMec());
-				st.setBoolean(27, f.getCaixaAut());
-				st.setBoolean(28, f.getEletrica());
-				st.setBoolean(29,f.getFreio());
-				st.setBoolean(30, f.getInjDiesel());
-				st.setBoolean(31, f.getInjFlex());
-				st.setBoolean(32, f.getMotorDiesel());
-				st.setBoolean(33, f.getMotorFlex());
-				st.setBoolean(34, f.getPneus());
-				st.setBoolean(35, f.getSuspensao());
-				st.setBoolean(36, f.getSocorro());
-				st.setBoolean(37, f.getVeicEletricos());
-				st.setBoolean(38, f.getMotLeva());
-				st.setBoolean(39, f.getMotguincho());
-				st.setBoolean(40, f.getTrocaOleo());
-				st.setString(41, f.getApelido());
+			st.setString(1, f.getCpf());
+			st.setString(2, f.getRg());
+			st.setString(3, f.getNome());
+			st.setString(4, f.getDataNasc());
+			st.setBoolean(5, f.getGenero());
+			st.setBoolean(6, f.getStatus());
+			st.setInt(7, f.getTipoFunc());
+			st.setString(8, f.getTelefone());
+			st.setString(9, f.getTelConjuge());
+			st.setString(10, f.getMae());
+			st.setString(11, f.getPai());
+			st.setString(12, f.getConjuge());
+			st.setInt(13, f.getQtdFilhos());
+			st.setString(14, f.getDataAdm());
+			st.setString(15, f.getDataDesl());
+			st.setString(16, f.getObs());
+			st.setString(17, f.getCartProfissional());
+			st.setString(18, f.getDataemissao());
+			st.setString(19, f.getCargo());
+			st.setString(20, f.getFuncao());
+			st.setString(21, f.getComissaoPecas());
+			st.setString(22, f.getComissaoServicos());
+			st.setString(23, f.getSalario());
+			st.setBoolean(24, f.getComissao());
+			st.setString(25, f.getObsProf());
+			st.setBoolean(26, f.getCaixaMec());
+			st.setBoolean(27, f.getCaixaAut());
+			st.setBoolean(28, f.getEletrica());
+			st.setBoolean(29, f.getFreio());
+			st.setBoolean(30, f.getInjDiesel());
+			st.setBoolean(31, f.getInjFlex());
+			st.setBoolean(32, f.getMotorDiesel());
+			st.setBoolean(33, f.getMotorFlex());
+			st.setBoolean(34, f.getPneus());
+			st.setBoolean(35, f.getSuspensao());
+			st.setBoolean(36, f.getSocorro());
+			st.setBoolean(37, f.getVeicEletricos());
+			st.setBoolean(38, f.getMotLeva());
+			st.setBoolean(39, f.getMotguincho());
+			st.setBoolean(40, f.getTrocaOleo());
+			st.setString(41, f.getApelido());
 
-				int resultado = 0;
-				int rowsaffected = st.executeUpdate();
-				if(rowsaffected > 0){
-					ResultSet rs = st.getGeneratedKeys();
-					if(rs.next()){
+			int resultado = 0;
+			int rowsaffected = st.executeUpdate();
+			if (rowsaffected > 0) {
+				ResultSet rs = st.getGeneratedKeys();
+				if (rs.next()) {
 					resultado = rs.getInt(1);
 				}
-					DB2.closeResultSet(rs);
-				}
+				DB2.closeResultSet(rs);
+			}
 
-				return resultado;
+			return resultado;
 
-		}catch(SQLException e){
-			throw new DbException(e.getMessage()+" insert funcionarios");
-        } finally {
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage() + " insert funcionarios");
+		} finally {
 			DB2.closeStatement(st);
 		}
 
-    }
+	}
 
 	@Override
 	public List<Funcionario> findByEspecializacao() {
@@ -104,48 +106,38 @@ public class FuncionarioService implements FuncionarioDao {
 		Funcionario retorno;
 		List<Funcionario> retornoFunc = new ArrayList<>();
 
-        PreparedStatement st = null;
-        ResultSet rs = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
 
-        try {
+		try {
 
-            st = conn.prepareStatement(
-                    "SELECT apelido, caixamec, caixaaut, eletrica, freio, injdiesel, injflex, motordiesel," +
+			st = conn.prepareStatement(
+					"SELECT cod, apelido, caixamec, caixaaut, eletrica, freio, injdiesel, injflex, motordiesel," +
 							" motorflex, pneus, suspensao, socorro, veiceletrico, motleva,motguincho, trocaoleo " +
 							"FROM tabfuncionario WHERE datadesl=''");
 
-            rs = st.executeQuery();
+			rs = st.executeQuery();
 
 			while (rs.next()) {
 
-				retorno = new Funcionario();
-				retorno.setNome(rs.getString("apelido"));
-				retorno.setCaixaMec(rs.getBoolean("caixamec"));
-				retorno.setCaixaAut(rs.getBoolean("caixaaut"));
-				retorno.setEletrica(rs.getBoolean("eletrica"));
-				retorno.setFreio(rs.getBoolean("freio"));
-				retorno.setInjDiesel(rs.getBoolean("injdiesel"));
-				retorno.setInjFlex(rs.getBoolean("injflex"));
-				retorno.setMotorDiesel(rs.getBoolean("motordiesel"));
-				retorno.setMotorFlex(rs.getBoolean("motorflex"));
-				retorno.setPneus(rs.getBoolean("pneus"));
-				retorno.setSuspensao(rs.getBoolean("suspensao"));
-				retorno.setSocorro(rs.getBoolean("socorro"));
-				retorno.setVeicEletricos(rs.getBoolean("veiceletrico"));
-				retorno.setMotLeva(rs.getBoolean("motleva"));
-				retorno.setMotguincho(rs.getBoolean("motguincho"));
-				retorno.setTrocaOleo(rs.getBoolean("trocaoleo"));
+				retorno = new Funcionario(rs.getInt("cod"),rs.getString("apelido"),
+						rs.getBoolean("caixamec"),rs.getBoolean("caixaaut"),
+						rs.getBoolean("eletrica"),rs.getBoolean("freio"),
+						rs.getBoolean("injdiesel"),rs.getBoolean("injflex"),
+						rs.getBoolean("motordiesel"),rs.getBoolean("motorflex"),
+						rs.getBoolean("pneus"),rs.getBoolean("suspensao"),
+						rs.getBoolean("socorro"),rs.getBoolean("veiceletrico"),
+						rs.getBoolean("motleva"),rs.getBoolean("motguincho"),
+						rs.getBoolean("trocaoleo"));
 
 				retornoFunc.add(retorno);
 			}
-        }
-        catch (SQLException e){
-            throw new DbException(e.getMessage()+" findByEspecialização");
-        }
-        finally {
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage() + " findByEspecialização");
+		} finally {
 			DB2.closeResultSet(rs);
 			DB2.closeStatement(st);
-        }
+		}
 
 		return retornoFunc;
 	}
@@ -162,21 +154,21 @@ public class FuncionarioService implements FuncionarioDao {
 
 		PreparedStatement st = null;
 
-		try{
+		try {
 			st = conn.prepareStatement("UPDATE tabfuncionario SET cpf=?, rg=?, nome=?, datanasc=?, genero=?," +
-							" status=?, tipo=?, telefone=?, telefoneconjuge=?, mae=?, pai=?, conjuge=?, qtdfilhos=?, " +
-							"dataadm=?, datadesl=?, obs=?, cartprofissional=?, dataamissao=?, cargo=?, funcao=?, " +
-							"comissaopecas=?, comissaoservicos=?, salario=?, comissao=?, obsprof=?, caixamec=?, " +
-							"caixaaut=?, eletrica=?, freio=?, injdiesel=?, injflex=?, motordiesel=?, motorflex=?, " +
-							"pneus=?, suspensao=?, socorro=?, veiceletrico=?, motleva=?, motguincho=?," +
-							" trocaoleo=?, apelido = ? WHERE cod = ?");
+					" status=?, tipo=?, telefone=?, telefoneconjuge=?, mae=?, pai=?, conjuge=?, qtdfilhos=?, " +
+					"dataadm=?, datadesl=?, obs=?, cartprofissional=?, dataamissao=?, cargo=?, funcao=?, " +
+					"comissaopecas=?, comissaoservicos=?, salario=?, comissao=?, obsprof=?, caixamec=?, " +
+					"caixaaut=?, eletrica=?, freio=?, injdiesel=?, injflex=?, motordiesel=?, motorflex=?, " +
+					"pneus=?, suspensao=?, socorro=?, veiceletrico=?, motleva=?, motguincho=?," +
+					" trocaoleo=?, apelido = ? WHERE cod = ?");
 
 			st.setString(1, f.getCpf());
 			st.setString(2, f.getRg());
 			st.setString(3, f.getNome());
-			st.setString(4,f.getDataNasc());
-			st.setBoolean(5,f.getGenero());
-			st.setBoolean(6,f.getStatus());
+			st.setString(4, f.getDataNasc());
+			st.setBoolean(5, f.getGenero());
+			st.setBoolean(6, f.getStatus());
 			st.setInt(7, f.getTipoFunc());
 			st.setString(8, f.getTelefone());
 			st.setString(9, f.getTelConjuge());
@@ -190,16 +182,16 @@ public class FuncionarioService implements FuncionarioDao {
 			st.setString(17, f.getCartProfissional());
 			st.setString(18, f.getDataemissao());
 			st.setString(19, f.getCargo());
-			st.setString(20,f.getFuncao());
-			st.setString(21,f.getComissaoPecas());
-			st.setString(22,f.getComissaoServicos());
-			st.setString(23,f.getSalario());
-			st.setBoolean(24,f.getComissao());
+			st.setString(20, f.getFuncao());
+			st.setString(21, f.getComissaoPecas());
+			st.setString(22, f.getComissaoServicos());
+			st.setString(23, f.getSalario());
+			st.setBoolean(24, f.getComissao());
 			st.setString(25, f.getObsProf());
 			st.setBoolean(26, f.getCaixaMec());
 			st.setBoolean(27, f.getCaixaAut());
 			st.setBoolean(28, f.getEletrica());
-			st.setBoolean(29,f.getFreio());
+			st.setBoolean(29, f.getFreio());
 			st.setBoolean(30, f.getInjDiesel());
 			st.setBoolean(31, f.getInjFlex());
 			st.setBoolean(32, f.getMotorDiesel());
@@ -211,13 +203,13 @@ public class FuncionarioService implements FuncionarioDao {
 			st.setBoolean(38, f.getMotLeva());
 			st.setBoolean(39, f.getMotguincho());
 			st.setBoolean(40, f.getTrocaOleo());
-			st.setString(41,f.getApelido());
-			st.setInt(42,cod);
+			st.setString(41, f.getApelido());
+			st.setInt(42, cod);
 			st.executeUpdate();
 
-		}catch(SQLException e){
-			throw new DbException(e.getMessage()+" alter funcionarios");
-		}finally {
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage() + " alter funcionarios");
+		} finally {
 			DB2.closeStatement(st);
 		}
 
@@ -231,26 +223,57 @@ public class FuncionarioService implements FuncionarioDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 
-		try{
+		try {
 			st = conn.prepareStatement(" SELECT cod" +
 					" from tabfuncionario" +
 					" where" +
-					" apelido = ?" );
+					" apelido = ?");
 
-			st.setString(1,apelido);
+			st.setString(1, apelido);
 			rs = st.executeQuery();
 			rs.next();
 
 			return rs.getInt("cod");
 
-		}
-		catch (SQLException e){
-			throw new DbException(e.getMessage()+" FuncionarioService - findFuncByApelido");
-		}
-		finally {
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage() + " FuncionarioService - findFuncByApelido");
+		} finally {
 			DB2.closeResultSet(rs);
 			DB2.closeStatement(st);
 		}
 
 	}
+
+	@Override
+	public List<Funcionario> findFuncCombo(int tipo,int tipo2) {
+		//sql_Find_Combo
+
+		Funcionario retorno;
+		List<Funcionario> retornoFunc = new ArrayList<>();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+
+			st = conn.prepareStatement(sql_Find_Combo);
+			st.setInt(1,tipo);
+			st.setInt(2,tipo2);
+			rs = st.executeQuery();
+
+			while (rs.next()) {
+
+				retorno = new Funcionario(rs.getInt("cod"),rs.getString("apelido"));
+				retornoFunc.add(retorno);
+			}
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage() + " findFuncCombo por tipo");
+		} finally {
+			DB2.closeResultSet(rs);
+			DB2.closeStatement(st);
+		}
+
+
+		return retornoFunc;
+	}
+
 }

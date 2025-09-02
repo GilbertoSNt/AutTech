@@ -19,7 +19,7 @@ public class Funcionario {
     *
     * */
 
-    private int cod;
+    private Integer cod;
     private String nome;
     private String apelido;
     private String cpf;
@@ -27,13 +27,13 @@ public class Funcionario {
     private String dataNasc;
     private Boolean status;
     private Boolean genero;
-    private int tipoFunc;
+    private Integer tipoFunc;
     private String telefone;
     private String telConjuge;
     private String mae;
     private String pai;
     private String conjuge;
-    private int qtdFilhos;
+    private Integer qtdFilhos;
     private String obs;
     private String dataAdm;
     private String dataDesl;
@@ -64,20 +64,16 @@ public class Funcionario {
 
     public Funcionario(){}
 
-    public Funcionario(String nome) {
-        this.nome = nome;
-    }
-
-    public Funcionario(int cod, String apelido, int tipoFunc){
+    public Funcionario(Integer cod, String apelido){
         this.cod = cod;
         this.apelido = apelido;
-        this.tipoFunc = tipoFunc;
     }
 
-    public Funcionario(String apelido, Boolean caixaMec, Boolean caixaAut, Boolean eletrica, Boolean freio,
-                       Boolean injDiesel, Boolean injFlex, Boolean motorDiesel, Boolean motorFlex, Boolean pneus,
-                       Boolean suspensao, Boolean socorro, Boolean veicEletricos, Boolean motLeva, Boolean motguincho,
-                       Boolean trocaOleo) {
+    public Funcionario(Integer cod, String apelido, Boolean caixaMec, Boolean caixaAut, Boolean eletrica,
+                       Boolean freio, Boolean injDiesel, Boolean injFlex, Boolean motorDiesel, Boolean motorFlex,
+                       Boolean pneus, Boolean suspensao, Boolean socorro, Boolean veicEletricos, Boolean motLeva,
+                       Boolean motguincho, Boolean trocaOleo) {
+        this.cod = cod;
         this.apelido = apelido;
         this.caixaMec = caixaMec;
         this.caixaAut = caixaAut;
@@ -96,13 +92,11 @@ public class Funcionario {
         this.trocaOleo = trocaOleo;
     }
 
-
-
-    public int getCod() {
+    public Integer getCod() {
         return cod;
     }
 
-    public void setCod(int cod) {
+    public void setCod(Integer cod) {
         this.cod = cod;
     }
 

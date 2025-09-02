@@ -7,7 +7,6 @@ import org.gsnt.auttech.model.dao.ModeloVeiculoDao;
 import org.gsnt.auttech.model.dao.StatusAtendimentoDao;
 import org.gsnt.auttech.model.entities.StatusAtendimento;
 import org.gsnt.auttech.util.Circulos;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,17 +15,16 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
 
     private final Connection conn;
 
+    private Circulos cir = new Circulos();
+
+    private final ModeloVeiculoDao modelo = DaoFactory.createModeloVeiculoDao();
 
     public StatusAtendimentoService(Connection conn){
         this.conn = conn;
     }
 
-    private final ModeloVeiculoDao modelo = DaoFactory.createModeloVeiculoDao();
-
-
     @Override
     public void alteraStatus(StatusAtendimento st) {
-
 
     }
 
@@ -83,8 +81,6 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
     @Override
     public void statusOsInicial(StatusAtendimento st2) {
         //Sem necessidade de orçamento
-
-
 
         PreparedStatement st = null;
         try{
@@ -367,63 +363,78 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
             switch (a) {
 
                 case 1:
-                    status = new Circulos("f50505");//amarelo total
-                    break;
+                    return cir.circ1();
+                    //status = new Circulos("f50505");//vermelho total
+
                 case 2:
-                    status = new Circulos("f9d428", "f50505");// inteno amarelo - externo verde
-                    break;
+                    return cir.circ2();
+                    //status = new Circulos("f9d428", "f50505");// inteno amarelo - externo verde
+
                 case 3:
-                    status = new Circulos("f9d428", "f9d428");
-                    break;
+                    return cir.circ3();
+                    //status = new Circulos("f9d428", "f9d428");
+
                 case 4:
-                    status = new Circulos("7c2d91");
-                    break;
+                    return cir.circ4();
+                    //status = new Circulos("7c2d91");
+
                 case 5:
-                    status = new Circulos("7c2d91","70c3a7" );
-                    break;
+                    return cir.circ5();
+                    //status = new Circulos("7c2d91","70c3a7" );
+
                 case 6:
-                    status = new Circulos("3f676d");
-                    break;
-                case 7:
-                    status = new Circulos("f50505");
-                    break;
+                    return cir.circ6();
+                    //status = new Circulos("3f676d");
+
+                case 7://circ1
+                    return cir.circ1();
+                    //status = new Circulos("f50505");
+
                 case 8:
-                    status = new Circulos("54d6f0");
-                    break;
+                    return cir.circ8();
+                    //status = new Circulos("54d6f0");
+
                 case 9:
-                    status = new Circulos("70c3a7");
-                    break;
+                    return cir.circ9();
+                    //status = new Circulos("70c3a7");
+
                 case 10:
-                    status = new Circulos("3f676d");
-                    break;
-                case 11:
-                    status = new Circulos("f9d428");
-                    break;
+                    return cir.circ10();
+                    //status = new Circulos("3f676d");
+
+                case 11://circ3
+                    return cir.circ3();
+                    //status = new Circulos("f9d428");
+
                 case 12:
-                    status = new Circulos("f9d428", "70c3a7");
-                    break;
+                    return cir.circ12();
+                    //status = new Circulos("f9d428", "70c3a7");
+
                 case 13:
-                    status = new Circulos("70c3a7");
-                    break;
+                    return cir.circ13();
+                    //status = new Circulos("70c3a7");
+
                 case 14:
-                    status = new Circulos("7c2d91");
-                    break;
+                    return cir.circ14();
+                    //status = new Circulos("7c2d91");
+
                 case 15:
-                    status = new Circulos("e3c9a2");
-                    break;
+                    return cir.circ4();
+                    //status = new Circulos("e3c9a2");
+
                 case 16:
-                    status = new Circulos("000000");
-                    break;
+                    return cir.circ16();
+                    //status = new Circulos("000000");
+
                 case 17:
-                    status = new Circulos("f59097");
-                    break;
+                    return cir.circ17();
+                    //status = new Circulos("f59097");
+
                 case 18:
-                    status = new Circulos("86fdff");
-                    break;
+                    return cir.circ18();
+                    //status = new Circulos("86fdff");
             }
-
-            return status;
-
+        return status;
     }
 
     @Override
@@ -486,9 +497,9 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
                                            " WHERE st.codos = ?");
             st.setInt(1,item);
             rs = st.executeQuery();
-
-            while(rs.next()){
-
+            rs.next();
+            //while(rs.next()){
+                sta.setCodOs(item);
                 sta.setPlaca(rs.getString("placa"));
                 sta.setVeiculo(modelo.findModeloById(rs.getInt("modelo")));
                 sta.setRevisao(rs.getByte("revisao"));
@@ -504,7 +515,7 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
                 sta.setAlinBalan(rs.getByte("alinbalan"));
                 sta.setTrocaOleo(rs.getByte("trocaoleo"));
 
-            }
+            //}
         }
         catch (SQLException e){
             throw new DbException(e.getMessage()+" StatusAtendiemntoService - stgeralunico");

@@ -8,13 +8,17 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.gsnt.auttech.model.dao.DaoFactory;
+import org.gsnt.auttech.model.dao.FuncionarioDao;
 import org.gsnt.auttech.model.dao.IniDAO;
+import org.gsnt.auttech.model.entities.Funcionario;
 import org.gsnt.auttech.model.entities.Usuario;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+
+    private FuncionarioDao func = DaoFactory.createFuncionarioDao();
 
     @FXML
     private Label lblEmpresa;
@@ -23,7 +27,7 @@ public class LoginController implements Initializable {
     private PasswordField pfSenha;
 
     @FXML
-    private ComboBox cbUsuario;
+    private ComboBox<Funcionario> cbUsuario;
 
     @FXML
     private TextField txtCNPJ;
@@ -38,7 +42,6 @@ public class LoginController implements Initializable {
 
     @FXML
     private void onBtAcesso(){
-
 
         if(txtCNPJ.getLength() < 14){
 
@@ -64,13 +67,13 @@ public class LoginController implements Initializable {
     }
 
     private void carregaCombo(){
-        ObservableList obsUsr = FXCollections.observableList(null);// arrumar aqui
+        ObservableList obsUsr = FXCollections.observableList(func.findFuncCombo(1,2));
         cbUsuario.setItems(obsUsr);
-        Callback<ListView<String>, ListCell<String>> factoryBalan = lv -> new ListCell<String>(){
+        Callback<ListView<Funcionario>, ListCell<Funcionario>> factoryBalan = lv -> new ListCell<Funcionario>(){
             @Override
-            protected void updateItem(String funcionario, boolean empty){
+            protected void updateItem(Funcionario funcionario, boolean empty){
                 super.updateItem(funcionario, empty);
-                setText(empty ?"":funcionario);
+                setText(empty ?"":funcionario.getApelido());
             }
         };
         cbUsuario.setCellFactory(factoryBalan);

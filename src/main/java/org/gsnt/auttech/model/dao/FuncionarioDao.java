@@ -11,5 +11,7 @@ public interface FuncionarioDao {
     Funcionario findByCod(Integer cod);
     void alterFuncionario(Funcionario funcionario, int cod);
     Integer findFuncByApelido(String apelido);
+    List<Funcionario> findFuncCombo(int tipo,int tipo2);
+
 
 }

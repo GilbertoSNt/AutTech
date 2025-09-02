@@ -270,14 +270,14 @@
                               <Label layoutX="983.0" layoutY="197.0" text="Serviço sem direcionamento" />
                               <Label layoutX="984.0" layoutY="219.0" text="Direcionamento sem confirmação" />
                               <Circle fx:id="circleParcial" fill="#f9d428" layoutX="969.0" layoutY="249.0" radius="8.0" stroke="#f9d428" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="985.0" layoutY="241.0" text="OS conf. com  orç. pendente" />
+                              <Label layoutX="985.0" layoutY="241.0" text="OS aceita com  orç. pendente" />
                               <Circle fx:id="circleDirecionado" fill="#7c2d91" layoutX="969.0" layoutY="271.0" radius="8.0" stroke="#7c2d91" strokeType="INSIDE" strokeWidth="3.0" />
                               <Label layoutX="985.0" layoutY="263.0" text="Orçamento aguardando liberação" />
                               <Circle fx:id="circleDirecionado2" fill="#3f676d" layoutX="969.0" layoutY="315.0" radius="8.0" stroke="#3f676d" strokeType="INSIDE" strokeWidth="3.0" />
                               <Label layoutX="985.0" layoutY="307.0" text="Orçamento lib. aguard. cliente" />
                               <Circle fx:id="circleDirecionado3" fill="#7c2d91" layoutX="969.0" layoutY="293.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="985.0" layoutY="285.0" text="Orçamento lib. aguardando peças" />
                               <Button fx:id="btDirecionaOS" layoutX="961.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtDirecionaOS" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Direciona OS aos técnicos" />
+                              <Label layoutX="985.0" layoutY="285.0" text="Orç. liberado aguardando peças" />
                            </children>
                         </AnchorPane>
                      </content></TitledPane>
@@ -359,7 +359,7 @@
                               <Button fx:id="btCncOS" layoutX="961.0" layoutY="41.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Cancela Ordem de Serviço" />
                               <Button fx:id="btAlteraOS" layoutX="961.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/button.css" text="Altera Ordem de Serviço" />
                               <Circle fx:id="circleSem12" fill="#70c3a7" layoutX="970.0" layoutY="284.0" radius="8.0" stroke="#70c3a7" strokeType="INSIDE" strokeWidth="3.0" />
-                              <Label layoutX="987.0" layoutY="277.0" text="Em produção" />
+                              <Label layoutX="987.0" layoutY="277.0" text="Em produção(Iniciado)" />
                               <Circle fx:id="circleDirecionado12" fill="#3f676d" layoutX="970.0" layoutY="312.0" radius="8.0" stroke="#3f676d" strokeType="INSIDE" strokeWidth="3.0" />
                               <Label layoutX="988.0" layoutY="304.0" text="Serviço pronto" />
                               <Circle fx:id="circleDirecionado111" fill="#54d6f0" layoutX="971.0" layoutY="258.0" radius="8.0" stroke="#54d6f0" strokeType="INSIDE" strokeWidth="3.0" />

@@ -43,7 +43,7 @@ public class DirecionadosService implements DirecionadosDao {
         ResultSet rs = null;
 
         try{
-            st = conn.prepareStatement("SELECT * FROM public.nmsrvcprfssnl");
+            st = conn.prepareStatement("SELECT * FROM nmsrvcprfssnl");
             rs = st.executeQuery();
             while(rs.next()){
                 drc.add(new Direcionados(rs.getString("apelido"), rs.getInt("total")));
@@ -61,6 +61,8 @@ public class DirecionadosService implements DirecionadosDao {
 
     @Override
     public List<Direcionados> listaServPorFuncionarios(Integer cod) {
+
+        //lista 0s serviços de um unico profissional
 
         List<Direcionados> drc = new ArrayList<>();
 

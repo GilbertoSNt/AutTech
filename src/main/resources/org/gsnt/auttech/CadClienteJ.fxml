@@ -72,7 +72,7 @@
             <Insets left="3.0" right="3.0" />
          </VBox.margin>
       </AnchorPane>
-      <Accordion fx:id="accDados" prefHeight="249.0" prefWidth="1000.0" stylesheets="@css/panel.css">
+      <Accordion fx:id="accDados" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="249.0" prefWidth="994.0" stylesheets="@css/panel.css">
         <panes>
           <TitledPane fx:id="tpDadosBasicos" animated="false" prefHeight="317.0" prefWidth="996.0" styleClass="titledpane" stylesheets="@css/panel.css" text="Dados para contato :">
             <content>
@@ -157,8 +157,11 @@
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="anchorpane1" />
                </content></TitledPane>
         </panes>
+         <VBox.margin>
+            <Insets left="3.0" right="3.0" />
+         </VBox.margin>
       </Accordion>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="996.0" styleClass="pane1" stylesheets="@css/panel.css">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="994.0" styleClass="pane1" stylesheets="@css/panel.css">
          <children>
             <Button fx:id="btGravar" layoutX="13.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" stylesheets="@css/button.css" text="Gravar">
                <opaqueInsets>
@@ -172,7 +175,7 @@
             <Insets />
          </opaqueInsets>
          <VBox.margin>
-            <Insets left="2.0" right="2.0" />
+            <Insets left="3.0" right="3.0" />
          </VBox.margin>
          <padding>
             <Insets top="22.0" />
