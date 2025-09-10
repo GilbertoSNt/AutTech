@@ -1,3 +1,61 @@
 
 2025-08-24 - 21:31:51.623519100 - ResultSet não está posicionado corretamente, talvez você precise chamar next. StatusAtendiemntoService - stgeralunico
 2025-08-24 - 21:31:51.626558600 - ResultSet não está posicionado corretamente, talvez você precise chamar next. StatusAtendiemntoService - stgeralunico TelaPrincipalController -  na função onbtDirecionaOS
+2025-09-06 - 16:52:29.132759700 - ERROR: column "tipo2" does not exist
+  Dica: Perhaps you meant to reference the column "tabfuncionario.tipo".
+  Posição: 61 findFuncCombo por tipo
+2025-09-06 - 16:52:29.134754500 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login.fxml
+ Erro no carregamento da tela de login
+2025-09-06 - 16:52:29.135810800 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login.fxml
+ Erro no carregamento da tela de login teste Db1/2 - Método main
+2025-09-06 - 17:28:22.001992400 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 17:30:22.232651900 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 17:32:44.868051300 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 17:43:07.255481300 - Cannot invoke "java.lang.Boolean.booleanValue()" because the return value of "org.gsnt.auttech.model.entities.Funcionario.getTrocaOleo()" is null CadFuncionariosController - onBtGravar
+2025-09-06 - 17:44:05.453961100 - Cannot invoke "java.lang.Boolean.booleanValue()" because the return value of "org.gsnt.auttech.model.entities.Funcionario.getTrocaOleo()" is null CadFuncionariosController - onBtGravar
+2025-09-06 - 17:44:23.270069700 - Cannot invoke "java.lang.Boolean.booleanValue()" because the return value of "org.gsnt.auttech.model.entities.Funcionario.getTrocaOleo()" is null CadFuncionariosController - onBtGravar
+2025-09-06 - 18:59:13.515701100 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 19:00:43.528992500 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 19:01:01.287339900 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 19:01:07.995484 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 19:01:13.383236400 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 19:01:16.900396100 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 19:01:21.030139800 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 19:01:25.722970700 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 19:01:29.338800100 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 19:01:33.727016500 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 19:01:38.930609500 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 19:01:42.108955200 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 19:01:45.245495600 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 19:01:49.172902800 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 19:01:52.546124400 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-06 - 19:01:56.234541400 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios
+2025-09-06 - 19:01:56.237008800 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios CadFuncionariosController - onBtGravar
+2025-09-06 - 19:01:59.646315700 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios
+2025-09-06 - 19:01:59.649862800 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios CadFuncionariosController - onBtGravar
+2025-09-06 - 19:02:01.711833100 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios
+2025-09-06 - 19:02:01.715180800 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios CadFuncionariosController - onBtGravar
+2025-09-06 - 19:02:12.091746900 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios
+2025-09-06 - 19:02:12.093826300 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios CadFuncionariosController - onBtGravar
+2025-09-06 - 19:02:15.957941100 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios
+2025-09-06 - 19:02:15.961123800 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios CadFuncionariosController - onBtGravar
+2025-09-06 - 19:02:18.998778700 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios
+2025-09-06 - 19:02:19.001004500 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios CadFuncionariosController - onBtGravar
+2025-09-06 - 19:02:23.705689500 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios
+2025-09-06 - 19:02:23.708096100 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios CadFuncionariosController - onBtGravar
+2025-09-06 - 19:02:26.398640500 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios
+2025-09-06 - 19:02:26.400603400 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios CadFuncionariosController - onBtGravar
+2025-09-06 - 19:02:29.627812800 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios
+2025-09-06 - 19:02:29.631853300 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios CadFuncionariosController - onBtGravar
+2025-09-06 - 19:02:33.123508100 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios
+2025-09-06 - 19:02:33.127499600 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios CadFuncionariosController - onBtGravar
+2025-09-06 - 19:02:36.500513800 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios
+2025-09-06 - 19:02:36.502830800 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios CadFuncionariosController - onBtGravar
+2025-09-06 - 19:10:55.098973 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios
+2025-09-06 - 19:10:55.102923900 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios CadFuncionariosController - onBtGravar
+2025-09-06 - 19:11:49.513164300 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios
+2025-09-06 - 19:11:49.516185500 - O índice da coluna está fora do intervalo: 41, número de colunas: 40. insert funcionarios CadFuncionariosController - onBtGravar
+2025-09-09 - 22:46:46.161364600 - For input string: "" CadFuncionariosController - onBtGravar
+2025-09-09 - 22:48:06.371952600 - For input string: "" CadFuncionariosController - onBtGravar

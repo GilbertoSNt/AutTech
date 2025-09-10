@@ -5,11 +5,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.gsnt.auttech.model.dao.DaoFactory;
 import org.gsnt.auttech.model.dao.FuncionarioDao;
 import org.gsnt.auttech.model.dao.IniDAO;
+import org.gsnt.auttech.model.dao.LoginDAO;
 import org.gsnt.auttech.model.entities.Funcionario;
 import org.gsnt.auttech.model.entities.Usuario;
 
@@ -19,6 +21,7 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     private FuncionarioDao func = DaoFactory.createFuncionarioDao();
+    private LoginDAO log = DaoFactory.createloginDao();
 
     @FXML
     private Label lblEmpresa;
@@ -46,7 +49,7 @@ public class LoginController implements Initializable {
         if(txtCNPJ.getLength() < 14){
 
             if(pfSenha.getText().equals("admin")) {
-                Usuario.setUser("Admin1");
+                Usuario.setUser("Admin");
                 close(btAcesso);
             }
         }else {
@@ -62,6 +65,9 @@ public class LoginController implements Initializable {
     private String verificaEmpresa(){
 
         String resultado = ini.verifica(txtCNPJ.getText());
+
+        // implementar funções de verificação de cnpj
+
         return resultado;
 
     }
@@ -84,10 +90,37 @@ public class LoginController implements Initializable {
 
     }
 
+    private void tela(){
+
+        txtCNPJ.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER || KeyEvent.getCode() == KeyCode.TAB){
+                cbUsuario.show();
+            }
+        });
+
+        cbUsuario.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtCNPJ.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ENTER){
+                pfSenha.requestFocus();
+            }
+        });
+
+        pfSenha.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER || KeyEvent.getCode() == KeyCode.TAB){
+                btAcesso.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                cbUsuario.show();
+            }
+        });
+
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
       //  carregaCombo();
+        tela();
     }
 
     private void gravaCNPJ(){

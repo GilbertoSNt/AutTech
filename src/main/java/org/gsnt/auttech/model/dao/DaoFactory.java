@@ -154,4 +154,15 @@ public class DaoFactory {
             return null;
         }
     }
+
+    public static LoginDAO createloginDao() {
+
+        try {
+            return new LoginService(DB2.getConnection());
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+
+    }
 }

@@ -15,7 +15,19 @@ public class FuncionarioService implements FuncionarioDao {
 
 	private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
-	private static final String sql_Find_Combo = "SELECT cod, apelido FROM tabfuncionario WHERE tipo = ? and tipo2 = ?";
+	private static final String sql_Find_Combo = "SELECT cod, apelido FROM tabfuncionario WHERE tipo = ? and tipo = ?";
+
+	private static final String sql_SaveFuncionario = "\"INSERT INTO tabfuncionario(cpf, rg, nome, datanasc, " +
+			"genero, status, tipo, telefone, telefoneconjuge, mae, pai, conjuge, qtdfilhos,dataadm, " +
+			"datadesl, obs, cartprofissional, dataemissao,cargo, funcao, comissaopecas, comissaoservicos, " +
+			"salario, comissao, obsprof, caixamec, caixaaut, eletrica, freio, injdiesel, injflex, motordiesel, " +
+			"motorflex, pneus, suspensao, socorro, veiceletrico, motleva, motguincho, trocaoleo, apelido)VALUES (" +
+			"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " +
+			"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+	private static final String sql_FindByEspecializacao = "SELECT cod, apelido, caixamec, caixaaut, eletrica," +
+			" freio, injdiesel, injflex, motordiesel, motorflex, pneus, suspensao, socorro, veiceletrico, motleva," +
+			" motguincho, trocaoleo FROM tabfuncionario WHERE datadesl=''";
 
 	public FuncionarioService(Connection conn) {
 		this.conn = conn;
@@ -29,59 +41,14 @@ public class FuncionarioService implements FuncionarioDao {
 		PreparedStatement st = null;
 
 		try {
-			st = conn.prepareStatement("INSERT INTO tabfuncionario(cpf, rg, nome, datanasc, " +
-							"genero, status, tipo, telefone, telefoneconjuge, mae, pai, conjuge, qtdfilhos,dataadm, " +
-							"datadesl, obs, cartprofissional, dataemissao,cargo, funcao, comissaopecas, comissaoservicos," +
-							"salario, comissao, obsprof, caixamec, caixaaut, eletrica, freio, injdiesel, injflex, motordiesel," +
-							"motorflex, pneus, suspensao, socorro, veiceletrico, motleva, motguincho, trocaoleo, apelido)VALUES (" +
-							"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?," +
-							"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+			st = conn.prepareStatement(sql_SaveFuncionario,
 					Statement.RETURN_GENERATED_KEYS);
 
-			st.setString(1, f.getCpf());
-			st.setString(2, f.getRg());
-			st.setString(3, f.getNome());
-			st.setString(4, f.getDataNasc());
-			st.setBoolean(5, f.getGenero());
-			st.setBoolean(6, f.getStatus());
-			st.setInt(7, f.getTipoFunc());
-			st.setString(8, f.getTelefone());
-			st.setString(9, f.getTelConjuge());
-			st.setString(10, f.getMae());
-			st.setString(11, f.getPai());
-			st.setString(12, f.getConjuge());
-			st.setInt(13, f.getQtdFilhos());
-			st.setString(14, f.getDataAdm());
-			st.setString(15, f.getDataDesl());
-			st.setString(16, f.getObs());
-			st.setString(17, f.getCartProfissional());
-			st.setString(18, f.getDataemissao());
-			st.setString(19, f.getCargo());
-			st.setString(20, f.getFuncao());
-			st.setString(21, f.getComissaoPecas());
-			st.setString(22, f.getComissaoServicos());
-			st.setString(23, f.getSalario());
-			st.setBoolean(24, f.getComissao());
-			st.setString(25, f.getObsProf());
-			st.setBoolean(26, f.getCaixaMec());
-			st.setBoolean(27, f.getCaixaAut());
-			st.setBoolean(28, f.getEletrica());
-			st.setBoolean(29, f.getFreio());
-			st.setBoolean(30, f.getInjDiesel());
-			st.setBoolean(31, f.getInjFlex());
-			st.setBoolean(32, f.getMotorDiesel());
-			st.setBoolean(33, f.getMotorFlex());
-			st.setBoolean(34, f.getPneus());
-			st.setBoolean(35, f.getSuspensao());
-			st.setBoolean(36, f.getSocorro());
-			st.setBoolean(37, f.getVeicEletricos());
-			st.setBoolean(38, f.getMotLeva());
-			st.setBoolean(39, f.getMotguincho());
-			st.setBoolean(40, f.getTrocaOleo());
-			st.setString(41, f.getApelido());
+			setFuncionarioParams(st,f);
 
 			int resultado = 0;
 			int rowsaffected = st.executeUpdate();
+
 			if (rowsaffected > 0) {
 				ResultSet rs = st.getGeneratedKeys();
 				if (rs.next()) {
@@ -111,10 +78,7 @@ public class FuncionarioService implements FuncionarioDao {
 
 		try {
 
-			st = conn.prepareStatement(
-					"SELECT cod, apelido, caixamec, caixaaut, eletrica, freio, injdiesel, injflex, motordiesel," +
-							" motorflex, pneus, suspensao, socorro, veiceletrico, motleva,motguincho, trocaoleo " +
-							"FROM tabfuncionario WHERE datadesl=''");
+			st = conn.prepareStatement(sql_FindByEspecializacao);
 
 			rs = st.executeQuery();
 
@@ -151,7 +115,6 @@ public class FuncionarioService implements FuncionarioDao {
 	public void alterFuncionario(Funcionario funcionario, int cod) {
 
 		Funcionario f = funcionario;
-
 		PreparedStatement st = null;
 
 		try {
@@ -162,6 +125,90 @@ public class FuncionarioService implements FuncionarioDao {
 					"caixaaut=?, eletrica=?, freio=?, injdiesel=?, injflex=?, motordiesel=?, motorflex=?, " +
 					"pneus=?, suspensao=?, socorro=?, veiceletrico=?, motleva=?, motguincho=?," +
 					" trocaoleo=?, apelido = ? WHERE cod = ?");
+
+			setFuncionarioParams(st,f);
+			st.setInt(42, cod);
+
+			st.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage() + " alter funcionarios");
+		} finally {
+			DB2.closeStatement(st);
+		}
+
+	}
+
+	@Override
+	public Integer findFuncByApelido(String apelido) {
+
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+			st = conn.prepareStatement(" SELECT cod" +
+					" from tabfuncionario" +
+					" where" +
+					" apelido = ?");
+
+			st.setString(1, apelido);
+			rs = st.executeQuery();
+			rs.next();
+
+			return rs.getInt("cod");
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage() + " FuncionarioService - findFuncByApelido");
+		} finally {
+			DB2.closeResultSet(rs);
+			DB2.closeStatement(st);
+		}
+
+	}
+
+	@Override
+	public List<Funcionario> findFuncCombo(int tipo,int tipo2) {
+
+
+		Funcionario retorno;
+		List<Funcionario> retornoFunc = new ArrayList<>();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+
+			st = conn.prepareStatement(sql_Find_Combo);
+			st.setInt(1,tipo);
+			st.setInt(2,tipo2);
+			rs = st.executeQuery();
+
+			while (rs.next()) {
+
+				retorno = new Funcionario(rs.getInt("cod"),rs.getString("apelido"));
+				retornoFunc.add(retorno);
+			}
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage() + " findFuncCombo por tipo");
+		} finally {
+			DB2.closeResultSet(rs);
+			DB2.closeStatement(st);
+		}
+
+		return retornoFunc;
+	}
+/*
+	private Funcionario mapFuncionario(ResultSet rs){
+		try{
+
+		}catch (SQLException e){
+			throw new DbException(e.getMessage() + " função mapFuncionario");
+		}
+	}
+ */
+
+	private void setFuncionarioParams(PreparedStatement st, Funcionario f){
+
+		try{
 
 			st.setString(1, f.getCpf());
 			st.setString(2, f.getRg());
@@ -204,76 +251,10 @@ public class FuncionarioService implements FuncionarioDao {
 			st.setBoolean(39, f.getMotguincho());
 			st.setBoolean(40, f.getTrocaOleo());
 			st.setString(41, f.getApelido());
-			st.setInt(42, cod);
-			st.executeUpdate();
 
-		} catch (SQLException e) {
-			throw new DbException(e.getMessage() + " alter funcionarios");
-		} finally {
-			DB2.closeStatement(st);
+		}catch (SQLException e){
+			throw new DbException(e.getMessage() + " função setFuncionarioParams");
 		}
-
-	}
-
-	@Override
-	public Integer findFuncByApelido(String apelido) {
-
-		Integer a = 0;
-
-		PreparedStatement st = null;
-		ResultSet rs = null;
-
-		try {
-			st = conn.prepareStatement(" SELECT cod" +
-					" from tabfuncionario" +
-					" where" +
-					" apelido = ?");
-
-			st.setString(1, apelido);
-			rs = st.executeQuery();
-			rs.next();
-
-			return rs.getInt("cod");
-
-		} catch (SQLException e) {
-			throw new DbException(e.getMessage() + " FuncionarioService - findFuncByApelido");
-		} finally {
-			DB2.closeResultSet(rs);
-			DB2.closeStatement(st);
-		}
-
-	}
-
-	@Override
-	public List<Funcionario> findFuncCombo(int tipo,int tipo2) {
-		//sql_Find_Combo
-
-		Funcionario retorno;
-		List<Funcionario> retornoFunc = new ArrayList<>();
-		PreparedStatement st = null;
-		ResultSet rs = null;
-
-		try {
-
-			st = conn.prepareStatement(sql_Find_Combo);
-			st.setInt(1,tipo);
-			st.setInt(2,tipo2);
-			rs = st.executeQuery();
-
-			while (rs.next()) {
-
-				retorno = new Funcionario(rs.getInt("cod"),rs.getString("apelido"));
-				retornoFunc.add(retorno);
-			}
-		} catch (SQLException e) {
-			throw new DbException(e.getMessage() + " findFuncCombo por tipo");
-		} finally {
-			DB2.closeResultSet(rs);
-			DB2.closeStatement(st);
-		}
-
-
-		return retornoFunc;
 	}
 
 }

@@ -3,12 +3,21 @@ package org.gsnt.auttech.model.dao.service;
 import org.gsnt.auttech.model.dao.LoginDAO;
 import org.gsnt.auttech.model.entities.Funcionario;
 
+import java.sql.Connection;
 import java.util.List;
 
 public class LoginService implements LoginDAO {
 
+    private Connection conn;
+
+    public LoginService(Connection conn){
+        this.conn = conn;
+    }
+
     @Override
     public List<Funcionario> findAllLog() {
+
+
         return List.of();
     }
 

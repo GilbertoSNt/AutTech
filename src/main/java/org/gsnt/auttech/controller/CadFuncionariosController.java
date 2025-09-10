@@ -22,6 +22,7 @@ import org.gsnt.auttech.model.entities.entitiesgenerics.Email;
 import org.gsnt.auttech.model.entities.entitiesgenerics.Endereco;
 import org.gsnt.auttech.model.entities.entitiesgenerics.Estados;
 import org.gsnt.auttech.model.entities.entitiesgenerics.TipoEndereco;
+import org.gsnt.auttech.util.Alerts;
 import org.gsnt.auttech.util.DadosCombos;
 import org.gsnt.auttech.util.ExceptionGenerics;
 import org.gsnt.auttech.util.MaskValid;
@@ -129,6 +130,9 @@ public class CadFuncionariosController implements Initializable {
     private CheckBox cbFreio;
 
     @FXML
+    private CheckBox cbTrOleo;
+
+    @FXML
     private CheckBox cbInjDiesel;
 
     @FXML
@@ -233,7 +237,16 @@ public class CadFuncionariosController implements Initializable {
     @FXML
     private void onBtGravar(){
         try {
-            cadastraFuncionario(coletaDadosFuncionario(false, 0), coletaDadosEndereco(false,0), coletaDadosEmail(false,0));
+            if(txtNome.getText().equals("") || txtApelido.getText().equals("") || txtSalario.getText().equals("") || txtCpf.getText().equals("")){
+                Alerts.showAlert("Atenção", "Os seguintes campos não podem estar vazios :\n\n"+
+                        "Nome\n "+
+                        "Apelido\n "+
+                        "CPF\n "+
+                        "Salário\n ", null, Alert.AlertType.ERROR);
+                txtNome.requestFocus();
+            }else{
+                cadastraFuncionario(coletaDadosFuncionario(false, 0), coletaDadosEndereco(false, 0), coletaDadosEmail(false, 0));
+            }
         }catch (Exception e){
             throw new ExceptionGenerics(e.getMessage()+" CadFuncionariosController - onBtGravar");
         }
@@ -339,6 +352,8 @@ public class CadFuncionariosController implements Initializable {
 
     private Funcionario coletaDadosFuncionario(Boolean editar, int cod){
 
+
+
         Funcionario func = new Funcionario();
 
         func.setNome(txtNome.getText());
@@ -403,6 +418,7 @@ public class CadFuncionariosController implements Initializable {
         func.setComissaoServicos(txtComissaoServico.getText());
         func.setSalario(txtSalario.getText());
         func.setObsProf(txaObsProf.getText());
+        func.setTrocaOleo(cbTrOleo.isSelected());
         func.setCaixaMec(cbCaixaMec.isSelected());
         func.setCaixaAut(cbCaixaAut.isSelected());
         func.setEletrica(cbEletrica.isSelected());
@@ -417,8 +433,6 @@ public class CadFuncionariosController implements Initializable {
         func.setVeicEletricos(cbVeicEletrico.isSelected());
         func.setMotLeva(cbMotoristaLeva.isSelected());
         func.setMotguincho(cbMotoristaGuincho.isSelected());
-
-
         return func;
     }
 
@@ -738,13 +752,17 @@ public class CadFuncionariosController implements Initializable {
             }
         });
 
-        txtSalario.setOnKeyPressed((KeyEvent)->{
-            if(KeyEvent.getCode() == KeyCode.ENTER){
-                txaObsProf.requestFocus();
-            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
-                txtComissaoServico.requestFocus();
-            }
-        });
+        if(txtSalario.getText()!=null) {
+            txtSalario.setOnKeyPressed((KeyEvent) -> {
+                if (KeyEvent.getCode() == KeyCode.ENTER) {
+                    txaObsProf.requestFocus();
+                } else if (KeyEvent.getCode() == KeyCode.ESCAPE) {
+                    txtComissaoServico.requestFocus();
+                }
+            });
+        }else{
+            Alerts.showAlert("Atenção", "Valor do salário deve ser definido", null, Alert.AlertType.ERROR);
+        }
 
         txaObsProf.setOnKeyPressed((KeyEvent)->{
             if(KeyEvent.getCode() == KeyCode.ESCAPE){
