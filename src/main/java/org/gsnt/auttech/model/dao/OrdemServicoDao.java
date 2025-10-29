@@ -25,7 +25,6 @@ public interface OrdemServicoDao {
     void financeiroOs(int parcelas);
     void baixaParcelasOs();
     void encaminharOs();
-    void relacaoOsOr(Integer os, Integer or);
     Integer findOrforOs(Integer os);
 
 }

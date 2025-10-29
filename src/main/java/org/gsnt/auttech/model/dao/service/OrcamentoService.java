@@ -29,32 +29,31 @@ public class OrcamentoService implements OrcamentoDao {
     @Override
     public Integer criaOrcamento(Orcamento or) {
 
+        Integer resultado = -1;
         PreparedStatement st = null;
         ResultSet rs = null;
 
         try{
-            st = conn.prepareStatement("INSERT INTO taborcliente(" +
-                                           "codcliente, codveiculo,dataabertura)" +
-                                           "VALUES (?, ?, ?)",
+            st = conn.prepareStatement("INSERT INTO tabor(" +
+                                           "codcliente, codveiculo,dataabertura,cosOs,digitoor)" +
+                                           "VALUES (?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
 
             st.setInt(1,or.getCodCliente());
             st.setInt(2,or.getCodVeiculo());
             st.setString(3,or.getDataAbertura());
+            st.setInt(4,or.getOrdemServico());
+            st.setInt(5,1);
             st.executeUpdate();
+            int rowsaffected = st.executeUpdate();
 
-            st = null;
-
-            st = conn.prepareStatement("SELECT cod " +
-                    "FROM taborcliente where codcliente = ? " +
-                    "and codveiculo = ? and dataabertura = ?");
-            st.setInt(1, or.getCodCliente());
-            st.setInt(2, or.getCodVeiculo());
-            st.setString(3,or.getDataAbertura());
-            rs = st.executeQuery();
-            rs.next();
-
-            return rs.getInt("cod");
+            if(rowsaffected > 0){
+                rs = st.getGeneratedKeys();
+                if(rs.next()){
+                    resultado = rs.getInt(1);
+                }
+            }
+            return resultado;
 
         }catch(SQLException e){
             throw new DbException(e.getMessage()+" Cria orçamento - OrçamentoService");
@@ -64,10 +63,6 @@ public class OrcamentoService implements OrcamentoDao {
 
     }
 
-    @Override
-    public void relacaoOrOs(Integer os, Integer or) {
-
-    }
 
     @Override
     public Integer findOrcamento(Integer os) {
@@ -90,13 +85,13 @@ public class OrcamentoService implements OrcamentoDao {
 
             if(qt > 1){
                 while (rs.next()){
-                    st = conn.prepareStatement("UPDATE taborcliente SET stgeralorcamento=16 WHERE cod = ?");
+                    st = conn.prepareStatement("UPDATE tabor SET stgeralorcamento=16 WHERE cod = ?");
                     st.setInt(1, rs.getInt(rs.getInt("codorc")));
                     st.executeUpdate();
                 }
             }else if(qt == 1){
                 rs.next();
-                st = conn.prepareStatement("UPDATE taborcliente SET stgeralorcamento=16 WHERE cod = ?");
+                st = conn.prepareStatement("UPDATE tabor SET stgeralorcamento=16 WHERE cod = ?");
                 st.setInt(1, rs.getInt(rs.getInt("codorc")));
                 st.executeUpdate();
             }

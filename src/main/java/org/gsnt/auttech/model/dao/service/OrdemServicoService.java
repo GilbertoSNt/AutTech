@@ -104,27 +104,6 @@ public class OrdemServicoService implements OrdemServicoDao {
 
     }
 
-    @Override
-    public void relacaoOsOr(Integer os, Integer or) {
-
-        PreparedStatement st = null;
-        try{
-            st = conn.prepareStatement("INSERT INTO public.taborcordemserv(" +
-                            "codordemserv, codorc) " +
-                            " VALUES (?, ?)");
-
-            st.setInt(1,os);
-            st.setInt(2,or);
-
-            st.execute();
-
-        }catch(SQLException e){
-            throw new DbException(e.getMessage()+" OrdemServiçoService - relacaoOsOr");
-        } finally {
-            DB2.closeStatement(st);
-        }
-
-    }
 
     @Override
     public Integer findOrforOs(Integer os) {

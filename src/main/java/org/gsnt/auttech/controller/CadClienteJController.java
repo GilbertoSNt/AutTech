@@ -18,14 +18,33 @@ import org.gsnt.auttech.util.MaskValid;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Classe responsável da tela cliente pessoa Juridica
+ *
+ * @author Gilberto da S. Neto
+ * @version 1.0
+ */
+
 public class CadClienteJController implements Initializable {
 
+    /**
+     * Lista de ObservableList responsáveis pelos combos da tela
+     *
+     * @param obsListTipoTelefone,obsListTipoEndereco,obsListEstados,obsListEmail,obsListPerfilFiscal
+     */
     private ObservableList<TipoTelefone> obsListTipoTelefone;
     private ObservableList<TipoEndereco> obsListTipoEndereco;
     private ObservableList<Estados> obsListEstados;
     private ObservableList<PerfilFiscal> obsListPerfilFiscal;
+
+    /**
+     * @param maskvalid para validação de datas;
+     */
     private MaskValid maskValid = new MaskValid();
 
+    /**
+     * @param dadosCombos objeto que tem os dados fixos dos combos;
+     */
     protected DadosCombos dadosCombos = new DadosCombos();
 
     @FXML
@@ -40,6 +59,9 @@ public class CadClienteJController implements Initializable {
     @FXML
     private ComboBox cbTipoTelefone;
 
+    /**
+     * Ajusta a mascara do campo telefone conforme é  feita a escolha do tipo do telefone
+     */
     @FXML
     private void oncbTipoTelefone(){
 
@@ -182,13 +204,25 @@ public class CadClienteJController implements Initializable {
     @FXML
     private TitledPane tpDadosBasicos;
 
+    /**
+     * Fechamento da tela
+     */
     @FXML
     protected void btCloseButtonClick(){
-        Stage stage = (Stage)btClose.getScene().getWindow();
+        close(btClose);
+    }
+
+    /**
+     * Fechamento da tela
+     */
+    private void close(Button bt){
+        Stage stage = (Stage)bt.getScene().getWindow();
         stage.close();
     }
 
-
+    /**
+     * Inicializa funções de tela
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //dados do combo tipo endereço

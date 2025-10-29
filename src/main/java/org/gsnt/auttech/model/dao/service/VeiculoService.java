@@ -16,7 +16,6 @@ public class VeiculoService implements VeiculoDao {
         this.conn = conn;
     }
 
-
     @Override
     public List<Veiculo> findAll() {
         return List.of();
@@ -34,31 +33,8 @@ public class VeiculoService implements VeiculoDao {
             rs = st.executeQuery();
             rs.next();
 
-            veiculo.setCod(rs.getInt("cod"));
-            veiculo.setPlaca(rs.getString("placa"));
-            veiculo.setMarca(rs.getInt("marca"));
-            veiculo.setModelo(rs.getInt("modelo"));
-            veiculo.setChassi(rs.getString("chassi"));
-            veiculo.setMotor(rs.getString("motor"));
-            veiculo.setCv(rs.getString("cv"));
-            veiculo.setTurbo(rs.getBoolean("turbo"));
-            veiculo.setEmLinha(rs.getBoolean("emlinha"));
-            veiculo.setEmV(rs.getBoolean("emv"));
-            veiculo.setAnof(rs.getString("anof"));
-            veiculo.setAnom(rs.getString("anom"));
-            veiculo.setRenavan(rs.getString("renavam"));
-            veiculo.setArQuente(rs.getBoolean("arquente"));
-            veiculo.setAirBag(rs.getBoolean("airbag"));
-            veiculo.setFreioABS(rs.getBoolean("freioabs"));
-            veiculo.setAlarme(rs.getBoolean("alarme"));
-            veiculo.setArCond(rs.getBoolean("arcond"));
-            veiculo.setDirHid(rs.getBoolean("dirhid"));
-            veiculo.setDirElet(rs.getBoolean("direlet"));
-            veiculo.setVidroElet(rs.getBoolean("vidroelet"));
-            veiculo.setTravaElet(rs.getBoolean("travaelet"));
-            veiculo.setTracao(rs.getBoolean("tracao4"));
-            veiculo.setTeto(rs.getBoolean("teto"));
-            veiculo.setControleTracao(rs.getBoolean("controletracao"));
+            veiculo = mapVeiculo(rs);
+
         }
         catch (SQLException e){
             throw new DbException(e.getMessage()+" findbyid Veiculo - veiculoService");
@@ -84,30 +60,7 @@ public class VeiculoService implements VeiculoDao {
                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
 
-            st.setString(1,a.getPlaca());
-            st.setInt(2,a.getMarca());
-            st.setInt(3,a.getModelo());
-            st.setString(4,a.getChassi());
-            st.setString(5,a.getMotor());
-            st.setString(6,a.getCv());
-            st.setBoolean(7,a.isTurbo());
-            st.setBoolean(8,a.isEmLinha());
-            st.setBoolean(9,a.isEmV());
-            st.setString(10,a.getAnof());
-            st.setString(11,a.getAnom());
-            st.setString(12,a.getRenavan());
-            st.setBoolean(13,a.isArQuente());
-            st.setBoolean(14,a.isAirBag());
-            st.setBoolean(15,a.isFreioABS());
-            st.setBoolean(16,a.isAlarme());
-            st.setBoolean(17,a.isArCond());
-            st.setBoolean(18,a.isDirHid());
-            st.setBoolean(19,a.isDirElet());
-            st.setBoolean(20,a.isVidroElet());
-            st.setBoolean(21,a.isTravaElet());
-            st.setBoolean(22,a.isTracao());
-            st.setBoolean(23,a.isTeto());
-            st.setBoolean(24,a.isControleTracao());
+            setGetParams(st,veiculo);
 
             return st.executeUpdate();
 
@@ -160,7 +113,7 @@ public class VeiculoService implements VeiculoDao {
     @Override
     public Veiculo findByCod(int cod) {
 
-        Veiculo veiculo = new Veiculo();
+        var veiculo = new Veiculo();
         ResultSet rs = null;
         PreparedStatement st = null;
         try{
@@ -169,31 +122,8 @@ public class VeiculoService implements VeiculoDao {
             rs = st.executeQuery();
             rs.next();
 
-            veiculo.setCod(rs.getInt("cod"));
-            veiculo.setPlaca(rs.getString("placa"));
-            veiculo.setMarca(rs.getInt("marca"));
-            veiculo.setModelo(rs.getInt("modelo"));
-            veiculo.setChassi(rs.getString("chassi"));
-            veiculo.setMotor(rs.getString("motor"));
-            veiculo.setCv(rs.getString("cv"));
-            veiculo.setTurbo(rs.getBoolean("turbo"));
-            veiculo.setEmLinha(rs.getBoolean("emlinha"));
-            veiculo.setEmV(rs.getBoolean("emv"));
-            veiculo.setAnof(rs.getString("anof"));
-            veiculo.setAnom(rs.getString("anom"));
-            veiculo.setRenavan(rs.getString("renavam"));
-            veiculo.setArQuente(rs.getBoolean("arquente"));
-            veiculo.setAirBag(rs.getBoolean("airbag"));
-            veiculo.setFreioABS(rs.getBoolean("freioabs"));
-            veiculo.setAlarme(rs.getBoolean("alarme"));
-            veiculo.setArCond(rs.getBoolean("arcond"));
-            veiculo.setDirHid(rs.getBoolean("dirhid"));
-            veiculo.setDirElet(rs.getBoolean("direlet"));
-            veiculo.setVidroElet(rs.getBoolean("vidroelet"));
-            veiculo.setTravaElet(rs.getBoolean("travaelet"));
-            veiculo.setTracao(rs.getBoolean("tracao4"));
-            veiculo.setTeto(rs.getBoolean("teto"));
-            veiculo.setControleTracao(rs.getBoolean("controletracao"));
+            veiculo = mapVeiculo(rs);
+
         }
         catch (SQLException e){
             throw new DbException(e.getMessage()+" findbycod - VeiculoService");
@@ -254,4 +184,90 @@ public class VeiculoService implements VeiculoDao {
         }
         return cod;
     }
+
+
+
+    /**
+     * Defini os parâmetros de um PrepareStatement a partir de um objeto Veículo
+     * @param st
+     * @param a
+     * @author Gilberto S. Neto
+     */
+    private void setGetParams(PreparedStatement st, Veiculo a){
+
+        try{
+            st.setString(1,a.getPlaca());
+            st.setInt(2,a.getMarca());
+            st.setInt(3,a.getModelo());
+            st.setString(4,a.getChassi());
+            st.setString(5,a.getMotor());
+            st.setString(6,a.getCv());
+            st.setBoolean(7,a.isTurbo());
+            st.setBoolean(8,a.isEmLinha());
+            st.setBoolean(9,a.isEmV());
+            st.setString(10,a.getAnof());
+            st.setString(11,a.getAnom());
+            st.setString(12,a.getRenavan());
+            st.setBoolean(13,a.isArQuente());
+            st.setBoolean(14,a.isAirBag());
+            st.setBoolean(15,a.isFreioABS());
+            st.setBoolean(16,a.isAlarme());
+            st.setBoolean(17,a.isArCond());
+            st.setBoolean(18,a.isDirHid());
+            st.setBoolean(19,a.isDirElet());
+            st.setBoolean(20,a.isVidroElet());
+            st.setBoolean(21,a.isTravaElet());
+            st.setBoolean(22,a.isTracao());
+            st.setBoolean(23,a.isTeto());
+            st.setBoolean(24,a.isControleTracao());
+
+        }catch (SQLException e) {
+            throw new DbException(e.getMessage() + " setGetParams - VeiculoService");
+        }
+    }
+
+
+    /**
+     * mapeia o ResultSet de consulta
+     * @param rs
+     * @return Veiculo
+     */
+    private Veiculo mapVeiculo(ResultSet rs) {
+
+        var veiculo = new Veiculo();
+
+        try{
+            veiculo.setCod(rs.getInt("cod"));
+            veiculo.setPlaca(rs.getString("placa"));
+            veiculo.setMarca(rs.getInt("marca"));
+            veiculo.setModelo(rs.getInt("modelo"));
+            veiculo.setChassi(rs.getString("chassi"));
+            veiculo.setMotor(rs.getString("motor"));
+            veiculo.setCv(rs.getString("cv"));
+            veiculo.setTurbo(rs.getBoolean("turbo"));
+            veiculo.setEmLinha(rs.getBoolean("emlinha"));
+            veiculo.setEmV(rs.getBoolean("emv"));
+            veiculo.setAnof(rs.getString("anof"));
+            veiculo.setAnom(rs.getString("anom"));
+            veiculo.setRenavan(rs.getString("renavam"));
+            veiculo.setArQuente(rs.getBoolean("arquente"));
+            veiculo.setAirBag(rs.getBoolean("airbag"));
+            veiculo.setFreioABS(rs.getBoolean("freioabs"));
+            veiculo.setAlarme(rs.getBoolean("alarme"));
+            veiculo.setArCond(rs.getBoolean("arcond"));
+            veiculo.setDirHid(rs.getBoolean("dirhid"));
+            veiculo.setDirElet(rs.getBoolean("direlet"));
+            veiculo.setVidroElet(rs.getBoolean("vidroelet"));
+            veiculo.setTravaElet(rs.getBoolean("travaelet"));
+            veiculo.setTracao(rs.getBoolean("tracao4"));
+            veiculo.setTeto(rs.getBoolean("teto"));
+            veiculo.setControleTracao(rs.getBoolean("controletracao"));
+        }catch (Exception e){
+            throw new DbException(e.getMessage()+" mapVeiculo - Veículo service");
+        }
+
+        return veiculo;
+
+    }
+
 }

@@ -396,12 +396,12 @@
             </Accordion>
          </children>
       </Pane>
-      <Label layoutX="814.0" layoutY="19.0" text="Usuário -" textFill="#00f0ff">
+      <Label layoutX="873.0" layoutY="19.0" text="Usuário -" textFill="#00f0ff">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="lblUser" layoutX="873.0" layoutY="19.0" textFill="#00f0ff">
+      <Label fx:id="lblUser" layoutX="932.0" layoutY="19.0" textFill="#00f0ff">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

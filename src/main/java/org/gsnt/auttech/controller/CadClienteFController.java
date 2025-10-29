@@ -18,23 +18,39 @@ import org.gsnt.auttech.model.entities.entitiesgenerics.*;
 import org.gsnt.auttech.util.DadosCombos;
 import org.gsnt.auttech.util.ExceptionGenerics;
 import org.gsnt.auttech.util.MaskValid;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Classe responsável da tela cliente pessoa fisíca
+ *
+ * @author Gilberto da S. Neto
+ * @version 1.0
+ */
+
 public class CadClienteFController implements Initializable {
 
+    /**
+     * Lista de ObservableList responsáveis pelos combos da tela
+     *
+     * @param obsListTipoTelefone,obsListTipoEndereco,obsListEstados,obsListEmail,obsListPerfilFiscal
+     */
     private ObservableList<TipoTelefone> obsListTipoTelefone;
     private ObservableList<TipoEndereco> obsListTipoEndereco;
     private ObservableList<Estados> obsListEstados;
     private ObservableList<TiposEmail> obsListEmail;
     private ObservableList<PerfilFiscal> obsListPerfilFiscal;
 
+    /**
+     * @param maskvalid para validação de datas;
+     */
     protected MaskValid maskValid = new MaskValid();
-    protected DadosCombos dadosCombos = new DadosCombos();
 
-    private int v = 0;
+    /**
+     * @param dadosCombos objeto que tem os dados fixos dos combos;
+     */
+    protected DadosCombos dadosCombos = new DadosCombos();
 
     @FXML
     private TitledPane tpDadosBasicos;
@@ -48,6 +64,9 @@ public class CadClienteFController implements Initializable {
     @FXML
     protected DatePicker dpDataNasc;
 
+    /**
+     * passa o foco para o próximo campo
+     */
     @FXML
     private void hiddendpDataNasc(){
         cbTipoEndereco.show();
@@ -62,6 +81,9 @@ public class CadClienteFController implements Initializable {
     @FXML
     private ComboBox cbTipoEndereco;
 
+    /**
+     * passa o foco para o próximo campo
+     */
     @FXML
     private void hiddencbTipoEndereco(){
         txtEnd.requestFocus();
@@ -70,11 +92,17 @@ public class CadClienteFController implements Initializable {
     @FXML
     private ComboBox cbTipoTelefone;
 
+    /**
+     * passa o foco para o próximo campo
+     */
     @FXML
     private void hiddencbTipoTelefone(){
         txtNumTelefone.requestFocus();
     }
 
+    /**
+     * Ajusta a mascara do campo telefone conforme é  feita a escolha do tipo do telefone
+     */
     @FXML
     private void oncbTipoTelefone(){
 
@@ -95,6 +123,10 @@ public class CadClienteFController implements Initializable {
     @FXML
     private ComboBox cbEstado;
 
+
+    /**
+     * passa o foco para o próximo campo
+     */
     @FXML
     private void hiddencbEstado(){
         txtComplemento.requestFocus();
@@ -103,6 +135,9 @@ public class CadClienteFController implements Initializable {
     @FXML
     private ComboBox cbTipoEmail;
 
+    /**
+     * passa o foco para o próximo campo
+     */
     @FXML
     private void hiddencbEmail(){
         txtEmail.requestFocus();
@@ -111,6 +146,9 @@ public class CadClienteFController implements Initializable {
     @FXML
     private ComboBox cbPerfilFiscal;
 
+    /**
+     * passa o foco para o próximo campo
+     */
     @FXML
     private void hiddencbPerfilFiscal(){
         txtCpf.requestFocus();
@@ -170,6 +208,9 @@ public class CadClienteFController implements Initializable {
     @FXML
     private Button btCadVeiculo;
 
+    /**
+     * Carrega a tela de cadastro de veículos
+     */
     @FXML
     private void onbtCadVeiculo(){
         loadView("/org/gsnt/auttech/CadVeiculo.fxml");
@@ -191,18 +232,30 @@ public class CadClienteFController implements Initializable {
     @FXML
     private Button btCancelar;
 
+    /**
+     * Fechamento da tela
+     */
     @FXML
-    protected void btCancelarOnButtonClick(){
-        Stage stage = (Stage)btClose.getScene().getWindow();
-        stage.close();
+    private void btCancelarOnButtonClick(){
+        close(btCancelar);
     }
 
     @FXML
     private Button btGravaUser;
 
+    /**
+     * Fechamento da tela
+     */
     @FXML
-    protected void btCloseButtonClick(){
-        Stage stage = (Stage)btClose.getScene().getWindow();
+    private void btCloseButtonClick(){
+        close(btClose);
+    }
+
+    /**
+     * Fechamento da tela
+     */
+    private void close(Button bt){
+        Stage stage = (Stage)bt.getScene().getWindow();
         stage.close();
     }
 
@@ -263,6 +316,9 @@ public class CadClienteFController implements Initializable {
     @FXML
     private Label labelAlertaCPF;
 
+    /**
+     * Alternas botões ativos e inativos
+     */
     private void botoesAtivos(Boolean a){
 
         if (a){
@@ -272,6 +328,9 @@ public class CadClienteFController implements Initializable {
 
     }
 
+    /**
+     * Inicializa funções de tela
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -467,6 +526,10 @@ public class CadClienteFController implements Initializable {
 
     }
 
+
+    /**
+     * Carrega a tela
+     */
     private void loadView(String absoluteName) {
         try {
             FXMLLoader loader = new FXMLLoader(TelaPrincipal.class.getResource(absoluteName));

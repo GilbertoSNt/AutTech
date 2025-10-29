@@ -13,7 +13,7 @@ public class DB2 {
         if (conn == null) {
             try {
                 Properties props = loadProperties();
-                String url = "jdbc:postgresql://192.168.0.180:5432/bancoempresa";
+                String url = "jdbc:postgresql://192.168.0.180:5432/bancoempresaemb";
                 conn = DriverManager.getConnection(url, props);
             } catch (SQLException e) {
                 throw new DbException(e.getMessage());
@@ -72,7 +72,7 @@ public class DB2 {
         Connection c2 = null;
         try {
             Properties props = loadProperties();
-            String url = "jdbc:postgresql://192.168.0.180:5432/bancoempresabase";
+            String url = "jdbc:postgresql://192.168.0.180:5432/bancoempresaemb";
             c2 = DriverManager.getConnection(url, props);
             if( c2 != null && !c2.isClosed()){
                 c2.close();

@@ -1,10 +1,5 @@
 package org.gsnt.auttech.model.entities;
 
-import org.gsnt.auttech.util.Circulos;
-
-import java.sql.Time;
-import java.util.Date;
-
 public class OrdemServico {
 
     /*
@@ -31,7 +26,7 @@ public class OrdemServico {
 
     private Integer numero;
     private Integer codCliente;
-    private Integer CodVeiculo;
+    private Integer codVeiculo;
     private Integer orcAssociado;
     private String dataAbertura;
     private String horaAbertura;
@@ -46,11 +41,67 @@ public class OrdemServico {
     private String placa;
     private String veiculo;
     private String nomeCliente;
+
     private Boolean necOrcamento;
     private Boolean assLevarVeiculo;
+    private Boolean revisao;
+    private Boolean eletrica;
+    private Boolean injecao;
+    private Boolean mecanico;
+    private Boolean freioDt;
+    private Boolean freioTr;
+    private Boolean suspDt;
+    private Boolean suspTr;
+    private Boolean caixa;
+    private Boolean motor;
+    private Boolean trocaoleo;
+    private Boolean alin;
+    private Boolean pneu;
+    private Boolean lavacao;
 
 
     public OrdemServico(){}
+
+    public OrdemServico(Integer codVeiculo, String dataAbertura, String horaAbertura, Boolean revisao,
+                        Boolean eletrica, Boolean injecao, Boolean mecanico, Boolean freioDt,  Boolean freioTr,
+                        Boolean suspDt, Boolean suspTr, Boolean caixa, Boolean motor, Boolean trocaoleo, Boolean alin,
+                        Boolean pneu, Boolean lavacao){
+
+        this.codVeiculo = codVeiculo;
+        this.dataAbertura = dataAbertura;
+        this.horaAbertura = horaAbertura;
+        this.revisao = revisao;
+        this.eletrica = eletrica;
+        this.injecao = injecao;
+        this.mecanico = mecanico;
+        this.freioDt = freioDt;
+        this.freioTr = freioTr;
+        this.suspDt = suspDt;
+        this.suspTr = suspTr;
+        this.caixa = caixa;
+        this.motor = motor;
+        this.trocaoleo = trocaoleo;
+        this.alin = alin;
+        this.pneu = pneu;
+        this.lavacao = lavacao;
+
+    }
+
+    public OrdemServico(Integer codVeiculo, Integer codCliente, String dataAbertura, String horaAbertura,
+                        Boolean necOrcamento, Boolean assLevarVeiculo, Byte statusOs,String obsOs){
+
+        this.codVeiculo = codVeiculo;
+        this.codCliente = codCliente;
+        this.dataAbertura = dataAbertura;
+        this.horaAbertura = horaAbertura;
+        this.necOrcamento = necOrcamento;
+        this.assLevarVeiculo = assLevarVeiculo;
+        this.statusOs = statusOs;
+        this.obsOs = obsOs;
+
+    }
+
+
 // Construtor tela a serem iniciados
 
 
@@ -71,11 +122,11 @@ public class OrdemServico {
     }
 
     public Integer getCodVeiculo() {
-        return CodVeiculo;
+        return codVeiculo;
     }
 
     public void setCodVeiculo(Integer codVeiculo) {
-        CodVeiculo = codVeiculo;
+        codVeiculo = codVeiculo;
     }
 
     public Integer getOrcAssociado() {
@@ -204,5 +255,117 @@ public class OrdemServico {
 
     public void setAssLevarVeiculo(Boolean assLevarVeiculo) {
         this.assLevarVeiculo = assLevarVeiculo;
+    }
+
+    public Boolean getRevisao() {
+        return revisao;
+    }
+
+    public void setRevisao(Boolean revisao) {
+        this.revisao = revisao;
+    }
+
+    public Boolean getEletrica() {
+        return eletrica;
+    }
+
+    public void setEletrica(Boolean eletrica) {
+        this.eletrica = eletrica;
+    }
+
+    public Boolean getInjecao() {
+        return injecao;
+    }
+
+    public void setInjecao(Boolean injecao) {
+        this.injecao = injecao;
+    }
+
+    public Boolean getMecanico() {
+        return mecanico;
+    }
+
+    public void setMecanico(Boolean mecanico) {
+        this.mecanico = mecanico;
+    }
+
+    public Boolean getFreioDt() {
+        return freioDt;
+    }
+
+    public void setFreioDt(Boolean freioDt) {
+        this.freioDt = freioDt;
+    }
+
+    public Boolean getSuspDt() {
+        return suspDt;
+    }
+
+    public void setSuspDt(Boolean suspDt) {
+        this.suspDt = suspDt;
+    }
+
+    public Boolean getCaixa() {
+        return caixa;
+    }
+
+    public void setCaixa(Boolean caixa) {
+        this.caixa = caixa;
+    }
+
+    public Boolean getMotor() {
+        return motor;
+    }
+
+    public void setMotor(Boolean motor) {
+        this.motor = motor;
+    }
+
+    public Boolean getTrocaoleo() {
+        return trocaoleo;
+    }
+
+    public void setTrocaoleo(Boolean trocaoleo) {
+        this.trocaoleo = trocaoleo;
+    }
+
+    public Boolean getAlin() {
+        return alin;
+    }
+
+    public void setAlin(Boolean alin) {
+        this.alin = alin;
+    }
+
+    public Boolean getPneu() {
+        return pneu;
+    }
+
+    public void setPneu(Boolean pneu) {
+        this.pneu = pneu;
+    }
+
+    public Boolean getLavacao() {
+        return lavacao;
+    }
+
+    public void setLavacao(Boolean lavacao) {
+        this.lavacao = lavacao;
+    }
+
+    public Boolean getFreioTr() {
+        return freioTr;
+    }
+
+    public void setFreioTr(Boolean freioTr) {
+        this.freioTr = freioTr;
+    }
+
+    public Boolean getSuspTr() {
+        return suspTr;
+    }
+
+    public void setSuspTr(Boolean suspTr) {
+        this.suspTr = suspTr;
     }
 }

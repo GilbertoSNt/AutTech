@@ -5,8 +5,11 @@ import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.DaoFactory;
 import org.gsnt.auttech.model.dao.ModeloVeiculoDao;
 import org.gsnt.auttech.model.dao.StatusAtendimentoDao;
+import org.gsnt.auttech.model.entities.OrdemServico;
 import org.gsnt.auttech.model.entities.StatusAtendimento;
 import org.gsnt.auttech.util.Circulos;
+import org.gsnt.auttech.util.Utils;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,23 +17,29 @@ import java.util.List;
 public class StatusAtendimentoService implements StatusAtendimentoDao {
 
     private final Connection conn;
-
     private Circulos cir = new Circulos();
-
     private final ModeloVeiculoDao modelo = DaoFactory.createModeloVeiculoDao();
+    private Utils ut = new Utils();
 
     public StatusAtendimentoService(Connection conn){
         this.conn = conn;
     }
+
 
     @Override
     public void alteraStatus(StatusAtendimento st) {
 
     }
 
+    /**
+     * statusOsInicial lança o status inicial com orçamento
+     * @param os
+     * @param cria
+     */
     @Override
-    public void statusOsInicial(StatusAtendimento st2, Boolean cria) {
-        //Com necessidade de orçamento
+    public void statusOsInicial(OrdemServico os, Boolean cria) {
+
+        StatusAtendimento st2 = regInicStatusBancoGeral(os,cria);
 
         PreparedStatement st = null;
         try{
@@ -78,9 +87,15 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
 
     }
 
+    /**
+     * statusOsInicial lança o status inicial sem orçamento
+     * @param os
+     */
     @Override
-    public void statusOsInicial(StatusAtendimento st2) {
+    public void statusOsInicial(OrdemServico os) {
         //Sem necessidade de orçamento
+        StatusAtendimento st2 = regInicStatusBancoGeral(os,false);
+
 
         PreparedStatement st = null;
         try{
@@ -119,6 +134,10 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
 
     }
 
+    /**
+     * statusOrçamento retorna lista para accordion Orçamento
+     * @return List Status Acordion orçamento
+     */
     @Override// Accordion de orçamento
     public List<StatusAtendimento> statusOrcamentoTela() {
         List<StatusAtendimento> orList = new ArrayList<>();
@@ -186,6 +205,10 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
 
     }
 
+    /**
+     * statusOrdemServicoTelaSI retorna lista para accordion Serviços iniciados
+     * @return List Status Acordion Serviços iniciados
+     */
     @Override // Acordion sem Inicio só análise
     public List<StatusAtendimento> statusOrdemServicoTelaSI() {
 
@@ -264,6 +287,11 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
 
     }
 
+
+    /**
+     * statusOrdemServicoTelaS retorna lista para accordion Serviços
+     * @return List Status Acordion Serviços
+     */
     @Override
     public List<StatusAtendimento> statusOrdemServicoTelaS() {
         // >>>>> teste com lançamentos de parametros <<<<<
@@ -437,6 +465,11 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
         return status;
     }
 
+    /**
+     * deleta o status do veículo no banco local
+     * @param item
+     * @return
+     */
     @Override
     public Boolean deletaStatus(Integer item) {
 
@@ -464,6 +497,10 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
 
     }
 
+    /**
+     * cancela atendimento
+     * @param item
+     */
     @Override
     public void cancelaAtendimento(Integer item) {
 
@@ -484,6 +521,11 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
 
     }
 
+    /**
+     * Retorna o status de uma ordem de serviço para o direcionamento do serviço
+     * @param item
+     * @return status
+     */
     @Override
     public StatusAtendimento stGeralUnico(Integer item) {
 
@@ -498,7 +540,7 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
             st.setInt(1,item);
             rs = st.executeQuery();
             rs.next();
-            //while(rs.next()){
+
                 sta.setCodOs(item);
                 sta.setPlaca(rs.getString("placa"));
                 sta.setVeiculo(modelo.findModeloById(rs.getInt("modelo")));
@@ -515,7 +557,6 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
                 sta.setAlinBalan(rs.getByte("alinbalan"));
                 sta.setTrocaOleo(rs.getByte("trocaoleo"));
 
-            //}
         }
         catch (SQLException e){
             throw new DbException(e.getMessage()+" StatusAtendiemntoService - stgeralunico");
@@ -528,5 +569,255 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
         return sta;
     }
 
+    /**
+     * grava status inicial no banco externo
+     * @param os1 Ordem de serviço
+     * @param orca verifica a necessidade de orçamento
+     * @return Status atendimento
+     */
+    private StatusAtendimento regInicStatusBancoGeral(OrdemServico os1, Boolean orca){
+
+        StatusAtendimento sa = new StatusAtendimento();
+
+        if (orca) {
+            sa.setOrMontagem((byte) 11);
+            sa.setOrStCliente((byte) 17);
+        }else {
+            sa.setOrMontagem((byte) 0);
+            sa.setOrStCliente((byte) 0);
+        }
+
+        if (os1.getRevisao()) {
+            sa.setRevisao((byte) 1);
+            sa.setMecanico((byte) 1);
+            sa.setEletrico((byte) 1);
+            sa.setInjecao((byte) 1);
+            sa.setFreioDt((byte) 1);
+            sa.setFreioTr((byte) 1);
+            sa.setSuspensaoDt((byte) 1);
+            sa.setSuspensaoTr((byte) 1);
+            sa.setCaixa((byte) 1);
+            sa.setMotor((byte) 1);
+            sa.setTrocaOleo((byte) 1);
+            sa.setPneus((byte) 1);
+            if (orca) {
+                sa.setOrCambio((byte) 11);
+                sa.setOrEletrico((byte) 11);
+                sa.setOrMotor((byte) 11);
+                sa.setOrInjecao((byte) 11);
+                sa.setOrMecanica((byte) 11);
+                sa.setOrPneu((byte) 11);
+            }
+        }
+
+        if (os1.getEletrica()) {
+            sa.setEletrico((byte) 1);
+            if (orca) {
+                sa.setOrEletrico((byte) 11);
+            }
+        }
+        if (os1.getInjecao()) {
+            sa.setInjecao((byte) 1);
+            if (orca) {
+                sa.setOrInjecao((byte) 11);
+            }
+        }
+        if (os1.getMecanico()) {
+            sa.setMecanico((byte) 1);
+            if (orca) {
+                sa.setOrMecanica((byte) 11);
+            }
+        }
+        if (os1.getFreioDt()) {
+            sa.setFreioDt((byte) 1);
+            sa.setMecanico((byte) 1);
+            if (orca) {
+                sa.setOrMecanica((byte) 11);
+            }
+        }
+        if (os1.getFreioTr()) {
+            sa.setFreioTr((byte) 1);
+            sa.setMecanico((byte) 1);
+            if (orca) {
+                sa.setOrMecanica((byte) 11);
+            }
+        }
+        if (os1.getSuspDt()) {
+            sa.setSuspensaoDt((byte) 1);
+            sa.setMecanico((byte) 1);
+            if (orca) {
+                sa.setOrMecanica((byte) 11);
+            }
+        }
+        if (os1.getSuspTr()) {
+            sa.setSuspensaoTr((byte) 1);
+            sa.setMecanico((byte) 1);
+            if (orca) {
+                sa.setOrMecanica((byte) 11);
+            }
+        }
+        if (os1.getCaixa()) {
+            sa.setCaixa((byte) 1);
+            if (orca) {
+                sa.setOrCambio((byte) 11);
+            }
+        }
+        if (os1.getMotor()) {
+            sa.setMotor((byte) 1);
+            if (orca) {
+                sa.setOrMotor((byte) 11);
+            }
+        }
+
+        if (os1.getTrocaoleo()) {
+            sa.setTrocaOleo((byte) 1);
+            sa.setMecanico((byte) 1);
+            if (orca) {
+                sa.setOrMecanica((byte) 11);
+            }
+        }
+
+        if (os1.getPneu() || os1.getAlin()) {
+            sa.setPneus((byte) 1);
+            if (orca) {
+                sa.setOrPneu((byte) 11);
+            }
+        }
+
+        if (os1.getLavacao()) {
+            sa.setLavacao((byte) 1);
+        }
+
+        return sa;
+    }
+
+    private void stUnico(String cnpj, Integer os, String prof, byte tipoServ, int stt, byte tipotempo ){
+
+        String campoEspNome = "";
+        String campohora = "";
+        String campoData = "";
+        String campoEspStatus = "";
+
+        switch (tipoServ){
+            case 1:
+                campoEspNome = "alin";
+                campoEspStatus = "stalin";
+                campohora = "hralin";
+                campoData = "dtalin";
+                break;
+            case 2:
+                campoEspNome = "caixa";
+                campoEspStatus = "stcaixa";
+                campohora = "hrcaixa";
+                campoData = "dtcaixa";
+                break;
+            case 3:
+                campoEspNome = "eletrico";
+                campoEspStatus = "steletrico";
+                campohora = "hrelet";
+                campoData = "dtelet";
+                break;
+            case 4:
+                campoEspNome = "freio";
+                campoEspStatus = "stfreio";
+                campohora = "hrfreio";
+                campoData = "dtfreio";
+                break;
+            case 5:
+                campoEspNome = "injelet";
+                campoEspStatus = "stinjelet";
+                campohora = "hrinj";
+                campoData = "dtinj";
+                break;
+            case 6:
+                campoEspNome = "motor";
+                campoEspStatus = "stmotor";
+                campohora = "hrmot";
+                campoData = "dtmot";
+                break;
+            case 7:
+                campoEspNome = "pneu";
+                campoEspStatus = "stpneu";
+                campohora = "hrpneu";
+                campoData = "dtpneu";
+                break;
+            case 8:
+                campoEspNome = "suspensao";
+                campoEspStatus = "stsuspensao";
+                campohora = "hrsusp";
+                campoData = "dtsusp";
+                break;
+            case 9:
+                campoEspNome = "trcoleo";
+                campoEspStatus = "sttrcoleo";
+                campohora = "hrtrcoleo";
+                campoData = "dttrcoleo";
+                break;
+        }
+
+        String sql_int_envio = "UPDATE public.tbtstgrlpblc " +
+                    "SET "+campoEspNome+"=?, "+campoEspStatus+"=?, "+campoData+"envio =?, "+campohora+"envio=?,  dtultimo=?, hrultimo=?, " +
+                    "WHERE  os= ? ";
+
+        String sql_int_aceite = "UPDATE public.tbtstgrlpblc " +
+                "SET "+campoEspNome+"=?, "+campoEspStatus+"=?, "+campoData+"+aceite=?, "+campohora+"aceite=?, dtultimo=?, hrultimo=?, " +
+                "WHERE  os= ? ";
+
+        String sql_int_inicio = "UPDATE public.tbtstgrlpblc " +
+                "SET "+campoEspNome+"=?, "+campoEspStatus+"=?, "+campoData+"+ini=?, "+campohora+"ini=?, dtultimo=?, hrultimo=?, " +
+                "WHERE  os= ? ";
+
+        String sql_int_fim = "UPDATE public.tbtstgrlpblc " +
+                "SET "+campoEspNome+"=?, "+campoEspStatus+"=?, "+campoData+"+fim=?, "+campohora+"fim=?, dtultimo=?, hrultimo=?, " +
+                "WHERE  os= ? ";
+
+        String sql = "";
+        switch (tipotempo){
+            case 1:
+               sql = sql_int_envio;
+               break;
+            case 2:
+                sql = sql_int_aceite;
+                break;
+            case 3:
+                sql = sql_int_inicio;
+                break;
+            case 4:
+                sql = sql_int_fim;
+                break;
+        }
+
+
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement(sql);
+
+            st.setString(1,prof);
+            st.setInt(2, stt);
+            st.setDate(3, ut.returnSystemDateBanco());
+            st.setTime(4, ut.returnSystemTimeBanco());
+            st.setDate(5, ut.returnSystemDateBanco());
+            st.setTime(6, ut.returnSystemTimeBanco());
+
+            st.setInt(7,os);
+
+            st.executeUpdate();
+
+
+        }catch (SQLException e){
+            throw new DbException(e.getMessage()+" StatusAtendimentoService - stUnico");
+        }
+        finally {
+            DB2.closeStatement(st);
+        }
+
+
+        // corrigir no utils data hora e fazer a segunda conexão
+
+        //1-envio 2-aceite 3-inicio 4-fim
+        // alin - caixa - eletrico - freio - inj - motor - pneu - suspensao - trcoleo - aviso
+    }
+
 
 }
+

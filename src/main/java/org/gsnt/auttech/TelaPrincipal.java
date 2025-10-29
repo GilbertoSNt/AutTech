@@ -76,7 +76,11 @@ public class TelaPrincipal extends Application {
                 }else{
                     chamaTela(mainStage);
                 }
-            } catch (Exception e) {
+            }
+            catch (SQLException e) {
+                throw new DbException(e.getMessage()+" teste Db1/2 - Método main");
+            }
+            catch (Exception e) {
                 throw new DbException(e.getMessage()+" teste Db1/2 - Método main");
             }
         }

@@ -46,16 +46,16 @@ public class DirecionamentoController implements Initializable {
 
     private MaskValid mascara = new MaskValid();
 
-    private List<String> caixa = new ArrayList<>();
-    private List<String> freio = new ArrayList<>();
-    private List<String> suspensao = new ArrayList<>();
-    private List<String> motor = new ArrayList<>();
-    private List<String> eletrico = new ArrayList<>();
-    private List<String> injecao = new ArrayList<>();
-    private List<String> pneus = new ArrayList<>();
-    private List<String> alin = new ArrayList<>();
-    private List<String> balan = new ArrayList<>();
-    private List<String> trocaOleo = new ArrayList<>();
+    private List<Funcionario> caixa = new ArrayList<>();
+    private List<Funcionario> freio = new ArrayList<>();
+    private List<Funcionario> suspensao = new ArrayList<>();
+    private List<Funcionario> motor = new ArrayList<>();
+    private List<Funcionario> eletrico = new ArrayList<>();
+    private List<Funcionario> injecao = new ArrayList<>();
+    private List<Funcionario> pneus = new ArrayList<>();
+    private List<Funcionario> alin = new ArrayList<>();
+    private List<Funcionario> balan = new ArrayList<>();
+    private List<Funcionario> trocaOleo = new ArrayList<>();
 
 
     @FXML
@@ -121,34 +121,34 @@ public class DirecionamentoController implements Initializable {
     private CheckBox cbAlinBalan;
 
     @FXML
-    private ComboBox<String> cbxCaixa;
+    private ComboBox<Funcionario> cbxCaixa;
 
     @FXML
-    private ComboBox<String> cbxFreio;
+    private ComboBox<Funcionario> cbxFreio;
 
     @FXML
-    private ComboBox<String> cbxMotor;
+    private ComboBox<Funcionario> cbxMotor;
 
     @FXML
-    private ComboBox<String> cbxSuspensao;
+    private ComboBox<Funcionario> cbxSuspensao;
 
     @FXML
-    private ComboBox<String> cbxEletrico;
+    private ComboBox<Funcionario> cbxEletrico;
 
     @FXML
-    private ComboBox<String> cbxInjElet;
+    private ComboBox<Funcionario> cbxInjElet;
 
     @FXML
-    private ComboBox<String> cbxPneu;
+    private ComboBox<Funcionario> cbxPneu;
 
     @FXML
-    private ComboBox<String> cbxAlin;
+    private ComboBox<Funcionario> cbxAlin;
 
     @FXML
-    private ComboBox<String> cbxBalan;
+    private ComboBox<Funcionario> cbxBalan;
 
     @FXML
-    private ComboBox<String> cbxTrocaOleo;
+    private ComboBox<Funcionario> cbxTrocaOleo;
 
     @FXML
     private TableView tvMecanico;
@@ -206,43 +206,42 @@ public class DirecionamentoController implements Initializable {
 
         List<Funcionario> funci = funcionarioServ.findByEspecializacao();
 
-
         for(int z = 0; z<funci.size();z++) {
 
             if (funci.get(z).getCaixaMec()) {
-                caixa.add(funci.get(z).getNome() + " (Mec)");
+                caixa.add(new Funcionario(funci.get(z).getCod(),funci.get(z).getApelido() + " (Mec)"));
             }
             if (funci.get(z).getCaixaAut()) {
-                caixa.add(funci.get(z).getNome() + " (Aut)");
+                caixa.add(new Funcionario(funci.get(z).getCod(),funci.get(z).getApelido() + " (Aut)"));
             }
             if (funci.get(z).getFreio()) {
-                freio.add(funci.get(z).getNome());
+                freio.add(new Funcionario(funci.get(z).getCod(),funci.get(z).getApelido()));
             }
             if (funci.get(z).getSuspensao()) {
-                suspensao.add(funci.get(z).getNome());
+                suspensao.add(new Funcionario(funci.get(z).getCod(),funci.get(z).getApelido()));
             }
             if (funci.get(z).getMotorDiesel()) {
-                motor.add(funci.get(z).getNome() + " (Diesel)");
+                motor.add(new Funcionario(funci.get(z).getCod(),funci.get(z).getApelido() + " (Diesel)"));
             }
             if (funci.get(z).getMotorFlex()) {
-                motor.add(funci.get(z).getNome() + " (Flex)");
+                motor.add(new Funcionario(funci.get(z).getCod(),funci.get(z).getApelido() + " (Flex)"));
             }
             if (funci.get(z).getEletrica()) {
-                eletrico.add(funci.get(z).getNome());
+                eletrico.add(new Funcionario(funci.get(z).getCod(),funci.get(z).getApelido()));
             }
             if (funci.get(z).getInjDiesel()) {
-                injecao.add(funci.get(z).getNome() + " (Diesel)");
+                injecao.add(new Funcionario(funci.get(z).getCod(),funci.get(z).getApelido() + " (Diesel)"));
             }
             if (funci.get(z).getInjFlex()) {
-                injecao.add(funci.get(z).getNome() + " (Flex)");
+                injecao.add(new Funcionario(funci.get(z).getCod(),funci.get(z).getApelido() + " (Flex)"));
             }
             if (funci.get(z).getPneus()) {
-                pneus.add(funci.get(z).getNome());
-                alin.add(funci.get(z).getNome());
-                balan.add(funci.get(z).getNome());
+                pneus.add(new Funcionario(funci.get(z).getCod(),funci.get(z).getApelido()));
+                alin.add(new Funcionario(funci.get(z).getCod(),funci.get(z).getApelido()));
+                balan.add(new Funcionario(funci.get(z).getCod(),funci.get(z).getApelido()));
             }
             if (funci.get(z).getTrocaOleo()) {
-                trocaOleo.add(funci.get(z).getNome());
+                trocaOleo.add(new Funcionario(funci.get(z).getCod(),funci.get(z).getApelido()));
             }
         }
 
@@ -257,18 +256,17 @@ public class DirecionamentoController implements Initializable {
         comboBalan(balan);
         combotrocaOleo(trocaOleo);
 
-
     }
 
     private void comboBalan(List balan){
 
         ObservableList obsComboBalan = FXCollections.observableList(balan);
         cbxBalan.setItems(obsComboBalan);
-        Callback<ListView<String>, ListCell<String>> factoryBalan = lv -> new ListCell<String>(){
+        Callback<ListView<Funcionario>, ListCell<Funcionario>> factoryBalan = lv -> new ListCell<Funcionario>(){
             @Override
-            protected void updateItem(String funcionario8, boolean empty){
-                super.updateItem(funcionario8, empty);
-                setText(empty ?"":funcionario8);
+            protected void updateItem(Funcionario fun, boolean empty){
+                super.updateItem(fun, empty);
+                setText(empty ?"":fun.getApelido());
             }
         };
         cbxBalan.setCellFactory(factoryBalan);
@@ -280,11 +278,11 @@ public class DirecionamentoController implements Initializable {
 
         ObservableList obsComboAlin = FXCollections.observableList(alin);
         cbxAlin.setItems(obsComboAlin);
-        Callback<ListView<String>, ListCell<String>> factoryAlin = lv -> new ListCell<String>(){
+        Callback<ListView<Funcionario>, ListCell<Funcionario>> factoryAlin = lv -> new ListCell<Funcionario>(){
             @Override
-            protected void updateItem(String funcionario7, boolean empty){
-                super.updateItem(funcionario7, empty);
-                setText(empty ?"":funcionario7);
+            protected void updateItem(Funcionario fun7, boolean empty){
+                super.updateItem(fun7, empty);
+                setText(empty ?"":fun7.getApelido());
             }
         };
         cbxAlin.setCellFactory(factoryAlin);
@@ -296,11 +294,11 @@ public class DirecionamentoController implements Initializable {
 
         ObservableList obsComboPneus = FXCollections.observableList(pneus);
         cbxPneu.setItems(obsComboPneus);
-        Callback<ListView<String>, ListCell<String>> factoryPneus = lv -> new ListCell<String>(){
+        Callback<ListView<Funcionario>, ListCell<Funcionario>> factoryPneus = lv -> new ListCell<Funcionario>(){
             @Override
-            protected void updateItem(String funcionario6, boolean empty){
-                super.updateItem(funcionario6, empty);
-                setText(empty ?"":funcionario6);
+            protected void updateItem(Funcionario fun6, boolean empty){
+                super.updateItem(fun6, empty);
+                setText(empty ?"":fun6.getApelido());
             }
         };
         cbxPneu.setCellFactory(factoryPneus);
@@ -312,11 +310,11 @@ public class DirecionamentoController implements Initializable {
 
         ObservableList obsComboInjecao = FXCollections.observableList(injecao);
         cbxInjElet.setItems(obsComboInjecao);
-        Callback<ListView<String>, ListCell<String>> factoryInjecao = lv -> new ListCell<String>(){
+        Callback<ListView<Funcionario>, ListCell<Funcionario>> factoryInjecao = lv -> new ListCell<Funcionario>(){
             @Override
-            protected void updateItem(String funcionario5, boolean empty){
+            protected void updateItem(Funcionario funcionario5, boolean empty){
                 super.updateItem(funcionario5, empty);
-                setText(empty ?"":funcionario5);
+                setText(empty ?"":funcionario5.getApelido());
             }
         };
         cbxInjElet.setCellFactory(factoryInjecao);
@@ -328,11 +326,11 @@ public class DirecionamentoController implements Initializable {
 
         ObservableList obsComboEletrico = FXCollections.observableList(eletrico);
         cbxEletrico.setItems(obsComboEletrico);
-        Callback<ListView<String>, ListCell<String>> factoryEletrico = lv -> new ListCell<String>(){
+        Callback<ListView<Funcionario>, ListCell<Funcionario>> factoryEletrico = lv -> new ListCell<Funcionario>(){
             @Override
-            protected void updateItem(String funcionario4, boolean empty){
+            protected void updateItem(Funcionario funcionario4, boolean empty){
                 super.updateItem(funcionario4, empty);
-                setText(empty ?"":funcionario4);
+                setText(empty ?"":funcionario4.getApelido());
             }
         };
         cbxEletrico.setCellFactory(factoryEletrico);
@@ -344,11 +342,11 @@ public class DirecionamentoController implements Initializable {
 
         ObservableList obsComboMotor = FXCollections.observableList(motor);
         cbxMotor.setItems(obsComboMotor);
-        Callback<ListView<String>, ListCell<String>> factoryMotor = lv -> new ListCell<String>(){
+        Callback<ListView<Funcionario>, ListCell<Funcionario>> factoryMotor = lv -> new ListCell<Funcionario>(){
             @Override
-            protected void updateItem(String funcionario3, boolean empty){
+            protected void updateItem(Funcionario funcionario3, boolean empty){
                 super.updateItem(funcionario3, empty);
-                setText(empty ?"":funcionario3);
+                setText(empty ?"":funcionario3.getApelido());
             }
         };
         cbxMotor.setCellFactory(factoryMotor);
@@ -360,11 +358,11 @@ public class DirecionamentoController implements Initializable {
 
         ObservableList obsComboSuspensao = FXCollections.observableList(suspensao);
         cbxSuspensao.setItems(obsComboSuspensao);
-        Callback<ListView<String>, ListCell<String>> factorySuspensao = lv -> new ListCell<String>(){
+        Callback<ListView<Funcionario>, ListCell<Funcionario>> factorySuspensao = lv -> new ListCell<Funcionario>(){
             @Override
-            protected void updateItem(String funcionario2, boolean empty){
+            protected void updateItem(Funcionario funcionario2, boolean empty){
                 super.updateItem(funcionario2, empty);
-                setText(empty ?"":funcionario2);
+                setText(empty ?"":funcionario2.getApelido());
             }
         };
         cbxSuspensao.setCellFactory(factorySuspensao);
@@ -376,11 +374,11 @@ public class DirecionamentoController implements Initializable {
 
         ObservableList obsComboFreio = FXCollections.observableList(freio);
         cbxFreio.setItems(obsComboFreio);
-        Callback<ListView<String>, ListCell<String>> factoryFreio = lv -> new ListCell<String>(){
+        Callback<ListView<Funcionario>, ListCell<Funcionario>> factoryFreio = lv -> new ListCell<Funcionario>(){
             @Override
-            protected void updateItem(String funcionario1, boolean empty){
+            protected void updateItem(Funcionario funcionario1, boolean empty){
                 super.updateItem(funcionario1, empty);
-                setText(empty ?"":funcionario1);
+                setText(empty ?"":funcionario1.getApelido());
             }
         };
         cbxFreio.setCellFactory(factoryFreio);
@@ -392,11 +390,11 @@ public class DirecionamentoController implements Initializable {
 
         ObservableList obsComboCaixa = FXCollections.observableList(caixa);
         cbxCaixa.setItems(obsComboCaixa);
-        Callback<ListView<String>, ListCell<String>> factoryCaixa = lv -> new ListCell<String>(){
+        Callback<ListView<Funcionario>, ListCell<Funcionario>> factoryCaixa = lv -> new ListCell<Funcionario>(){
             @Override
-            protected void updateItem(String funcionario, boolean empty){
+            protected void updateItem(Funcionario funcionario, boolean empty){
                 super.updateItem(funcionario, empty);
-                setText(empty ?"":funcionario);
+                setText(empty ?"":funcionario.getApelido());
             }
         };
         cbxCaixa.setCellFactory(factoryCaixa);
@@ -408,11 +406,11 @@ public class DirecionamentoController implements Initializable {
 
         ObservableList obsComboTrocaOleo = FXCollections.observableList(trocaOleo);
         cbxTrocaOleo.setItems(obsComboTrocaOleo);
-        Callback<ListView<String>, ListCell<String>> factoryTrocaOleo = lv -> new ListCell<String>(){
+        Callback<ListView<Funcionario>, ListCell<Funcionario>> factoryTrocaOleo = lv -> new ListCell<Funcionario>(){
             @Override
-            protected void updateItem(String funcionario9, boolean empty){
+            protected void updateItem(Funcionario funcionario9, boolean empty){
                 super.updateItem(funcionario9, empty);
-                setText(empty ?"":funcionario9);
+                setText(empty ?"":funcionario9.getApelido());
             }
         };
         cbxTrocaOleo.setCellFactory(factoryTrocaOleo);

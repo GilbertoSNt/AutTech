@@ -129,7 +129,7 @@ public class TelaPrincipalController implements Initializable {
             Optional<ButtonType> result = Alerts.showConfirmation("Confirmação de alteração", "Realmente deseja alterar o agendamento da placa " + tt.getPlaca());
             if(result.get() == ButtonType.OK) {
                 loadView("/org/gsnt/auttech/Agenda.fxml", (AgendaController agendaController) -> {
-                    agendaController.preencheDados(tt.getPlaca(), 1);
+                    agendaController.preencheDados(tt.getPlaca());
                 });
             }
         }else{

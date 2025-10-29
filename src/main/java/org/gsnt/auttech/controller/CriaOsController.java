@@ -157,6 +157,11 @@ public class CriaOsController implements Initializable {
 
     }
 
+    /**
+     * Verifica cadastro do veículo em sistema
+     * @param placa
+     */
+
     private void verificaCadastro(String placa){
 
         int teste = veiculoService.verificaPlaca(placa);
@@ -176,21 +181,34 @@ public class CriaOsController implements Initializable {
 
     }
 
+    /**
+     * Coleta dados
+     * @param cria
+     */
     private void coletaSalvaDados(Boolean cria){
+
+       /*(Integer codVeiculo, String dataAbertura, String horaAbertura, Boolean revisao,
+       Boolean eletrica, Boolean injecao, Boolean mecanico, Boolean freiodt, tr, Boolean suspDt, tr,
+       Boolean caixa, Boolean motor, Boolean trocaoleo, Boolean alin, Boolean pneu,
+       Boolean lavacao){*/
+
+       // aqui aqui
+
+        OrdemServico os1 = new OrdemServico(veiculoService.findCodById(txtPlaca.getText()), ut.returnDateSystemBanco(),
+                ut.returnTimeSystem(), cbRevisao.isSelected(), cbElet.isSelected(), cbInjElet.isSelected(),
+                cbMec.isSelected(), cbFreioDt.isSelected(), cbFreioTr.isSelected(), cbSuspDt.isSelected(),
+                cbSuspTr.isSelected(), cbCaixa.isSelected(), cbMotor.isSelected(), cbTrcOleo.isSelected(),
+                cbAlinBalan.isSelected(), cbPneu.isSelected(), cbLava.isSelected());
+
         try {
 
             StatusAtendimento sa = new StatusAtendimento();
-            OrdemServico os = new OrdemServico();
+            OrdemServico os;
 
-            os.setCodVeiculo(veiculoService.findCodById(txtPlaca.getText()));
-            os.setCodCliente(clienteService.findIdClienteByIdVeiculo(os.getCodVeiculo()));
-            os.setDataAbertura(ut.returnDateSystemBanco());
-            os.setHoraAbertura(ut.returnTimeSystem());
-            sa.setCodVeiculo(os.getCodVeiculo());
-
+/*
             if (cbOrc.isSelected()) {
                 sa.setOrMontagem((byte) 11);
-                sa.setOrStCliente((byte) 0);
+                sa.setOrStCliente((byte) 1);
             }
 
             if (cbRevisao.isSelected()) {
@@ -292,30 +310,40 @@ public class CriaOsController implements Initializable {
             if (cbLava.isSelected()) {
                 sa.setLavacao((byte) 1);
             }
+*/
+            Byte num = 1;
 
-            os.setNecOrcamento(cbOrc.isSelected());
-            os.setAssLevarVeiculo(cbLevVei.isSelected());
             sa.setStGeralAtend((byte) 1);
-            if (cria) {
-                Orcamento or1 = new Orcamento(ut.returnDateSystemBanco(), os.getCodVeiculo(), os.getCodCliente());
-                sa.setCodOrcamento(orcamentoService.criaOrcamento(or1));
-                os.setStatusOs((byte) 1);
-                sa.setCodOs(ordemServicoService.criaOrdemServico(os));
+            Integer codByPlaca = veiculoService.findCodById(txtPlaca.getText());
 
+            os = new OrdemServico(codByPlaca, clienteService.findIdClienteByIdVeiculo(codByPlaca),
+                                  ut.returnDateSystemBanco(), ut.returnTimeSystem(),
+                                  cbOrc.isSelected(),cbLevVei.isSelected(),num, txaDescricao.getText());
+
+
+            sa.setCodVeiculo(codByPlaca);
+            // rever isto acho que tem erro na criação de os com orçamento alterar logica do os para numero ser
+            // numero da OS mais digito
+            Integer numeroOS = ordemServicoService.criaOrdemServico(os);
+            sa.setCodOs(numeroOS);
+
+            if (cria) {
+
+                Orcamento or1 = new Orcamento(ut.returnDateSystemBanco(), os.getCodVeiculo(), os.getCodCliente(),numeroOS);
+                sa.setCodOrcamento(orcamentoService.criaOrcamento(or1));
                 ordemServicoService.relacaoOsOr(sa.getCodOs(), sa.getCodOrcamento());
-                if (cbOrc.isSelected()) {
-                    sa.setOrStCliente((byte) 0);
-                    sa.setOrMontagem((byte) 11);
-                    sa.setOrStCliente((byte) 17);
-                    statusService.statusOsInicial(sa, cbOrc.isSelected());
-                } else {
-                    statusService.statusOsInicial(sa);
-                }
-            } else if (!cbOrc.isSelected()) {
-                sa.setCodOs(ordemServicoService.criaOrdemServico(os));
-                statusService.statusOsInicial(sa);
+                statusService.statusOsInicial(os1, cria);
+
+            }else {
+                statusService.statusOsInicial(os1);
             }
-            //
+
+/*
+* Orcamento or1 = new Orcamento(ut.returnDateSystemBanco(), os.getCodVeiculo(), os.getCodCliente());
+* ordemServicoService.relacaoOsOr(sa.getCodOs(), sa.getCodOrcamento());
+* */
+
+
         }
         catch (RuntimeException e){
             throw new ExceptionGenerics(e.getMessage()+" CriaOs - coletaDados");

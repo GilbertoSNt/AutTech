@@ -18,27 +18,54 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
+/**
+* Classe de controle da tela de agenda
+*
+* @author Gilberto da S. Neto
+* @version 1.0
+*/
+
 public class AgendaController implements Initializable {
 
-    public AgendaController(){}
-
+    /**
+     * @param maskvalid para validação de datas;
+     */
     private final MaskValid maskValid = new MaskValid();
 
+    /**
+     * @param agendaService acesso ao banco de dados;
+     */
     private final AgendaDao agendaService = DaoFactory.createAgendaDao();
 
+    /**
+     * @param log gera log de comandos e erros;
+     */
     private final LogTxt log = new LogTxt();
 
+    /**
+     * @param a,b,c,d Todas as variáveis são usadas para validação de horas e datas;
+     */
     private LocalDate a = null;
     private LocalDate b = null;
     private LocalTime c = null;
     private LocalTime d = null;
 
+    /**
+     * @param tipoTela para verificar se é alteração ou agenda nova;
+     */
     private int tipoTela = 0;
+
+    /**
+     * @param placaTela cerraga a placa na chamada da tela;
+     */
     private String placaTela = null;
 
     @FXML
     private DatePicker dpData;
 
+    /**
+     * confere se a data e a hora escolhida está correta
+     */
     @FXML
     private void onRidingDpData(){
 
@@ -129,15 +156,20 @@ public class AgendaController implements Initializable {
     @FXML
     private Label lblConfirma;
 
+    /**
+     * Fechamento da tela
+     */
     @FXML
     private void btCloseButtonClick(){
-        Stage stage = (Stage)btClose.getScene().getWindow();
-        stage.close();
+        close(btClose);
     }
 
     @FXML
     protected Button btGravar;
 
+    /**
+     * Grava dados da tela
+     */
     @FXML
     protected void btGravarButtonClick(){
 
@@ -166,18 +198,26 @@ public class AgendaController implements Initializable {
     @FXML
     protected Button btFechar;
 
+    /**
+     * Fechamento da tela
+     */
     @FXML
     protected void btFecharButtonClick(){
-        Stage stage = (Stage)btFechar.getScene().getWindow();
-        stage.close();
+        close(btFechar);
     }
 
+    /**
+     * Fechamento da tela
+     */
     private void close(Button bt){
         Stage stage = (Stage)bt.getScene().getWindow();
         stage.close();
     }
 
 
+    /**
+     * Organiza a tela inicial confere datas e horas quando em alteração do agendamento
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lblNumAgenda.setVisible(false);
@@ -249,9 +289,14 @@ public class AgendaController implements Initializable {
 
     }
 
-
+    /**
+     * Coleta os dados da tela
+     *
+     * @return a Objeto Agenda
+     */
     private Agenda coletaDados(){
-        Agenda a = new Agenda();
+
+        var a = new Agenda();
 
         a.setDataAgenda(dpData.getValue().toString());
         a.setHora(txtHora.getText());
@@ -280,12 +325,15 @@ public class AgendaController implements Initializable {
         a.setAssEnvioDeslocamento(false);
 
         return a;
-
     }
 
-    public void preencheDados(String placa, int tipoTela){
+    /**
+     * Preenche a tela quando carrega um item do agendamento
+     *
+     * @param placa do veículo
+     */
+    public void preencheDados(String placa){
 
-        this.tipoTela = 1;
         this.placaTela = placa;
         Agenda dados = agendaService.findByPlacaData(placa);
         lblNumAgenda.setVisible(true);

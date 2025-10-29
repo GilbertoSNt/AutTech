@@ -19,14 +19,23 @@ import org.gsnt.auttech.model.entities.Cliente;
 import org.gsnt.auttech.model.entities.entitiesgenerics.MarcaVeiculo;
 import org.gsnt.auttech.model.entities.entitiesgenerics.ModeloVeiculo;
 import org.gsnt.auttech.model.entities.Veiculo;
+import org.gsnt.auttech.util.Alerts;
 import org.gsnt.auttech.util.DadosCombos;
 import org.gsnt.auttech.util.ExceptionGenerics;
 import org.gsnt.auttech.util.MaskValid;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
+
+/**
+ * Responsável pela tela de cadastro do veículo
+ *
+ * @author Gilberto da S. Neto
+ * @version 1.0
+ */
 
 public class CadVeiculoController implements Initializable {
 
@@ -51,6 +60,7 @@ public class CadVeiculoController implements Initializable {
     private int codVeiculo = 0;
 
     public CadVeiculoController(){}
+
 
     public CadVeiculoController(int cad, String nome){
 
@@ -262,8 +272,23 @@ public class CadVeiculoController implements Initializable {
 
             if(txtPlaca.getLength()==8) {
                 if (KeyEvent.getCode() == KeyCode.ENTER) {
+                    var veic = new Veiculo();
                     int teste = veiculoService.verificaPlaca(txtPlaca.getText());
-                    Veiculo veic = veiculoService.findById(txtPlaca.getText());
+                    if (teste != 0) {
+                        veic = veiculoService.findById(txtPlaca.getText());
+                    }
+
+                    if(teste == 0){
+                        Optional<ButtonType> result = Alerts.showConfirmation("Confirmação de carregamento", "O veículo da placa digitada  " + txtPlaca.getText()+
+                                " não consta em seu banco de dados, quer que verifique \n em nosso banco de dab=dos nacional ?");
+                        if(result.get() == ButtonType.OK) {
+                            int t = veiculoServiceGeral.verificaPlaca(txtPlaca.getText());
+                                if (t != 0) {
+                                    veic = veiculoServiceGeral.findById(txtPlaca.getText());
+                                    teste = 1;
+                                }
+                            }
+                    }
 
                     if (teste != 0) {
                         Cliente cli = clienteService.findById(clienteService.findIdClienteByIdVeiculo(veic.getCod()));

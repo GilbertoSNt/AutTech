@@ -25,4 +25,7 @@ public interface VeiculoDao {
     Veiculo verPlacaModelo(Integer cod);
 
     Integer findCodById(String placa);
+
+
+
 }

@@ -34,6 +34,14 @@ public class DirecionadosService implements DirecionadosDao {
         return null;
     }
 
+    /***
+     * listaServico Lista de serviço por técnico
+     *
+     * @return List = Lista de serviços em que todos os  profissionais estão envolvidos.
+     * @author Gilberto da S. Neto
+     * @version 1.0
+     */
+
     @Override
     public List<Direcionados> listaServico() {
 
@@ -58,6 +66,15 @@ public class DirecionadosService implements DirecionadosDao {
         }
         return drc;
     }
+
+    /***
+     * listaServPorFuncionarios Lista detalhada dos serviços enviados para o técnico
+     *
+     * @param cod = número do técnico
+     * @return List = Lista de serviços em que o profissional está envolvido.
+     * @author Gilberto da S. Neto
+     * @version 1.0
+     */
 
     @Override
     public List<Direcionados> listaServPorFuncionarios(Integer cod) {

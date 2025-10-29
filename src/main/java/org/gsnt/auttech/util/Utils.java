@@ -1,6 +1,10 @@
 package org.gsnt.auttech.util;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class Utils {
@@ -21,6 +25,14 @@ public class Utils {
         LocalDateTime agora = LocalDateTime.now();
         DateTimeFormatter formaHora = DateTimeFormatter.ofPattern("HH:mm:ss");
         return formaHora.format(agora);
+    }
+
+    public Date returnSystemDateBanco(){
+        return Date.valueOf(LocalDate.now());
+    }
+
+    public Time returnSystemTimeBanco(){
+        return Time.valueOf(LocalTime.now());
     }
 
 

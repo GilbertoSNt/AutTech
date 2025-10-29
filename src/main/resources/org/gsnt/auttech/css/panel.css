@@ -1,6 +1,5 @@
 *{
     -fx-primary-color:#8ab5bb;
-
     -fx-secondary-color: #eff1f2;
     -fx-third-color:#b8cad4;
     -fx-fourth-color:#880015;
@@ -87,3 +86,5 @@
 .titledpane > .title{
     -fx-background-color: -fx-primary-color;
 }
+
+

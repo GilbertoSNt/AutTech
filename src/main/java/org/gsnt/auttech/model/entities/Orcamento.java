@@ -1,7 +1,5 @@
 package org.gsnt.auttech.model.entities;
 
-import org.gsnt.auttech.util.Circulos;
-
 public class Orcamento {
 
     private Integer cod;
@@ -26,12 +24,14 @@ public class Orcamento {
     private String horaFechamento;
     private String placa;
     private String modelo;
-    private Integer orcamXOrdem;
+    private Integer ordemServico;
+    private Byte digitoOr;
 
-    public Orcamento(String dataAbertura, Integer codVeiculo, Integer codCliente) {
+    public Orcamento(String dataAbertura, Integer codVeiculo, Integer codCliente,Integer ordemServico) {
         this.dataAbertura = dataAbertura;
         this.codVeiculo = codVeiculo;
         this.codCliente = codCliente;
+        this.ordemServico = ordemServico;
     }
 
     public Integer getCod() {
@@ -210,12 +210,20 @@ public class Orcamento {
         this.modelo = modelo;
     }
 
-    public Integer getOrcamXOrdem() {
-        return orcamXOrdem;
+    public Integer getOrdemServico() {
+        return ordemServico;
     }
 
-    public void setOrcamXOrdem(Integer orcamXOrdem) {
-        this.orcamXOrdem = orcamXOrdem;
+    public void setOrdemServico(Integer ordemServico) {
+        this.ordemServico = ordemServico;
+    }
+
+    public Byte getDigitoOr() {
+        return digitoOr;
+    }
+
+    public void setDigitoOr(Byte digitoOr) {
+        this.digitoOr = digitoOr;
     }
 
     /*

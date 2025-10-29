@@ -30,9 +30,23 @@ import org.gsnt.auttech.util.MaskValid;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Classe responsável da tela funcionários
+ *
+ * @author Gilberto da S. Neto
+ * @version 1.0
+ */
+
 public class CadFuncionariosController implements Initializable {
 
-
+    /**
+     * Criação de objetos com relação do banco de dados
+     *
+     * @param funcService
+     * @param endService
+     * @param emailService
+     *
+     */
     private FuncionarioDao funcService = DaoFactory.createFuncionarioDao();
 
     private EnderecoDao endService = DaoFactory.createEnderecoDao();
@@ -228,12 +242,18 @@ public class CadFuncionariosController implements Initializable {
 
     // Eventos de botões e seleção
 
+    /**
+     * Fecha tela do sistema
+     */
     @FXML
     private void onBtClose(){
         Stage stage = (Stage)btClose.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Grava dados no sistema
+     */
     @FXML
     private void onBtGravar(){
         try {
@@ -277,7 +297,6 @@ public class CadFuncionariosController implements Initializable {
         onBtClose();
     }
 
-
     private DadosCombos dadosCombos = new DadosCombos();
 
     private ObservableList<TipoEndereco> obsListTipoEndereco;
@@ -286,6 +305,9 @@ public class CadFuncionariosController implements Initializable {
 
     private MaskValid mascara = new MaskValid();
 
+    /**
+     * carrega combos
+     */
     private void carregaCombo(){
 
         obsListTipoEndereco = FXCollections.observableList(dadosCombos.tipoEndereco());
@@ -314,6 +336,9 @@ public class CadFuncionariosController implements Initializable {
 
     }
 
+    /**
+     * Coloca mascaras nos campos definicos
+     */
     private void carregaMascara(){
 
         dpDataNasc.setPromptText("__/__/____");
@@ -333,6 +358,9 @@ public class CadFuncionariosController implements Initializable {
 
     }
 
+    /**
+     * Agrega grupos de RadioGroup
+     */
     protected void radio(){
 
         ToggleGroup radioGroup = new ToggleGroup();
@@ -350,9 +378,14 @@ public class CadFuncionariosController implements Initializable {
 
     }
 
+    /**
+     * Coleta dados da funcionário da tela
+     *
+     * @param editar verifica se é uma edição ou novo
+     * @param cod do cliente
+     * @return Funcionario
+     */
     private Funcionario coletaDadosFuncionario(Boolean editar, int cod){
-
-
 
         Funcionario func = new Funcionario();
 
@@ -436,6 +469,13 @@ public class CadFuncionariosController implements Initializable {
         return func;
     }
 
+    /**
+     * Coleta dados do endereço
+     *
+     * @param editar verifica se é uma edição ou novo
+     * @param cod do cliente
+     * @return Endereco
+     */
     private Endereco coletaDadosEndereco(Boolean editar, int cod){
 
         Endereco end = new Endereco();
@@ -453,6 +493,13 @@ public class CadFuncionariosController implements Initializable {
 
     }
 
+    /**
+     * Coleta dados do email
+     *
+     * @param editar verifica se é uma edição ou novo
+     * @param cod do cliente
+     * @return Email
+     */
     private Email coletaDadosEmail(Boolean editar, int cod){
 
         Email email = new Email();
@@ -464,6 +511,13 @@ public class CadFuncionariosController implements Initializable {
 
     }
 
+    /**
+     * Função para gravar dados no sistema
+     *
+     * @param func
+     * @param end
+     * @param email1
+     */
     public void cadastraFuncionario(Funcionario func, Endereco end, Email email1){
 
         // Caso tem de ser 3
@@ -479,6 +533,9 @@ public class CadFuncionariosController implements Initializable {
 
     }
 
+    /**
+     * troca o tab pelo enter
+     */
     private void teclaEnter(){
 
         txtNome.setOnKeyPressed((KeyEvent)->{
@@ -770,6 +827,13 @@ public class CadFuncionariosController implements Initializable {
             }
         });
     }
+
+    /**
+     * Inicializa funções da tela
+     *
+     * @param url
+     * @param resourceBundle
+     */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -1,0 +1,527 @@
+/*** Banco de dados primário da aplicação ***\
+
+
+CREATE DATABASE bancoempresabase
+    WITH
+    OWNER = gilberto
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'pt_BR.UTF-8'
+    LC_CTYPE = 'pt_BR.UTF-8'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+
+/*** Tabela Empresas ***\
+
+
+CREATE SEQUENCE IF NOT EXISTS public.sqempresa
+    INCREMENT 1
+    START 0
+    MINVALUE 0
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.sqempresa
+    OWNER TO gilberto;
+
+
+
+CREATE TABLE IF NOT EXISTS public.empresa
+(
+    cod bigint NOT NULL DEFAULT nextval('sqempresa'::regclass),
+    tipo "char" NOT NULL,
+    nome character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    cnpj character varying(14) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    cpf character varying(11) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    status boolean NOT NULL DEFAULT false,
+    acesso character varying(15) COLLATE pg_catalog."default" NOT NULL,
+    dataini date,
+    datafim date,
+    a integer NOT NULL DEFAULT 0,
+    b integer NOT NULL DEFAULT 0,
+    c integer NOT NULL DEFAULT 0,
+    CONSTRAINT "empresa_Pkey" PRIMARY KEY (cod)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.empresa
+    OWNER to gilberto;
+
+
+/*** Tabela marcacarro ***\
+
+
+CREATE SEQUENCE IF NOT EXISTS public.sqmarca
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.sqmarca
+    OWNER TO gilberto;
+
+CREATE TABLE IF NOT EXISTS public.marcacarro
+(
+    cod bigint NOT NULL DEFAULT nextval('sqmarca'::regclass),
+    nomemarca character varying(80) COLLATE pg_catalog."default" NOT NULL,
+    status boolean NOT NULL DEFAULT false,
+    CONSTRAINT marcacarro_pkey PRIMARY KEY (cod)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.marcacarro
+    OWNER to gilberto;
+
+
+/*** Tabela modelo ***\
+
+
+CREATE SEQUENCE IF NOT EXISTS public.sqmodelo
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.sqmodelo
+    OWNER TO gilberto;
+
+CREATE TABLE IF NOT EXISTS public.modelo
+(
+    cod bigint NOT NULL DEFAULT nextval('sqmodelo'::regclass),
+    marca bigint NOT NULL,
+    modelo character varying(80) COLLATE pg_catalog."default" NOT NULL,
+    status boolean NOT NULL DEFAULT false,
+    CONSTRAINT modelo_pkey PRIMARY KEY (cod),
+    CONSTRAINT fkmarca FOREIGN KEY (marca)
+        REFERENCES public.marcacarro (cod) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.modelo
+    OWNER to gilberto;
+
+
+/*** tabela pessoas ***\
+
+
+CREATE SEQUENCE IF NOT EXISTS public.sqpessoas
+    INCREMENT 1
+    START 0
+    MINVALUE 0
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.sqpessoas
+    OWNER TO gilberto;
+
+CREATE TABLE IF NOT EXISTS public.pessoas
+(
+    cod bigint NOT NULL DEFAULT nextval('sqpessoas'::regclass),
+    empresafk bigint NOT NULL,
+    nome character varying(80) COLLATE pg_catalog."default" NOT NULL,
+    cpf character varying(11) COLLATE pg_catalog."default" NOT NULL,
+    usuario character varying(15) COLLATE pg_catalog."default" NOT NULL,
+    senhausuario character varying(15) COLLATE pg_catalog."default" NOT NULL,
+    funcao "char",
+    autcli boolean DEFAULT false,
+    autinsmec boolean DEFAULT false,
+    autadm boolean DEFAULT false,
+    autcomp boolean DEFAULT false,
+    CONSTRAINT pessoas_pkey PRIMARY KEY (cod),
+    CONSTRAINT fkempresa_pessoas FOREIGN KEY (empresafk)
+        REFERENCES public.empresa (cod) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.pessoas
+    OWNER to gilberto;
+
+
+/*** tabela segmentos ***\
+
+CREATE SEQUENCE IF NOT EXISTS public.segmentos_cod_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.segmentos_cod_seq
+    OWNER TO gilberto;
+
+
+CREATE TABLE IF NOT EXISTS public.segmentos
+(
+    cod bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    codseg character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    "Descricao" character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT segmentos_pkey PRIMARY KEY (codseg)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.segmentos
+    OWNER to gilberto;
+
+
+/*** tabela veiculo clientes ***\
+
+CREATE SEQUENCE IF NOT EXISTS public.sqcodveiculo
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.sqcodveiculo
+    OWNER TO gilberto;
+
+CREATE TABLE IF NOT EXISTS public.tabveiculo
+(
+    cod bigint NOT NULL DEFAULT nextval('sqcodveiculo'::regclass),
+    placa character varying(8) COLLATE pg_catalog."default" NOT NULL,
+    marca integer,
+    modelo integer,
+    chassi character varying(20) COLLATE pg_catalog."default",
+    motor character varying(20) COLLATE pg_catalog."default",
+    cv character varying(5) COLLATE pg_catalog."default",
+    turbo boolean DEFAULT false,
+    emlinha boolean DEFAULT false,
+    emv boolean DEFAULT false,
+    anof character varying(4) COLLATE pg_catalog."default",
+    anom character varying(4) COLLATE pg_catalog."default",
+    renavam character varying(12) COLLATE pg_catalog."default",
+    arquente boolean DEFAULT false,
+    airbag boolean DEFAULT false,
+    freioabs boolean DEFAULT false,
+    alarme boolean DEFAULT false,
+    arcond boolean DEFAULT false,
+    dirhid boolean DEFAULT false,
+    direlet boolean DEFAULT false,
+    vidroelet boolean DEFAULT false,
+    travaelet boolean DEFAULT false,
+    tracao4 boolean DEFAULT false,
+    teto boolean DEFAULT false,
+    controletracao boolean DEFAULT false,
+    CONSTRAINT tabveiculo_pkey PRIMARY KEY (cod)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.tabveiculo
+    OWNER to gilberto;
+
+
+
+/*** tabela clientes ***\
+
+CREATE SEQUENCE IF NOT EXISTS public.sqcodclienteexterno
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.sqcodclienteexterno
+    OWNER TO gilberto;
+
+CREATE TABLE IF NOT EXISTS public.tbclienteexterno
+(
+    cod bigint NOT NULL DEFAULT nextval('sqcodclienteexterno'::regclass),
+    nome character varying(150) COLLATE pg_catalog."default" NOT NULL,
+	apelido character varying(100) COLLATE pg_catalog."default",
+	Telefone character varying(16) COLLATE pg_catalog."default",
+	cpf character varying(16) COLLATE pg_catalog."default",
+	cnpj character varying(18) COLLATE pg_catalog."default",
+	senha character varying(200) COLLATE pg_catalog."default",
+    datacadastroapp character varying(10) COLLATE pg_catalog."default",
+	CONSTRAINT clienteexterno_pkey PRIMARY key (cod)
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.tbclienteexterno
+    OWNER to gilberto;
+
+
+    /*** tabela histórico acesso ***\
+
+    CREATE SEQUENCE IF NOT EXISTS public.sqclntxtacessoato
+        INCREMENT 1
+        START 1
+        MINVALUE 1
+        MAXVALUE 9223372036854775807
+        CACHE 1;
+
+    ALTER SEQUENCE public.sqclntxtacessoato
+        OWNER TO gilberto;
+
+    CREATE TABLE IF NOT EXISTS public.tbclntxtacessoato
+    (
+        cod bigint NOT NULL DEFAULT nextval('sqclntxtacessoato'::regclass),
+        cpf character varying(14) COLLATE pg_catalog."default",
+        cnpj character varying(18) COLLATE pg_catalog."default",
+        nomeuser character varying(100) COLLATE pg_catalog."default",
+    	Telefone character varying(16) COLLATE pg_catalog."default",
+    	cpfuser character varying(16) COLLATE pg_catalog."default",
+    	senha boolean DEFAULT false,
+    	acao  character varying(200) COLLATE pg_catalog."default",
+    	CONSTRAINT clntxtacessoato_pkey PRIMARY key (cod)
+    )
+    TABLESPACE pg_default;
+
+    ALTER TABLE IF EXISTS public.tbclntxtacessoato
+        OWNER to gilberto;
+
+
+/*** tabela veículo cliente ***\
+
+
+CREATE SEQUENCE IF NOT EXISTS public.sqvclclnt
+        INCREMENT 1
+        START 1
+        MINVALUE 1
+        MAXVALUE 9223372036854775807
+        CACHE 1;
+
+    ALTER SEQUENCE public.sqvclclnt
+        OWNER TO gilberto;
+
+
+create table if not exist public.tbvclclnt
+(
+    cod bigint NOT NULL DEFAULT nextval('sqvclclnt'::regclass),
+    codcliente bigint NOT NULL,
+    codveiculo bigint NOT NULL,
+    dataassociacao character varying(11) COLLATE pg_catalog."default",
+    datadesassociacao character varying(11) COLLATE pg_catalog."default",
+    CONSTRAINT vclcnlt_pkey PRIMARY KEY(cod)
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.tbvclclnt
+    owner to gilberto
+
+
+/*** tabela abastecimento veículo ***\
+
+CREATE SEQUENCE IF NOT EXISTS public.sqvclato
+        INCREMENT 1
+        START 1
+        MINVALUE 1
+        MAXVALUE 9223372036854775807
+        CACHE 1;
+
+    ALTER SEQUENCE public.sqvclato
+        OWNER TO gilberto;
+
+
+create table if not exists public.tbvclato
+(
+    cod bigint NOT NULL DEFAULT nextval('sqvclclnt'::regclass),
+    codcliente bigint NOT NULL,
+    data date NOT NULL,
+    abast boolean NOT NULL DEFAULT false,
+    kmabast bigint,
+    qtdlts int,
+    correia boolean NOT NULL DEFAULT false,
+    kmcorreia bigint,
+    oleomotor boolean NOT NULL DEFAULT false,
+    kmoleomotor bigint,
+    oleocambio boolean NOT NULL DEFAULT false,
+    kmoleocambio bigint,
+    oleodifer boolean NOT NULL DEFAULT false,
+    kmoleodifer bigint,
+    oleodiferdt boolean NOT NULL DEFAULT false,
+    kmoleodiferdt bigint,
+    oleocaixatransf boolean NOT NULL DEFAULT false,
+    kmoleocaixatransf bigint,
+    CONSTRAINT vclato_pkey PRIMARY KEY(cod)
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.tbvclato
+    owner to gilberto
+
+/*** tebela atendimento empresa ***\
+
+CREATE SEQUENCE IF NOT EXISTS public.sqtndmntmprs
+        INCREMENT 1
+        START 1
+        MINVALUE 1
+        MAXVALUE 9223372036854775807
+        CACHE 1;
+
+    ALTER SEQUENCE public.sqtndmntmprs
+        OWNER TO gilberto;
+
+
+create table if not exists public.tbtndmntmprs
+(
+    cod bigint NOT NULL DEFAULT nextval('sqtndmntmprs'::regclass),
+    codcliente bigint NOT NULL,
+    codveiculo bigint NOT NULL,
+    codempresa bigint NOT NULL,
+    datachegada date,
+    horachegada time without time zone,
+    datasaida date,
+    horasaida time without time zone,
+    orcinterno bigint,
+    osinterna bigint,
+    profresponsavelatend character varying(150) COLLATE pg_catalog."default",
+    liberacaoorc boolean not null default false,
+    tipovalidacao int,
+    statusenvioinf int,
+    CONSTRAINT tndmntmprs_pkey PRIMARY KEY(cod)
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.tbvclato
+    owner to gilberto
+
+
+----------++++++++++ não implementadas no servidor ++++++++++----------
+
+
+
+/*** tabela StatusGeralPublicoOsProfEnviado ***\
+
+
+CREATE SEQUENCE IF NOT EXISTS public.sqtstgrlpblc
+        INCREMENT 1
+        START 1
+        MINVALUE 1
+        MAXVALUE 9223372036854775807
+        CACHE 1;
+
+    ALTER SEQUENCE public.sqtstgrlpblc
+        OWNER TO gilberto;
+
+create table if not exists public.tbtstgrlpblc
+(
+    cod bigint NOT NULL DEFAULT nextval('sqtstgrlpblc'::regclass),
+    cnpj character varying(18) not null COLLATE pg_catalog."default",
+    os bigint NOT NULL DEFAULT 0,
+    codveiculo bigint NOT NULL,
+    datainicio date,
+    datafinal date,
+    horafinal time without time zone,
+    datainiorc date,
+    horainiorc time without time zone,
+    datafimorc date,
+    horafimorc time without time zone,
+    dataprevisao date,
+    alin character varying(15) COLLATE pg_catalog."default",
+    stalin integer DEFAULT 0,
+    dtalinenvio date,
+    hralinenvio time without time zone,
+    dtalinaceite date,
+    hralinaceite time without time zone,
+    dtalinini date,
+    hralinini time without time zone,
+    dtalinfim date,
+    hralinfim time without time zone,
+    caixa character varying(15) COLLATE pg_catalog."default",
+    stcaixa integer DEFAULT 0,
+    dtcaixaenvio date,
+    hrcaixaenvio time without time zone,
+    dtcaixaaceite date,
+    hrcaixaaceite time without time zone,
+    dtcaixaini date,
+    hrcaixaini time without time zone,
+    dtcaixafim date,
+    hrcaixafim time without time zone,
+    eletrico character varying(15) COLLATE pg_catalog."default",
+    steletrico integer DEFAULT 0,
+    dteletenvio date,
+    hreletenvio time without time zone,
+    dteletaceite date,
+    hreletaceite time without time zone,
+    dteletini date,
+    hreletini time without time zone,
+    dteletfim date,
+    hreletfim time without time zone,
+    freio character varying(15) COLLATE pg_catalog."default",
+    stfreio integer DEFAULT 0,
+    dtfreioenvio date,
+    hrfreioenvio time without time zone,
+    dtfreioaceite date,
+    hrfreioaceite time without time zone,
+    dtfreioini date,
+    hrfreioini time without time zone,
+    dtfreiofim date,
+    hrfreiofim time without time zone,
+    injelet character varying(15) COLLATE pg_catalog."default",
+    stinjelet integer DEFAULT 0,
+    dtinjenvio date,
+    hrinjenvio time without time zone,
+    dtinjaceite date,
+    hrinjaceite time without time zone,
+    dtinjini date,
+    hrinjini time without time zone,
+    dtinjfim date,
+    hrinjfim time without time zone,
+    motor character varying(15) COLLATE pg_catalog."default",
+    stmotor integer DEFAULT 0,
+    dtmotenvio date,
+    hrmotenvio time without time zone,
+    dtmotaceite date,
+    hrmotaceite time without time zone,
+    dtmotini date,
+    hrmotini time without time zone,
+    dtmotfim date,
+    hrmotfim time without time zone,
+    pneu character varying(15) COLLATE pg_catalog."default",
+    stpneu integer DEFAULT 0,
+    dtpneuenvio date,
+    hrpneuenvio time without time zone,
+    dtpneuaceite date,
+    hrpneuaceite time without time zone,
+    dtpneuini date,
+    hrpneuini time without time zone,
+    dtpneufim date,
+    hrpneufim time without time zone,
+    suspensao character varying(15) COLLATE pg_catalog."default",
+    stsuspensao integer DEFAULT 0,
+    dtsuspenvio date,
+    hrsuspenvio time without time zone,
+    dtsuspaceite date,
+    hrsuspaceite time without time zone,
+    dtsuspini date,
+    hrsuspini time without time zone,
+    dtsuspfim date,
+    hrsuspfim time without time zone,
+    trcoleo character varying(15) COLLATE pg_catalog."default",
+    sttrcoleo integer DEFAULT 0,
+    dttrcoleoenvio date,
+    hrtrcoleoenvio time without time zone,
+    dttrcoleoaceite date,
+    hrtrcoleoaceite time without time zone,
+    dttrcoleoini date,
+    hrtrcoleoini time without time zone,
+    dttrcoleofim date,
+    hrtrcoleofim time without time zone,
+    aviso character varying(15) COLLATE pg_catalog."default",
+    staviso integer DEFAULT 0,
+    dtaviso date,
+    hraviso time without time zone,
+    dtultimo date,
+    hrultimo timestamp without time zone,
+    hrinicio timestamp without time zone,
+    ativo Boolean
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.tbtstgrlpblc
+    owner to gilberto
+
