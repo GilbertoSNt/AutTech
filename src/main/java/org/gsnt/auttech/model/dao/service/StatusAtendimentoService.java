@@ -1,6 +1,6 @@
 package org.gsnt.auttech.model.dao.service;
 
-import org.gsnt.auttech.db.DB2;
+import org.gsnt.auttech.db.DBLocal;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.DaoFactory;
 import org.gsnt.auttech.model.dao.ModeloVeiculoDao;
@@ -39,7 +39,9 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
     @Override
     public void statusOsInicial(OrdemServico os, Boolean cria) {
 
-        StatusAtendimento st2 = regInicStatusBancoGeral(os,cria);
+        StatusAtendimento st2 = organizaInicStatusBancoGeral(os,cria);
+
+      //  erro aqui
 
         PreparedStatement st = null;
         try{
@@ -82,7 +84,7 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
             throw new DbException(e.getMessage()+" Cria os status inicial atendimento com 2 parametro");
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -94,7 +96,7 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
     @Override
     public void statusOsInicial(OrdemServico os) {
         //Sem necessidade de orçamento
-        StatusAtendimento st2 = regInicStatusBancoGeral(os,false);
+        StatusAtendimento st2 = organizaInicStatusBancoGeral(os,false);
 
 
         PreparedStatement st = null;
@@ -129,7 +131,7 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
             throw new DbException(e.getMessage()+" Cria os status inicial atendimento com 1 parametro");
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -199,8 +201,8 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
             throw new DbException(n.getMessage()+" StatusAtendiemntoService - statusOrcamentoTela NullPointerException");
         }
         finally {
-        DB2.closeResultSet(rs);
-        DB2.closeStatement(st);
+        DBLocal.closeResultSet(rs);
+        DBLocal.closeStatement(st);
         }
 
     }
@@ -281,8 +283,8 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
             throw new DbException(e.getMessage()+" StatusAtendiemntoService - statusServiçoSemInicio Tela");
         }
         finally {
-            DB2.closeResultSet(rs);
-            DB2.closeStatement(st);
+            DBLocal.closeResultSet(rs);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -373,8 +375,8 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
             throw new DbException(e.getMessage()+" StatusAtendiemntoService - statusOrcamentoTela");
         }
         finally {
-            DB2.closeResultSet(rs);
-            DB2.closeStatement(st);
+            DBLocal.closeResultSet(rs);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -492,7 +494,7 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
             throw new DbException(e.getMessage());
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -516,7 +518,7 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
             throw new DbException("StatusAtendimentoService - Cancela atendimento "+e.getMessage());
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -562,20 +564,20 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
             throw new DbException(e.getMessage()+" StatusAtendiemntoService - stgeralunico");
         }
         finally {
-            DB2.closeResultSet(rs);
-            DB2.closeStatement(st);
+            DBLocal.closeResultSet(rs);
+            DBLocal.closeStatement(st);
         }
 
         return sta;
     }
 
     /**
-     * grava status inicial no banco externo
+     * Organiza status inicial no banco externo
      * @param os1 Ordem de serviço
      * @param orca verifica a necessidade de orçamento
      * @return Status atendimento
      */
-    private StatusAtendimento regInicStatusBancoGeral(OrdemServico os1, Boolean orca){
+    private StatusAtendimento organizaInicStatusBancoGeral(OrdemServico os1, Boolean orca){
 
         StatusAtendimento sa = new StatusAtendimento();
 
@@ -687,6 +689,8 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
         if (os1.getLavacao()) {
             sa.setLavacao((byte) 1);
         }
+        sa.setCodOs(os1.getNumero());
+        sa.setCodVeiculo(os1.getCodVeiculo());
 
         return sa;
     }
@@ -808,7 +812,7 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
             throw new DbException(e.getMessage()+" StatusAtendimentoService - stUnico");
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
 

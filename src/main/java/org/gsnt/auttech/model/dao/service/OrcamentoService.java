@@ -1,10 +1,9 @@
 package org.gsnt.auttech.model.dao.service;
 
-import org.gsnt.auttech.db.DB2;
+import org.gsnt.auttech.db.DBLocal;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.OrcamentoDao;
 import org.gsnt.auttech.model.entities.Orcamento;
-import org.gsnt.auttech.model.entities.StatusAtendimento;
 
 import java.sql.*;
 import java.util.List;
@@ -27,7 +26,7 @@ public class OrcamentoService implements OrcamentoDao {
     }
 
     @Override
-    public Integer criaOrcamento(Orcamento or) {
+    public void criaOrcamento(Orcamento or) {
 
         Integer resultado = -1;
         PreparedStatement st = null;
@@ -35,7 +34,7 @@ public class OrcamentoService implements OrcamentoDao {
 
         try{
             st = conn.prepareStatement("INSERT INTO tabor(" +
-                                           "codcliente, codveiculo,dataabertura,cosOs,digitoor)" +
+                                           "codcliente, codveiculo,dataabertura,codos,digitoor)" +
                                            "VALUES (?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
 
@@ -53,13 +52,15 @@ public class OrcamentoService implements OrcamentoDao {
                     resultado = rs.getInt(1);
                 }
             }
-            return resultado;
+
 
         }catch(SQLException e){
             throw new DbException(e.getMessage()+" Cria orçamento - OrçamentoService");
         } finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
+
+     //   mudar lógica para acertar digito do orçamento
 
     }
 
@@ -101,8 +102,8 @@ public class OrcamentoService implements OrcamentoDao {
             throw new DbException(e.getMessage()+" OrçamentoService - Recusa orçamento ");
         }
         finally {
-            DB2.closeStatement(st);
-            DB2.closeResultSet(rs);
+            DBLocal.closeStatement(st);
+            DBLocal.closeResultSet(rs);
         }
     }
 

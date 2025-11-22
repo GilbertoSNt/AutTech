@@ -1,6 +1,6 @@
 package org.gsnt.auttech.model.dao.service;
 
-import org.gsnt.auttech.db.DB;
+import org.gsnt.auttech.db.DBOn;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.entities.entitiesgenerics.ModeloVeiculo;
 
@@ -45,8 +45,8 @@ public class ModeloVeiculoService implements org.gsnt.auttech.model.dao.ModeloVe
             throw new DbException(a.getMessage()+" findByIdMarca - modeloVeículoService");
         }
         finally{
-            DB.closeStatement(st);
-            DB.closeResultSet(rs);
+            DBOn.closeStatement(st);
+            DBOn.closeResultSet(rs);
         }
         return list;
     }
@@ -69,8 +69,8 @@ public class ModeloVeiculoService implements org.gsnt.auttech.model.dao.ModeloVe
             throw new DbException(a.getMessage()+" findIdByModelo - ModeloVeículoService");
         }
         finally{
-            DB.closeStatement(st);
-            DB.closeResultSet(rs);
+            DBOn.closeStatement(st);
+            DBOn.closeResultSet(rs);
         }
 
     }
@@ -93,8 +93,8 @@ public class ModeloVeiculoService implements org.gsnt.auttech.model.dao.ModeloVe
             throw new DbException(a.getMessage()+" findModeloById modeloVeículoService");
         }
         finally{
-            DB.closeStatement(st);
-            DB.closeResultSet(rs);
+            DBOn.closeStatement(st);
+            DBOn.closeResultSet(rs);
         }
 
     }

@@ -8,9 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.gsnt.auttech.db.DB;
-import org.gsnt.auttech.db.DB2;
-import org.gsnt.auttech.db.DbException;
+import org.gsnt.auttech.db.*;
 import org.gsnt.auttech.util.Alerts;
 import org.gsnt.auttech.util.ExceptionGenerics;
 import org.gsnt.auttech.util.LogTxt;
@@ -27,16 +25,21 @@ public class TelaPrincipal extends Application {
 
     private static Scene mainScene;
     private final LogTxt log = new LogTxt();
+    private TesteConexao teste = new TesteConexao();
 
 
     @Override
     public void start(Stage mainStage) throws IOException {
 
-
         Image icon = new Image(getClass().getResourceAsStream("icones/AuttechIcon64.png"));
         mainStage.getIcons().add(icon);
 
-        if (!hasInternetConnection()) {
+        /*
+        if(DBSttOn.getConnection()==null){
+            Alerts.showAlert("Atenção", "Erro no DBSttOn", null, Alert.AlertType.ERROR);
+        }
+
+        if (!teste.testeInternet()) {
 
             Optional<ButtonType> result = Alerts.showConfirmation("Atenção", "Verifique sua conexão de internet\n\n " +
                     "- Sem conexão de internet as funções do\n software estarão limitadas.\n\n " +
@@ -45,13 +48,13 @@ public class TelaPrincipal extends Application {
 
             if (result.get() == ButtonType.OK) {
                 try {
-                    if (!DB.testBd()) {
+                    if (!teste.testeDbLocal()) {
                         Alerts.showAlert("Atenção", "Sem conexão com o servidor\ndo banco de dados local", null, Alert.AlertType.ERROR);
                         log.escreveErro("Classe Main - Sem conexão com o banco de dados local");
                     } else {
                         chamaTela(mainStage);
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     throw new DbException(e.getMessage()+" erro no metodo teste DB - Método main");
                 }
             } else if (result.get() == ButtonType.CANCEL) {
@@ -59,11 +62,11 @@ public class TelaPrincipal extends Application {
             }
         } else {
             try {
-                if (!DB.testBd()) {
+                if (!teste.testeDbLocal()) {
                     Alerts.showAlert("Atenção", "Sem conexão com o servidor\ndo banco de dados local", null, Alert.AlertType.ERROR);
                     log.escreveErro("Classe Main - Sem conexão com o banco de dados local");
 
-                } else if (!DB2.testBdRemoto()) {
+                } else if (!teste.testeDbOn()) {
                     Optional<ButtonType> result1 = Alerts.showConfirmation("Atenção", "Não conseguimos conexão\n" +
                             "com o banco de dados auxiliar\n\n " +
                             "- Se continuar o software terá algumas limitações.\n\n"
@@ -77,14 +80,12 @@ public class TelaPrincipal extends Application {
                     chamaTela(mainStage);
                 }
             }
-            catch (SQLException e) {
-                throw new DbException(e.getMessage()+" teste Db1/2 - Método main");
-            }
             catch (Exception e) {
                 throw new DbException(e.getMessage()+" teste Db1/2 - Método main");
             }
         }
-
+*/
+        chamaTela(mainStage);
     }
 
     private void telaLogin(){
@@ -120,18 +121,6 @@ public class TelaPrincipal extends Application {
             throw new ExceptionGenerics(e.getMessage()+" Erro no carregamento da tela de principal");
         }
 
-    }
-
-    private boolean hasInternetConnection() {
-        try {
-            URL url = new URL("http://www.google.com");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setConnectTimeout(60);
-            conn.connect();
-            return conn.getResponseCode() == 200;
-        } catch (Exception e) {
-            return false;
-        }
     }
 
     private void chamaTela(Stage mainStage){

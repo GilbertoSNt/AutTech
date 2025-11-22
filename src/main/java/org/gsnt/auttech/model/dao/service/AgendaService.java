@@ -1,12 +1,11 @@
 package org.gsnt.auttech.model.dao.service;
 
 
-import org.gsnt.auttech.db.DB2;
+import org.gsnt.auttech.db.DBLocal;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.AgendaDao;
 import org.gsnt.auttech.model.entities.Agenda;
 import org.gsnt.auttech.util.Circulos;
-import org.gsnt.auttech.util.LogTxt;
 
 
 import java.sql.*;
@@ -162,7 +161,7 @@ public class AgendaService implements AgendaDao {
             throw new DbException(e.getMessage()+" findTelaPrincipal");
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
         return correta;
@@ -223,7 +222,7 @@ public class AgendaService implements AgendaDao {
             throw new DbException(e.getMessage()+" insertAgenda");
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -252,8 +251,8 @@ public class AgendaService implements AgendaDao {
             throw new DbException(e.getMessage());
         }
         finally {
-            DB2.closeResultSet(rs);
-            DB2.closeStatement(st);
+            DBLocal.closeResultSet(rs);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -308,7 +307,7 @@ public class AgendaService implements AgendaDao {
             throw new DbException(e.getMessage()+" saveAlterAgenda");
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
     }
 
@@ -357,8 +356,8 @@ public class AgendaService implements AgendaDao {
             throw new DbException(e.getMessage());
         }
         finally {
-            DB2.closeStatement(st);
-            DB2.closeResultSet(rs);
+            DBLocal.closeStatement(st);
+            DBLocal.closeResultSet(rs);
         }
 
         return agenda;
@@ -381,7 +380,7 @@ public class AgendaService implements AgendaDao {
             throw new DbException(e.getMessage());
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -403,7 +402,7 @@ public class AgendaService implements AgendaDao {
             throw new DbException(e.getMessage()+" saveEnvioGuincho");
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -425,7 +424,7 @@ public class AgendaService implements AgendaDao {
             throw new DbException(e.getMessage()+" reverteEnvioGuincho");
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -446,7 +445,7 @@ public class AgendaService implements AgendaDao {
             throw new DbException(e.getMessage()+" reverterEnvioRecolhimento");
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
     }
 
@@ -477,8 +476,8 @@ public class AgendaService implements AgendaDao {
             throw new DbException(e.getMessage()+" verStatusAssistencias");
         }
         finally {
-            DB2.closeStatement(st);
-            DB2.closeResultSet(rs);
+            DBLocal.closeStatement(st);
+            DBLocal.closeResultSet(rs);
         }
 
         return retorno;

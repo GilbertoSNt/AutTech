@@ -1,6 +1,6 @@
 package org.gsnt.auttech.model.dao.service;
 
-import org.gsnt.auttech.db.DB2;
+import org.gsnt.auttech.db.DBLocal;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.ClienteDao;
 import org.gsnt.auttech.model.entities.*;
@@ -50,8 +50,8 @@ public class ClienteService implements ClienteDao {
             throw new DbException(a.getMessage()+" Cliente - findAll");
         }
         finally{
-            DB2.closeStatement(st);
-            DB2.closeResultSet(rs);
+            DBLocal.closeStatement(st);
+            DBLocal.closeResultSet(rs);
         }
         return list;
 
@@ -76,8 +76,8 @@ public class ClienteService implements ClienteDao {
             throw new DbException(a.getMessage()+" Cliente - findAllPart");
         }
         finally{
-            DB2.closeStatement(st);
-            DB2.closeResultSet(rs);
+            DBLocal.closeStatement(st);
+            DBLocal.closeResultSet(rs);
         }
         return list;
     }
@@ -105,8 +105,8 @@ public class ClienteService implements ClienteDao {
             throw new DbException(e.getMessage()+" Cliente - findByCPF");
         }
         finally {
-            DB2.closeStatement(st);
-            DB2.closeResultSet(rs);
+            DBLocal.closeStatement(st);
+            DBLocal.closeResultSet(rs);
         }
         return cli;
     }
@@ -134,8 +134,8 @@ public class ClienteService implements ClienteDao {
             throw new DbException(e.getMessage()+" Cliente - findByCNPJ");
         }
         finally {
-            DB2.closeStatement(st);
-            DB2.closeResultSet(rs);
+            DBLocal.closeStatement(st);
+            DBLocal.closeResultSet(rs);
         }
         return cli;
     }
@@ -160,8 +160,8 @@ public class ClienteService implements ClienteDao {
             throw new DbException(e.getMessage()+" Cliente - findById");
         }
         finally {
-            DB2.closeStatement(st);
-            DB2.closeResultSet(rs);
+            DBLocal.closeStatement(st);
+            DBLocal.closeResultSet(rs);
         }
         return cli;
 
@@ -209,7 +209,7 @@ public class ClienteService implements ClienteDao {
                 if(rs.next()){
                     resultado = rs.getInt(1);
                 }
-                DB2.closeResultSet(rs);
+                DBLocal.closeResultSet(rs);
             }
 
         }
@@ -220,7 +220,7 @@ public class ClienteService implements ClienteDao {
             throw new DbException(b.getMessage());
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
         return resultado;
 
@@ -299,13 +299,13 @@ public class ClienteService implements ClienteDao {
                 if (rs.next()) {
           //          resultado = rs.getInt(1);
                 }
-                DB2.closeResultSet(rs);
+                DBLocal.closeResultSet(rs);
             }
         }
         catch (SQLException a){
             throw new DbException(a.getMessage()+" Cliente - associacaoVeicCliente");
         } finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -326,8 +326,8 @@ public class ClienteService implements ClienteDao {
             throw new DbException(e.getMessage()+" Cliente - findIdClienteByIdVeiculo");
         }
         finally {
-            DB2.closeStatement(st);
-            DB2.closeResultSet(rs);
+            DBLocal.closeStatement(st);
+            DBLocal.closeResultSet(rs);
         }
     }
 }

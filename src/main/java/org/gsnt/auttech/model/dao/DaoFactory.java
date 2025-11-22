@@ -1,8 +1,8 @@
 package org.gsnt.auttech.model.dao;
 
 
-import org.gsnt.auttech.db.DB;
-import org.gsnt.auttech.db.DB2;
+import org.gsnt.auttech.db.DBOn;
+import org.gsnt.auttech.db.DBLocal;
 import org.gsnt.auttech.model.dao.service.*;
 
 
@@ -10,7 +10,7 @@ public class DaoFactory {
 
     public static MarcaVeiculoDao createMarcaVeiculoDao() {
         try {
-            return new MarcaVeiculoService(DB.getConnection());
+            return new MarcaVeiculoService(DBOn.getConnection());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
@@ -21,7 +21,7 @@ public class DaoFactory {
     public static ModeloVeiculoDao createModeloVeiculoDao() {
 
         try {
-            return new ModeloVeiculoService(DB.getConnection());
+            return new ModeloVeiculoService(DBOn.getConnection());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
@@ -32,7 +32,7 @@ public class DaoFactory {
     public static ClienteDao createClienteDao() {
 
         try {
-            return new ClienteService(DB2.getConnection());
+            return new ClienteService(DBLocal.getConnection());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
@@ -42,7 +42,7 @@ public class DaoFactory {
 
     public static AgendaDao createAgendaDao() {
         try {
-            return new AgendaService(DB2.getConnection());
+            return new AgendaService(DBLocal.getConnection());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
@@ -51,7 +51,7 @@ public class DaoFactory {
 
     public static OrdemServicoDao createOrdemServicoDao() {
         try {
-            return new OrdemServicoService(DB2.getConnection());
+            return new OrdemServicoService(DBLocal.getConnection());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
@@ -60,7 +60,7 @@ public class DaoFactory {
 
     public static OrcamentoDao createOrcamentoDao() {
         try {
-            return new OrcamentoService(DB2.getConnection());
+            return new OrcamentoService(DBLocal.getConnection());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
@@ -69,7 +69,7 @@ public class DaoFactory {
 
     public static VeiculoDao createVeiculoDao() {
         try {
-            return new VeiculoService(DB2.getConnection()) {
+            return new VeiculoService(DBLocal.getConnection()) {
             };
 
         } catch (RuntimeException e) {
@@ -80,7 +80,7 @@ public class DaoFactory {
 
     public static VeiculoDao createVeiculoDaoGeral() {
         try {
-            return new VeiculoService(DB.getConnection()) {
+            return new VeiculoService(DBOn.getConnection()) {
             };
 
         } catch (RuntimeException e) {
@@ -91,7 +91,7 @@ public class DaoFactory {
 
     public static IniDAO createIniDao() {
         try {
-            return new IniService(DB.getConnection()) {
+            return new IniService(DBOn.getConnection()) {
             };
 
         } catch (RuntimeException e) {
@@ -102,7 +102,7 @@ public class DaoFactory {
 
     public static EnderecoDao createEnderecoDao() {
         try {
-            return new EnderecoService(DB2.getConnection()) {
+            return new EnderecoService(DBLocal.getConnection()) {
             };
 
         } catch (RuntimeException e) {
@@ -113,7 +113,7 @@ public class DaoFactory {
 
     public static FuncionarioDao createFuncionarioDao() {
         try {
-            return new FuncionarioService(DB2.getConnection()) {
+            return new FuncionarioService(DBLocal.getConnection()) {
             };
 
         } catch (RuntimeException e) {
@@ -124,9 +124,8 @@ public class DaoFactory {
 
     public static EmailDao createEmailDao() {
         try {
-            return new EmailService(DB2.getConnection()) {
+            return new EmailService(DBLocal.getConnection()) {
             };
-
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
@@ -135,9 +134,8 @@ public class DaoFactory {
 
     public static StatusAtendimentoDao createStatusAtendimentoDao() {
         try {
-            return new StatusAtendimentoService(DB2.getConnection()) {
+            return new StatusAtendimentoService(DBLocal.getConnection()) {
             };
-
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
@@ -146,8 +144,7 @@ public class DaoFactory {
 
     public static DirecionadosDao createDirecionadosDao(){
         try {
-            return new DirecionadosService(DB2.getConnection()) {};
-
+            return new DirecionadosService(DBLocal.getConnection()) {};
         }
         catch (RuntimeException e){
             System.out.println(e.getMessage());
@@ -156,13 +153,14 @@ public class DaoFactory {
     }
 
     public static LoginDAO createloginDao() {
-
         try {
-            return new LoginService(DB2.getConnection());
+            return new LoginService(DBLocal.getConnection());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return null;
         }
-
     }
+
+
+
 }

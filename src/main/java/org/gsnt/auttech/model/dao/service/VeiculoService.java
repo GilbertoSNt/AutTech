@@ -1,6 +1,6 @@
 package org.gsnt.auttech.model.dao.service;
 
-import org.gsnt.auttech.db.DB2;
+import org.gsnt.auttech.db.DBLocal;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.VeiculoDao;
 import org.gsnt.auttech.model.entities.Veiculo;
@@ -40,7 +40,7 @@ public class VeiculoService implements VeiculoDao {
             throw new DbException(e.getMessage()+" findbyid Veiculo - veiculoService");
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
         return veiculo;
 
@@ -68,7 +68,7 @@ public class VeiculoService implements VeiculoDao {
             throw new DbException(e.getMessage()+" saveVeiculo - veiculoService");
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -105,8 +105,8 @@ public class VeiculoService implements VeiculoDao {
             throw new DbException(e.getMessage()+" Verifica placa - veiculoService");
         }
         finally {
-            DB2.closeStatement(st);
-            DB2.closeResultSet(rs);
+            DBLocal.closeStatement(st);
+            DBLocal.closeResultSet(rs);
         }
     }
 
@@ -129,8 +129,8 @@ public class VeiculoService implements VeiculoDao {
             throw new DbException(e.getMessage()+" findbycod - VeiculoService");
         }
         finally {
-            DB2.closeStatement(st);
-            DB2.closeResultSet(rs);
+            DBLocal.closeStatement(st);
+            DBLocal.closeResultSet(rs);
         }
         return veiculo;
     }
@@ -154,8 +154,8 @@ public class VeiculoService implements VeiculoDao {
             throw new DbException(e.getMessage()+" ver placa - VeiculoService");
         }
         finally {
-            DB2.closeStatement(st);
-            DB2.closeResultSet(rs);
+            DBLocal.closeStatement(st);
+            DBLocal.closeResultSet(rs);
         }
         return veiculo;
 
@@ -179,8 +179,8 @@ public class VeiculoService implements VeiculoDao {
             throw new DbException(e.getMessage()+" ver cod por placa - VeiculoService");
         }
         finally {
-            DB2.closeStatement(st);
-            DB2.closeResultSet(rs);
+            DBLocal.closeStatement(st);
+            DBLocal.closeResultSet(rs);
         }
         return cod;
     }

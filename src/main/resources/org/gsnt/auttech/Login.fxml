@@ -10,10 +10,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="670.0" style="-fx-background-color: #001724;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" style="-fx-background-color: #001724;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.controller.LoginController">
    <children>
-      <TextField fx:id="txtCNPJ" layoutX="265.0" layoutY="382.0" prefHeight="25.0" prefWidth="200.0" />
-      <Label layoutX="28.0" layoutY="423.0" text="Usuário - " textFill="WHITE">
+      <TextField fx:id="txtCNPJ" layoutX="122.0" layoutY="384.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="28.0" layoutY="423.0" text="Usuário - " textFill="WHITE" AnchorPane.leftAnchor="28.0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -28,15 +28,23 @@
       <Button fx:id="btAcesso" layoutX="151.0" layoutY="459.0" mnemonicParsing="false" onAction="#onBtAcesso" styleClass="button3" stylesheets="@css/button.css" text="Acessar" />
       <Button fx:id="btCancel" layoutX="420.0" layoutY="459.0" mnemonicParsing="false" onAction="#onBtCancel" styleClass="button3" stylesheets="@css/button.css" text="Cancelar" />
       <Label fx:id="lblEmpresa" layoutX="164.0" layoutY="57.0" />
-      <ImageView fitHeight="334.0" fitWidth="519.0" layoutX="85.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="240.0" fitWidth="420.0" layoutX="140.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="5.0">
          <image>
             <Image url="@icones/AuttechLogo.png" />
          </image>
       </ImageView>
-      <Label layoutX="195.0" layoutY="381.0" text="CNPJ -" textFill="WHITE">
+      <Label layoutX="29.0" layoutY="383.0" text="CNPJ -" textFill="WHITE" AnchorPane.leftAnchor="28.0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Label layoutX="28.0" layoutY="266.0" text="Teste Conexão Internet - " textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="266.0" />
+      <Label layoutX="28.0" layoutY="290.0" text="Teste conexão banco dados local - " textFill="WHITE" AnchorPane.leftAnchor="28.0" />
+      <Label layoutX="28.0" layoutY="314.0" text="Teste conexão banco dados remoto - " textFill="WHITE" AnchorPane.leftAnchor="28.0" />
+      <Label layoutX="28.0" layoutY="338.0" text="Teste conexão banco dados status remoto - " textFill="WHITE" AnchorPane.leftAnchor="28.0" />
+      <Label fx:id="LblWeb" layoutX="164.0" layoutY="266.0" textFill="WHITE" />
+      <Label fx:id="LblBdLocal" layoutX="218.0" layoutY="290.0" textFill="WHITE" />
+      <Label fx:id="LblBdRemoto" layoutX="241.0" layoutY="314.0" textFill="WHITE" />
+      <Label fx:id="LblStRemoto" layoutX="270.0" layoutY="338.0" textFill="WHITE" />
    </children>
 </AnchorPane>

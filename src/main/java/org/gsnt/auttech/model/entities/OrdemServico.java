@@ -65,7 +65,7 @@ public class OrdemServico {
     public OrdemServico(Integer codVeiculo, String dataAbertura, String horaAbertura, Boolean revisao,
                         Boolean eletrica, Boolean injecao, Boolean mecanico, Boolean freioDt,  Boolean freioTr,
                         Boolean suspDt, Boolean suspTr, Boolean caixa, Boolean motor, Boolean trocaoleo, Boolean alin,
-                        Boolean pneu, Boolean lavacao){
+                        Boolean pneu, Boolean lavacao, Integer numero){
 
         this.codVeiculo = codVeiculo;
         this.dataAbertura = dataAbertura;
@@ -84,6 +84,7 @@ public class OrdemServico {
         this.alin = alin;
         this.pneu = pneu;
         this.lavacao = lavacao;
+        this.numero = numero;
 
     }
 

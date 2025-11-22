@@ -1,6 +1,6 @@
 package org.gsnt.auttech.model.dao.service;
 
-import org.gsnt.auttech.db.DB;
+import org.gsnt.auttech.db.DBOn;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.MarcaVeiculoDao;
 import org.gsnt.auttech.model.entities.entitiesgenerics.MarcaVeiculo;
@@ -41,8 +41,8 @@ public class MarcaVeiculoService implements MarcaVeiculoDao {
             throw new DbException(a.getMessage()+" findAll - MarcaVeiculo");
         }
         finally{
-            DB.closeStatement(st);
-            DB.closeResultSet(rs);
+            DBOn.closeStatement(st);
+            DBOn.closeResultSet(rs);
         }
         return list;
     }
@@ -65,8 +65,8 @@ public class MarcaVeiculoService implements MarcaVeiculoDao {
             throw new DbException(a.getMessage()+" findIdByMarca - MarcaVeiculo");
         }
         finally{
-            DB.closeStatement(st);
-            DB.closeResultSet(rs);
+            DBOn.closeStatement(st);
+            DBOn.closeResultSet(rs);
         }
 
 
@@ -90,8 +90,8 @@ public class MarcaVeiculoService implements MarcaVeiculoDao {
             throw new DbException(a.getMessage()+" findMarcaById - MarcaVeiculo");
         }
         finally{
-            DB.closeStatement(st);
-            DB.closeResultSet(rs);
+            DBOn.closeStatement(st);
+            DBOn.closeResultSet(rs);
         }
     }
 

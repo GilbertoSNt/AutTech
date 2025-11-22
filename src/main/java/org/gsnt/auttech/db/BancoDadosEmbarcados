@@ -322,11 +322,9 @@ ALTER SEQUENCE public.sqcodorcliente
 
 CREATE TABLE IF NOT EXISTS public.tabor
 (
-    cod bigint NOT NULL DEFAULT nextval('sqcodor'::regclass),
+    cod bigint NOT NULL DEFAULT nextval('sqcodorcliente'::regclass),
     codcliente bigint NOT NULL,
     codveiculo bigint NOT NULL,
-    codos bigint NOT NULL,
-    digitoor integer NOT NULL,
     vtpecas integer,
     vtservicos integer,
     vtos integer,
@@ -344,55 +342,25 @@ CREATE TABLE IF NOT EXISTS public.tabor
     dataabertura character varying COLLATE pg_catalog."default",
     datafechamento character varying COLLATE pg_catalog."default",
     horafechamento character varying COLLATE pg_catalog."default",
-	CONSTRAINT taborcliente_pkey PRIMARY KEY (cod)
+    codos bigint,
+    digitoor integer,
+    CONSTRAINT taborcliente_pkey PRIMARY KEY (cod),
+    CONSTRAINT fkorcliente FOREIGN KEY (codcliente)
+        REFERENCES public.tabcliente (cod) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT fkorclientes FOREIGN KEY (codveiculo)
+        REFERENCES public.tabveiculo (cod) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
 )
 
 TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.tabor
-    OWNER to "gilberto";
-
-ALTER TABLE IF EXISTS public.tabor
-    ADD CONSTRAINT fkorcliente FOREIGN KEY (codcliente)
-    REFERENCES public.tabcliente (cod) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-ALTER TABLE IF EXISTS public.tabor
-    ADD CONSTRAINT fkorclientes FOREIGN KEY (codveiculo)
-    REFERENCES public.tabveiculo (cod) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-
-
-/* >>>>> Tabela relação orçamentos x ordem de serviços <<<<< */
-
-
-CREATE SEQUENCE IF NOT EXISTS public.sqcodorcordemserv
-    INCREMENT 1
-    START 1
-    MINVALUE 1
-    MAXVALUE 9223372036854775807
-    CACHE 1;
-
-ALTER SEQUENCE public.sqcodorcordemserv
-    OWNER TO "gilberto";
-
-CREATE TABLE IF NOT EXISTS public.taborcordemserv
-(
-    cod bigint NOT NULL DEFAULT nextval('sqcodorcordemserv'::regclass),
-    codordemserv bigint NOT null,
-    codorc bigint NOT NULL,
-    CONSTRAINT taborcordemserv_pkey PRIMARY KEY (cod)
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.taborcordemserv
-    OWNER to "gilberto";
+    OWNER to gilberto;
 
 
 >>>>> Tabela peças Os <<<<<

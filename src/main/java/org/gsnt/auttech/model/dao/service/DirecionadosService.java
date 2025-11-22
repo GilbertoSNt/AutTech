@@ -1,6 +1,6 @@
 package org.gsnt.auttech.model.dao.service;
 
-import org.gsnt.auttech.db.DB2;
+import org.gsnt.auttech.db.DBLocal;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.DirecionadosDao;
 import org.gsnt.auttech.model.entities.Direcionados;
@@ -61,8 +61,8 @@ public class DirecionadosService implements DirecionadosDao {
             throw new DbException(e.getMessage()+" DirecionadosService - listaServiço");
         }
         finally {
-            DB2.closeResultSet(rs);
-            DB2.closeStatement(st);
+            DBLocal.closeResultSet(rs);
+            DBLocal.closeStatement(st);
         }
         return drc;
     }
@@ -106,8 +106,8 @@ public class DirecionadosService implements DirecionadosDao {
             throw new DbException(e.getMessage()+" DirecionadosService - listaServPorFuncionarios");
         }
         finally {
-            DB2.closeResultSet(rs);
-            DB2.closeStatement(st);
+            DBLocal.closeResultSet(rs);
+            DBLocal.closeStatement(st);
         }
 
         return drc;

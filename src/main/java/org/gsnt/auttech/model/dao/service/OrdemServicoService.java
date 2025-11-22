@@ -1,8 +1,7 @@
 package org.gsnt.auttech.model.dao.service;
 
-import org.gsnt.auttech.db.DB2;
+import org.gsnt.auttech.db.DBLocal;
 import org.gsnt.auttech.db.DbException;
-import org.gsnt.auttech.model.dao.AgendaDao;
 import org.gsnt.auttech.model.dao.DaoFactory;
 import org.gsnt.auttech.model.dao.OrdemServicoDao;
 import org.gsnt.auttech.model.dao.StatusAtendimentoDao;
@@ -73,7 +72,7 @@ public class OrdemServicoService implements OrdemServicoDao {
             throw new DbException(e.getMessage()+" cancelaOrdemServico - OrdemServiçoService");
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -127,7 +126,7 @@ public class OrdemServicoService implements OrdemServicoDao {
         }catch(SQLException e){
             throw new DbException(e.getMessage()+" OrdemServiçoService - findOrforOs");
         } finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -169,8 +168,8 @@ public class OrdemServicoService implements OrdemServicoDao {
         }catch(SQLException e){
             throw new DbException(e.getMessage()+" criaOrdemServico - OrdemServicoService");
         } finally {
-            DB2.closeResultSet(rs);
-            DB2.closeStatement(st);
+            DBLocal.closeResultSet(rs);
+            DBLocal.closeStatement(st);
         }
 
     }

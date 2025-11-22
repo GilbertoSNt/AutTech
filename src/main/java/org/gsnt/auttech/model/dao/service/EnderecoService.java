@@ -2,7 +2,7 @@ package org.gsnt.auttech.model.dao.service;
 
 import org.gsnt.auttech.model.dao.EnderecoDao;
 import org.gsnt.auttech.model.entities.entitiesgenerics.Endereco;
-import org.gsnt.auttech.db.DB2;
+import org.gsnt.auttech.db.DBLocal;
 import org.gsnt.auttech.db.DbException;
 
 import java.sql.Connection;
@@ -52,7 +52,7 @@ public class EnderecoService implements EnderecoDao {
             throw new DbException(e1.getMessage()+" Endereço Service - saveEndereco");
         }
             finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
     }
@@ -85,7 +85,7 @@ public class EnderecoService implements EnderecoDao {
             throw new DbException(e1.getMessage()+" Endereço Service - alterEndereco");
         }
         finally {
-            DB2.closeStatement(st);
+            DBLocal.closeStatement(st);
         }
 
     }

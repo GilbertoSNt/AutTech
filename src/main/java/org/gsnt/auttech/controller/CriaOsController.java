@@ -193,13 +193,12 @@ public class CriaOsController implements Initializable {
        Boolean lavacao){*/
 
        // aqui aqui
-
+/*
         OrdemServico os1 = new OrdemServico(veiculoService.findCodById(txtPlaca.getText()), ut.returnDateSystemBanco(),
                 ut.returnTimeSystem(), cbRevisao.isSelected(), cbElet.isSelected(), cbInjElet.isSelected(),
                 cbMec.isSelected(), cbFreioDt.isSelected(), cbFreioTr.isSelected(), cbSuspDt.isSelected(),
                 cbSuspTr.isSelected(), cbCaixa.isSelected(), cbMotor.isSelected(), cbTrcOleo.isSelected(),
-                cbAlinBalan.isSelected(), cbPneu.isSelected(), cbLava.isSelected());
-
+                cbAlinBalan.isSelected(), cbPneu.isSelected(), cbLava.isSelected());*/
         try {
 
             StatusAtendimento sa = new StatusAtendimento();
@@ -322,26 +321,29 @@ public class CriaOsController implements Initializable {
 
 
             sa.setCodVeiculo(codByPlaca);
-            // rever isto acho que tem erro na criação de os com orçamento alterar logica do os para numero ser
-            // numero da OS mais digito
+
             Integer numeroOS = ordemServicoService.criaOrdemServico(os);
+
+            OrdemServico os1 = new OrdemServico(veiculoService.findCodById(txtPlaca.getText()), ut.returnDateSystemBanco(),
+                    ut.returnTimeSystem(), cbRevisao.isSelected(), cbElet.isSelected(), cbInjElet.isSelected(),
+                    cbMec.isSelected(), cbFreioDt.isSelected(), cbFreioTr.isSelected(), cbSuspDt.isSelected(),
+                    cbSuspTr.isSelected(), cbCaixa.isSelected(), cbMotor.isSelected(), cbTrcOleo.isSelected(),
+                    cbAlinBalan.isSelected(), cbPneu.isSelected(), cbLava.isSelected(),numeroOS);
+
+
             sa.setCodOs(numeroOS);
 
             if (cria) {
 
                 Orcamento or1 = new Orcamento(ut.returnDateSystemBanco(), os.getCodVeiculo(), os.getCodCliente(),numeroOS);
-                sa.setCodOrcamento(orcamentoService.criaOrcamento(or1));
-                ordemServicoService.relacaoOsOr(sa.getCodOs(), sa.getCodOrcamento());
+                orcamentoService.criaOrcamento(or1);
+
                 statusService.statusOsInicial(os1, cria);
 
             }else {
                 statusService.statusOsInicial(os1);
             }
 
-/*
-* Orcamento or1 = new Orcamento(ut.returnDateSystemBanco(), os.getCodVeiculo(), os.getCodCliente());
-* ordemServicoService.relacaoOsOr(sa.getCodOs(), sa.getCodOrcamento());
-* */
 
 
         }

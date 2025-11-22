@@ -7,8 +7,7 @@ import java.util.List;
 public interface OrcamentoDao {
 
     List<Orcamento> findByTela();
-    Integer criaOrcamento(Orcamento or);
-    void relacaoOrOs(Integer os, Integer or);
+    void criaOrcamento(Orcamento or);
     Integer findOrcamento(Integer os);
     void recusaOrcamento(Integer or);
 }

@@ -1,6 +1,6 @@
 package org.gsnt.auttech.model.dao.service;
 
-import org.gsnt.auttech.db.DB2;
+import org.gsnt.auttech.db.DBLocal;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.EmailDao;
 import org.gsnt.auttech.model.entities.entitiesgenerics.Email;
@@ -38,7 +38,7 @@ public class EmailService implements EmailDao {
            throw new DbException(e1.getMessage()+" EmailService - save ");
        }
        finally {
-           DB2.closeStatement(st);
+           DBLocal.closeStatement(st);
        }
 
     }

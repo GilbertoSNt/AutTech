@@ -6,8 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.gsnt.auttech.db.TesteConexao;
 import org.gsnt.auttech.model.dao.DaoFactory;
 import org.gsnt.auttech.model.dao.FuncionarioDao;
 import org.gsnt.auttech.model.dao.IniDAO;
@@ -22,6 +24,7 @@ public class LoginController implements Initializable {
 
     private FuncionarioDao func = DaoFactory.createFuncionarioDao();
     private LoginDAO log = DaoFactory.createloginDao();
+    private TesteConexao t = new TesteConexao();
 
     @FXML
     private Label lblEmpresa;
@@ -40,6 +43,20 @@ public class LoginController implements Initializable {
 
     @FXML
     private Button btCancel;
+
+    @FXML
+    private Label LblWeb;
+
+    @FXML
+    private Label LblBdLocal;
+
+    @FXML
+    private Label LblBdRemoto;
+
+    @FXML
+    private Label LblStRemoto;
+
+
 
     IniDAO ini = DaoFactory.createIniDao();
 
@@ -114,13 +131,43 @@ public class LoginController implements Initializable {
             }
         });
 
+        txtCNPJ.requestFocus();
+
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-      //  carregaCombo();
+        //  carregaCombo();
         tela();
+        if (t.testeInternet()) {
+            LblWeb.setText("OK");
+        } else {
+            LblWeb.setTextFill(Color.RED);
+            LblWeb.setText("Falhou");
+        }
+
+        if (t.testeDbLocal()) {
+            LblBdLocal.setText("OK");
+        } else {
+            LblBdLocal.setTextFill(Color.RED);
+            LblBdLocal.setText("Falhou");
+        }
+
+        if (t.testeDbOn()) {
+            LblBdRemoto.setText("OK");
+        } else {
+            LblBdRemoto.setTextFill(Color.RED);
+            LblBdRemoto.setText("Falhou");
+        }
+
+        if (t.testeDbSttOn()) {
+            LblStRemoto.setText("OK");
+        } else {
+            LblStRemoto.setTextFill(Color.RED);
+            LblStRemoto.setText("Falhou");
+        }
+
     }
 
     private void gravaCNPJ(){

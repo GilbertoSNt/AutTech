@@ -1,5 +1,5 @@
 package org.gsnt.auttech.model.dao.service;
-import org.gsnt.auttech.db.DB2;
+import org.gsnt.auttech.db.DBLocal;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.FuncionarioDao;
 import org.gsnt.auttech.model.entities.Funcionario;
@@ -54,7 +54,7 @@ public class FuncionarioService implements FuncionarioDao {
 				if (rs.next()) {
 					resultado = rs.getInt(1);
 				}
-				DB2.closeResultSet(rs);
+				DBLocal.closeResultSet(rs);
 			}
 
 			return resultado;
@@ -62,7 +62,7 @@ public class FuncionarioService implements FuncionarioDao {
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage() + " insert funcionarios");
 		} finally {
-			DB2.closeStatement(st);
+			DBLocal.closeStatement(st);
 		}
 
 	}
@@ -99,8 +99,8 @@ public class FuncionarioService implements FuncionarioDao {
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage() + " findByEspecialização");
 		} finally {
-			DB2.closeResultSet(rs);
-			DB2.closeStatement(st);
+			DBLocal.closeResultSet(rs);
+			DBLocal.closeStatement(st);
 		}
 
 		return retornoFunc;
@@ -134,7 +134,7 @@ public class FuncionarioService implements FuncionarioDao {
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage() + " alter funcionarios");
 		} finally {
-			DB2.closeStatement(st);
+			DBLocal.closeStatement(st);
 		}
 
 	}
@@ -160,8 +160,8 @@ public class FuncionarioService implements FuncionarioDao {
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage() + " FuncionarioService - findFuncByApelido");
 		} finally {
-			DB2.closeResultSet(rs);
-			DB2.closeStatement(st);
+			DBLocal.closeResultSet(rs);
+			DBLocal.closeStatement(st);
 		}
 
 	}
@@ -190,8 +190,8 @@ public class FuncionarioService implements FuncionarioDao {
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage() + " findFuncCombo por tipo");
 		} finally {
-			DB2.closeResultSet(rs);
-			DB2.closeStatement(st);
+			DBLocal.closeResultSet(rs);
+			DBLocal.closeStatement(st);
 		}
 
 		return retornoFunc;
