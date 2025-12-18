@@ -19,16 +19,14 @@ import org.gsnt.auttech.TelaPrincipal;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.*;
 import org.gsnt.auttech.model.dao.service.DirecionadosService;
-import org.gsnt.auttech.model.entities.Cliente;
-import org.gsnt.auttech.model.entities.Direcionados;
-import org.gsnt.auttech.model.entities.Funcionario;
-import org.gsnt.auttech.model.entities.StatusAtendimento;
+import org.gsnt.auttech.model.entities.*;
 import org.gsnt.auttech.util.Alerts;
 import org.gsnt.auttech.util.Botoes;
 import org.gsnt.auttech.util.ExceptionGenerics;
 import org.gsnt.auttech.util.MaskValid;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +40,13 @@ public class DirecionamentoController implements Initializable {
     private FuncionarioDao funcionarioServ =  DaoFactory.createFuncionarioDao();
     private DirecionadosDao dirService = DaoFactory.createDirecionadosDao();
 
+    private List<Direcionados> dir;
+    private Direcionados unico;
     private int codVeiculo = 0;
+    private int codOS = 0;
+
 
     private MaskValid mascara = new MaskValid();
-
     private List<Funcionario> caixa = new ArrayList<>();
     private List<Funcionario> freio = new ArrayList<>();
     private List<Funcionario> suspensao = new ArrayList<>();
@@ -56,7 +57,7 @@ public class DirecionamentoController implements Initializable {
     private List<Funcionario> alin = new ArrayList<>();
     private List<Funcionario> balan = new ArrayList<>();
     private List<Funcionario> trocaOleo = new ArrayList<>();
-
+    private List<Funcionario> todosFunc = new ArrayList<>();
 
     @FXML
     private TitledPane tp1;
@@ -67,13 +68,22 @@ public class DirecionamentoController implements Initializable {
     @FXML
     private TitledPane tp3;
 
-
     @FXML
     private Label lblVeiculo;
 
-
     @FXML
     private Button btGravar;
+
+
+    /**
+     * código do botão gravar
+     */
+    @FXML
+    private void onBtGravarButtonClick(){
+
+           encaminhamento();
+
+    }
 
     @FXML
     private Button btCancel;
@@ -85,7 +95,7 @@ public class DirecionamentoController implements Initializable {
     private Button btClose;
 
     @FXML
-    protected void onbtCloseButtonClick(){
+    private void onbtCloseButtonClick(){
         Stage stage = (Stage)btClose.getScene().getWindow();
         stage.close();
     }
@@ -118,7 +128,16 @@ public class DirecionamentoController implements Initializable {
     private CheckBox cbCaixa;
 
     @FXML
-    private CheckBox cbAlinBalan;
+    private CheckBox cbAlin;
+
+    @FXML
+    private CheckBox cbTudoMec;
+
+    @FXML
+    private CheckBox cbPneu;
+
+    @FXML
+    private ComboBox<Funcionario> cbxTudo;
 
     @FXML
     private ComboBox<Funcionario> cbxCaixa;
@@ -167,6 +186,7 @@ public class DirecionamentoController implements Initializable {
     public void preencheDadosDir(StatusAtendimento st){
 
         lblVeiculo.setText("Código O.S. - "+st.getCodOs()+" Placa - "+st.getPlaca()+" Modelo - "+st.getVeiculo());
+        codOS = st.getCodOs();
 
         if(st.getRevisao()>0){
             cbRevisao.setSelected(true);
@@ -190,7 +210,7 @@ public class DirecionamentoController implements Initializable {
             cbInjElet.setSelected(true);
         }
         if(st.getPneus()>0 || st.getAlinBalan()>0){
-            cbAlinBalan.setSelected(true);
+            cbAlin.setSelected(true);
         }
         if(st.getEletrico()>0){
             cbElet.setSelected(true);
@@ -203,6 +223,9 @@ public class DirecionamentoController implements Initializable {
     }
 
     private void preencheCombos(){
+
+        alin.add(new Funcionario(-1,"Não aplicar"));
+        balan.add(new Funcionario(-1,"Não aplicar"));
 
         List<Funcionario> funci = funcionarioServ.findByEspecializacao();
 
@@ -243,6 +266,7 @@ public class DirecionamentoController implements Initializable {
             if (funci.get(z).getTrocaOleo()) {
                 trocaOleo.add(new Funcionario(funci.get(z).getCod(),funci.get(z).getApelido()));
             }
+            todosFunc.add(new Funcionario(funci.get(z).getCod(),funci.get(z).getApelido()));
         }
 
         comboCaixa(caixa);
@@ -255,6 +279,7 @@ public class DirecionamentoController implements Initializable {
         comboAlin(alin);
         comboBalan(balan);
         combotrocaOleo(trocaOleo);
+        comboTodosProf(todosFunc);
 
     }
 
@@ -418,6 +443,22 @@ public class DirecionamentoController implements Initializable {
 
     }
 
+    private void comboTodosProf(List todos){
+
+        ObservableList obsComboTodosProf = FXCollections.observableList(todos);
+        cbxTudo.setItems(obsComboTodosProf);
+        Callback<ListView<Funcionario>, ListCell<Funcionario>> factoryTodos = lv -> new ListCell<Funcionario>(){
+            @Override
+            protected void updateItem(Funcionario funcionario10, boolean empty){
+                super.updateItem(funcionario10, empty);
+                setText(empty ?"":funcionario10.getApelido());
+            }
+        };
+        cbxTudo.setCellFactory(factoryTodos);
+        cbxTudo.setButtonCell(factoryTodos.call(null));
+
+    }
+
     private void initializeNodes(){
         try {
             tcMecNome.setCellValueFactory(new PropertyValueFactory<Direcionados, String>("apelido"));
@@ -526,7 +567,7 @@ public class DirecionamentoController implements Initializable {
         }else{
             cbxInjElet.setDisable(true);
         }
-        if(cbAlinBalan.isSelected() || cbRevisao.isSelected()){
+        if(cbAlin.isSelected() || cbRevisao.isSelected()){
             cbxBalan.setDisable(false);
             cbxAlin.setDisable(false);
             cbxPneu.setDisable(false);
@@ -537,8 +578,201 @@ public class DirecionamentoController implements Initializable {
         }
     }
 
+    /**
+     * coleta informações dos funcionários que foram selecionados e grava os dados
+     *
+     */
+    private void encaminhamento() {
+
+        dir = new ArrayList<>();
+
+        if (cbTudoMec.isSelected()) {
+
+            if(cbxTudo.getValue() == null) {
+                mensFaltaEnvio("Todos os serviços");
+            }
+            else{
+                unico = new Direcionados(cbxTudo.getValue().getCod(), 0, cbxTudo.getValue().getApelido());
+            }
 
 
+        } else {
+
+            if (cbTrcOleo.isSelected() || cbRevisao.isSelected() ) {
+
+                if(cbxTrocaOleo.getValue() == null){
+                    mensFaltaEnvio("Troca de óleo");
+                }else {
+                    dir.add(new Direcionados(cbxTrocaOleo.getValue().getCod(), 1, cbxTrocaOleo.getValue().getApelido()));
+                }
+
+            }else{
+                dir.add(new Direcionados(null, 1, null));
+            }
+
+            if (cbInjElet.isSelected() || cbRevisao.isSelected()) {
+
+                if(cbxInjElet.getValue() == null){
+                    mensFaltaEnvio("Injeção eletrônica");
+                }else{
+                    dir.add(new Direcionados(cbxInjElet.getValue().getCod(), 2, cbxInjElet.getValue().getApelido()));
+                }
+
+            }else{
+                dir.add(new Direcionados(null, 2, null));
+            }
+
+            if (cbElet.isSelected() || cbRevisao.isSelected()) {
+
+                if(cbxEletrico.getValue() == null){
+                    mensFaltaEnvio("Elétrico");
+                }else {
+                    dir.add(new Direcionados(cbxEletrico.getValue().getCod(), 3, cbxEletrico.getValue().getApelido()));
+                }
+
+            }else{
+                    dir.add(new Direcionados(null, 3, null));
+            }
+
+
+            if (cbCaixa.isSelected() || cbRevisao.isSelected()) {
+
+                if(cbxCaixa.getValue() == null){
+                    mensFaltaEnvio("Caixa");
+                }else {
+                    dir.add(new Direcionados(cbxCaixa.getValue().getCod(), 4, cbxCaixa.getValue().getApelido()));
+                }
+
+            }else{
+                dir.add(new Direcionados(null, 4, null));
+            }
+
+            if (cbSusp.isSelected() || cbRevisao.isSelected()) {
+
+                if(cbxSuspensao.getValue() == null){
+                    mensFaltaEnvio("Suspensão");
+                }else {
+                    dir.add(new Direcionados(cbxSuspensao.getValue().getCod(), 5, cbxSuspensao.getValue().getApelido()));
+                }
+
+            }else{
+                dir.add(new Direcionados(null, 5, null));
+            }
+
+            if (cbFreio.isSelected() || cbRevisao.isSelected()) {
+
+                if(cbxFreio.getValue() == null){
+                    mensFaltaEnvio("Freio");
+                }else {
+                    dir.add(new Direcionados(cbxFreio.getValue().getCod(), 6, cbxFreio.getValue().getApelido()));
+                }
+
+            }else{
+                dir.add(new Direcionados(null, 6, null));
+            }
+
+            if (cbMotor.isSelected() || cbRevisao.isSelected()) {
+
+                if(cbxMotor.getValue() == null){
+                    mensFaltaEnvio("Motor");
+                }else {
+                    dir.add(new Direcionados(cbxMotor.getValue().getCod(), 7, cbxMotor.getValue().getApelido()));
+                }
+
+
+            }else{
+                dir.add(new Direcionados(null, 7, null));
+            }
+
+            if (cbAlin.isSelected() || cbRevisao.isSelected()) {
+
+                if (cbxAlin.getValue().getCod() == null) {
+                    mensFaltaEnvio("Alinhamento");
+                }else if(cbxAlin.getValue().getCod() > -1){
+                    dir.add(new Direcionados(cbxAlin.getValue().getCod(), 8,cbxAlin.getValue().getApelido()));
+                }else if(cbxAlin.getValue().getCod() == -1){
+                    dir.add(new Direcionados(null, 8, null));
+                    System.out.println("aqui Alin");
+                }
+
+                if (cbxBalan.getValue().getCod() == null) {
+                    mensFaltaEnvio("Balanceamento");
+                }else if(cbxBalan.getValue().getCod() > -1){
+                    dir.add(new Direcionados(cbxBalan.getValue().getCod(), 9,cbxBalan.getValue().getApelido()));
+                }else if(cbxBalan.getValue().getCod() == -1){
+                    dir.add(new Direcionados(null, 9, null));
+                    System.out.println("aqui Balan");
+                }
+
+            }else{
+                dir.add(new Direcionados(null, 8, null));
+                dir.add(new Direcionados(null, 9, null));
+            }
+
+            if (cbPneu.isSelected() || cbRevisao.isSelected()) {
+
+                if (cbxPneu.getValue() == null) {
+                    mensFaltaEnvio("Pneus");
+                } else {
+                    dir.add(new Direcionados(cbxPneu.getValue().getCod(), 10, cbxPneu.getValue().getApelido()));
+                }
+
+            }else{
+                dir.add(new Direcionados(null, 10, null));
+            }
+
+        }
+
+        for(int a = 0; a>=dir.size();a++){
+
+            System.out.println(dir.get(a).getCod()+" "+dir.get(a).getTpSrvc()+" "+dir.get(a).getApelido());
+
+            //erro aqui
+            //acertar status publicos
+            //acertar status interno
+        }
+
+
+    }
+
+
+
+
+
+    /**
+     * Seleciona emcaminha do serviço para um unico profissional
+     */
+    @FXML
+    private void selUnico(){
+        if(cbTudoMec.isSelected()) {
+            cbxTudo.setDisable(false);
+            cbxAlin.setDisable(true);
+            cbxBalan.setDisable(true);
+            cbxEletrico.setDisable(true);
+            cbxInjElet.setDisable(true);
+            cbxCaixa.setDisable(true);
+            cbxFreio.setDisable(true);
+            cbxMotor.setDisable(true);
+            cbxTrocaOleo.setDisable(true);
+            cbxSuspensao.setDisable(true);
+
+        }else{
+            cbxTudo.setDisable(true);
+            check();
+        }
+
+    }
+
+    /**
+     * Mensagem que aparecerá se faltar algum serviço
+     * @param serv
+     */
+    private void mensFaltaEnvio(String serv){
+        Alerts.showAlert("Atenção","Você deve selecionar o profissional para o\n" +
+                " atendimento da espedialidade - "+serv,null, Alert.AlertType.CONFIRMATION);
+    }
+
+ //continuar trabalhando por aqui
 
 
     @Override

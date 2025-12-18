@@ -1,60 +1,27 @@
 
-2025-10-18 - 18:54:52.667408300 - ERROR: relation "tabagenda" does not exist
-  Posição: 15 findTelaPrincipal
-2025-10-18 - 18:54:52.669411200 - Tela principal - updateTableView ERROR: relation "tabagenda" does not exist
-  Posição: 15 findTelaPrincipal
-2025-10-18 - 18:54:52.669411200 - 
-/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/TelaPrincipal.fxml
- Erro no carregamento da tela de principal
-2025-10-18 - 18:54:52.670412300 - 
-/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/TelaPrincipal.fxml
- Erro no carregamento da tela de principal teste Db1/2 - Método main
-2025-11-04 - 21:32:01.137582200 - ERROR: column "cosos" of relation "tabor" does not exist
-  Posição: 55 Cria orçamento - OrçamentoService
-2025-11-04 - 21:32:01.139593300 - ERROR: column "cosos" of relation "tabor" does not exist
-  Posição: 55 Cria orçamento - OrçamentoService CriaOs - coletaDados
-2025-11-04 - 21:38:20.819996200 - ERROR: column "cosos" of relation "tabor" does not exist
-  Posição: 55 Cria orçamento - OrçamentoService
-2025-11-04 - 21:38:20.821236600 - ERROR: column "cosos" of relation "tabor" does not exist
-  Posição: 55 Cria orçamento - OrçamentoService CriaOs - coletaDados
-2025-11-04 - 21:43:59.349203900 - Cannot invoke "java.lang.Integer.intValue()" because the return value of "org.gsnt.auttech.model.entities.StatusAtendimento.getCodOs()" is null CriaOs - coletaDados
-2025-11-04 - 21:57:31.884635500 - Cannot invoke "java.lang.Integer.intValue()" because the return value of "org.gsnt.auttech.model.entities.StatusAtendimento.getCodOs()" is null CriaOs - coletaDados
-2025-11-04 - 21:59:02.496776700 - Cannot invoke "java.lang.Integer.intValue()" because the return value of "org.gsnt.auttech.model.entities.StatusAtendimento.getCodVeiculo()" is null CriaOs - coletaDados
-2025-11-04 - 22:04:26.109031200 - Cannot invoke "java.lang.Integer.intValue()" because the return value of "org.gsnt.auttech.model.entities.StatusAtendimento.getCodOrcamento()" is null CriaOs - coletaDados
-2025-11-17 - 21:41:08.198268400 - Classe Main - Sem conexão com o banco de dados local
-2025-11-17 - 21:42:45.104030300 - Classe Main - Sem conexão com o banco de dados local
-2025-11-17 - 21:55:10.746253300 - Classe Main - Sem conexão com o banco de dados local
-2025-11-17 - 22:03:44.980832700 - Classe Main - Sem conexão com o banco de dados local
-2025-11-17 - 22:06:55.230825100 - Classe Main - Sem conexão com o banco de dados local
-2025-11-17 - 22:07:34.291229200 - Classe Main - Sem conexão com o banco de dados local
-2025-11-17 - 22:15:17.326818100 - Classe Main - Sem conexão com o banco de dados local
-2025-11-17 - 22:23:20.665135800 - Classe Main - Sem conexão com o banco de dados local
-2025-11-17 - 22:27:07.437138800 - Classe Main - Sem conexão com o banco de dados local
-2025-11-17 - 22:28:41.945120900 - Classe Main - Sem conexão com o banco de dados local
-2025-11-17 - 22:30:48.171145600 - Classe Main - Sem conexão com o banco de dados local
-2025-11-17 - 22:31:27.198248400 - Classe Main - Sem conexão com o banco de dados local
-2025-11-17 - 22:32:54.376422800 - Classe Main - Sem conexão com o banco de dados local
-2025-11-17 - 22:34:05.934811400 - Classe Main - Sem conexão com o banco de dados local
-2025-11-17 - 22:35:53.013274100 - Classe Main - Sem conexão com o banco de dados local
-2025-11-17 - 22:39:02.440394500 - Classe Main - Sem conexão com o banco de dados local
-2025-11-18 - 22:07:43.179880 - null teste Db1/2 - Método main
-2025-11-18 - 22:17:19.736776700 - null teste Db1/2 - Método main
-2025-11-18 - 22:21:56.053885800 - Classe Main - Sem conexão com o banco de dados local
-2025-11-18 - 22:26:35.735474400 - Tela principal - updateTableView Cannot invoke "org.gsnt.auttech.model.dao.ModeloVeiculoDao.findModeloById(java.lang.Integer)" because "this.modelo" is null
-2025-11-18 - 22:26:35.742483900 - 
-/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/TelaPrincipal.fxml
- Erro no carregamento da tela de principal
-2025-11-18 - 22:26:35.746469500 - 
-/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/TelaPrincipal.fxml
- Erro no carregamento da tela de principal teste Db1/2 - Método main
-2025-11-18 - 23:24:03.448953800 - =org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
-2025-11-20 - 13:12:44.349194800 - No suitable driver found for "jdbc:postgresql://192.168.0.180:5432/bancostatuson" Erro no getConnection db1
-2025-11-20 - 13:14:36.308158500 - No suitable driver found for "jdbc:postgresql://192.168.0.180:5432/bancostatuson" Erro no getConnection db
-2025-11-20 - 15:29:52.049521400 - A tentativa de conexão falhou. Erro no getConnection db
-2025-11-20 - 15:30:53.746622200 - A tentativa de conexão falhou. Erro no getConnection db
-2025-11-20 - 15:33:09.707593100 - A tentativa de conexão falhou.
-2025-11-20 - 15:33:09.712598400 - A tentativa de conexão falhou.
-2025-11-20 - 15:33:09.718724300 - A tentativa de conexão falhou. Erro no getConnection db1
-2025-11-20 - 15:33:10.065117300 - A tentativa de conexão falhou.
-2025-11-20 - 15:33:10.067115200 - A tentativa de conexão falhou. Erro no getConnection db1
-2025-11-20 - 15:33:10.070119600 - A tentativa de conexão falhou. Erro no getConnection db
+2025-11-23 - 18:53:56.360131500 - Cannot invoke "org.gsnt.auttech.model.entities.StatusAtendimento.getCod()" because "st" is null TelaPrincipalController -  na função onbtDirecionaOS
+2025-12-04 - 22:12:25.275692700 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-04 - 22:12:35.282802400 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-04 - 22:12:45.335308900 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-04 - 22:12:56.121641600 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-04 - 22:13:06.140928100 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-04 - 22:24:50.113395100 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-04 - 22:24:50.118891900 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-04 - 22:24:50.125887100 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-04 - 22:24:50.730071200 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-04 - 22:24:50.734039 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-04 - 22:24:50.748536300 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-07 - 10:40:29.256278100 - Cannot invoke "org.gsnt.auttech.model.entities.Funcionario.getCod()" because the return value of "javafx.scene.control.ComboBox.getValue()" is null Mecanico não selecionado 
+2025-12-07 - 10:44:33.133842 - Cannot invoke "org.gsnt.auttech.model.entities.Funcionario.getCod()" because the return value of "javafx.scene.control.ComboBox.getValue()" is null Mecanico não selecionado 
+2025-12-07 - 10:46:24.816763900 - Cannot invoke "org.gsnt.auttech.model.entities.Funcionario.getCod()" because the return value of "javafx.scene.control.ComboBox.getValue()" is null Mecanico não selecionado 
+2025-12-09 - 23:36:47.866874200 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-09 - 23:36:57.871951900 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-09 - 23:37:07.879216200 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-09 - 23:37:18.451662300 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-09 - 23:37:28.454728900 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-09 - 23:37:38.497307 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-09 - 23:39:16.544177200 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-09 - 23:39:26.550473300 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-10 - 21:53:37.628240100 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-10 - 21:53:47.638908300 - A tentativa de conexão falhou. Erro no getConnection db
+2025-12-10 - 21:53:57.664756500 - A tentativa de conexão falhou. Erro no getConnection db

@@ -34,16 +34,17 @@
                   <CheckBox fx:id="cbInjElet" layoutX="518.0" layoutY="35.0" mnemonicParsing="false" onAction="#onCheck" text="Injeção eletrônica" />
                   <CheckBox fx:id="cbElet" layoutX="713.0" layoutY="35.0" mnemonicParsing="false" onAction="#onCheck" text="Elétrica" />
                   <CheckBox fx:id="cbCaixa" layoutX="885.0" layoutY="35.0" mnemonicParsing="false" onAction="#onCheck" text="Caixa" />
-                  <CheckBox fx:id="cbAlinBalan" layoutX="517.0" layoutY="63.0" mnemonicParsing="false" onAction="#onCheck" text="Alinhamento / Balanceamento / Pneus" />
+                  <CheckBox fx:id="cbAlin" layoutX="517.0" layoutY="63.0" mnemonicParsing="false" onAction="#onCheck" text="Alinhamento / Balancemanto" />
+                  <CheckBox fx:id="cbPneu" layoutX="713.0" layoutY="63.0" mnemonicParsing="false" text="Pneus" />
                </children>
             </AnchorPane>
-            <Button fx:id="btGravar" layoutX="15.0" layoutY="481.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Gravar" />
+            <Button fx:id="btGravar" layoutX="15.0" layoutY="481.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtGravarButtonClick" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Gravar" />
             <Button fx:id="btCancel" layoutX="137.0" layoutY="481.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCloseButtonClick" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Cancelar" />
             <Button fx:id="btFechar" layoutX="258.0" layoutY="481.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCloseButtonClick" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Fechar" />
             <Label fx:id="lblVeiculo" layoutX="73.0" layoutY="11.0" prefHeight="17.0" prefWidth="589.0" />
-            <ScrollPane layoutY="143.0" prefHeight="326.0" prefWidth="391.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="143.0">
+            <ScrollPane layoutY="143.0" prefHeight="272.0" prefWidth="391.0" AnchorPane.bottomAnchor="114.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="143.0">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="322.0" prefWidth="388.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="271.0" prefWidth="388.0">
                      <children>
                         <TableView fx:id="tvMecanico" layoutX="14.0" layoutY="6.0" prefHeight="348.0" prefWidth="388.0" stylesheets="@css/tableview.css" AnchorPane.bottomAnchor="-24.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columns>
@@ -69,8 +70,7 @@
                               <Label layoutX="24.2" layoutY="114.0" text="Motor" AnchorPane.leftAnchor="5.0" />
                               <ComboBox fx:id="cbxMotor" layoutX="24.2" layoutY="134.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" stylesheets="@css/combobox.css" AnchorPane.leftAnchor="5.0" />
                               <Label layoutX="319.0" layoutY="56.0" text="Suspensão" AnchorPane.leftAnchor="275.0" />
-                              <ComboBox fx:id="cbxSuspensao" layoutX="284.6" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" stylesheets="@css/combobox.css" AnchorPane.leftAnchor="275.0" />
-                              <CheckBox fx:id="cbTudoMec" layoutX="11.0" layoutY="211.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="321.0" text="Passar todo o serviço para um único mecânico" textOverrun="CENTER_WORD_ELLIPSIS" AnchorPane.leftAnchor="5.0" />
+                              <ComboBox fx:id="cbxSuspensao" layoutX="293.6" layoutY="79.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" stylesheets="@css/combobox.css" AnchorPane.leftAnchor="275.0" />
                               <Label layoutX="329.0" layoutY="8.0" text="Troca de óleo" AnchorPane.leftAnchor="275.0" />
                               <ComboBox fx:id="cbxTrocaOleo" layoutX="329.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" stylesheets="@css/combobox.css" AnchorPane.leftAnchor="275.0" />
                            </children>
@@ -99,13 +99,14 @@
                               <ComboBox fx:id="cbxAlin" layoutX="19.2" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" stylesheets="@css/combobox.css" AnchorPane.leftAnchor="0.0" />
                               <Label layoutX="14.0" layoutY="123.0" text="Balanceamento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="110.0" />
                               <ComboBox fx:id="cbxBalan" layoutX="14.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" stylesheets="@css/combobox.css" AnchorPane.leftAnchor="0.0" />
-                              <CheckBox fx:id="cbTudoMec1" layoutX="14.0" layoutY="213.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="321.0" text="Passar todo o serviço para um único mecânico" textOverrun="CENTER_WORD_ELLIPSIS" AnchorPane.leftAnchor="5.0" />
                            </children>
                         </AnchorPane>
                   </content>
                 </TitledPane>
               </panes>
             </Accordion>
+            <CheckBox fx:id="cbTudoMec" layoutX="600.0" layoutY="417.0" mnemonicParsing="false" onAction="#selUnico" prefHeight="25.0" prefWidth="321.0" text="Passar todo o serviço para um único mecânico" textOverrun="CENTER_WORD_ELLIPSIS" AnchorPane.leftAnchor="600.0" />
+            <ComboBox fx:id="cbxTudo" layoutX="600.0" layoutY="442.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" stylesheets="@css/combobox.css" />
          </children></AnchorPane>
       <Label layoutX="10.0" layoutY="10.0" text="Direcionar ordem de serviço" textFill="WHITE">
          <font>

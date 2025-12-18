@@ -168,36 +168,36 @@
                                       <columns>
                                         <TableColumn fx:id="tcData" prefWidth="75.0" text="Data">
                                              <columns>
-                                                <TableColumn fx:id="tcDia" prefWidth="65.0" style="-fx-alignment: center;" text="Dia" />
-                                              <TableColumn fx:id="tcHora" prefWidth="50.0" style="-fx-alignment: center;" text="Hora" />
+                                                <TableColumn fx:id="tcDia" editable="false" prefWidth="65.0" style="-fx-alignment: center;" text="Dia" />
+                                              <TableColumn fx:id="tcHora" editable="false" prefWidth="50.0" style="-fx-alignment: center;" text="Hora" />
                                              </columns></TableColumn>
-                                          <TableColumn fx:id="tcNome" prefWidth="155.0" text="Nome" />
-                                          <TableColumn fx:id="tcVeiculo" prefWidth="70.0" text="Veículo" />
-                                          <TableColumn fx:id="tcPlaca" prefWidth="75.0" text="Placa" />
+                                          <TableColumn fx:id="tcNome" editable="false" prefWidth="155.0" text="Nome" />
+                                          <TableColumn fx:id="tcVeiculo" editable="false" prefWidth="70.0" text="Veículo" />
+                                          <TableColumn fx:id="tcPlaca" editable="false" prefWidth="75.0" text="Placa" />
                                           <TableColumn prefWidth="170.0" text="Tipo Serviço">
                                              <columns>
-                                                <TableColumn fx:id="tcServElet" prefWidth="35.0" style="-fx-alignment: center;" text="E" />
-                                                <TableColumn fx:id="tcServInj" prefWidth="35.0" style="-fx-alignment: center;" text="I" />
-                                                <TableColumn fx:id="tcServMec" prefWidth="35.0" style="-fx-alignment: center;" text="M" />
-                                                <TableColumn fx:id="tcServOleo" prefWidth="35.0" style="-fx-alignment: center;" text="O" />
-                                                <TableColumn fx:id="tcServPneu" prefWidth="35.0" style="-fx-alignment: center;" text="P" />
-                                                <TableColumn fx:id="tcServRev" prefWidth="35.0" style="-fx-alignment: center;" text="R" />
+                                                <TableColumn fx:id="tcServElet" editable="false" prefWidth="35.0" style="-fx-alignment: center;" text="E" />
+                                                <TableColumn fx:id="tcServInj" editable="false" prefWidth="35.0" style="-fx-alignment: center;" text="I" />
+                                                <TableColumn fx:id="tcServMec" editable="false" prefWidth="35.0" style="-fx-alignment: center;" text="M" />
+                                                <TableColumn fx:id="tcServOleo" editable="false" prefWidth="35.0" style="-fx-alignment: center;" text="O" />
+                                                <TableColumn fx:id="tcServPneu" editable="false" prefWidth="35.0" style="-fx-alignment: center;" text="P" />
+                                                <TableColumn fx:id="tcServRev" editable="false" prefWidth="35.0" style="-fx-alignment: center;" text="R" />
                                              </columns>
                                           </TableColumn>
                                           <TableColumn fx:id="tcSocorro" prefWidth="195.0" text="Socorro">
                                              <columns>
-                                                <TableColumn fx:id="tcSocElet" prefWidth="60.0" style="-fx-alignment: center;" text="Elétrico" />
-                                                <TableColumn fx:id="tcGuincho" prefWidth="60.0" style="-fx-alignment: center;" text="Guincho" />
-                                                <TableColumn fx:id="tcSocMec" prefWidth="60.0" style="-fx-alignment: center;" text="Mecânico" />
+                                                <TableColumn fx:id="tcSocElet" editable="false" prefWidth="60.0" style="-fx-alignment: center;" text="Elétrico" />
+                                                <TableColumn fx:id="tcGuincho" editable="false" prefWidth="60.0" style="-fx-alignment: center;" text="Guincho" />
+                                                <TableColumn fx:id="tcSocMec" editable="false" prefWidth="60.0" style="-fx-alignment: center;" text="Mecânico" />
                                              </columns>
                                           </TableColumn>
                                           <TableColumn fx:id="tcDeslocamento" prefWidth="130.0" text="Desloc.">
                                              <columns>
-                                                <TableColumn fx:id="tcBuscar" prefWidth="45.0" style="-fx-alignment: center;" text="Buscar" />
-                                                <TableColumn fx:id="tcLevar" prefWidth="43.0" style="-fx-alignment: center;" text="Levar" />
+                                                <TableColumn fx:id="tcBuscar" editable="false" prefWidth="45.0" style="-fx-alignment: center;" text="Buscar" />
+                                                <TableColumn fx:id="tcLevar" editable="false" prefWidth="43.0" style="-fx-alignment: center;" text="Levar" />
                                              </columns>
                                           </TableColumn>
-                                          <TableColumn fx:id="tcStatus" prefWidth="47.0" style="-fx-alignment: center;" text="Status" />
+                                          <TableColumn fx:id="tcStatus" editable="false" prefWidth="47.0" style="-fx-alignment: center;" text="Status" />
                                       </columns>
                                     </TableView>
                                  </content>
@@ -225,37 +225,37 @@
                                  <content>
                                     <TableView fx:id="tvFuturos" prefHeight="333.0" prefWidth="940.0" stylesheets="@css/tableview.css">
                                        <columns>
-                                          <TableColumn fx:id="tcOs" prefWidth="100.0" text="Ordem Serviço" />
+                                          <TableColumn fx:id="tcOs" editable="false" prefWidth="100.0" text="Ordem Serviço" />
                                           <TableColumn fx:id="tcDdVeiculos" prefWidth="388.0" text="Dados Veículo">
                                              <columns>
-                                                <TableColumn fx:id="tcPlaca2" prefWidth="90.0" text="Placa" />
-                                                <TableColumn fx:id="tcModelo2" prefWidth="182.0" text="Modelo Veículo" />
+                                                <TableColumn fx:id="tcPlaca2" editable="false" prefWidth="90.0" text="Placa" />
+                                                <TableColumn fx:id="tcModelo2" editable="false" prefWidth="182.0" text="Modelo Veículo" />
                                              </columns></TableColumn>
                                           <TableColumn fx:id="tcTipoServico" prefWidth="75.0" text="Tipo de serviço">
                                              <columns>
-                                                <TableColumn fx:id="tcElet2" prefWidth="60.0" style="-fx-alignment: center;" text="Elétrico" />
-                                                <TableColumn fx:id="tcInj2" prefWidth="60.0" style="-fx-alignment: center;" text="Inj. Elet." />
+                                                <TableColumn fx:id="tcElet2" editable="false" prefWidth="60.0" style="-fx-alignment: center;" text="Elétrico" />
+                                                <TableColumn fx:id="tcInj2" editable="false" prefWidth="60.0" style="-fx-alignment: center;" text="Inj. Elet." />
                                                 <TableColumn fx:id="tcMec2" prefWidth="75.0" text="Mecânica">
                                                    <columns>
-                                                      <TableColumn fx:id="tcCambio2" prefWidth="60.0" text="Câmbio" />
+                                                      <TableColumn fx:id="tcCambio2" editable="false" prefWidth="60.0" text="Câmbio" />
                                                       <TableColumn fx:id="tcFreio2" prefWidth="50.0" text="Freio">
                                                          <columns>
-                                                            <TableColumn fx:id="tcFreioDt" prefWidth="36.0" style="-fx-alignment: center;" text="D" />
-                                                            <TableColumn fx:id="tcFreioTr" prefWidth="36.0" style="-fx-alignment: center;" text="T" />
+                                                            <TableColumn fx:id="tcFreioDt" editable="false" prefWidth="36.0" style="-fx-alignment: center;" text="D" />
+                                                            <TableColumn fx:id="tcFreioTr" editable="false" prefWidth="36.0" style="-fx-alignment: center;" text="T" />
                                                          </columns>
                                                       </TableColumn>
-                                                      <TableColumn fx:id="tcMotor2" prefWidth="60.0" style="-fx-alignment: center;" text="Motor" />
-                                                      <TableColumn fx:id="tcRevisao2" prefWidth="50.0" style="-fx-alignment: center;" text="Revisão" />
+                                                      <TableColumn fx:id="tcMotor2" editable="false" prefWidth="60.0" style="-fx-alignment: center;" text="Motor" />
+                                                      <TableColumn fx:id="tcRevisao2" editable="false" prefWidth="50.0" style="-fx-alignment: center;" text="Revisão" />
                                                       <TableColumn fx:id="tcSuspensao2" prefWidth="72.0" text="Suspensão">
                                                          <columns>
-                                                            <TableColumn fx:id="tcSuspDiant" prefWidth="36.0" style="-fx-alignment: center;" text="D" />
-                                                            <TableColumn fx:id="tcSuspTras" prefWidth="36.0" style="-fx-alignment: center;" text="T" />
+                                                            <TableColumn fx:id="tcSuspDiant" editable="false" prefWidth="36.0" style="-fx-alignment: center;" text="D" />
+                                                            <TableColumn fx:id="tcSuspTras" editable="false" prefWidth="36.0" style="-fx-alignment: center;" text="T" />
                                                          </columns>
                                                       </TableColumn>
                                                    </columns>
                                                 </TableColumn>
-                                                <TableColumn fx:id="tcPneus2" prefWidth="60.0" style="-fx-alignment: center;" text="Pneus" />
-                                                <TableColumn fx:id="tcOleo2" prefWidth="60.0" style="-fx-alignment: center;" text="Tr. Óleo" />
+                                                <TableColumn fx:id="tcPneus2" editable="false" prefWidth="60.0" sortable="false" style="-fx-alignment: center;" text="Pneus" />
+                                                <TableColumn fx:id="tcOleo2" editable="false" prefWidth="60.0" style="-fx-alignment: center;" text="Tr. Óleo" />
                                              </columns>
                                           </TableColumn>
                                        </columns>
@@ -289,20 +289,20 @@
                                  <content>
                                     <TableView fx:id="tvEmOrcamento" prefHeight="333.0" prefWidth="940.0" stylesheets="@css/tableview.css">
                                        <columns>
-                                          <TableColumn fx:id="tcPlaca3" prefWidth="90.0" text="Placa" />
-                                          <TableColumn fx:id="tcVeiculo3" prefWidth="194.0" text="Modelo veículo" />
+                                          <TableColumn fx:id="tcPlaca3" editable="false" prefWidth="90.0" text="Placa" />
+                                          <TableColumn fx:id="tcVeiculo3" editable="false" prefWidth="194.0" text="Modelo veículo" />
                                           <TableColumn fx:id="tcStatus2" prefWidth="278.0" text="Status da analise">
                                              <columns>
-                                                <TableColumn fx:id="tcCambio3" prefWidth="75.0" style="-fx-alignment: center;" text="Câmbio" />
-                                                <TableColumn fx:id="tcElet3" prefWidth="75.0" style="-fx-alignment: center;" text="Elétrico" />
-                                                <TableColumn fx:id="tcMotor3" prefWidth="75.0" style="-fx-alignment: center;" text="Motor" />
-                                                <TableColumn fx:id="tcInjecao3" prefWidth="75.0" style="-fx-alignment: center;" text="Injeção" />
-                                                <TableColumn fx:id="tcMecanica3" prefWidth="75.0" style="-fx-alignment: center;" text="Mecânica" />
-                                                <TableColumn fx:id="tcPneus3" prefWidth="75.0" style="-fx-alignment: center;" text="Pneus" />
+                                                <TableColumn fx:id="tcCambio3" editable="false" prefWidth="75.0" style="-fx-alignment: center;" text="Câmbio" />
+                                                <TableColumn fx:id="tcElet3" editable="false" prefWidth="75.0" style="-fx-alignment: center;" text="Elétrico" />
+                                                <TableColumn fx:id="tcMotor3" editable="false" prefWidth="75.0" style="-fx-alignment: center;" text="Motor" />
+                                                <TableColumn fx:id="tcInjecao3" editable="false" prefWidth="75.0" style="-fx-alignment: center;" text="Injeção" />
+                                                <TableColumn fx:id="tcMecanica3" editable="false" prefWidth="75.0" style="-fx-alignment: center;" text="Mecânica" />
+                                                <TableColumn fx:id="tcPneus3" editable="false" prefWidth="75.0" style="-fx-alignment: center;" text="Pneus" />
                                              </columns>
                                           </TableColumn>
-                                          <TableColumn fx:id="tcAguardAvaliacao" prefWidth="75.0" style="-fx-alignment: center;" text="Mont. Orç." />
-                                          <TableColumn fx:id="tcStatusCliente" prefWidth="130.0" style="-fx-alignment: center;" text="Status cliente" />
+                                          <TableColumn fx:id="tcAguardAvaliacao" editable="false" prefWidth="75.0" style="-fx-alignment: center;" text="Mont. Orç." />
+                                          <TableColumn fx:id="tcStatusCliente" editable="false" prefWidth="130.0" style="-fx-alignment: center;" text="Status cliente" />
                                        </columns>
                                     </TableView>
                                  </content>
@@ -338,17 +338,17 @@
                                  <content>
                                     <TableView fx:id="tvServicos" prefHeight="333.0" prefWidth="940.0" stylesheets="@css/tableview.css">
                                        <columns>
-                                          <TableColumn fx:id="tcPlaca4" prefWidth="90.0" text="Placa" />
-                                          <TableColumn fx:id="tcVeiculo4" prefWidth="194.0" text="Modelo veículo" />
+                                          <TableColumn fx:id="tcPlaca4" editable="false" prefWidth="90.0" text="Placa" />
+                                          <TableColumn fx:id="tcVeiculo4" editable="false" prefWidth="194.0" text="Modelo veículo" />
                                           <TableColumn fx:id="tcStatus4" prefWidth="656.0" text="Status do serviço">
                                              <columns>
-                                                <TableColumn fx:id="tcCambio4" prefWidth="93.0" style="-fx-alignment: center;" text="Câmbio" />
-                                                <TableColumn fx:id="tcElet4" prefWidth="93.0" style="-fx-alignment: center;" text="Elétrico" />
-                                                <TableColumn fx:id="tcInjecao4" prefWidth="93.0" style="-fx-alignment: center;" text="Injeção" />
-                                                <TableColumn fx:id="tcMecanica4" prefWidth="93.0" style="-fx-alignment: center;" text="Mecânica" />
-                                                <TableColumn fx:id="tcMotor4" prefWidth="93.0" style="-fx-alignment: center;" text="Motor" />
-                                                <TableColumn fx:id="tcPneus4" prefWidth="93.0" style="-fx-alignment: center;" text="Pneus" />
-                                                <TableColumn fx:id="tcLavacao4" prefWidth="93.0" style="-fx-alignment: center;" text="Lavação" />
+                                                <TableColumn fx:id="tcCambio4" editable="false" prefWidth="93.0" style="-fx-alignment: center;" text="Câmbio" />
+                                                <TableColumn fx:id="tcElet4" editable="false" prefWidth="93.0" style="-fx-alignment: center;" text="Elétrico" />
+                                                <TableColumn fx:id="tcInjecao4" editable="false" prefWidth="93.0" style="-fx-alignment: center;" text="Injeção" />
+                                                <TableColumn fx:id="tcMecanica4" editable="false" prefWidth="93.0" style="-fx-alignment: center;" text="Mecânica" />
+                                                <TableColumn fx:id="tcMotor4" editable="false" prefWidth="93.0" style="-fx-alignment: center;" text="Motor" />
+                                                <TableColumn fx:id="tcPneus4" editable="false" prefWidth="93.0" style="-fx-alignment: center;" text="Pneus" />
+                                                <TableColumn fx:id="tcLavacao4" editable="false" prefWidth="93.0" style="-fx-alignment: center;" text="Lavação" />
                                              </columns>
                                           </TableColumn>
                                        </columns>
@@ -378,11 +378,11 @@
                                  <content>
                                     <TableView fx:id="tvProntos" prefHeight="333.0" prefWidth="940.0" stylesheets="@css/tableview.css">
                                        <columns>
-                                          <TableColumn fx:id="tcPlaca5" prefWidth="90.0" text="Placa" />
-                                          <TableColumn fx:id="tcVeiculo5" prefWidth="120.0" text="Modelo veículo" />
-                                          <TableColumn fx:id="tcCliente5" prefWidth="350.0" text="Cliente" />
-                                          <TableColumn fx:id="tcTelefone5" prefWidth="120.0" text="Telefone" />
-                                          <TableColumn fx:id="tcStatus5" prefWidth="258.0" style="-fx-alignment: center;" text="Status aviso" />
+                                          <TableColumn fx:id="tcPlaca5" editable="false" prefWidth="90.0" text="Placa" />
+                                          <TableColumn fx:id="tcVeiculo5" editable="false" prefWidth="120.0" text="Modelo veículo" />
+                                          <TableColumn fx:id="tcCliente5" editable="false" prefWidth="350.0" text="Cliente" />
+                                          <TableColumn fx:id="tcTelefone5" editable="false" prefWidth="120.0" text="Telefone" />
+                                          <TableColumn fx:id="tcStatus5" editable="false" prefWidth="258.0" style="-fx-alignment: center;" text="Status aviso" />
                                        </columns>
                                     </TableView>
                                  </content>

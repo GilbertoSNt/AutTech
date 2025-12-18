@@ -1,10 +1,12 @@
 package org.gsnt.auttech.model.dao.service;
 
+import org.gsnt.auttech.TelaPrincipal;
 import org.gsnt.auttech.db.DBLocal;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.DaoFactory;
 import org.gsnt.auttech.model.dao.ModeloVeiculoDao;
 import org.gsnt.auttech.model.dao.StatusAtendimentoDao;
+import org.gsnt.auttech.model.entities.Cliente;
 import org.gsnt.auttech.model.entities.OrdemServico;
 import org.gsnt.auttech.model.entities.StatusAtendimento;
 import org.gsnt.auttech.util.Circulos;
@@ -17,12 +19,34 @@ import java.util.List;
 public class StatusAtendimentoService implements StatusAtendimentoDao {
 
     private final Connection conn;
+    private final Connection connExt;
     private Circulos cir = new Circulos();
     private final ModeloVeiculoDao modelo = DaoFactory.createModeloVeiculoDao();
     private Utils ut = new Utils();
 
-    public StatusAtendimentoService(Connection conn){
+    private String inicialOnLineStatus = "INSERT INTO public.tbtstgrlpblc(cpfcnpjfornecedor, cpfcnpjcliente, " +
+            "os, placa, datainicio, datainiorc, horainiorc," +
+            "alin, stalin, dtalinenvio, hralinenvio, dtalinaceite, hralinaceite, dtalinini, " +
+            "hralinini, dtalinfim, hralinfim, caixa, stcaixa, dtcaixaenvio, hrcaixaenvio, dtcaixaaceite, " +
+            "hrcaixaaceite, dtcaixaini, hrcaixaini, dtcaixafim, hrcaixafim, eletrico, steletrico, dteletenvio, " +
+            "hreletenvio, dteletaceite, hreletaceite, dteletini, hreletini, dteletfim, hreletfim, freio, stfreio, " +
+            "dtfreioenvio, hrfreioenvio, dtfreioaceite, hrfreioaceite, dtfreioini, hrfreioini, dtfreiofim, " +
+            "hrfreiofim, injelet, stinjelet, dtinjenvio, hrinjenvio, dtinjaceite, hrinjaceite, dtinjini, hrinjini, " +
+            "dtinjfim, hrinjfim, motor, stmotor, dtmotenvio, hrmotenvio, dtmotaceite, hrmotaceite, dtmotini, " +
+            "hrmotini, dtmotfim, hrmotfim, pneu, stpneu, dtpneuenvio, hrpneuenvio, dtpneuaceite, hrpneuaceite, " +
+            "dtpneuini, hrpneuini, dtpneufim, hrpneufim, suspensao, stsuspensao, dtsuspenvio, hrsuspenvio, " +
+            "dtsuspaceite, hrsuspaceite, dtsuspini, hrsuspini, dtsuspfim, hrsuspfim, trcoleo, sttrcoleo, " +
+            "dttrcoleoenvio, hrtrcoleoenvio, dttrcoleoaceite, hrtrcoleoaceite, dttrcoleoini, hrtrcoleoini, " +
+            "dttrcoleofim, hrtrcoleofim, aviso, staviso, dtaviso, hraviso, dtultimo, hrultimo, hrinicio, ativo) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " +
+            "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " +
+            "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " +
+            "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    public StatusAtendimentoService(Connection conn, Connection connExt){
+
         this.conn = conn;
+        this.connExt = connExt;
     }
 
 
@@ -571,6 +595,12 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
         return sta;
     }
 
+
+    @Override
+    public Boolean alteraStatus(String st) {
+        return null;
+    }
+
     /**
      * Organiza status inicial no banco externo
      * @param os1 Ordem de serviço
@@ -695,7 +725,13 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
         return sa;
     }
 
-    private void stUnico(String cnpj, Integer os, String prof, byte tipoServ, int stt, byte tipotempo ){
+
+
+    // aqui comença a trabalhar com o status externo
+
+
+
+    public void stUnico(String cnpj, Integer os, String prof, byte tipoServ, int stt, byte tipotempo ){
 
         String campoEspNome = "";
         String campohora = "";
@@ -761,19 +797,19 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
 
         String sql_int_envio = "UPDATE public.tbtstgrlpblc " +
                     "SET "+campoEspNome+"=?, "+campoEspStatus+"=?, "+campoData+"envio =?, "+campohora+"envio=?,  dtultimo=?, hrultimo=?, " +
-                    "WHERE  os= ? ";
+                    "WHERE  os= ?, cpfcnpjfornecedor - ?";
 
         String sql_int_aceite = "UPDATE public.tbtstgrlpblc " +
                 "SET "+campoEspNome+"=?, "+campoEspStatus+"=?, "+campoData+"+aceite=?, "+campohora+"aceite=?, dtultimo=?, hrultimo=?, " +
-                "WHERE  os= ? ";
+                "WHERE  os= ?, cpfcnpjfornecedor - ?";
 
         String sql_int_inicio = "UPDATE public.tbtstgrlpblc " +
                 "SET "+campoEspNome+"=?, "+campoEspStatus+"=?, "+campoData+"+ini=?, "+campohora+"ini=?, dtultimo=?, hrultimo=?, " +
-                "WHERE  os= ? ";
+                "WHERE  os= ?, cpfcnpjfornecedor - ?";
 
         String sql_int_fim = "UPDATE public.tbtstgrlpblc " +
                 "SET "+campoEspNome+"=?, "+campoEspStatus+"=?, "+campoData+"+fim=?, "+campohora+"fim=?, dtultimo=?, hrultimo=?, " +
-                "WHERE  os= ? ";
+                "WHERE  os= ?, cpfcnpjfornecedor - ?";
 
         String sql = "";
         switch (tipotempo){
@@ -794,7 +830,7 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
 
         PreparedStatement st = null;
         try{
-            st = conn.prepareStatement(sql);
+            st = connExt.prepareStatement(sql);
 
             st.setString(1,prof);
             st.setInt(2, stt);
@@ -802,8 +838,9 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
             st.setTime(4, ut.returnSystemTimeBanco());
             st.setDate(5, ut.returnSystemDateBanco());
             st.setTime(6, ut.returnSystemTimeBanco());
-
-            st.setInt(7,os);
+44
+            st.setInt(7, os);
+            st.setString(8, cnpj);
 
             st.executeUpdate();
 
@@ -822,6 +859,55 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
         // alin - caixa - eletrico - freio - inj - motor - pneu - suspensao - trcoleo - aviso
     }
 
+
+
+    /**
+     * inicia o registro quando é gravada a Ordem de serviço
+     * @param st StatusAtendimento
+     * @param os OrdemServiço
+     * @param cl id do Cliente
+     * @return
+     */
+    @Override
+    public Boolean statusOnLineInicial(StatusAtendimento st, OrdemServico os, String cliente) {
+
+        Date data = ut.returnSystemDateBanco();
+        Time hora = ut.returnSystemTimeBanco();
+        //  erro aqui
+
+        PreparedStatement stExt = null;
+        try{
+            stExt = connExt.prepareStatement(inicialOnLineStatus, Statement.RETURN_GENERATED_KEYS);
+
+            stExt.setString(1, TelaPrincipal.getId());
+            stExt.setString(2, cliente);
+            stExt.setInt(3, os.getNumero());
+            stExt.setString(4,os.getPlaca());
+            stExt.setDate(5,data);
+            stExt.setDate(6,data);
+            stExt.setTime(7,hora);
+
+
+
+
+            stExt.setTime(,hora);
+
+
+
+
+        }
+        catch (SQLException e){
+            throw new DbException(e.getMessage()+" StatusAtendiemntoService - stgeralunico");
+        }
+        finally {
+
+            DBLocal.closeStatement(stExt);
+        }
+
+
+
+        return null;
+    }
 
 }
 

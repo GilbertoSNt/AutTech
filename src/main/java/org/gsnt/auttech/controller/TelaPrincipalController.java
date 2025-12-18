@@ -395,14 +395,19 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     private void onbtDirecionaOS(){
 
-        try {
-            loadView("/org/gsnt/auttech/Direcionamento.fxml", (DirecionamentoController dirCont) -> {
-                StatusAtendimento st =  (StatusAtendimento) tvFuturos.getSelectionModel().getSelectedItem();
-                dirCont.preencheDadosDir(stAtendimento.stGeralUnico(st.getCod()));
-            });
-        }catch (Exception e){
-            throw new DbException(e.getMessage()+" TelaPrincipalController -  na função onbtDirecionaOS");
+        if(tvFuturos.getSelectionModel().getSelectedItem() != null) {
+            try {
+                loadView("/org/gsnt/auttech/Direcionamento.fxml", (DirecionamentoController dirCont) -> {
+                    StatusAtendimento st = (StatusAtendimento) tvFuturos.getSelectionModel().getSelectedItem();
+                    dirCont.preencheDadosDir(stAtendimento.stGeralUnico(st.getCod()));
+                });
+            } catch (Exception e) {
+                throw new DbException(e.getMessage() + " TelaPrincipalController -  na função onbtDirecionaOS");
+            }
+        }else{
+            Alerts.showAlert("Direcionar atendimento", "Você deve selecionar uma linha na tabela OS", null, Alert.AlertType.INFORMATION);
         }
+
     }
 
 

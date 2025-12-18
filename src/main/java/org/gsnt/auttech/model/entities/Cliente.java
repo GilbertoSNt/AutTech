@@ -10,7 +10,8 @@ public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Cliente(){};
+    public Cliente(){}
+
 
     public Cliente(int cod, String nome, String apelido){
 
@@ -68,9 +69,7 @@ public class Cliente implements Serializable {
     private Boolean perfil;
     private Boolean status;
     private CPF cpf1;
-
-
-
+    private String cpfcnpj;
 
 
 
@@ -180,5 +179,13 @@ public class Cliente implements Serializable {
 
     public void setCpf1(CPF cpf1) {
         this.cpf1 = cpf1;
+    }
+
+    public String getCpfcnpj() {
+        return cpfcnpj;
+    }
+
+    public void setCpfcnpj(String cpfcnpj) {
+        this.cpfcnpj = cpfcnpj;
     }
 }

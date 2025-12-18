@@ -31,11 +31,11 @@ public class DBLocal {
         if (connLc == null) {
             try {
 
-                Class.forName(propertiesLc.getProperty("db1.driver"));
+                Class.forName(propertiesLc.getProperty("db2.driver"));
                 return DriverManager.getConnection(
-                        propertiesLc.getProperty("db1.url"),
-                        propertiesLc.getProperty("db1.username"),
-                        propertiesLc.getProperty("db1.password")
+                        propertiesLc.getProperty("db2.url"),
+                        propertiesLc.getProperty("db2.username"),
+                        propertiesLc.getProperty("db2.password")
                 );
 
             }

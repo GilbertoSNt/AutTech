@@ -113,4 +113,12 @@ public class DirecionadosService implements DirecionadosDao {
         return drc;
 
     }
+
+    @Override
+    public List<String> envio(List<String> enviados) {
+
+        return List.of();
+    }
+
+
 }

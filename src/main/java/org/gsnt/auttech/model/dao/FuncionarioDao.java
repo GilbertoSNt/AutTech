@@ -14,4 +14,5 @@ public interface FuncionarioDao {
     List<Funcionario> findFuncCombo(int tipo,int tipo2);
 
 
+
 }

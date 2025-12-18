@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.gsnt.auttech.TelaPrincipal;
 import org.gsnt.auttech.db.TesteConexao;
 import org.gsnt.auttech.model.dao.DaoFactory;
 import org.gsnt.auttech.model.dao.FuncionarioDao;
@@ -67,7 +68,9 @@ public class LoginController implements Initializable {
 
             if(pfSenha.getText().equals("admin")) {
                 Usuario.setUser("Admin");
+                TelaPrincipal.setId(txtCNPJ.getText());
                 close(btAcesso);
+
             }
         }else {
             verificaEmpresa();
@@ -136,10 +139,7 @@ public class LoginController implements Initializable {
     }
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        //  carregaCombo();
-        tela();
+    private void testes(){
         if (t.testeInternet()) {
             LblWeb.setText("OK");
         } else {
@@ -167,6 +167,15 @@ public class LoginController implements Initializable {
             LblStRemoto.setTextFill(Color.RED);
             LblStRemoto.setText("Falhou");
         }
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //  carregaCombo();
+        tela();
+        testes();
+
 
     }
 

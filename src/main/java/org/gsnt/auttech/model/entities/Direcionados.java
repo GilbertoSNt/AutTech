@@ -9,12 +9,24 @@ public class Direcionados {
     private String tmpPrvst; //tempo Previsto
     private Integer rdmTndmnt; //ordem atendimento
     private Integer qtdtndmnt; //quantidade atendimento
+    private Integer tpSrvc; // tipo serviço
+
 
 
     public Direcionados(String apelido, Integer qtdtndmnt) {
 
         this.apelido = apelido;
         this.qtdtndmnt = qtdtndmnt;
+
+    }
+
+    public Direcionados(Integer funcionario,Integer tpSrvc,String apelido) {
+
+
+        this.funcionario = funcionario;
+        this.tpSrvc = tpSrvc;
+        this.apelido = apelido;
+
 
     }
 
@@ -25,6 +37,8 @@ public class Direcionados {
         this.rdmTndmnt = rdmTndmnt;
 
     }
+
+
 
 
     public Integer getCod() {
@@ -82,4 +96,8 @@ public class Direcionados {
     public void setQtdtndmnt(Integer qtdtndmnt) {
         this.qtdtndmnt = qtdtndmnt;
     }
+
+    public Integer getTpSrvc() { return tpSrvc; }
+
+    public void setTpSrvc(Integer tpSrvc) { this.tpSrvc = tpSrvc; }
 }

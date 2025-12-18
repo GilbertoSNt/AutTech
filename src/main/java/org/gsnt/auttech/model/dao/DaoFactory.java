@@ -3,6 +3,7 @@ package org.gsnt.auttech.model.dao;
 
 import org.gsnt.auttech.db.DBOn;
 import org.gsnt.auttech.db.DBLocal;
+import org.gsnt.auttech.db.DBSttOn;
 import org.gsnt.auttech.model.dao.service.*;
 
 
@@ -134,7 +135,7 @@ public class DaoFactory {
 
     public static StatusAtendimentoDao createStatusAtendimentoDao() {
         try {
-            return new StatusAtendimentoService(DBLocal.getConnection()) {
+            return new StatusAtendimentoService(DBLocal.getConnection(), DBSttOn.getConnection()) {
             };
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());

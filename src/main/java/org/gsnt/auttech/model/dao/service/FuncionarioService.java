@@ -196,15 +196,8 @@ public class FuncionarioService implements FuncionarioDao {
 
 		return retornoFunc;
 	}
-/*
-	private Funcionario mapFuncionario(ResultSet rs){
-		try{
 
-		}catch (SQLException e){
-			throw new DbException(e.getMessage() + " função mapFuncionario");
-		}
-	}
- */
+
 
 	private void setFuncionarioParams(PreparedStatement st, Funcionario f){
 

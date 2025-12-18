@@ -492,7 +492,6 @@ ALTER TABLE IF EXISTS public.tabfuncionario
 /* >>>> Tabela status atendimento <<<< */
 
 
-
 CREATE SEQUENCE IF NOT EXISTS public.sqcodstatusatendimento
     INCREMENT 1
     START 1

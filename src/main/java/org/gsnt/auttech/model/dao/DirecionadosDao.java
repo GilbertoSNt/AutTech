@@ -11,5 +11,7 @@ public interface DirecionadosDao {
     Boolean editDirecionados(Integer cod);
     List<Direcionados> listaServico();
     List<Direcionados> listaServPorFuncionarios(Integer cod);
+    List<String> envio(List<String> enviados);
+
 
 }

@@ -334,6 +334,7 @@ public class AgendaController implements Initializable {
      */
     public void preencheDados(String placa){
 
+        tipoTela = 1;
         this.placaTela = placa;
         Agenda dados = agendaService.findByPlacaData(placa);
         lblNumAgenda.setVisible(true);
