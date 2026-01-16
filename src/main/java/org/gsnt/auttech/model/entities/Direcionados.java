@@ -1,5 +1,8 @@
 package org.gsnt.auttech.model.entities;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
 public class Direcionados {
 
     private Integer cod;
@@ -10,8 +13,7 @@ public class Direcionados {
     private Integer rdmTndmnt; //ordem atendimento
     private Integer qtdtndmnt; //quantidade atendimento
     private Integer tpSrvc; // tipo serviço
-
-
+    private BooleanProperty aceito;
 
     public Direcionados(String apelido, Integer qtdtndmnt) {
 
@@ -22,24 +24,20 @@ public class Direcionados {
 
     public Direcionados(Integer funcionario,Integer tpSrvc,String apelido) {
 
-
         this.funcionario = funcionario;
         this.tpSrvc = tpSrvc;
         this.apelido = apelido;
 
-
     }
 
-    public Direcionados(String placa, String tmpPrvst, Integer rdmTndmnt) {
+    public Direcionados(String placa, String tmpPrvst, Integer rdmTndmnt, Boolean aceito) {
 
         this.placa = placa;
         this.tmpPrvst = tmpPrvst;
         this.rdmTndmnt = rdmTndmnt;
+        this.aceito = new SimpleBooleanProperty(aceito);
 
     }
-
-
-
 
     public Integer getCod() {
         return cod;
@@ -100,4 +98,18 @@ public class Direcionados {
     public Integer getTpSrvc() { return tpSrvc; }
 
     public void setTpSrvc(Integer tpSrvc) { this.tpSrvc = tpSrvc; }
+
+
+
+    public BooleanProperty aceitoProperty(){
+        return aceito;
+    }
+
+    public Boolean isAceito() {
+        return aceito.get();
+    }
+
+    public void setAceito(Boolean aceito) {
+        this.aceito.set(aceito);;
+    }
 }

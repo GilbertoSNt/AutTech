@@ -143,9 +143,9 @@ public class DaoFactory {
         }
     }
 
-    public static DirecionadosDao createDirecionadosDao(){
+    public static ProfServDao createDirecionadosDao(){
         try {
-            return new DirecionadosService(DBLocal.getConnection()) {};
+            return new ProfServService(DBLocal.getConnection()) {};
         }
         catch (RuntimeException e){
             System.out.println(e.getMessage());

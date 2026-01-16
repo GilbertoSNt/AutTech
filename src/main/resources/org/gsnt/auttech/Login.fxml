@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,7 +13,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" style="-fx-background-color: #001724;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.controller.LoginController">
    <children>
-      <TextField fx:id="txtCNPJ" layoutX="122.0" layoutY="384.0" prefHeight="25.0" prefWidth="200.0" />
+      <RadioButton fx:id="RbCnpj" layoutX="126.0" layoutY="389.0" mnemonicParsing="false" onAction="#RbCnpjOnAcion" text="CNPJ" textFill="WHITE" />
+      <RadioButton fx:id="RbCpf" layoutX="190.0" layoutY="388.0" mnemonicParsing="false" onAction="#RbCpfOnAcion" text="CPF" textFill="WHITE" />
+      <TextField fx:id="txtCNPJ" layoutX="427.0" layoutY="384.0" prefHeight="25.0" prefWidth="200.0" />
       <Label layoutX="28.0" layoutY="423.0" text="Usuário - " textFill="WHITE" AnchorPane.leftAnchor="28.0">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -33,7 +36,7 @@
             <Image url="@icones/AuttechLogo.png" />
          </image>
       </ImageView>
-      <Label layoutX="29.0" layoutY="383.0" text="CNPJ -" textFill="WHITE" AnchorPane.leftAnchor="28.0">
+      <Label fx:id="LbTipo" layoutX="348.0" layoutY="384.0" text="CNPJ -" textFill="WHITE" AnchorPane.leftAnchor="348.0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -46,5 +49,10 @@
       <Label fx:id="LblBdLocal" layoutX="218.0" layoutY="290.0" textFill="WHITE" />
       <Label fx:id="LblBdRemoto" layoutX="232.0" layoutY="314.0" prefHeight="17.0" prefWidth="76.0" textFill="WHITE" />
       <Label fx:id="LblStRemoto" layoutX="266.0" layoutY="338.0" textFill="WHITE" />
+      <Label layoutX="26.0" layoutY="383.0" text="Tipo login" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

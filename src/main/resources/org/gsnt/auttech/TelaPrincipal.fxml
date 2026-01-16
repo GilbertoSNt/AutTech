@@ -36,7 +36,7 @@
       </Button>
       <Pane layoutY="50.0" prefHeight="850.0" prefWidth="1200.0" styleClass="pane" stylesheets="@css/panel.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
          <children>
-            <TabPane layoutX="13.0" layoutY="14.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="320.0" prefWidth="1175.0" stylesheets="@css/tabpane.css" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutX="13.0" layoutY="14.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="320.0" prefWidth="779.0" stylesheets="@css/tabpane.css" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                   <Tab text="Clientes / Veículos">                    <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@css/tabpane.css">
@@ -394,6 +394,25 @@
                   </TitledPane>
               </panes>
             </Accordion>
+            <AnchorPane layoutX="799.0" layoutY="14.0" prefHeight="320.0" prefWidth="383.0" styleClass="anchorpane2" stylesheets="@css/panel.css">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="Lista de profissionais por quant. de atendimentos ativos" />
+                  <ScrollPane layoutX="14.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+                     <content>
+                        <TableView fx:id="tvMecanico" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="365.0" stylesheets="@css/tableview.css">
+                           <columns>
+                              <TableColumn fx:id="tcMecNome" prefWidth="210.0" text="Nome profissional" />
+                              <TableColumn fx:id="tcMecQuant" prefWidth="77.0" text="Qtd. atend." />
+                              <TableColumn fx:id="tcLista" prefWidth="70.0" style="-fx-alignment: center;" text="Lista" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
          </children>
       </Pane>
       <Label layoutX="873.0" layoutY="19.0" text="Usuário -" textFill="#00f0ff">

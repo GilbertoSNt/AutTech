@@ -23,8 +23,7 @@ public class AgendaService implements AgendaDao {
         this.conn = conn;
     }
 
-    private static final String sql_FindTelaPrincipal = "select * from tabagenda order by dataagenda, hora";
-
+    private static final String sql_FindTelaPrincipal = "select * from gnd";
 
     @Override
     public List<Agenda> findTelaPrincipal() {

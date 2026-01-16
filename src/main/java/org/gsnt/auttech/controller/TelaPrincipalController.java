@@ -1,5 +1,6 @@
 package org.gsnt.auttech.controller;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,13 +16,8 @@ import org.gsnt.auttech.TelaPrincipal;
 import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.*;
 import org.gsnt.auttech.model.dao.service.ClienteService;
-import org.gsnt.auttech.model.entities.Agenda;
-import org.gsnt.auttech.model.entities.OrdemServico;
-import org.gsnt.auttech.model.entities.StatusAtendimento;
-import org.gsnt.auttech.model.entities.Usuario;
-import org.gsnt.auttech.util.Alerts;
-import org.gsnt.auttech.util.Circulos;
-import org.gsnt.auttech.util.LogTxt;
+import org.gsnt.auttech.model.entities.*;
+import org.gsnt.auttech.util.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,6 +33,7 @@ public class TelaPrincipalController implements Initializable {
     private final OrcamentoDao orcService = DaoFactory.createOrcamentoDao();
     private LogTxt log = new LogTxt();
     private final ClienteDao cli = DaoFactory.createClienteDao();
+    private final ProfServDao dirService = DaoFactory.createDirecionadosDao();
 
     private ObservableList<Agenda> obsListAgenda;
 
@@ -661,12 +658,6 @@ public class TelaPrincipalController implements Initializable {
 
 
 
-
-
-
-
-
-
     @FXML
     private Button btListarProfissionais;
 
@@ -679,7 +670,7 @@ public class TelaPrincipalController implements Initializable {
 
         try{
 
-            if(stAtendimento == null || osServ == null || agendaService == null){
+            if(stAtendimento == null || osServ == null || agendaService == null || dirService == null ){
                 throw new IllegalStateException("Ordem de Serviço Service está nulo");
             }
             //tela agendamento
@@ -694,6 +685,10 @@ public class TelaPrincipalController implements Initializable {
             //tela principal orçamento
             obsListOrcamento = FXCollections.observableArrayList(stAtendimento.statusOrcamentoTela());
             tvEmOrcamento.setItems(obsListOrcamento);
+            //Tela Mecanico
+            obsDirecionado = FXCollections.observableArrayList(dirService.listaServico());
+            tvMecanico.setItems(obsDirecionado);
+
 
         }catch (Exception a){
             throw new DbException("Tela principal - updateTableView "+a.getMessage());
@@ -707,6 +702,7 @@ public class TelaPrincipalController implements Initializable {
         accordionSerIniciados();
         accordionOrcamento();
         accordionEmServico();
+        tabelaAtendMec();
 
     }
 
@@ -720,6 +716,52 @@ public class TelaPrincipalController implements Initializable {
         lblUser.setText(Usuario.getUser());
 
     }
+
+    private void buttonColumnLista(){
+        tcLista.setCellValueFactory(param-> new ReadOnlyObjectWrapper<>(param.getValue()));
+        tcLista.setCellFactory(param -> new TableCell<Direcionados, Direcionados>() {
+
+            private final Botoes listaAtend = new Botoes("#70c3a7");
+
+            @Override
+            protected void updateItem(Direcionados dir, boolean empty) {
+
+                super.updateItem(dir, empty);
+                if (dir == null) {
+                    setGraphic(null);
+                    return;
+                }
+                setGraphic(listaAtend);
+
+                listaAtend.setOnAction(event -> {
+
+                    Direcionados dir1 = getTableView().getItems().get(getIndex());
+                    try {
+                        loadView("/org/gsnt/auttech/ListaAtendFunc.fxml", (ListaAtendFuncController lista) -> {
+                            lista.chamada(dir1.getApelido());
+                        });
+                    }catch (Exception d){
+                        System.out.println(d+" DirecionamentoController - buttonColumnLista");
+                    }
+
+                });
+            }
+        });
+    }
+
+    @FXML
+    private TableView tvMecanico;
+
+    @FXML
+    private TableColumn<Direcionados, String> tcMecNome;
+
+    @FXML
+    private TableColumn<Direcionados, Integer> tcMecQuant;
+
+    @FXML
+    private TableColumn<Direcionados, Direcionados> tcLista;
+
+    private ObservableList<Direcionados> obsDirecionado;
 
     private void accordionAgenda(){
 
@@ -802,6 +844,16 @@ public class TelaPrincipalController implements Initializable {
         tcLavacao4.setCellValueFactory(new PropertyValueFactory<StatusAtendimento, Circulos>("lavacao1"));
     }
 
+    private void tabelaAtendMec(){
+        try {
+            tcMecNome.setCellValueFactory(new PropertyValueFactory<Direcionados, String>("apelido"));
+            tcMecQuant.setCellValueFactory(new PropertyValueFactory<Direcionados, Integer>("qtdtndmnt"));
+            buttonColumnLista();
+
+        }catch (Exception e){
+            throw new ExceptionGenerics(e.getMessage()+" DirecionamentoController - initializaNodes");
+        }
+    }
 
 
     private synchronized<T> void loadView(String absoluteName, Consumer<T> inicializingAction) {

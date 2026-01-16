@@ -57,6 +57,27 @@ public class LoginController implements Initializable {
     @FXML
     private Label LblStRemoto;
 
+    @FXML
+    private Label LbTipo;
+
+    @FXML
+    private RadioButton RbCnpj;
+
+    @FXML
+    private void RbCnpjOnAcion(){
+        LbTipo.setText("CNPJ - ");
+    }
+
+    @FXML
+    private RadioButton RbCpf;
+
+    @FXML
+    private void RbCpfOnAcion(){
+        LbTipo.setText("CPF - ");
+    }
+
+
+
 
 
     IniDAO ini = DaoFactory.createIniDao();
@@ -134,7 +155,12 @@ public class LoginController implements Initializable {
             }
         });
 
-        txtCNPJ.requestFocus();
+        ToggleGroup Tg1 = new ToggleGroup();
+
+        RbCnpj.setToggleGroup(Tg1);
+        RbCpf.setToggleGroup(Tg1);
+        RbCnpj.setSelected(true);
+        RbCnpj.requestFocus();
 
     }
 
@@ -179,6 +205,8 @@ public class LoginController implements Initializable {
 
     }
 
+
+
     private void gravaCNPJ(){
 
     }
@@ -191,4 +219,6 @@ public class LoginController implements Initializable {
         Stage stage = (Stage)bt.getScene().getWindow();
         stage.close();
     }
+
+
 }

@@ -1,5 +1,5 @@
 /* banco dados empresa embarcado */
-
+/* ok */
 CREATE DATABASE bancoempresa
     WITH
     OWNER = gilberto
@@ -18,6 +18,8 @@ GRANT ALL ON DATABASE bancoempresa TO gilberto;
 
 /* >>>>> tabela inicial <<<<< */
 
+/* ok */
+
 CREATE TABLE public.tabRegistro
 (
     cod integer NOT NULL,
@@ -34,6 +36,8 @@ ALTER TABLE IF EXISTS public.cnpj
 
 
 /* >>>>> Tabela Cliente <<<<< */
+
+/* ok */
 
 CREATE SEQUENCE IF NOT EXISTS public.sqcodcliente
     INCREMENT 1
@@ -96,6 +100,10 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.tabtelefone
     OWNER to "gilberto";
 
+
+CREATE INDEX idx_tabcliente_cpf   ON tabcliente (cpf);
+
+CREATE INDEX idx_tabcliente_cnpj  ON tabcliente (cnpj);
 
 
 
@@ -569,6 +577,11 @@ CREATE TABLE public.tbocupcprfssnl
 ALTER TABLE IF EXISTS public.tbocupcprfssnl
     OWNER to gilberto;
 
+ALTER TABLE IF EXISTS public.tbocupcprfssnl
+    ADD COLUMN aceito boolean DEFAULT false;
+
+
+
 
 /* tabela histórico de profissionais / os */
 
@@ -581,156 +594,173 @@ CREATE SEQUENCE public.sqcodosprfssnl
 ALTER SEQUENCE public.sqcodosprfssnl
     OWNER TO gilberto;
 
-CREATE TABLE public.tabosprfssnl
+
+correção tabela status
+
+movimento = 0 - direcionamento, 1 - aceito, 2 - recusa, 3 - redirecionamento, 4 - inicio analise, 5 - fim analise,
+            6 - Aguardando a liberação 7 - inicio serviço, 8 - fim serviço
+
+serviço =  0 - Todos 8 - alinhamento, 9 - Balancemaneto, 4 - caixa de câmbio, 6 - freio, 7 - motor,
+           5 - suspensão, 1 - troca de óleo, 10 - pneu,
+           3 - eletrico, 2 - injeção eletronica
+
+tipo = a - ordem serviço, b - Orçamento, c - termino, d - entrega
+
+
+CREATE TABLE IF NOT EXISTS public.tabosprfssnl
 (
     cod bigint NOT NULL DEFAULT nextval('sqcodosprfssnl'::regclass),
     codos bigint NOT NULL,
-    espec integer NOT NULL,
     prof bigint NOT NULL,
-    PRIMARY KEY (cod)
-);
+    horastrabalhadas numeric DEFAULT 0,
+    tipo character(2) COLLATE pg_catalog."default",
+    movimento integer,
+    dtmovimento date DEFAULT CURRENT_DATE,
+    hrmovimento time without time zone DEFAULT CURRENT_TIME,
+    servico integer,
+    CONSTRAINT tabosprfssnl_pkey PRIMARY KEY (cod)
+)
+
+
+TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.tabosprfssnl
     OWNER to gilberto;
 
 
-/*** tabela StatusGeralPublicoOsProfEnviado ***\
 
 
-CREATE SEQUENCE IF NOT EXISTS public.sqtstgrlpblc
-        INCREMENT 1
-        START 1
-        MINVALUE 1
-        MAXVALUE 9223372036854775807
-        CACHE 1;
 
-    ALTER SEQUENCE public.sqtstgrlpblc
-        OWNER TO gilberto;
 
-create table if not exists public.tbtstgrlpblc
-(
-    cod bigint NOT NULL DEFAULT nextval('sqtstgrlpblc'::regclass),
-    cnpj character varying(18) not null COLLATE pg_catalog."default",
-    os bigint NOT NULL DEFAULT 0,
-    codveiculo bigint NOT NULL,
-    datainicio date,
-    datafinal date,
-    horafinal time without time zone,
-    datainiorc date,
-    horainiorc time without time zone,
-    datafimorc date,
-    horafimorc time without time zone,
-    dataprevisao date,
-    alin character varying(15) COLLATE pg_catalog."default",
-    stalin integer DEFAULT 0,
-    dtalinenvio date,
-    hralinenvio time without time zone,
-    dtalinaceite date,
-    hralinaceite time without time zone,
-    dtalinini date,
-    hralinini time without time zone,
-    dtalinfim date,
-    hralinfim time without time zone,
-    caixa character varying(15) COLLATE pg_catalog."default",
-    stcaixa integer DEFAULT 0,
-    dtcaixaenvio date,
-    hrcaixaenvio time without time zone,
-    dtcaixaaceite date,
-    hrcaixaaceite time without time zone,
-    dtcaixaini date,
-    hrcaixaini time without time zone,
-    dtcaixafim date,
-    hrcaixafim time without time zone,
-    eletrico character varying(15) COLLATE pg_catalog."default",
-    steletrico integer DEFAULT 0,
-    dteletenvio date,
-    hreletenvio time without time zone,
-    dteletaceite date,
-    hreletaceite time without time zone,
-    dteletini date,
-    hreletini time without time zone,
-    dteletfim date,
-    hreletfim time without time zone,
-    freio character varying(15) COLLATE pg_catalog."default",
-    stfreio integer DEFAULT 0,
-    dtfreioenvio date,
-    hrfreioenvio time without time zone,
-    dtfreioaceite date,
-    hrfreioaceite time without time zone,
-    dtfreioini date,
-    hrfreioini time without time zone,
-    dtfreiofim date,
-    hrfreiofim time without time zone,
-    injelet character varying(15) COLLATE pg_catalog."default",
-    stinjelet integer DEFAULT 0,
-    dtinjenvio date,
-    hrinjenvio time without time zone,
-    dtinjaceite date,
-    hrinjaceite time without time zone,
-    dtinjini date,
-    hrinjini time without time zone,
-    dtinjfim date,
-    hrinjfim time without time zone,
-    motor character varying(15) COLLATE pg_catalog."default",
-    stmotor integer DEFAULT 0,
-    dtmotenvio date,
-    hrmotenvio time without time zone,
-    dtmotaceite date,
-    hrmotaceite time without time zone,
-    dtmotini date,
-    hrmotini time without time zone,
-    dtmotfim date,
-    hrmotfim time without time zone,
-    pneu character varying(15) COLLATE pg_catalog."default",
-    stpneu integer DEFAULT 0,
-    dtpneuenvio date,
-    hrpneuenvio time without time zone,
-    dtpneuaceite date,
-    hrpneuaceite time without time zone,
-    dtpneuini date,
-    hrpneuini time without time zone,
-    dtpneufim date,
-    hrpneufim time without time zone,
-    suspensao character varying(15) COLLATE pg_catalog."default",
-    stsuspensao integer DEFAULT 0,
-    dtsuspenvio date,
-    hrsuspenvio time without time zone,
-    dtsuspaceite date,
-    hrsuspaceite time without time zone,
-    dtsuspini date,
-    hrsuspini time without time zone,
-    dtsuspfim date,
-    hrsuspfim time without time zone,
-    trcoleo character varying(15) COLLATE pg_catalog."default",
-    sttrcoleo integer DEFAULT 0,
-    dttrcoleoenvio date,
-    hrtrcoleoenvio time without time zone,
-    dttrcoleoaceite date,
-    hrtrcoleoaceite time without time zone,
-    dttrcoleoini date,
-    hrtrcoleoini time without time zone,
-    dttrcoleofim date,
-    hrtrcoleofim time without time zone,
-    aviso character varying(15) COLLATE pg_catalog."default",
-    staviso integer DEFAULT 0,
-    dtaviso date,
-    hraviso time without time zone,
-    dtultimo date,
-    hrultimo timestamp without time zone,
-    hrinicio timestamp without time zone,
-    ativo Boolean
+
+
+
+/* prodecures   */
+
+--------- procedures relacionadas a tabela tabosprfssnl(os x profissional) os
+
+Inserção
+
+CREATE OR REPLACE PROCEDURE public.ins_tabosprfssnl(
+	IN p_codos bigint,
+	IN p_servico integer,
+	IN p_prof bigint,
+	IN p_horastrabalhadas numeric,
+	IN p_tipo character,
+	IN p_movimento integer)
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+    INSERT INTO public.tabosprfssnl (
+        codos,
+        servico,
+        prof,
+        horastrabalhadas,
+        tipo,
+        movimento,
+        dtmovimento,
+        hrmovimento
+    )
+    VALUES (
+        p_codos,
+        p_servico,
+        p_prof,
+        COALESCE(p_horastrabalhadas, 0),
+        p_tipo,
+        p_movimento,
+        CURRENT_DATE,     -- data do servidor
+        CURRENT_TIME      -- hora do servidor
+    );
+END;
+$BODY$;
+ALTER PROCEDURE public.ins_tabosprfssnl(bigint, integer, bigint, numeric, character, integer)
+    OWNER TO gilberto;
+
+
+
+----------   procedures relacionadas a tebela statusantendimento interna
+
+update
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento(
+    IN p_cod BIGINT,
+    IN p_codorcamento BIGINT,
+    IN p_eletrico INTEGER,
+    IN p_injecao INTEGER,
+    IN p_caixa INTEGER,
+    IN p_freiodt INTEGER,
+    IN p_freiotr INTEGER,
+    IN p_motor INTEGER,
+    IN p_revisao INTEGER,
+    IN p_suspensaodt INTEGER,
+    IN p_suspensaotr INTEGER,
+    IN p_pneus INTEGER,
+    IN p_trocaoleo INTEGER,
+    IN p_lavacao INTEGER,
+    IN p_asslevar INTEGER,
+    IN p_orcambio INTEGER,
+    IN p_oreletrico INTEGER,
+    IN p_ormotor INTEGER,
+    IN p_orinjecao INTEGER,
+    IN p_ormecanica INTEGER,
+    IN p_orpneu INTEGER,
+    IN p_orstcliente INTEGER,
+    IN p_ormontagem INTEGER,
+    IN p_staviso BOOLEAN,
+    IN p_stgeralatend INTEGER,
+    IN p_alinbalan INTEGER,
+    IN p_dtprvzntrg VARCHAR(10),
+    IN p_hrprvztrg VARCHAR(10)
 )
-TABLESPACE pg_default;
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET
+        codos          = p_codos,
+        codorcamento   = p_codorcamento,
+        eletrico       = p_eletrico,
+        injecao        = p_injecao,
+        caixa          = p_caixa,
+        freiodt        = p_freiodt,
+        freiotr        = p_freiotr,
+        motor          = p_motor,
+        revisao        = p_revisao,
+        suspensaodt    = p_suspensaodt,
+        suspensaotr    = p_suspensaotr,
+        pneus          = p_pneus,
+        trocaoleo      = p_trocaoleo,
+        lavacao        = p_lavacao,
+        asslevar       = p_asslevar,
+        orcambio       = p_orcambio,
+        oreletrico     = p_oreletrico,
+        ormotor        = p_ormotor,
+        orinjecao      = p_orinjecao,
+        ormecanica     = p_ormecanica,
+        orpneu         = p_orpneu,
+        orstcliente    = p_orstcliente,
+        ormontagem     = p_ormontagem,
+        staviso        = p_staviso,
+        stgeralatend   = p_stgeralatend,
+        alinbalan      = p_alinbalan,
+        dtprvzntrg     = p_dtprvzntrg,
+        hrprvztrg      = p_hrprvztrg
+    WHERE cod = p_cod;
+END;
+$$
 
-ALTER TABLE IF EXISTS public.tbtstgrlpblc
-    owner to gilberto
+exclusão
 
-
-
-
-
-
-
+CREATE OR REPLACE PROCEDURE public.del_statusatendimento(
+    IN p_cod BIGINT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    DELETE FROM public.tabstatusatendimento
+    WHERE cod = p_cod;
+END;
+$$;
 
 
 
@@ -833,3 +863,108 @@ CREATE OR REPLACE VIEW public.statusorcamento
 
   ALTER TABLE public.statusgeralpublico
       OWNER TO gilberto;
+
+
+------- Funções
+
+  //Função retorna(lista) a ocupação por profissional
+
+  CREATE FUNCTION public.cpcprfssnl(IN codprof1 bigint)
+      RETURNS TABLE(placa varchar, tempo varchar, ordem int, aceito boolean )
+      LANGUAGE 'plpgsql'
+
+  AS $BODY$
+ BEGIN
+ RETURN QUERY
+ SELECT
+ t.placa,
+ t.tmpprvst as tempo,
+ t.rdmtndmnt as ordem,
+ t.aceito as aceito
+ from tbocupcprfssnl t
+ where t.codprof = codprof1
+ order by t.rdmtndmnt;
+ END;
+  $BODY$;
+
+  ALTER FUNCTION public.cpcprfssnl(bigint)
+      OWNER TO gilberto;
+
+
+    // função para o accordion agenda
+
+CREATE OR REPLACE VIEW public.gnd
+ AS
+ SELECT *
+   FROM tabagenda
+  ORDER BY tabagenda.dataagenda, tabagenda.hora;
+
+ALTER TABLE public.gnd
+    OWNER TO gilberto;
+
+GRANT ALL ON TABLE public.gnd TO gilberto WITH GRANT OPTION;
+GRANT SELECT ON TABLE public.gnd TO usuario_base;
+
+sequencia de procedures e functions para gravar um vez só o direcionamento e a ocupação
+
+Function para ver quantos atendimentos o prof. já tem
+
+CREATE OR REPLACE FUNCTION public.fn_qtde_tbocupcprfssnl_por_codprof(
+    p_codprof integer
+)
+RETURNS integer
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_qtde integer;
+BEGIN
+    SELECT COUNT(*)::integer
+    INTO v_qtde
+    FROM public.tbocupcprfssnl
+    WHERE codprof = p_codprof;
+
+    RETURN v_qtde;
+END;
+$$;
+
+retorna a placa pelo cód do veículo
+
+CREATE OR REPLACE FUNCTION public.fn_busca_placa_por_cod(
+    p_cod bigint
+)
+RETURNS varchar
+LANGUAGE sql
+AS $$
+    SELECT placa
+    FROM public.tabveiculo
+    WHERE cod = (
+        SELECT codveiculo
+        FROM public.tabos
+        WHERE cod = p_cod
+    );
+$$;
+
+crie uma procedure que irá inserir um registro na tabela tbocupcprfssnl nos campos codprof Bigint, placa varchar e no rdmtndmnt integer onde ela receberá como parâmento um integer para o codprof e um integer para o campo placa sendo que no campo placa ela deverá chamar a function public.fn_busca_placa_por_cod para chegar ao varchar e no campo rdmtndmnt deverá chamar a function public.fn_qtde_tbocupcprfssnl_por_codprof e somar mais 1 para inserir
+
+CREATE OR REPLACE PROCEDURE public.prc_inserir_tbocupcprfssnl(
+    p_codprof bigint,
+    p_placa_cod bigint
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_placa varchar;
+    v_rdmtndmnt integer;
+BEGIN
+    -- Busca a placa
+    v_placa := public.fn_busca_placa_por_cod(p_placa_cod);
+
+    -- Calcula o rdmtndmnt somando 1 à quantidade atual
+    v_rdmtndmnt := public.fn_qtde_tbocupcprfssnl_por_codprof(p_codprof) + 1;
+
+    -- Insere o registro
+    INSERT INTO public.tbocupcprfssnl(codprof, placa, rdmtndmnt)
+    VALUES (p_codprof, v_placa, v_rdmtndmnt);
+
+END;
+$$;

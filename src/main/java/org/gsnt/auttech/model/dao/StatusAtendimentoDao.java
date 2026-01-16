@@ -13,17 +13,23 @@ public interface StatusAtendimentoDao {
     void alteraStatus(StatusAtendimento st);
     void statusOsInicial(OrdemServico os, Boolean cria);
     void statusOsInicial(OrdemServico os);
-    List<StatusAtendimento> statusOrcamentoTela();
+
     List<StatusAtendimento> statusOrdemServicoTelaSI();
     List<StatusAtendimento> statusOrdemServicoTelaS();
     List<StatusAtendimento> statusOrdemServicoTelaP();
     Boolean deletaStatus(Integer item);
     void cancelaAtendimento(Integer item);
     StatusAtendimento stGeralUnico(Integer item);
-    Boolean statusOnLineInicial(StatusAtendimento st, OrdemServico os, String cliente);
-    Boolean alteraStatus(String st);
+
+
     void stUnico(String cnpj, Integer os, String prof, byte tipoServ, int stt, byte tipotempo );
+
     ///// Status OnLine
 
+    Boolean statusOnLineInicial(StatusAtendimento st, OrdemServico os, String cliente);
+
+
     ///// Status Orçamento
+
+    List<StatusAtendimento> statusOrcamentoTela();
 }

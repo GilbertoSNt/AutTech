@@ -6,19 +6,15 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import org.gsnt.auttech.TelaPrincipal;
-import org.gsnt.auttech.db.DbException;
 import org.gsnt.auttech.model.dao.*;
-import org.gsnt.auttech.model.dao.service.DirecionadosService;
 import org.gsnt.auttech.model.entities.*;
 import org.gsnt.auttech.util.Alerts;
 import org.gsnt.auttech.util.Botoes;
@@ -26,7 +22,6 @@ import org.gsnt.auttech.util.ExceptionGenerics;
 import org.gsnt.auttech.util.MaskValid;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +32,12 @@ import java.util.function.Consumer;
 public class DirecionamentoController implements Initializable {
 
 
-    private FuncionarioDao funcionarioServ =  DaoFactory.createFuncionarioDao();
-    private DirecionadosDao dirService = DaoFactory.createDirecionadosDao();
+    private final FuncionarioDao funcionarioServ =  DaoFactory.createFuncionarioDao();
+    private final ProfServDao dirService = DaoFactory.createDirecionadosDao();
 
-    private List<Direcionados> dir;
-    private Direcionados unico;
-    private int codVeiculo = 0;
+
+
+
     private int codOS = 0;
 
 
@@ -58,15 +53,6 @@ public class DirecionamentoController implements Initializable {
     private List<Funcionario> balan = new ArrayList<>();
     private List<Funcionario> trocaOleo = new ArrayList<>();
     private List<Funcionario> todosFunc = new ArrayList<>();
-
-    @FXML
-    private TitledPane tp1;
-
-    @FXML
-    private TitledPane tp2;
-
-    @FXML
-    private TitledPane tp3;
 
     @FXML
     private Label lblVeiculo;
@@ -521,6 +507,9 @@ public class DirecionamentoController implements Initializable {
         check();
     }
 
+    /**
+     * checagem para habilitar e desabilitar combos de funcionários
+     */
     private void check(){
 
         if(cbMec.isSelected() || cbRevisao.isSelected()){
@@ -579,12 +568,13 @@ public class DirecionamentoController implements Initializable {
     }
 
     /**
-     * coleta informações dos funcionários que foram selecionados e grava os dados
+     * coleta informações e envia um ArrayList dos funcionários que foram selecionados
+     * e solicita a gravação na OS e Status
      *
      */
     private void encaminhamento() {
 
-        dir = new ArrayList<>();
+        List<Direcionados> dir = new ArrayList<>();
 
         if (cbTudoMec.isSelected()) {
 
@@ -592,9 +582,11 @@ public class DirecionamentoController implements Initializable {
                 mensFaltaEnvio("Todos os serviços");
             }
             else{
-                unico = new Direcionados(cbxTudo.getValue().getCod(), 0, cbxTudo.getValue().getApelido());
-            }
+                Direcionados unico = new Direcionados(cbxTudo.getValue().getCod(), 0, cbxTudo.getValue().getApelido());
 
+                // enviar aqui unico
+
+            }
 
         } else {
 
@@ -605,9 +597,6 @@ public class DirecionamentoController implements Initializable {
                 }else {
                     dir.add(new Direcionados(cbxTrocaOleo.getValue().getCod(), 1, cbxTrocaOleo.getValue().getApelido()));
                 }
-
-            }else{
-                dir.add(new Direcionados(null, 1, null));
             }
 
             if (cbInjElet.isSelected() || cbRevisao.isSelected()) {
@@ -617,9 +606,6 @@ public class DirecionamentoController implements Initializable {
                 }else{
                     dir.add(new Direcionados(cbxInjElet.getValue().getCod(), 2, cbxInjElet.getValue().getApelido()));
                 }
-
-            }else{
-                dir.add(new Direcionados(null, 2, null));
             }
 
             if (cbElet.isSelected() || cbRevisao.isSelected()) {
@@ -629,9 +615,6 @@ public class DirecionamentoController implements Initializable {
                 }else {
                     dir.add(new Direcionados(cbxEletrico.getValue().getCod(), 3, cbxEletrico.getValue().getApelido()));
                 }
-
-            }else{
-                    dir.add(new Direcionados(null, 3, null));
             }
 
 
@@ -642,9 +625,6 @@ public class DirecionamentoController implements Initializable {
                 }else {
                     dir.add(new Direcionados(cbxCaixa.getValue().getCod(), 4, cbxCaixa.getValue().getApelido()));
                 }
-
-            }else{
-                dir.add(new Direcionados(null, 4, null));
             }
 
             if (cbSusp.isSelected() || cbRevisao.isSelected()) {
@@ -654,9 +634,6 @@ public class DirecionamentoController implements Initializable {
                 }else {
                     dir.add(new Direcionados(cbxSuspensao.getValue().getCod(), 5, cbxSuspensao.getValue().getApelido()));
                 }
-
-            }else{
-                dir.add(new Direcionados(null, 5, null));
             }
 
             if (cbFreio.isSelected() || cbRevisao.isSelected()) {
@@ -667,8 +644,6 @@ public class DirecionamentoController implements Initializable {
                     dir.add(new Direcionados(cbxFreio.getValue().getCod(), 6, cbxFreio.getValue().getApelido()));
                 }
 
-            }else{
-                dir.add(new Direcionados(null, 6, null));
             }
 
             if (cbMotor.isSelected() || cbRevisao.isSelected()) {
@@ -678,10 +653,6 @@ public class DirecionamentoController implements Initializable {
                 }else {
                     dir.add(new Direcionados(cbxMotor.getValue().getCod(), 7, cbxMotor.getValue().getApelido()));
                 }
-
-
-            }else{
-                dir.add(new Direcionados(null, 7, null));
             }
 
             if (cbAlin.isSelected() || cbRevisao.isSelected()) {
@@ -691,7 +662,7 @@ public class DirecionamentoController implements Initializable {
                 }else if(cbxAlin.getValue().getCod() > -1){
                     dir.add(new Direcionados(cbxAlin.getValue().getCod(), 8,cbxAlin.getValue().getApelido()));
                 }else if(cbxAlin.getValue().getCod() == -1){
-                    dir.add(new Direcionados(null, 8, null));
+                  //  dir.add(new Direcionados(null, 8, null));
                     System.out.println("aqui Alin");
                 }
 
@@ -700,13 +671,10 @@ public class DirecionamentoController implements Initializable {
                 }else if(cbxBalan.getValue().getCod() > -1){
                     dir.add(new Direcionados(cbxBalan.getValue().getCod(), 9,cbxBalan.getValue().getApelido()));
                 }else if(cbxBalan.getValue().getCod() == -1){
-                    dir.add(new Direcionados(null, 9, null));
+                  //  dir.add(new Direcionados(null, 9, null));
                     System.out.println("aqui Balan");
                 }
 
-            }else{
-                dir.add(new Direcionados(null, 8, null));
-                dir.add(new Direcionados(null, 9, null));
             }
 
             if (cbPneu.isSelected() || cbRevisao.isSelected()) {
@@ -717,21 +685,24 @@ public class DirecionamentoController implements Initializable {
                     dir.add(new Direcionados(cbxPneu.getValue().getCod(), 10, cbxPneu.getValue().getApelido()));
                 }
 
-            }else{
-                dir.add(new Direcionados(null, 10, null));
             }
 
         }
 
-        for(int a = 0; a>=dir.size();a++){
-
-            System.out.println(dir.get(a).getCod()+" "+dir.get(a).getTpSrvc()+" "+dir.get(a).getApelido());
-
-            //erro aqui
-            //acertar status publicos
-            //acertar status interno
+        if(dirService.saveDirecionadosInterno(dir,  codOS, 'a', 0)){
+            Alerts.showAlert("Confirmação", ""+"Banco de dados gravou todas as intruções " +
+                    "de envio de serviço",null,  Alert.AlertType.INFORMATION);
         }
 
+/*
+            Já registrou na tabela de da os
+
+            //erro aqui
+            //gravar na tabela ocupprofissional com aceite falso
+            //acertar status publicos
+            //acertar status interno
+
+*/
 
     }
 
@@ -762,6 +733,8 @@ public class DirecionamentoController implements Initializable {
         }
 
     }
+
+
 
     /**
      * Mensagem que aparecerá se faltar algum serviço

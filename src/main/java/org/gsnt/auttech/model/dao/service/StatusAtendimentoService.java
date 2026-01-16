@@ -24,24 +24,13 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
     private final ModeloVeiculoDao modelo = DaoFactory.createModeloVeiculoDao();
     private Utils ut = new Utils();
 
-    private String inicialOnLineStatus = "INSERT INTO public.tbtstgrlpblc(cpfcnpjfornecedor, cpfcnpjcliente, " +
-            "os, placa, datainicio, datainiorc, horainiorc," +
-            "alin, stalin, dtalinenvio, hralinenvio, dtalinaceite, hralinaceite, dtalinini, " +
-            "hralinini, dtalinfim, hralinfim, caixa, stcaixa, dtcaixaenvio, hrcaixaenvio, dtcaixaaceite, " +
-            "hrcaixaaceite, dtcaixaini, hrcaixaini, dtcaixafim, hrcaixafim, eletrico, steletrico, dteletenvio, " +
-            "hreletenvio, dteletaceite, hreletaceite, dteletini, hreletini, dteletfim, hreletfim, freio, stfreio, " +
-            "dtfreioenvio, hrfreioenvio, dtfreioaceite, hrfreioaceite, dtfreioini, hrfreioini, dtfreiofim, " +
-            "hrfreiofim, injelet, stinjelet, dtinjenvio, hrinjenvio, dtinjaceite, hrinjaceite, dtinjini, hrinjini, " +
-            "dtinjfim, hrinjfim, motor, stmotor, dtmotenvio, hrmotenvio, dtmotaceite, hrmotaceite, dtmotini, " +
-            "hrmotini, dtmotfim, hrmotfim, pneu, stpneu, dtpneuenvio, hrpneuenvio, dtpneuaceite, hrpneuaceite, " +
-            "dtpneuini, hrpneuini, dtpneufim, hrpneufim, suspensao, stsuspensao, dtsuspenvio, hrsuspenvio, " +
-            "dtsuspaceite, hrsuspaceite, dtsuspini, hrsuspini, dtsuspfim, hrsuspfim, trcoleo, sttrcoleo, " +
-            "dttrcoleoenvio, hrtrcoleoenvio, dttrcoleoaceite, hrtrcoleoaceite, dttrcoleoini, hrtrcoleoini, " +
-            "dttrcoleofim, hrtrcoleofim, aviso, staviso, dtaviso, hraviso, dtultimo, hrultimo, hrinicio, ativo) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " +
-            "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " +
-            "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " +
-            "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String inicialOnLineStatus = "INSERT INTO public.tbtstgrlpblc(" +
+            "cpfcnpjfornecedor, cpfcnpjcliente, os, placa, datainicio, hrinicio, datafinal, horafinal, " +
+            "datainiorc, horainiorc, datafimorc, horafimorc, dataprevisao, horaprevisao, servico, dtservicoini, " +
+            "hrservicoini, dtservicofim, hrservicofim, aviso, staviso, dtaviso, hraviso, dtultimo, hrultimo, ativo)" +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+    private final String ins_stgrlos = "CALL public.ins_tbstgrlos(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     public StatusAtendimentoService(Connection conn, Connection connExt){
 
@@ -596,11 +585,6 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
     }
 
 
-    @Override
-    public Boolean alteraStatus(String st) {
-        return null;
-    }
-
     /**
      * Organiza status inicial no banco externo
      * @param os1 Ordem de serviço
@@ -727,6 +711,10 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
 
 
 
+
+
+
+
     // aqui comença a trabalhar com o status externo
 
 
@@ -838,7 +826,7 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
             st.setTime(4, ut.returnSystemTimeBanco());
             st.setDate(5, ut.returnSystemDateBanco());
             st.setTime(6, ut.returnSystemTimeBanco());
-44
+
             st.setInt(7, os);
             st.setString(8, cnpj);
 
@@ -852,7 +840,8 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
             DBLocal.closeStatement(st);
         }
 
-
+        //****************************************************************************************************
+        //****************************************************************************************************
         // corrigir no utils data hora e fazer a segunda conexão
 
         //1-envio 2-aceite 3-inicio 4-fim
@@ -865,7 +854,6 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
      * inicia o registro quando é gravada a Ordem de serviço
      * @param st StatusAtendimento
      * @param os OrdemServiço
-     * @param cl id do Cliente
      * @return
      */
     @Override
@@ -890,9 +878,35 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
 
 
 
-            stExt.setTime(,hora);
 
 
+/*  cod bigint NOT NULL DEFAULT nextval('sqtstgrlpblc'::regclass),
+        cpfcnpjfornecedor character varying(18) not null COLLATE pg_catalog."default",
+    	cpfcnpjcliente character varying(18) not null COLLATE pg_catalog."default",
+        os bigint NOT NULL DEFAULT 0,
+        placa character varying(8) COLLATE pg_catalog."default" NOT NULL,
+        datainicio date,
+        hrinicio time without time zone,
+        datafinal date,
+        horafinal time without time zone,
+        datainiorc date,
+        horainiorc time without time zone,
+        datafimorc date,
+        horafimorc time without time zone,
+        dataprevisao date,
+        horaprevisao time without time zone,
+        servico integer DEFAULT 0,
+        dtservicoini date,
+        hrservicoini time without time zone,
+        dtservicofim date,
+        hrservicofim time without time zone,
+        aviso character varying(15) COLLATE pg_catalog."default",
+        staviso integer DEFAULT 0,
+        dtaviso date,
+        hraviso time without time zone,
+        dtultimo date,
+        hrultimo timestamp without time zone,
+        ativo Boolean*/
 
 
         }

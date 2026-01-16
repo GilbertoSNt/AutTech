@@ -10,3 +10,4 @@
 2025-11-20 - 11:49:41.624285 - Admin - Cancelou agendamento para placa CCC-0C00
 2025-11-22 - 18:28:04.512087 - Admin - Alterou agendamento para placa AFE-1E54
 2025-12-04 - 22:20:07.778520800 - Admin - Alterou agendamento para placa CCC-0C00
+2025-12-28 - 13:14:20.427524700 - Admin - Alterou agendamento para placa ORC0O01

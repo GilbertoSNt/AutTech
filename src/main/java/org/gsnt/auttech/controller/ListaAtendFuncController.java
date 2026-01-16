@@ -7,10 +7,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.gsnt.auttech.model.dao.DaoFactory;
-import org.gsnt.auttech.model.dao.DirecionadosDao;
+import org.gsnt.auttech.model.dao.ProfServDao;
 import org.gsnt.auttech.model.dao.FuncionarioDao;
 import org.gsnt.auttech.model.entities.Direcionados;
 
@@ -20,7 +21,7 @@ import java.util.ResourceBundle;
 public class ListaAtendFuncController implements Initializable {
 
     private FuncionarioDao funcionarioServ =  DaoFactory.createFuncionarioDao();
-    private DirecionadosDao dirService = DaoFactory.createDirecionadosDao();
+    private ProfServDao dirService = DaoFactory.createDirecionadosDao();
     private ObservableList<Direcionados> lista;
 
     @FXML
@@ -39,6 +40,11 @@ public class ListaAtendFuncController implements Initializable {
     private TableColumn<Direcionados, Integer> tcPriori;
 
     @FXML
+    private TableColumn<Direcionados, Boolean> TcAceite;
+
+
+
+    @FXML
     private void onBtClose(){
         Stage stage = (Stage)btClose.getScene().getWindow();
         stage.close();
@@ -48,6 +54,8 @@ public class ListaAtendFuncController implements Initializable {
         tcPlaca.setCellValueFactory(new PropertyValueFactory<Direcionados, String>("placa"));
         tcTempo.setCellValueFactory(new PropertyValueFactory<Direcionados, String>("tmpPrvst"));
         tcPriori.setCellValueFactory(new PropertyValueFactory<Direcionados, Integer>("rdmTndmnt"));
+        TcAceite.setCellValueFactory(new PropertyValueFactory<Direcionados, Boolean>("aceito"));
+        TcAceite.setCellFactory(CheckBoxTableCell.forTableColumn(TcAceite));
     }
 
     public void chamada(String apelido){
