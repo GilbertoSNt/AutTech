@@ -551,6 +551,18 @@ ALTER TABLE IF EXISTS public.tabstatusatendimento
     OWNER to gilberto;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 /* tabela de contagem de ocupação do profissional */
 
 
@@ -968,3 +980,507 @@ BEGIN
 
 END;
 $$;
+
+
+
+
+
+
+// -> procedure para editar os dados da tabela em uma ves só
+// -> trabalhará em 02 tabelas tabstatusatendimento, tabosprfssnl
+
+
+simples ainda
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_suspensao(
+    IN p_codos BIGINT,
+    IN p_suspensaodt INTEGER,
+	IN p_suspensaotr INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET
+	suspensaodt = p_suspensaodt,
+	suspensaotr = p_suspensaotr
+    WHERE codos = p_codos;
+END;
+$$;
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_caixa(
+	IN p_codos bigint,
+	IN p_caixa integer)
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET caixa = p_caixa
+    WHERE codos = p_codos;
+END;
+$BODY$;
+ALTER PROCEDURE public.upd_tabstatusatendimento_caixa(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_caixa(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_caixa(bigint, integer) TO usuario_base;
+
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_eletrico(
+	IN p_codos bigint,
+	IN p_eletrico integer)
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET eletrico = p_eletrico
+    WHERE codos = p_codos;
+END;
+$BODY$;
+ALTER PROCEDURE public.upd_tabstatusatendimento_eletrico(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_eletrico(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_eletrico(bigint, integer) TO usuario_base;
+
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_injecao(
+	IN p_codos bigint,
+	IN p_injecao integer)
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET injecao = p_injecao
+    WHERE codos = p_codos;
+END;
+$BODY$;
+ALTER PROCEDURE public.upd_tabstatusatendimento_injecao(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_injecao(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_injecao(bigint, integer) TO usuario_base;
+
+
+-- PROCEDURE: public.upd_tabstatusatendimento_trocaoleo(bigint, integer)
+
+-- DROP PROCEDURE IF EXISTS public.upd_tabstatusatendimento_trocaoleo(bigint, integer);
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_trocaoleo(
+	IN p_codos bigint,
+	IN p_trocaoleo integer)
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET trocaoleo = p_trocaoleo
+    WHERE codos = p_codos;
+END;
+$BODY$;
+ALTER PROCEDURE public.upd_tabstatusatendimento_trocaoleo(bigint, integer)
+    OWNER TO gilberto;
+
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_trocaoleo(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_trocaoleo(bigint, integer) TO usuario_base;
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_freio(
+    IN p_codos BIGINT,
+    IN p_freiodt INTEGER,
+	IN p_freiotr INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET
+	freiodt = p_freiodt,
+	freiotr = p_freiotr
+    WHERE codos = p_codos;
+END;
+$$;
+
+ALTER PROCEDURE public.upd_tabstatusatendimento_freio(bigint, integer, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_freio(bigint, integer, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_freio(bigint, integer, integer) TO usuario_base;
+
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_motor(
+    IN p_codos BIGINT,
+    IN p_motor INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET
+	motor = p_motor
+    WHERE codos = p_codos;
+END;
+$$;
+
+ALTER PROCEDURE public.upd_tabstatusatendimento_motor(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_motor(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_motor(bigint, integer) TO usuario_base;
+
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_pneus(
+    IN p_codos BIGINT,
+    IN p_pneus INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET
+	pneus = p_pneus
+    WHERE codos = p_codos;
+END;
+$$;
+
+ALTER PROCEDURE public.upd_tabstatusatendimento_pneus(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_pneus(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_pneus(bigint, integer) TO usuario_base;
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_alinbalan(
+    IN p_codos BIGINT,
+    IN p_alinbalan INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET
+	alinbalan = p_alinbalan
+    WHERE codos = p_codos;
+END;
+$$;
+
+ALTER PROCEDURE public.upd_tabstatusatendimento_alinbalan(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_alinbalan(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_alinbalan(bigint, integer) TO usuario_base;
+
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_revisao(
+    IN p_codos BIGINT,
+    IN p_revisao INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET
+	revisao = p_revisao
+    WHERE codos = p_codos;
+END;
+$$;
+
+ALTER PROCEDURE public.upd_tabstatusatendimento_revisao(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_revisao(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_revisao(bigint, integer) TO usuario_base;
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_lavacao(
+    IN p_codos BIGINT,
+    IN p_lavacao INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET
+	lavacao = p_lavacao
+    WHERE codos = p_codos;
+END;
+$$;
+
+ALTER PROCEDURE public.upd_tabstatusatendimento_lavacao(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_lavacao(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_lavacao(bigint, integer) TO usuario_base;
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_orcaixa(
+	IN p_codos bigint,
+	IN p_orcaixa integer)
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET orcambio = p_orcaixa
+    WHERE codos = p_codos;
+END;
+$BODY$;
+ALTER PROCEDURE public.upd_tabstatusatendimento_orcaixa(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_orcaixa(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_orcaixa(bigint, integer) TO usuario_base;
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_oreletrico(
+	IN p_codos bigint,
+	IN p_oreletrico integer)
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET oreletrico = p_oreletrico
+    WHERE codos = p_codos;
+END;
+$BODY$;
+ALTER PROCEDURE public.upd_tabstatusatendimento_oreletrico(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_oreletrico(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_oreletrico(bigint, integer) TO usuario_base;
+
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_ormotor(
+    IN p_codos BIGINT,
+    IN p_ormotor INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET
+	ormotor = p_ormotor
+    WHERE codos = p_codos;
+END;
+$$;
+
+ALTER PROCEDURE public.upd_tabstatusatendimento_ormotor(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_ormotor(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_ormotor(bigint, integer) TO usuario_base;
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_orinjecao(
+	IN p_codos bigint,
+	IN p_orinjecao integer)
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET orinjecao = p_orinjecao
+    WHERE codos = p_codos;
+END;
+$BODY$;
+ALTER PROCEDURE public.upd_tabstatusatendimento_orinjecao(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_orinjecao(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_orinjecao(bigint, integer) TO usuario_base;
+
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_ormecanico(
+	IN p_codos bigint,
+	IN p_ormecanico integer)
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET ormecanico = p_ormecanico
+    WHERE codos = p_codos;
+END;
+$BODY$;
+ALTER PROCEDURE public.upd_tabstatusatendimento_ormecanico(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_ormecanico(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_ormecanico(bigint, integer) TO usuario_base;
+
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_orpneus(
+    IN p_codos BIGINT,
+    IN p_orpneus INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET
+	orpneu = p_orpneus
+    WHERE codos = p_codos;
+END;
+$$;
+
+ALTER PROCEDURE public.upd_tabstatusatendimento_orpneus(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_orpneus(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_orpneus(bigint, integer) TO usuario_base;
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_orstcliente(
+    IN p_codos BIGINT,
+    IN p_orstcliente INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET
+	orstcliente = p_orstcliente
+    WHERE codos = p_codos;
+END;
+$$;
+
+ALTER PROCEDURE public.upd_tabstatusatendimento_orstcliente(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_orstcliente(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_orstcliente(bigint, integer) TO usuario_base;
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_ormontagem(
+    IN p_codos BIGINT,
+    IN p_ormontagem INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET
+	ormontagem = p_ormontagem
+    WHERE codos = p_codos;
+END;
+$$;
+
+ALTER PROCEDURE public.upd_tabstatusatendimento_ormontagem(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_ormontagem(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_ormontagem(bigint, integer) TO usuario_base;
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_staviso(
+    IN p_codos BIGINT,
+    IN p_staviso BOOLEAN
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET
+	staviso = p_staviso
+    WHERE codos = p_codos;
+END;
+$$;
+
+ALTER PROCEDURE public.upd_tabstatusatendimento_staviso(bigint, BOOLEAN)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_staviso(bigint, BOOLEAN) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_staviso(bigint, BOOLEAN) TO usuario_base;
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_asslevar(
+    IN p_codos BIGINT,
+    IN p_asslevar INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET
+	asslevar = p_asslevar
+    WHERE codos = p_codos;
+END;
+$$;
+
+ALTER PROCEDURE public.upd_tabstatusatendimento_asslevar(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_asslevar(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_asslevar(bigint, integer) TO usuario_base;
+
+
+
+CREATE OR REPLACE PROCEDURE public.upd_tabstatusatendimento_stgeralatend(
+    IN p_codos BIGINT,
+    IN p_stgeralatend INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE public.tabstatusatendimento
+    SET
+	stgeralatend = p_stgeralatend
+    WHERE codos = p_codos;
+END;
+$$;
+
+ALTER PROCEDURE public.upd_tabstatusatendimento_stgeralatend(bigint, integer)
+    OWNER TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_stgeralatend(bigint, integer) TO gilberto;
+
+GRANT EXECUTE ON PROCEDURE public.upd_tabstatusatendimento_stgeralatend(bigint, integer) TO usuario_base;

@@ -36,6 +36,7 @@ public class ProfServService implements ProfServDao {
     public Boolean saveDirecionadosInterno(List<Direcionados> dir, Integer codOS, char tipo,
                                            Integer movimento) {
 
+        int troleo = Integer.parseInt(null);
         try{
             conn.setAutoCommit(false);
 
@@ -50,6 +51,42 @@ public class ProfServService implements ProfServDao {
             cs.setInt(6,movimento);
 
             cs.execute();
+
+            switch (dir.get(a).getTpSrvc()){
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+                case 5:
+
+                    break;
+                case 6:
+
+                    break;
+                case 7:
+
+                    break;
+                case 8:
+
+                    break;
+                case 9:
+
+                    break;
+                case 10:
+
+                    break;
+            }
+
+
+
 
             }
             conn.commit();
