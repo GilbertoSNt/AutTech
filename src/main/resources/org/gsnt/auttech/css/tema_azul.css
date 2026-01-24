@@ -1,0 +1,160 @@
+/* =========================================================
+   THEME.CSS - TEMA CLARO OFICIAL DO SISTEMA
+   ========================================================= */
+
+* {
+    /* ===== CORES BASE ===== */
+    -fx-primary-color: #2F6F95;
+    -fx-primary-hover: #285E7D;
+
+    -fx-secondary-color: #F4F6F8;
+    -fx-third-color: #E8F1F5;
+
+    -fx-header-color: #1F4E68;
+
+    -fx-error-color: #C2412D;
+    -fx-success-color: #2E7D32;
+
+    -fx-text-main: #2E2E2E;
+    -fx-text-secondary: #6B7280;
+    -fx-text-invert: #FAFAFA;
+
+    -fx-border-color: #DADFE3;
+    -fx-border-soft: #BFD3E0;
+}
+
+/* ================= BUTTON ================= */
+
+.button, .button3, .btn3 {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: -fx-text-invert;
+    -fx-background-radius: 10;
+}
+
+.button:hover, .button3:hover, .btn3:hover {
+    -fx-background-color: -fx-primary-hover;
+}
+
+.btn1 {
+    -fx-background-color: -fx-error-color;
+    -fx-text-fill: -fx-text-invert;
+}
+
+.btn1:hover {
+    -fx-background-color: #9F3325;
+}
+
+.btn2 {
+    -fx-background-color: -fx-success-color;
+    -fx-text-fill: -fx-text-invert;
+}
+
+/* ================= LABEL ================= */
+
+.label {
+    -fx-text-fill: -fx-text-main;
+}
+
+.label.secondary {
+    -fx-text-fill: -fx-text-secondary;
+}
+
+.label.title {
+    -fx-text-fill: -fx-header-color;
+    -fx-font-weight: bold;
+}
+
+/* ================= TEXTFIELD ================= */
+
+.text-field {
+    -fx-accent-color: -fx-primary-color;
+    -fx-background-color: #FAFAFA;
+    -fx-text-fill: -fx-text-main;
+    -fx-prompt-text-fill: -fx-text-secondary;
+    -fx-background-radius: 5;
+}
+
+.text-field:focused {
+    -fx-background-color: -fx-primary-color, #FFFFFF;
+    -fx-background-insets: 0, 2;
+}
+
+.text-field.error {
+    -fx-background-color: -fx-error-color, #FFF4F2;
+}
+
+/* ================= COMBOBOX ================= */
+
+.combo-box-base {
+    -fx-background-color: #FAFAFA, -fx-border-soft, #FAFAFA;
+    -fx-background-radius: 7;
+}
+
+.combo-box-base .arrow-button {
+    -fx-background-color: -fx-primary-color;
+}
+
+.combo-box-base .arrow-button:hover {
+    -fx-background-color: -fx-primary-hover;
+}
+
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: -fx-text-invert;
+}
+
+/* ================= DATEPICKER ================= */
+
+.date-picker .arrow-button {
+    -fx-background-color: -fx-primary-color;
+}
+
+.date-picker-popup .month-year-pane {
+    -fx-background-color: -fx-primary-color;
+}
+
+/* ================= TABLEVIEW ================= */
+
+.table-view .column-header {
+    -fx-background-color: -fx-primary-color;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -fx-text-invert;
+}
+
+.table-row-cell:filled:hover {
+    -fx-background-color: -fx-third-color;
+}
+
+.table-row-cell:filled:selected .table-cell {
+    -fx-background-color: #D6ECF3;
+}
+
+/* ================= PANES / LAYOUT ================= */
+
+.anchorpane {
+    -fx-background-color: -fx-header-color;
+}
+
+.anchorpane1, .pane, .pane1 {
+    -fx-background-color: -fx-secondary-color;
+}
+
+.vbox {
+    -fx-background-color: -fx-primary-color;
+}
+
+.scrollpanel, .accordion {
+    -fx-border-color: -fx-primary-color;
+}
+
+/* ================= TABPANE ================= */
+
+.tab-pane .tab {
+    -fx-background-color: -fx-primary-color;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: -fx-header-color;
+}

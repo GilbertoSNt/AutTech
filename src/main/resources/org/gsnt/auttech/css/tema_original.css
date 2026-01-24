@@ -1,0 +1,154 @@
+/* =========================================================
+   THEME-ORIGINAL.CSS
+   Unificação dos seus estilos originais
+   ========================================================= */
+
+* {
+    -fx-primary-color:#8ab5bb;
+    -fx-secondary-color: #eff1f2;
+    -fx-third-color:#b8cad4;
+    -fx-fourth-color:#880015;
+    -fx-fifth-color:#ffffff;
+    -fx-sixth-color:#2f4f4f;
+    -fx-seven-color:#0A1A24;
+
+    -fx-outer-border: -fx-primary-color;
+    -fx-inner-border: -fx-primary-color;
+
+    -fx-accent-color:#0096C9;
+}
+
+/* ================= LABEL ================= */
+
+.label {
+    -fx-text-fill:black;
+}
+
+/* ================= TEXTFIELD ================= */
+
+.text-field {
+    -fx-accent-color:#0096C9;
+    -fx-background-insets: 0, 0 1 1 0;
+    -fx-background-radius: 0 5 5 5;
+    -fx-background-color: #ffffff;
+}
+
+.text-field:focused {
+    -fx-background-color: #0096C9, #f3f7f3;
+}
+
+/* ================= BUTTON ================= */
+
+.button, .button3, .btn3 {
+    -fx-background-color:-fx-primary-color;
+    -fx-text-fill: -fx-fifth-color;
+    -fx-background-radius:10;
+}
+
+.button:hover, .button3:hover {
+    -fx-background-color:#214455;
+}
+
+.btn1 {
+    -fx-background-color:#e32636;
+    -fx-text-fill: -fx-fifth-color;
+}
+
+.btn2 {
+    -fx-background-color:#7dd0d4;
+    -fx-text-fill: -fx-fifth-color;
+}
+
+.btn4 {
+    -fx-background-color:#d4dbdc;
+    -fx-text-fill:#000000;
+}
+
+/* ================= COMBOBOX ================= */
+
+.combo-box-base {
+    -fx-background-color: -fx-secondary-color -fx-outer-border, -fx-inner-border, -fx-secondary-color;
+    -fx-background-radius:7;
+}
+
+.combo-box-base:hover {
+    -fx-background-color: -fx-third-color;
+}
+
+.combo-box-base .arrow-button {
+    -fx-background-color: -fx-primary-color;
+}
+
+.combo-box-base .arrow-button .arrow {
+    -fx-background-color: -fx-fifth-color;
+}
+
+/* ================= DATEPICKER ================= */
+
+.date-picker .arrow-button {
+    -fx-background-color: -fx-primary-color;
+}
+
+.calendar-grid {
+    -fx-background-color: -fx-primary-color;
+}
+
+.calendar-header {
+    -fx-background-color: -fx-primary-color;
+}
+
+.date-picker-popup .month-year-pane {
+    -fx-background-color: -fx-secondary-color;
+}
+
+/* ================= TABLEVIEW ================= */
+
+.table-view .column-header {
+    -fx-background-color: -fx-primary-color;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill:-fx-third-color;
+}
+
+.table-row-cell:filled:hover {
+    -fx-background-color: -fx-light-grey-color;
+}
+
+.table-row-cell:filled:selected .table-cell{
+    -fx-background-color: #afeeee;
+}
+
+/* ================= PANES ================= */
+
+.pane {
+    -fx-background-color:-fx-secondary-color;
+}
+
+.anchorpane {
+    -fx-background-color: -fx-seven-color;
+}
+
+.anchorpane2 {
+    -fx-background-color: -fx-secondary-color;
+    -fx-border-color:-fx-primary-color;
+}
+
+.vbox {
+    -fx-background-color: -fx-primary-color;
+}
+
+/* ================= TABPANE ================= */
+
+.tab-pane {
+    -fx-background-color:-fx-secondary-color;
+    -fx-border-color:-fx-primary-color;
+}
+
+.tab-pane .tab {
+    -fx-background-color:-fx-primary-color;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: -fx-third-color;
+}

@@ -51,3 +51,7 @@
 	-fx-border-color: transparent;
 }
 
+.date-picker .cell:selected {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: -fx-fifth-color;
+}

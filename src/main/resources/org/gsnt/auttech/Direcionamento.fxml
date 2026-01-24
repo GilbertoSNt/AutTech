@@ -25,17 +25,17 @@
             <AnchorPane layoutX="14.0" layoutY="37.0" prefHeight="96.0" prefWidth="967.0" styleClass="anchorpane2" stylesheets="@css/panel.css" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
                <children>
                   <Label layoutX="14.0" layoutY="10.0" text="Serviços solicitados" />
-                  <CheckBox fx:id="cbRevisao" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#onCheck" text="Revisão" />
-                  <CheckBox fx:id="cbTrcOleo" layoutX="208.0" layoutY="34.0" mnemonicParsing="false" onAction="#onCheck" text="Troca de óleo" />
-                  <CheckBox fx:id="cbMec" layoutX="380.0" layoutY="34.0" mnemonicParsing="false" onAction="#onCheck" text="Mecânico" />
-                  <CheckBox fx:id="cbSusp" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#onCheck" text="Suspensão" />
-                  <CheckBox fx:id="cbFreio" layoutX="208.0" layoutY="64.0" mnemonicParsing="false" onAction="#onCheck" text="Freio" />
-                  <CheckBox fx:id="cbMotor" layoutX="380.0" layoutY="64.0" mnemonicParsing="false" onAction="#onCheck" text="Motor" />
-                  <CheckBox fx:id="cbInjElet" layoutX="518.0" layoutY="35.0" mnemonicParsing="false" onAction="#onCheck" text="Injeção eletrônica" />
-                  <CheckBox fx:id="cbElet" layoutX="713.0" layoutY="35.0" mnemonicParsing="false" onAction="#onCheck" text="Elétrica" />
-                  <CheckBox fx:id="cbCaixa" layoutX="885.0" layoutY="35.0" mnemonicParsing="false" onAction="#onCheck" text="Caixa" />
-                  <CheckBox fx:id="cbAlin" layoutX="517.0" layoutY="63.0" mnemonicParsing="false" onAction="#onCheck" text="Alinhamento / Balancemanto" />
-                  <CheckBox fx:id="cbPneu" layoutX="713.0" layoutY="63.0" mnemonicParsing="false" text="Pneus" />
+                  <CheckBox fx:id="cbRevisao" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#onCheck" stylesheets="@css/checkbox.css" text="Revisão" />
+                  <CheckBox fx:id="cbTrcOleo" layoutX="208.0" layoutY="34.0" mnemonicParsing="false" onAction="#onCheck" stylesheets="@css/checkbox.css" text="Troca de óleo" />
+                  <CheckBox fx:id="cbMec" layoutX="380.0" layoutY="34.0" mnemonicParsing="false" onAction="#onCheck" stylesheets="@css/checkbox.css" text="Mecânico" />
+                  <CheckBox fx:id="cbSusp" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#onCheck" stylesheets="@css/checkbox.css" text="Suspensão" />
+                  <CheckBox fx:id="cbFreio" layoutX="208.0" layoutY="64.0" mnemonicParsing="false" onAction="#onCheck" stylesheets="@css/checkbox.css" text="Freio" />
+                  <CheckBox fx:id="cbMotor" layoutX="380.0" layoutY="64.0" mnemonicParsing="false" onAction="#onCheck" stylesheets="@css/checkbox.css" text="Motor" />
+                  <CheckBox fx:id="cbInjElet" layoutX="518.0" layoutY="35.0" mnemonicParsing="false" onAction="#onCheck" stylesheets="@css/checkbox.css" text="Injeção eletrônica" />
+                  <CheckBox fx:id="cbElet" layoutX="713.0" layoutY="35.0" mnemonicParsing="false" onAction="#onCheck" stylesheets="@css/checkbox.css" text="Elétrica" />
+                  <CheckBox fx:id="cbCaixa" layoutX="885.0" layoutY="35.0" mnemonicParsing="false" onAction="#onCheck" stylesheets="@css/checkbox.css" text="Caixa" />
+                  <CheckBox fx:id="cbAlin" layoutX="517.0" layoutY="63.0" mnemonicParsing="false" onAction="#onCheck" stylesheets="@css/checkbox.css" text="Alinhamento / Balancemanto" />
+                  <CheckBox fx:id="cbPneu" layoutX="713.0" layoutY="63.0" mnemonicParsing="false" stylesheets="@css/checkbox.css" text="Pneus" />
                </children>
             </AnchorPane>
             <Button fx:id="btGravar" layoutX="15.0" layoutY="481.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtGravarButtonClick" prefHeight="25.0" prefWidth="110.0" stylesheets="@css/button.css" text="Gravar" />

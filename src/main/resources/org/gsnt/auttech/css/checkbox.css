@@ -1,0 +1,46 @@
+* {
+ -fx-primary-color:#8ab5bb;
+ -fx-secondary-color: #8ab5bb;
+ -fx-third-color:#b8cad4;
+ -fx-fourth-color:#880015;
+ -fx-fifth-color:#ffffff;/*Branco*/
+ -fx-sixth-color:#2f4f4f;
+ -fx-outer-border: -fx-primary-color;
+ -fx-inner-border: -fx-primary-color;
+}
+
+
+ //* Caixa base */
+.check-box > .box {
+      -fx-background-color: -fx-secondary-color;
+      -fx-border-color: -fx-primary-color;
+      -fx-border-width: 2;
+      -fx-background-radius: 4;
+      -fx-border-radius: 4;
+  }
+
+  /* Hover */
+.check-box:hover > .box {
+      -fx-background-color: -fx-third-color;
+  }
+
+  /* Marcado */
+.check-box:selected > .box {
+       -fx-background-color: -fx-secondary-color;
+       -fx-border-color: -fx-primary-color;
+       -fx-border-width: 2;
+       -fx-background-radius: 4;
+       -fx-border-radius: 4;
+
+  }
+
+  /* Ícone do check */
+.check-box:selected > .box > .mark {
+      /*-fx-background-color: -fx-fifth-color;*/
+       -fx-background-color: white;
+  }
+
+  /* Foco */
+.check-box:focused > .box {
+      -fx-border-color: -fx-accent-color;
+ }

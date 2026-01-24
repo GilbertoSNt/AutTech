@@ -35,3 +35,25 @@
 2026-01-11 - 14:31:31.135028800 - ERROR: procedure public.prc_inserir_item_tbocupcprfssnl(bigint, bigint) does not exist
   Dica: No procedure matches the given name and argument types. You might need to add explicit type casts.
   Onde: função PL/pgSQL ins_tabosprfssnl(bigint,integer,bigint,numeric,character,integer) linha 26 em CALL erro em ProfServService - saveDirecionamentosInternos
+2026-01-21 - 23:05:17.217773900 - Cannot invoke "java.net.URL.toExternalForm()" because the return value of "java.lang.Class.getResource(String)" is null Erro no carregamento da tela de principal
+2026-01-21 - 23:07:06.490261 - Cannot invoke "java.net.URL.toExternalForm()" because the return value of "java.lang.Class.getResource(String)" is null Erro no carregamento da tela de principal
+2026-01-21 - 23:09:09.113705700 - Cannot invoke "java.net.URL.toExternalForm()" because the return value of "java.lang.Class.getResource(String)" is null Erro no carregamento da tela de principal
+2026-01-21 - 23:17:50.328952100 - Cannot invoke "java.net.URL.toExternalForm()" because the return value of "java.lang.Class.getResource(String)" is null Erro no carregamento da tela de principal
+2026-01-22 - 22:22:46.535456500 - A tentativa de conexão falhou. Erro no getConnection db
+2026-01-22 - 22:22:56.542967300 - A tentativa de conexão falhou. Erro no getConnection db
+2026-01-22 - 22:23:06.621647500 - A tentativa de conexão falhou. Erro no getConnection db
+2026-01-22 - 22:23:17.509619100 - A tentativa de conexão falhou. Erro no getConnection db
+2026-01-22 - 22:23:27.514090600 - A tentativa de conexão falhou. Erro no getConnection db
+2026-01-22 - 22:23:37.522836500 - A tentativa de conexão falhou. Erro no getConnection db
+2026-01-22 - 22:33:11.751360500 - A tentativa de conexão falhou. Erro no getConnection db
+2026-01-22 - 22:33:21.797363500 - A tentativa de conexão falhou. Erro no getConnection db
+2026-01-22 - 22:33:31.808733100 - A tentativa de conexão falhou. Erro no getConnection db
+2026-01-22 - 22:33:42.623288200 - A tentativa de conexão falhou. Erro no getConnection db
+2026-01-22 - 22:34:21.497633800 - Cannot invoke "java.net.URL.toExternalForm()" because the return value of "java.lang.Class.getResource(String)" is null Erro no carregamento da tela de principal
+2026-01-22 - 22:48:57.093179900 - Cannot invoke "java.net.URL.toExternalForm()" because the return value of "java.lang.Class.getResource(String)" is null Erro no carregamento da tela de principal
+2026-01-24 - 14:27:28.438755 - A tentativa de conexão falhou. Erro no getConnection db
+2026-01-24 - 14:27:38.461545800 - A tentativa de conexão falhou. Erro no getConnection db
+2026-01-24 - 14:27:48.486858100 - A tentativa de conexão falhou. Erro no getConnection db
+2026-01-24 - 14:28:00.181321800 - A tentativa de conexão falhou. Erro no getConnection db
+2026-01-24 - 14:28:10.191249 - A tentativa de conexão falhou. Erro no getConnection db
+2026-01-24 - 14:28:20.252588200 - A tentativa de conexão falhou. Erro no getConnection db

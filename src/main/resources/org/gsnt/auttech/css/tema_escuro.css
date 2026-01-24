@@ -1,0 +1,100 @@
+/* =========================================================
+   THEME-DARK.CSS - TEMA ESCURO
+   ========================================================= */
+
+* {
+    -fx-primary-color: #60A5FA;
+    -fx-primary-hover: #3B82F6;
+
+    -fx-secondary-color: #111827;
+    -fx-third-color: #1F2933;
+
+    -fx-header-color: #0F172A;
+
+    -fx-error-color: #F87171;
+    -fx-success-color: #34D399;
+
+    -fx-text-main: #E5E7EB;
+    -fx-text-secondary: #9CA3AF;
+    -fx-text-invert: #0F172A;
+
+    -fx-border-color: #374151;
+    -fx-border-soft: #4B5563;
+}
+
+/* BUTTON */
+
+.button, .button3, .btn3 {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: -fx-text-invert;
+}
+
+.button:hover {
+    -fx-background-color: -fx-primary-hover;
+}
+
+.btn1 {
+    -fx-background-color: -fx-error-color;
+}
+
+.btn2 {
+    -fx-background-color: -fx-success-color;
+}
+
+/* LABEL */
+
+.label {
+    -fx-text-fill: -fx-text-main;
+}
+
+/* TEXTFIELD */
+
+.text-field {
+    -fx-background-color: #1F2933;
+    -fx-text-fill: -fx-text-main;
+    -fx-prompt-text-fill: -fx-text-secondary;
+}
+
+.text-field:focused {
+    -fx-background-color: -fx-primary-color, #1F2933;
+}
+
+/* COMBOBOX */
+
+.combo-box-base {
+    -fx-background-color: #1F2933, -fx-border-soft, #1F2933;
+}
+
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: -fx-primary-color;
+}
+
+/* TABLE */
+
+.table-view .column-header {
+    -fx-background-color: -fx-header-color;
+}
+
+.table-row-cell:filled:selected .table-cell {
+    -fx-background-color: #374151;
+}
+
+/* PANES */
+
+.anchorpane {
+    -fx-background-color: -fx-header-color;
+}
+
+.anchorpane1, .pane {
+    -fx-background-color: -fx-secondary-color;
+}
+
+/* TAB */
+
+.tab-pane .tab {
+    -fx-background-color: #1F2933;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: -fx-primary-color;
+}

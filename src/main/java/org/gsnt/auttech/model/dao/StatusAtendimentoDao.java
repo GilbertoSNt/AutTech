@@ -32,4 +32,15 @@ public interface StatusAtendimentoDao {
     ///// Status Orçamento
 
     List<StatusAtendimento> statusOrcamentoTela();
+
+            // edição
+    void editOrCaixa(Integer codOs, Integer prof);
+    void editOrEletrico(Integer codOs, Integer prof);
+    void editOrInjecao(Integer codOs, Integer prof);
+    void editOrMecanico(Integer codOs, Integer prof);
+    void editOrMontagem(Integer codOs, Integer prof);
+    void editOrMotor(Integer codOs, Integer prof);
+    void editOrPneus(Integer codOs, Integer prof);
+    void editOrStCliente(Integer codOs, Integer prof);
+
 }

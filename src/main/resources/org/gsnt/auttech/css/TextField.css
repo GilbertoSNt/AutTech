@@ -9,4 +9,10 @@
 
 .text-field:focused {
     -fx-background-color: #0096C9, #f3f7f3;
-}
+    }
+/*
+uso da função erro no código
+
+campo.getStyleClass().add("error");
+
+*/

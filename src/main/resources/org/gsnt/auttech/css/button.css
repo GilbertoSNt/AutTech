@@ -1,8 +1,8 @@
 *{
     -fx-primary-color: #3f676d;
-    /*-fx-primary-color: #153849;/*Fundo tarja superior*/
+
     -fx-secondary-color: #d4dbdc;/*Fundo panel inferior*/
-    /*-fx-secondary-color: ;*/
+
     -fx-third-color:#b8cad4;
     -fx-fourth-color:#880015;
     -fx-fifth-color:#ffffff;/*Branco*/
@@ -10,7 +10,7 @@
     -fx-box-border: #9fb9b9;
     -fx-inner-border: #b5e9e9;
     -fx-body-color: #bbe4e4;
-   /* -fx-text-font:*/
+
 }
 
 .button{

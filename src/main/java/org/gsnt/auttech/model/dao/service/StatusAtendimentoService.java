@@ -923,5 +923,44 @@ public class StatusAtendimentoService implements StatusAtendimentoDao {
         return null;
     }
 
+    @Override
+    public void editOrCaixa(Integer codOs, Integer prof) {
+
+    }
+
+    @Override
+    public void editOrEletrico(Integer codOs, Integer prof) {
+
+    }
+
+    @Override
+    public void editOrInjecao(Integer codOs, Integer prof) {
+
+    }
+
+    @Override
+    public void editOrMecanico(Integer codOs, Integer prof) {
+
+    }
+
+    @Override
+    public void editOrMontagem(Integer codOs, Integer prof) {
+
+    }
+
+    @Override
+    public void editOrMotor(Integer codOs, Integer prof) {
+
+    }
+
+    @Override
+    public void editOrPneus(Integer codOs, Integer prof) {
+
+    }
+
+    @Override
+    public void editOrStCliente(Integer codOs, Integer prof) {
+
+    }
 }
 
