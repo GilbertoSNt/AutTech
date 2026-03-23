@@ -1,6 +1,6 @@
 package org.gsnt.auttech.util;
 
-import org.gsnt.auttech.model.entities.Cliente;
+import org.gsnt.auttech.cliente.Cliente;
 
 import java.util.ArrayList;
 import java.util.List;

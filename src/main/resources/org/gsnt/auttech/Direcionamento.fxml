@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="1000.0" styleClass="anchorpane" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.controller.DirecionamentoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="1000.0" styleClass="anchorpane" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.direcionamento.DirecionamentoController">
    <children>
       <Button fx:id="btClose" layoutX="964.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onbtCloseButtonClick" prefHeight="25.0" prefWidth="25.0" styleClass="btn1" stylesheets="@css/button.css" text="X">
          <font>
@@ -105,7 +105,7 @@
                 </TitledPane>
               </panes>
             </Accordion>
-            <CheckBox fx:id="cbTudoMec" layoutX="600.0" layoutY="417.0" mnemonicParsing="false" onAction="#selUnico" prefHeight="25.0" prefWidth="321.0" text="Passar todo o serviço para um único mecânico" textOverrun="CENTER_WORD_ELLIPSIS" AnchorPane.leftAnchor="600.0" />
+            <CheckBox fx:id="cbTudoMec" layoutX="600.0" layoutY="417.0" mnemonicParsing="false" onAction="#selUnico" prefHeight="25.0" prefWidth="321.0" stylesheets="@css/checkbox.css" text="Passar todo o serviço para um único mecânico" textOverrun="CENTER_WORD_ELLIPSIS" AnchorPane.leftAnchor="600.0" />
             <ComboBox fx:id="cbxTudo" layoutX="600.0" layoutY="442.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" stylesheets="@css/combobox.css" />
          </children></AnchorPane>
       <Label layoutX="10.0" layoutY="10.0" text="Direcionar ordem de serviço" textFill="WHITE">

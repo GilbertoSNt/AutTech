@@ -1,6 +1,6 @@
 package org.gsnt.auttech.util.chat;
 
-import org.gsnt.auttech.model.entities.Envio;
+import org.gsnt.auttech.direcionamento.Envio;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;

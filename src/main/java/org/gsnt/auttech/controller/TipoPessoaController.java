@@ -8,7 +8,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.gsnt.auttech.TelaPrincipal;
-import org.gsnt.auttech.db.DbException;
+import org.gsnt.auttech.config.db.DbException;
 
 import java.io.IOException;
 

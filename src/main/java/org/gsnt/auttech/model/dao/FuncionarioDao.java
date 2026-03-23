@@ -1,6 +1,6 @@
 package org.gsnt.auttech.model.dao;
 
-import org.gsnt.auttech.model.entities.Funcionario;
+import org.gsnt.auttech.funcionario.Funcionario;
 
 import java.util.List;
 

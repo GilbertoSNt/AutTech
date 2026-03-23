@@ -1,7 +1,9 @@
 package org.gsnt.auttech.controller;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -9,23 +11,27 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import org.gsnt.auttech.TelaPrincipal;
-import org.gsnt.auttech.db.TesteConexao;
-import org.gsnt.auttech.model.dao.DaoFactory;
+import org.gsnt.auttech.util.TesteConexao;
+import org.gsnt.auttech.config.DaoFactory;
 import org.gsnt.auttech.model.dao.FuncionarioDao;
-import org.gsnt.auttech.model.dao.IniDAO;
-import org.gsnt.auttech.model.dao.LoginDAO;
-import org.gsnt.auttech.model.entities.Funcionario;
-import org.gsnt.auttech.model.entities.Usuario;
+import org.gsnt.auttech.inicio.IniDAO;
+import org.gsnt.auttech.config.seg.SessionUserDao;
+import org.gsnt.auttech.funcionario.Funcionario;
+import org.gsnt.auttech.config.seg.SessionUser;
+import org.gsnt.auttech.util.ExceptionGenerics;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
-    private FuncionarioDao func = DaoFactory.createFuncionarioDao();
-    private LoginDAO log = DaoFactory.createloginDao();
-    private TesteConexao t = new TesteConexao();
+    private final FuncionarioDao func = DaoFactory.createFuncionarioDao();
+    private final SessionUserDao log = DaoFactory.createSessionUserDao();
+    private final IniDAO ini = DaoFactory.createIniDao();
+
+    private final TesteConexao t = new TesteConexao();
+    private int tntv = 0;//Tentativas de acesso
 
     @FXML
     private Label lblEmpresa;
@@ -80,21 +86,32 @@ public class LoginController implements Initializable {
 
 
 
-    IniDAO ini = DaoFactory.createIniDao();
+
 
     @FXML
     private void onBtAcesso(){
 
-        if(txtCNPJ.getLength() < 14){
+        String snh = pfSenha.getText();
+        pfSenha.clear();
+        System.out.println(txtCNPJ.getText());
 
-            if(pfSenha.getText().equals("admin")) {
-                Usuario.setUser("Admin");
-                TelaPrincipal.setId(txtCNPJ.getText());
+        if(log.verificaEmpresa(txtCNPJ.getText())){  //erro aqui retorno em concatenação de integer e espera boolean
+
+            SessionUser.setId(txtCNPJ.getText()+" - "+"Admin");
+
+            /*
+            if(log.loginSistema(cbUsuario.getValue().getApelido(),snh)) {
+
+                SessionUser.setId(txtCNPJ.getText()+" - "+cbUsuario.getValue().getApelido());
                 close(btAcesso);
 
+            }else {
+
+                tntv = tntv + 1;
+
             }
-        }else {
-            verificaEmpresa();
+
+             */
         }
     }
 
@@ -103,15 +120,7 @@ public class LoginController implements Initializable {
         System.exit(0);
     }
 
-    private String verificaEmpresa(){
 
-        String resultado = ini.verifica(txtCNPJ.getText());
-
-        // implementar funções de verificação de cnpj
-
-        return resultado;
-
-    }
 
     private void carregaCombo(){
         ObservableList obsUsr = FXCollections.observableList(func.findFuncCombo(1,2));
@@ -125,10 +134,6 @@ public class LoginController implements Initializable {
         };
         cbUsuario.setCellFactory(factoryBalan);
         cbUsuario.setButtonCell(factoryBalan.call(null));
-    }
-
-    private void verificaSenha(){
-
     }
 
     private void tela(){
@@ -165,43 +170,80 @@ public class LoginController implements Initializable {
     }
 
 
-    private void testes(){
-        if (t.testeInternet()) {
-            LblWeb.setText("OK");
-        } else {
-            LblWeb.setTextFill(Color.RED);
-            LblWeb.setText("Falhou");
-        }
 
-        if (t.testeDbLocal()) {
-            LblBdLocal.setText("OK");
-        } else {
-            LblBdLocal.setTextFill(Color.RED);
-            LblBdLocal.setText("Falhou");
-        }
+    //separa aqui
 
-        if (t.testeDbOn()) {
-            LblBdRemoto.setText("OK");
-        } else {
-            LblBdRemoto.setTextFill(Color.RED);
-            LblBdRemoto.setText("Falhou");
-        }
+    private void executarTestes() {
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
 
-        if (t.testeDbSttOn()) {
-            LblStRemoto.setText("OK");
+                Thread.sleep(500);
+                // Teste 1 - Internet
+                Platform.runLater(() -> LblWeb.setText("Testando..."));
+                Thread.sleep(500);
+                boolean internet = t.testeInternet();
+                Platform.runLater(() -> atualizaLabel(LblWeb, internet));
+
+
+                // Teste 2 - BD Local
+                Platform.runLater(() -> LblBdLocal.setText("Testando..."));
+                Thread.sleep(500);
+                boolean dbLocal = t.testeDbLocal();
+                Platform.runLater(() -> atualizaLabel(LblBdLocal, dbLocal));
+
+                // Teste 3 - BD Remoto
+                Platform.runLater(() -> LblBdRemoto.setText("Testando..."));
+                Thread.sleep(500);
+                boolean dbOn = t.testeDbOn();
+                Platform.runLater(() -> atualizaLabel(LblBdRemoto, dbOn));
+
+                // Teste 4 - Servidor Remoto
+                Platform.runLater(() -> LblStRemoto.setText("Testando..."));
+                Thread.sleep(500);
+                boolean dbSttOn = t.testeDbSttOn();
+                Platform.runLater(() -> atualizaLabel(LblStRemoto, dbSttOn));
+
+                return null;
+            }
+        };
+
+        task.setOnFailed(e -> Platform.runLater(() -> {
+            atualizaLabel(LblWeb, false);
+            atualizaLabel(LblBdLocal, false);
+            atualizaLabel(LblBdRemoto, false);
+            atualizaLabel(LblStRemoto, false);
+        }));
+
+        Thread threadTestes = new Thread(task);
+        threadTestes.setDaemon(true);
+        threadTestes.start();
+    }
+
+    // Label genérico reutilizável
+    private void atualizaLabel(Label label, boolean sucesso) {
+        if (sucesso) {
+            label.setTextFill(Color.GREEN);
+            label.setText("OK");
         } else {
-            LblStRemoto.setTextFill(Color.RED);
-            LblStRemoto.setText("Falhou");
+            label.setTextFill(Color.RED);
+            label.setText("Falhou");
         }
     }
 
+    //separa aqui
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //  carregaCombo();
-        tela();
-        testes();
+        try {
 
+            tela();
+            executarTestes();
+           // carregaCombo();
+
+        }catch (Exception e){
+            throw new ExceptionGenerics(e+" Erro na tela de login");
+        }
 
     }
 

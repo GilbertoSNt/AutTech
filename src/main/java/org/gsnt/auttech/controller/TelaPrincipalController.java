@@ -13,10 +13,25 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.gsnt.auttech.TelaPrincipal;
-import org.gsnt.auttech.db.DbException;
-import org.gsnt.auttech.model.dao.*;
-import org.gsnt.auttech.model.dao.service.ClienteService;
-import org.gsnt.auttech.model.entities.*;
+import org.gsnt.auttech.agenda.Agenda;
+import org.gsnt.auttech.agenda.AgendaController;
+import org.gsnt.auttech.agenda.AgendaDao;
+import org.gsnt.auttech.cliente.ClienteDao;
+import org.gsnt.auttech.cliente.ListaClienteController;
+import org.gsnt.auttech.config.DaoFactory;
+import org.gsnt.auttech.config.db.DbException;
+import org.gsnt.auttech.direcionamento.Direcionados;
+import org.gsnt.auttech.direcionamento.DirecionamentoController;
+import org.gsnt.auttech.direcionamento.ProfServDao;
+import org.gsnt.auttech.funcionario.ListaAtendFuncController;
+import org.gsnt.auttech.cliente.ClienteService;
+import org.gsnt.auttech.config.seg.SessionUser;
+import org.gsnt.auttech.orcamento.Orcamento;
+import org.gsnt.auttech.os.CriaOsController;
+import org.gsnt.auttech.os.OrdemServico;
+import org.gsnt.auttech.os.OrdemServicoDao;
+import org.gsnt.auttech.status.StatusAtendimento;
+import org.gsnt.auttech.status.StatusAtendimentoDao;
 import org.gsnt.auttech.util.*;
 
 import java.io.IOException;
@@ -30,7 +45,7 @@ public class TelaPrincipalController implements Initializable {
     private final AgendaDao agendaService = DaoFactory.createAgendaDao();
     private final StatusAtendimentoDao stAtendimento = DaoFactory.createStatusAtendimentoDao();
     private final OrdemServicoDao osServ = DaoFactory.createOrdemServicoDao();
-    private final OrcamentoDao orcService = DaoFactory.createOrcamentoDao();
+    private final Orcamento.OrcamentoDao orcService = DaoFactory.createOrcamentoDao();
     private LogTxt log = new LogTxt();
     private final ClienteDao cli = DaoFactory.createClienteDao();
     private final ProfServDao dirService = DaoFactory.createDirecionadosDao();
@@ -147,7 +162,7 @@ public class TelaPrincipalController implements Initializable {
                 if(result.get() == ButtonType.OK) {
                     agendaService.excluiAgenda(tt);
                     updateTableView();
-                    log.escreveLog(Usuario.getUser(),"Cancelou agendamento para placa "+tt.getPlaca());
+                    log.escreveLog(SessionUser.getId(),"Cancelou agendamento para placa "+tt.getPlaca());
                 }
         }else{
             Alerts.showAlert("Cancelar agendamento", "Você deve selecionar uma linha na tabela agenda", null, Alert.AlertType.INFORMATION);
@@ -170,7 +185,7 @@ public class TelaPrincipalController implements Initializable {
                      criaOsController.preencheDadosAgenda(dado);
   // ativar aqui novamente                      agendaService.excluiAgenda(tt);
                       //  updateTableView();
-                    log.escreveLog(Usuario.getUser(),"Criou OS para o veículo - "+tt.getPlaca());
+                    log.escreveLog(SessionUser.getId(),"Criou OS para o veículo - "+tt.getPlaca());
                     });}
                     catch(Exception d){
                         throw new DbException(d.getMessage());
@@ -206,7 +221,7 @@ public class TelaPrincipalController implements Initializable {
                         agendaService.reverteEnvioGuincho(tt);
                     }
                 }
-                log.escreveLog(Usuario.getUser(),"Alterou o status do envio do socorro para placa "+tt.getPlaca());
+                log.escreveLog(SessionUser.getId(),"Alterou o status do envio do socorro para placa "+tt.getPlaca());
             } else {
                 Alerts.showAlert("Atenção", "Agendamento não tem registro da necessidade do guinho / socorro para o veículo", null, Alert.AlertType.ERROR);
             }
@@ -236,7 +251,7 @@ public class TelaPrincipalController implements Initializable {
                         agendaService.reverterEnvioRecolhimento(tt);
                     }
                 }
-                log.escreveLog(Usuario.getUser(),"Alterou o status do deslocamento para placa "+tt.getPlaca());
+                log.escreveLog(SessionUser.getId(),"Alterou o status do deslocamento para placa "+tt.getPlaca());
             }
             else{
                 Alerts.showAlert("Atenção","Agendamento não tem registro da necessidade de buscar o veículo",null, Alert.AlertType.ERROR);
@@ -366,7 +381,7 @@ public class TelaPrincipalController implements Initializable {
                 orcService.recusaOrcamento(st.getCod());
                 stAtendimento.cancelaAtendimento(st.getCod());
                 osServ.cancelaOrdemServico(st.getCod());
-                log.escreveLog(Usuario.getUser()," Cancelou a OS para placa "+st.getPlaca());
+                log.escreveLog(SessionUser.getId()," Cancelou a OS para placa "+st.getPlaca());
 
             }
         }else{
@@ -489,7 +504,7 @@ public class TelaPrincipalController implements Initializable {
                 orcService.recusaOrcamento(st.getCod());
                 stAtendimento.cancelaAtendimento(st.getCod());
                 osServ.cancelaOrdemServico(st.getCod());
-                log.escreveLog(Usuario.getUser(),"cancelou o orçamento para placa "+st.getPlaca());
+                log.escreveLog(SessionUser.getId(),"cancelou o orçamento para placa "+st.getPlaca());
 
                 //falta enviar informação para a tela de entrega do orçamento
 
@@ -713,7 +728,7 @@ public class TelaPrincipalController implements Initializable {
         initializeNodes();
 
         accServicos.setExpandedPane(tpAgenda);
-        lblUser.setText(Usuario.getUser());
+        lblUser.setText(SessionUser.getId());
 
     }
 

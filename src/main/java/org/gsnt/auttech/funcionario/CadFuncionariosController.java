@@ -1,0 +1,810 @@
+package org.gsnt.auttech.funcionario;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.stage.Stage;
+import javafx.util.Callback;
+import org.gsnt.auttech.config.DaoFactory;
+import org.gsnt.auttech.email.EmailDao;
+import org.gsnt.auttech.endereco.EnderecoDao;
+import org.gsnt.auttech.model.dao.FuncionarioDao;
+import org.gsnt.auttech.email.Email;
+import org.gsnt.auttech.endereco.Endereco;
+import org.gsnt.auttech.entitiesgenerics.Estados;
+import org.gsnt.auttech.endereco.TipoEndereco;
+import org.gsnt.auttech.util.Alerts;
+import org.gsnt.auttech.util.DadosCombos;
+import org.gsnt.auttech.util.ExceptionGenerics;
+import org.gsnt.auttech.util.MaskValid;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+
+/*
+rbAdm.isSelected() = 1;
+rbAdmAux.isSelected() = 2;
+rbProd.isSelected() = 3;
+rbProdAux.isSelected() = 4;
+rbApre.isSelected() = 5;
+rbVenda.isSelected() = 6;
+rbCompra.isSelected() = 7;
+*/
+
+/**
+ * Classe responsável da tela funcionários
+ *
+ * @author Gilberto da S. Neto
+ * @version 1.0
+ */
+
+public class CadFuncionariosController implements Initializable {
+
+    /**
+     * Criação de objetos com relação do banco de dados
+     *
+     * @param funcService
+     * @param endService
+     * @param emailService
+     *
+     */
+    private FuncionarioDao funcService = DaoFactory.createFuncionarioDao();
+
+    private EnderecoDao endService = DaoFactory.createEnderecoDao();
+
+    private EmailDao emailService = DaoFactory.createEmailDao();
+
+    @FXML private Button btClose;
+
+    @FXML private Button btGravar;
+
+    @FXML private Button btEditar;
+
+    @FXML private Button btDesativar;
+
+    @FXML private Button btCancelar;
+
+    @FXML private TextField txtNome;
+
+    @FXML private TextField txtCpf;
+
+    @FXML private TextField txtRg;
+
+    @FXML private DatePicker dpDataNasc;
+
+    @FXML private ComboBox<TipoEndereco> cbTipoEndereco;
+
+    @FXML private TextField txtEnd;
+
+    @FXML private TextField txtNum;
+
+    @FXML private TextField txtComplemento;
+
+    @FXML private TextField txtBairro;
+
+    @FXML private TextField txtCidade;
+
+    @FXML private ComboBox<Estados> cbEstado;
+
+    @FXML private TextField txtCep;
+
+    @FXML private TextArea txaObs;
+
+    @FXML private DatePicker dpAdmissao;
+
+    @FXML private DatePicker dpDesligamento;
+
+    @FXML private TextField txtNumCartProf;
+
+    @FXML private TextField txtDataEmis;
+
+    @FXML private TextField txtFuncao;
+
+    @FXML private TextField txtCargo;
+
+    @FXML private TextArea txaObsProf;
+
+    @FXML private TextField txtApelido;
+
+    @FXML private CheckBox cbCaixaMec;
+
+    @FXML private CheckBox cbCaixaAut;
+
+    @FXML private CheckBox cbEletrica;
+
+    @FXML private CheckBox cbFreio;
+
+    @FXML private CheckBox cbTrOleo;
+
+    @FXML private CheckBox cbInjDiesel;
+
+    @FXML private CheckBox cbInjFlex;
+
+    @FXML private CheckBox cbMotorDiesel;
+
+    @FXML private CheckBox cbMotorFlex;
+
+    @FXML private CheckBox cbPneu;
+
+    @FXML private CheckBox cbSuspensao;
+
+    @FXML private CheckBox cbSocorro;
+
+    @FXML private CheckBox cbVeicEletrico;
+
+    @FXML private CheckBox cbMotoristaLeva;
+
+    @FXML private CheckBox cbMotoristaGuincho;
+
+    @FXML private RadioButton rbAdm;
+
+    @FXML private RadioButton rbProd;
+
+    @FXML private RadioButton rbAdmAux;
+
+    @FXML private RadioButton rbProdAux;
+
+    @FXML private RadioButton rbApre;
+
+    @FXML private RadioButton rbCompra;
+
+    @FXML private RadioButton rbVenda;
+
+    @FXML private Label labelAlertaCPF;
+
+    @FXML private TextField txtTelefone;
+
+    @FXML private TextField txtMae;
+
+    @FXML private TextField txtPai;
+
+    @FXML private TextField txtEsposa;
+
+    @FXML private TextField txtQuantFilho;
+
+    @FXML private TextField txtTelefoneConjuge;
+
+    @FXML private RadioButton rbMasculino;
+
+    @FXML private RadioButton rbFeminino;
+
+    @FXML private CheckBox cbComissao;
+
+    @FXML private TextField txtComissaoPecas;
+
+    @FXML private TextField txtComissaoServico;
+
+    @FXML private TextField txtEmail;
+
+    @FXML private TextField txtSalario;
+
+    @FXML private Tab tabDadosProf;
+
+    @FXML private Tab tabDadosEsp;
+
+
+
+    // Eventos de botões e seleção
+
+    /**
+     * Fecha tela do sistema
+     */
+    @FXML
+    private void onBtClose(){
+        Stage stage = (Stage)btClose.getScene().getWindow();
+        stage.close();
+    }
+
+    /**
+     * Grava dados no sistema
+     */
+    @FXML
+    private void onBtGravar(){
+        try {
+            if(txtNome.getText().equals("") || txtApelido.getText().equals("") || txtSalario.getText().equals("") || txtCpf.getText().equals("")){
+                Alerts.showAlert("Atenção", "Os seguintes campos não podem estar vazios :\n\n"+
+                        "Nome\n "+
+                        "Apelido\n "+
+                        "CPF\n "+
+                        "Salário\n ", null, Alert.AlertType.ERROR);
+                txtNome.requestFocus();
+            }else{
+                cadastraFuncionario(coletaDadosFuncionario(false, 0), coletaDadosEndereco(false, 0), coletaDadosEmail(false, 0));
+            }
+        }catch (Exception e){
+            //throw new ExceptionGenerics(e.getMessage()+" CadFuncionariosController - onBtGravar");
+            throw new ExceptionGenerics("CadFuncionariosController - onBtGravar "+e);
+        }
+    }
+
+    @FXML
+    private void hiddendpDataAdmissao(){
+        rbProd.requestFocus();
+    }
+
+    @FXML
+    private void hiddencbEstado(){
+        txtCep.requestFocus();
+    }
+
+    @FXML
+    private void hiddencbTipoEndereco(){
+        txtEnd.requestFocus();
+    }
+
+    @FXML
+    private void hiddendpDataNasc(){
+        rbMasculino.requestFocus();
+    }
+
+    @FXML
+    private void btCancelarOnButtonClick(){
+        onBtClose();
+    }
+
+    private DadosCombos dadosCombos = new DadosCombos();
+
+    private ObservableList<TipoEndereco> obsListTipoEndereco;
+
+    private ObservableList<Estados> obsListEstados;
+
+    private MaskValid mascara = new MaskValid();
+
+    /**
+     * carrega combos
+     */
+    private void carregaCombo(){
+
+        obsListTipoEndereco = FXCollections.observableList(dadosCombos.tipoEndereco());
+        cbTipoEndereco.setItems(obsListTipoEndereco);
+        Callback<ListView<TipoEndereco>, ListCell<TipoEndereco>> factory = lv -> new ListCell<TipoEndereco>() {
+            @Override
+            protected void updateItem(TipoEndereco tipo, boolean empty){
+                super.updateItem(tipo, empty);
+                setText(empty ? "" : tipo.getTipo());
+            }
+        };
+        cbTipoEndereco.setCellFactory(factory);
+        cbTipoEndereco.setButtonCell(factory.call(null));
+
+        obsListEstados = FXCollections.observableList(dadosCombos.dadoEstados());
+        cbEstado.setItems(obsListEstados);
+        Callback<ListView<Estados>, ListCell<Estados>> factory1 = lv -> new ListCell<Estados>() {
+            @Override
+            protected void updateItem(Estados estado, boolean empty){
+                super.updateItem(estado, empty);
+                setText(empty ? "" : estado.getSigla());
+            }
+        };
+        cbEstado.setCellFactory(factory1);
+        cbEstado.setButtonCell(factory1.call(null));
+
+    }
+
+    /**
+     * Coloca mascaras nos campos definicos
+     */
+    private void carregaMascara(){
+
+        dpDataNasc.setPromptText("__/__/____");
+        mascara.maskData(dpDataNasc);
+        mascara.maskData(dpAdmissao);
+        mascara.maskData(dpDesligamento);
+        txtCpf.setPromptText("___.___.___-__");
+        mascara.maskCPF(txtCpf);
+        txtCep.setPromptText("__.___-___");
+        mascara.maskkCEP(txtCep);
+        txtTelefone.setPromptText("(__)_____-____");
+        mascara.maskTel9Dig(txtTelefone);
+        txtTelefoneConjuge.setPromptText("(__)_____-____");
+        mascara.maskTel9Dig(txtTelefoneConjuge);
+        txtSalario.setPromptText("R$ 0,00");
+        mascara.maskValor(txtSalario);
+
+    }
+
+    /**
+     * Agrega grupos de RadioGroup
+     */
+    protected void radio(){
+
+        ToggleGroup radioGroup = new ToggleGroup();
+        rbAdm.setToggleGroup(radioGroup);
+        rbProd.setToggleGroup(radioGroup);
+        rbProdAux.setToggleGroup(radioGroup);
+        rbAdmAux.setToggleGroup(radioGroup);
+        rbApre.setToggleGroup(radioGroup);
+        rbCompra.setToggleGroup(radioGroup);
+        rbVenda.setToggleGroup(radioGroup);
+        rbProd.setSelected(true);
+
+        ToggleGroup radioGroup2 = new ToggleGroup();
+        rbFeminino.setToggleGroup(radioGroup2);
+        rbMasculino.setToggleGroup(radioGroup2);
+        rbMasculino.setSelected(true);
+
+    }
+
+    /**
+     * Coleta dados da funcionário da tela
+     *
+     * @param editar verifica se é uma edição ou novo
+     * @param cod do cliente
+     * @return Funcionario
+     */
+    private Funcionario coletaDadosFuncionario(Boolean editar, int cod){
+
+        Funcionario func = new Funcionario();
+
+        func.setNome(txtNome.getText());
+        func.setApelido(txtApelido.getText());
+        func.setCpf(txtCpf.getText());
+        func.setRg(txtRg.getText());
+        if (dpDataNasc.getValue() == null){
+            func.setDataNasc("");
+        }else{
+            func.setDataNasc(dpDataNasc.getValue().toString());
+        }
+        if(rbFeminino.isSelected()){
+            func.setGenero(true);
+        }else if(rbMasculino.isSelected()){
+            func.setGenero(false);
+        }
+        if(dpDesligamento.getValue() == null) {
+            func.setStatus(true);
+        }else{
+            func.setStatus(false);
+        }
+        func.setTelefone(txtTelefone.getText());
+        func.setMae(txtMae.getText());
+        func.setPai(txtPai.getText());
+        func.setConjuge(txtEsposa.getText());
+        if (txtQuantFilho.getText()==""){
+            func.setQtdFilhos(0);
+        }else {
+            func.setQtdFilhos(Integer.parseInt(txtQuantFilho.getText()));
+        }
+        func.setTelConjuge(txtTelefoneConjuge.getText());
+        func.setObs(txaObs.getText());
+        if (dpAdmissao.getValue() == null){
+            func.setDataAdm("");
+        }else{
+            func.setDataAdm(dpAdmissao.getValue().toString());
+        }
+        if (dpDesligamento.getValue() == null){
+            func.setDataDesl("");
+        }else{
+            func.setDataDesl(dpDesligamento.getValue().toString());
+        }
+        int tipoFuncionario = 0;
+        if(rbAdm.isSelected()){
+            tipoFuncionario = 1;
+        }else if(rbAdmAux.isSelected()){
+            tipoFuncionario = 2;
+        }else if(rbProd.isSelected()){
+            tipoFuncionario = 3;
+        }else if(rbProdAux.isSelected()){
+            tipoFuncionario = 4;
+        }else if(rbApre.isSelected()){
+            tipoFuncionario = 5;
+        }else if(rbVenda.isSelected()){
+            tipoFuncionario = 6;
+        }else if(rbCompra.isSelected()){
+            tipoFuncionario = 7;
+        }
+
+
+        func.setTipoFunc(tipoFuncionario);
+        func.setCartProfissional(txtNumCartProf.getText());
+        func.setDataemissao(txtDataEmis.getText());
+        func.setFuncao(txtFuncao.getText());
+        func.setCargo(txtCargo.getText());
+        func.setComissao(cbComissao.isSelected());
+        func.setComissaoPecas(txtComissaoPecas.getText());
+        func.setComissaoServicos(txtComissaoServico.getText());
+        func.setSalario(txtSalario.getText());
+        func.setObsProf(txaObsProf.getText());
+        func.setTrocaOleo(cbTrOleo.isSelected());
+        func.setCaixaMec(cbCaixaMec.isSelected());
+        func.setCaixaAut(cbCaixaAut.isSelected());
+        func.setEletrica(cbEletrica.isSelected());
+        func.setFreio(cbFreio.isSelected());
+        func.setInjFlex(cbInjFlex.isSelected());
+        func.setInjDiesel(cbInjDiesel.isSelected());
+        func.setMotorDiesel(cbMotorDiesel.isSelected());
+        func.setMotorFlex(cbMotorFlex.isSelected());
+        func.setPneus(cbPneu.isSelected());
+        func.setSuspensao(cbSuspensao.isSelected());
+        func.setSocorro(cbSocorro.isSelected());
+        func.setVeicEletricos(cbVeicEletrico.isSelected());
+        func.setMotLeva(cbMotoristaLeva.isSelected());
+        func.setMotguincho(cbMotoristaGuincho.isSelected());
+        return func;
+    }
+
+    /**
+     * Coleta dados do endereço
+     *
+     * @param editar verifica se é uma edição ou novo
+     * @param cod do cliente
+     * @return Endereco
+     */
+    private Endereco coletaDadosEndereco(Boolean editar, int cod){
+
+        Endereco end = new Endereco();
+        end.setTipoCaso(3);
+        end.setTipoEnd(cbTipoEndereco.getValue().getId());
+        end.setEndereco(txtEnd.getText());
+        end.setNumero(txtNum.getText());
+        end.setBairro(txtBairro.getText());
+        end.setCep(txtCep.getText());
+        end.setComplemento(txtComplemento.getText());
+        end.setCidade(txtCidade.getText());
+        end.setEstado(cbEstado.getValue().getId());
+
+        return end;
+
+    }
+
+    /**
+     * Coleta dados do email
+     *
+     * @param editar verifica se é uma edição ou novo
+     * @param cod do cliente
+     * @return Email
+     */
+    private Email coletaDadosEmail(Boolean editar, int cod){
+
+        Email email = new Email();
+        email.setCodCaso(3);
+        email.setTipo(0);
+        email.setEmail(txtEmail.getText());
+
+        return email;
+
+    }
+
+    /**
+     * Função para gravar dados no sistema
+     *
+     * @param func
+     * @param end
+     * @param email1
+     */
+    public void cadastraFuncionario(Funcionario func, Endereco end, Email email1){
+
+        // Caso tem de ser 3
+        Funcionario funcionario = func;
+        Endereco endereco = end;
+        Email email = email1;
+        int codigo = funcService.saveFuncionario(funcionario);
+        endereco.setCodExterno(codigo);
+        email.setCodExterno(codigo);
+        endService.saveEndereco(endereco);
+        emailService.saveEmail(email);
+
+
+    }
+
+    /**
+     * troca o tab pelo enter
+     */
+    private void teclaEnter(){
+
+        txtNome.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtApelido.requestFocus();
+            }
+        });
+
+        txtApelido.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtCpf.requestFocus();
+            }
+        });
+
+        txtCpf.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER && mascara.isCPF(txtCpf.getText())){
+                if (mascara.isCPF(txtCpf.getText())){
+                    txtRg.requestFocus();
+                    labelAlertaCPF.setVisible(false);
+                }else{
+                    labelAlertaCPF.setVisible(true);
+                }
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtNome.requestFocus();
+            } else if (KeyEvent.getCode() == KeyCode.ENTER && mascara.isCPF(txtCpf.getText())!=true) {
+                labelAlertaCPF.setVisible(true);
+            }
+        });
+
+        txtRg.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                dpDataNasc.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtCpf.requestFocus();
+            }
+        });
+
+        rbMasculino.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtEmail.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                dpDataNasc.requestFocus();
+            }
+        });
+
+        rbFeminino.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtEmail.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                dpDataNasc.requestFocus();
+            }
+        });
+
+        txtEmail.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                cbTipoEndereco.show();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                rbMasculino.requestFocus();
+            }
+        });
+
+
+        txtEnd.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtNum.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                cbTipoEndereco.show();
+            }
+        });
+
+        txtNum.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtComplemento.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtEnd.requestFocus();
+            }
+        });
+
+        txtComplemento.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtBairro.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtNum.requestFocus();
+            }
+        });
+
+        txtBairro.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtCidade.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtComplemento.requestFocus();
+            }
+        });
+
+        txtCidade.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                cbEstado.show();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtBairro.requestFocus();
+            }
+        });
+
+        cbEstado.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtCep.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtCidade.requestFocus();
+            }
+        });
+
+        txtCep.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtTelefone.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                cbEstado.show();
+            }
+        });
+
+        txtTelefone.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtMae.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtCep.requestFocus();
+            }
+        });
+
+        txtMae.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtPai.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtTelefone.requestFocus();
+            }
+        });
+
+        txtPai.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtEsposa.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtMae.requestFocus();
+            }
+        });
+
+        txtEsposa.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtQuantFilho.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtPai.requestFocus();
+            }
+        });
+
+        txtQuantFilho.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtTelefoneConjuge.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtEsposa.requestFocus();
+            }
+        });
+
+        txtTelefoneConjuge.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txaObs.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtQuantFilho.requestFocus();
+            }
+        });
+
+        txaObs.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtCidade.requestFocus();
+            }
+        });
+
+        rbAdm.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtNumCartProf.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                dpAdmissao.requestFocus();
+                dpAdmissao.show();
+            }
+        });
+
+        rbAdmAux.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtNumCartProf.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                dpAdmissao.requestFocus();
+                dpAdmissao.show();
+            }
+        });
+
+        rbProd.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtNumCartProf.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                dpAdmissao.requestFocus();
+                dpAdmissao.show();
+            }
+        });
+
+        rbProdAux.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtNumCartProf.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                dpAdmissao.requestFocus();
+                dpAdmissao.show();
+            }
+        });
+
+        rbApre.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtNumCartProf.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                dpAdmissao.requestFocus();
+                dpAdmissao.show();
+            }
+        });
+
+        txtNumCartProf.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtDataEmis.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                rbProd.requestFocus();
+            }
+        });
+
+        txtDataEmis.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtFuncao.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtNumCartProf.requestFocus();
+            }
+        });
+
+        txtFuncao.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtCargo.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtDataEmis.requestFocus();
+            }
+        });
+
+        txtCargo.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                cbComissao.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtCargo.requestFocus();
+            }
+        });
+
+        cbComissao.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtComissaoPecas.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtCargo.requestFocus();
+            }
+        });
+
+        txtComissaoPecas.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtComissaoServico.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                cbComissao.requestFocus();
+            }
+        });
+
+        txtComissaoServico.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ENTER){
+                txtSalario.requestFocus();
+            }else if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtComissaoPecas.requestFocus();
+            }
+        });
+
+        if(txtSalario.getText()!=null) {
+            txtSalario.setOnKeyPressed((KeyEvent) -> {
+                if (KeyEvent.getCode() == KeyCode.ENTER) {
+                    txaObsProf.requestFocus();
+                } else if (KeyEvent.getCode() == KeyCode.ESCAPE) {
+                    txtComissaoServico.requestFocus();
+                }
+            });
+        }else{
+            Alerts.showAlert("Atenção", "Valor do salário deve ser definido", null, Alert.AlertType.ERROR);
+        }
+
+        txaObsProf.setOnKeyPressed((KeyEvent)->{
+            if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                txtSalario.requestFocus();
+            }
+        });
+    }
+
+    /**
+     * Inicializa funções da tela
+     *
+     * @param url
+     * @param resourceBundle
+     */
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        txtNome.requestFocus();
+        carregaMascara();
+        carregaCombo();
+        teclaEnter();
+        labelAlertaCPF.setVisible(false);
+        radio();
+
+    }
+}

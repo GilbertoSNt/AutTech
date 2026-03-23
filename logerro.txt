@@ -57,3 +57,172 @@
 2026-01-24 - 14:28:00.181321800 - A tentativa de conexão falhou. Erro no getConnection db
 2026-01-24 - 14:28:10.191249 - A tentativa de conexão falhou. Erro no getConnection db
 2026-01-24 - 14:28:20.252588200 - A tentativa de conexão falhou. Erro no getConnection db
+2026-02-28 - 16:25:32.461134700 - A tentativa de conexão falhou. Erro no getConnection db
+2026-02-28 - 16:33:11.879620600 - For input string: "" CadFuncionariosController - onBtGravar
+2026-02-28 - 16:33:29.403988400 - For input string: "" CadFuncionariosController - onBtGravar
+2026-02-28 - 16:33:43.771622300 - For input string: "" CadFuncionariosController - onBtGravar
+2026-02-28 - 16:34:49.429645 - For input string: "" CadFuncionariosController - onBtGravar
+2026-02-28 - 16:37:13.437102600 - For input string: "" CadFuncionariosController - onBtGravar
+2026-02-28 - 16:39:31.886214 - CadFuncionariosController - onBtGravar java.lang.NumberFormatException: For input string: ""
+2026-03-09 - 22:59:49.587783500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-09 - 22:59:49.591802 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-09 - 22:59:49.595320800 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-09 - 22:59:50.090989300 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login.fxml
+ Erro no carregamento da tela de login
+2026-03-09 - 23:03:33.414290200 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-09 - 23:03:33.448631500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-09 - 23:03:33.452635 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-09 - 23:03:33.821713300 - java.lang.NullPointerException: Cannot invoke "org.gsnt.auttech.model.dao.FuncionarioDao.findFuncCombo(int, int)" because "this.func" is null Erro na tela de login
+2026-03-09 - 23:03:33.824708 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login.fxml
+ Erro no carregamento da tela de login
+2026-03-09 - 23:04:43.872424900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-09 - 23:04:43.889632700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-09 - 23:04:43.893615200 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-09 - 23:04:44.456572300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-09 - 23:04:44.459866800 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-09 - 23:04:44.464095700 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-10 - 22:51:38.182873900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:51:38.294514900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:51:38.349089 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:51:39.167004800 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:51:39.280106800 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:51:39.284736500 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-10 - 22:54:19.674188800 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:54:19.678661 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:54:19.683025600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:54:20.230626 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:54:20.232629600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:54:20.237685100 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-10 - 22:54:35.144788700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:54:35.146789 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:54:35.152099600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:54:35.852336200 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:54:35.857869900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:54:35.863296 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-10 - 22:59:04.666287600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:59:04.671293500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:59:04.677286800 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:59:05.423371900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:59:05.426389600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 22:59:05.431874500 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-10 - 23:02:30.600008500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 23:02:30.620499900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 23:02:30.624587 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 23:02:31.319873300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 23:02:31.323870700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 23:02:31.330033600 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-10 - 23:04:35.197775300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 23:04:35.202782200 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 23:04:35.207328300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 23:04:36.894578500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 23:04:37.397932700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 23:04:37.902197200 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-10 - 23:05:07.341061500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 23:05:07.345341400 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 23:05:07.348369800 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 23:05:09.441013900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 23:05:09.943018900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-10 - 23:05:10.448983 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 21:05:14.619788200 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:05:14.628062500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:05:14.638592200 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:05:17.168385100 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:05:17.670877900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:05:18.178704300 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 21:06:27.726563600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:06:27.794083100 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:06:27.803579 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:06:30.311000600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:06:30.813486300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:06:31.318642900 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 21:08:05.109044600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:08:05.141953800 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:08:05.148957500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:08:07.492553300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:08:07.995591300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:08:08.539788400 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 21:14:01.986748200 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:14:01.994036500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:14:02.000106 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:14:04.418521300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:14:04.920263200 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:14:05.426080700 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 21:18:23.527471600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:18:23.530643500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:18:23.535063400 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:18:25.880384500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:18:26.383254 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:18:26.890435500 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 21:18:56.491284100 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:18:56.494435900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:18:56.499700700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:18:58.760590400 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:18:59.263921700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:18:59.770540200 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 21:19:49.686629700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:19:49.691114600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:19:49.696336900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:19:51.969790800 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:19:52.474050 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:19:52.983966500 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 21:20:18.767678100 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:20:18.770068300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:20:18.776631600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:20:20.967289300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:20:21.470514200 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:20:21.974748600 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 21:29:36.760928600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:29:36.765027600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:29:36.769246600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:29:39.003538800 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:29:39.509179700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:29:40.018887300 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 21:32:37.611626700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:32:37.615812400 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:32:37.621932800 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:32:39.951431900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:32:40.455473400 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:32:40.963469200 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 21:37:20.231208800 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:37:20.236428200 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:37:20.241470600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:37:22.492434300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:37:22.994519200 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:37:23.500798200 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 21:39:10.820651200 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:39:10.824648 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:39:10.829946 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:39:12.992650900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:39:13.497225700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:39:14.005744300 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 21:41:21.508995300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:41:21.514191900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:41:21.520252900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:41:23.718860700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:41:24.224041500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:41:24.730045900 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 21:42:55.039869200 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:42:55.044307600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:42:55.048636800 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:42:57.307902500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:42:57.812061500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 21:42:58.320594700 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 22:44:54.468886700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 22:44:54.472057900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 22:44:54.477035300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 22:44:56.583425700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 22:44:57.086736300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 22:44:57.632295800 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 22:46:04.998788900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 22:46:05.002271100 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 22:46:05.006267400 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 22:46:07.044301700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 22:46:07.545622700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-03-12 - 22:46:08.050771900 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-03-12 - 22:53:54.841690700 - FATAL: no pg_hba.conf entry for host "192.168.0.174", user "postgres1", database "bancoempresaon", SSL encryption Erro no getConnection db
+2026-03-12 - 22:53:57.467349500 - FATAL: no pg_hba.conf entry for host "192.168.0.174", user "postgres1", database "bancoempresaon", SSL encryption Erro no getConnection db
+2026-03-12 - 22:53:58.027394700 - FATAL: password authentication failed for user "gilberto" Erro no getConnection db
+2026-03-12 - 23:02:58.748176400 - FATAL: password authentication failed for user "gilberto" Erro no getConnection db
+2026-03-12 - 23:03:01.599903900 - FATAL: password authentication failed for user "gilberto" Erro no getConnection db

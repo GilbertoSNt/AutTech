@@ -6,40 +6,39 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.gsnt.auttech.db.*;
+
+import org.gsnt.auttech.config.seg.SessionUser;
 import org.gsnt.auttech.util.ExceptionGenerics;
-import org.gsnt.auttech.util.LogTxt;
+
 import javafx.scene.image.Image;
 import java.io.IOException;
-
 
 
 public class TelaPrincipal extends Application {
 
 
     private static Scene mainScene;
-    private final LogTxt log = new LogTxt();
-    private TesteConexao teste = new TesteConexao();
     private static String id= "";
-
+    private static final Image ICON = new Image(TelaPrincipal.class.getResourceAsStream("icones/AuttechIcon64.png"));
+    private SessionUser sessionUser = new SessionUser();
 
     @Override
     public void start(Stage mainStage) throws IOException {
 
-        Image icon = new Image(getClass().getResourceAsStream("icones/AuttechIcon64.png"));
-        mainStage.getIcons().add(icon);
+        //icon = new Image(getClass().getResourceAsStream("icones/AuttechIcon64.png"));
+        mainStage.getIcons().add(ICON);
 
         chamaTela(mainStage);
     }
 
     private void telaLogin(){
         try {
-            Image iconn = new Image(getClass().getResourceAsStream("icones/AuttechIcon64.png"));
+           // Image iconn = new Image(getClass().getResourceAsStream("icones/AuttechIcon64.png"));
             FXMLLoader loader = new FXMLLoader(TelaPrincipal.class.getResource("Login.fxml"));
             Parent splashRoot = loader.load();
             Scene splashScene = new Scene(splashRoot);
             Stage splashStage = new Stage();
-            splashStage.getIcons().add(iconn);
+            splashStage.getIcons().add(ICON);
             splashStage.initStyle(StageStyle.UNDECORATED);
             splashStage.setScene(splashScene);
             splashStage.showAndWait();
@@ -56,7 +55,6 @@ public class TelaPrincipal extends Application {
             mainScene = new Scene(fxmlLoader.load(),1210,900);
             mainStage.setTitle("");
             mainStage.initStyle(StageStyle.UNDECORATED);
-            //mainStage.setTitle("teste");
             mainStage.setResizable(false);
             mainStage.setIconified(false);
             mainStage.setScene(mainScene);
@@ -71,7 +69,12 @@ public class TelaPrincipal extends Application {
     private void chamaTela(Stage mainStage){
 
             telaLogin();
+
+        if (!sessionUser.getId().isEmpty()) {
             telaPrinc(mainStage);
+        } else {
+            System.exit(0);
+        }
 
     }
 
@@ -83,11 +86,4 @@ public class TelaPrincipal extends Application {
         launch();
     }
 
-    public static String getId() {
-        return id;
-    }
-
-    public static void setId(String id) {
-        TelaPrincipal.id = id;
-    }
 }

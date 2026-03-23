@@ -1,10 +1,14 @@
 package org.gsnt.auttech.util;
 
 import javafx.collections.ObservableList;
-import org.gsnt.auttech.model.dao.DaoFactory;
-import org.gsnt.auttech.model.dao.MarcaVeiculoDao;
-import org.gsnt.auttech.model.dao.ModeloVeiculoDao;
-import org.gsnt.auttech.model.entities.entitiesgenerics.*;
+import org.gsnt.auttech.endereco.TipoEndereco;
+import org.gsnt.auttech.marca.MarcaVeiculo;
+import org.gsnt.auttech.config.DaoFactory;
+import org.gsnt.auttech.marca.MarcaVeiculoDao;
+import org.gsnt.auttech.modelo.ModeloVeiculo;
+import org.gsnt.auttech.modelo.ModeloVeiculoDao;
+import org.gsnt.auttech.entitiesgenerics.*;
+import org.gsnt.auttech.telefone.TipoTelefone;
 
 import java.util.ArrayList;
 import java.util.List;

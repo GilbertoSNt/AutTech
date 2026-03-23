@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="615.0" styleClass="anchorpane" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.controller.CadVeiculoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="615.0" styleClass="anchorpane" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.veiculo.CadVeiculoController">
    <children>
       <Button fx:id="btClose" layoutX="580.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btCloseButtonClick" prefHeight="25.0" prefWidth="25.0" styleClass="btn1" stylesheets="@css/button.css" text="X">
          <font>
