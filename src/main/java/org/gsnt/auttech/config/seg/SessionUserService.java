@@ -21,22 +21,25 @@ public class SessionUserService implements SessionUserDao {
         return List.of();
     }
 
-    private Boolean verLog(String nome, String senha){
+    private void verLog(String nome, String senha){
 
 
-        return true;
+
     }
 
 
     @Override
     public Boolean loginSistema(String nome, String senha) {
-    if (verLog(nome,SessionUser.hashSenha(senha))) {
+        CrypDao cry = new CrypService();
+        /*
+    if (verLog(nome, cry.hashSenha(senha))) {
         lg.escreveLog(nome, "Fez login");
         SessionUser.setId(nome);
         return true;
     }else{
        return false;
-          }
+          }*/
+        return true;
     }
 
 

@@ -105,7 +105,7 @@ public class CadVeiculoController implements Initializable {
 
 
     @FXML
-    protected TextField txtPlaca;
+    public TextField txtPlaca;
 
 
     @FXML

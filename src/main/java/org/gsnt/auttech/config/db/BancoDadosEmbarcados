@@ -51,27 +51,42 @@ ALTER SEQUENCE public.sqcodcliente
 
 CREATE TABLE IF NOT EXISTS public.tabcliente
 (
-   	cod bigint NOT NULL DEFAULT nextval('sqcodcliente'::regclass),
-    	tipo boolean NOT NULL DEFAULT false,
-	cnpf character varying(19),
-	cpf character varying(15),
-	inscr character varying(15),
-	inscrest character varying(15),
-	rg character varying(15),
-  	nome character varying(180) NOT NULL,
-	apelido character varying(180),
-	dataini date,
-	datacad date,
-	perfil Boolean NOT NULL,
-    	status boolean NOT NULL DEFAULT true,
+    cod bigint NOT NULL DEFAULT nextval('sqcodcliente'::regclass),
+    cnpj character varying(19) COLLATE pg_catalog."default",
+    cpf character varying(15) COLLATE pg_catalog."default",
+    rg character varying(15) COLLATE pg_catalog."default",
+    nome character varying(180) COLLATE pg_catalog."default" NOT NULL,
+    apelido character varying(180) COLLATE pg_catalog."default",
+    dataini date,
+    status boolean NOT NULL DEFAULT false,
+    inscr character varying(15) COLLATE pg_catalog."default",
+    "inscrMun" character varying(15) COLLATE pg_catalog."default",
+    perfil boolean,
+    datacad date,
+    tipo "char",
     CONSTRAINT tabcliente_pkey PRIMARY KEY (cod)
 )
 
 TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.tabcliente
-    OWNER to "gilberto";
+    OWNER to gilberto;
+-- Index: idx_tabcliente_cnpj
 
+-- DROP INDEX IF EXISTS public.idx_tabcliente_cnpj;
+
+CREATE INDEX IF NOT EXISTS idx_tabcliente_cnpj
+    ON public.tabcliente USING btree
+    (cnpj COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_tabcliente_cpf
+
+-- DROP INDEX IF EXISTS public.idx_tabcliente_cpf;
+
+CREATE INDEX IF NOT EXISTS idx_tabcliente_cpf
+    ON public.tabcliente USING btree
+    (cpf COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
 
 /* >>>>> Tabela Telefone Cliente <<<<< */
 

@@ -11,12 +11,20 @@ public class CrypService implements CrypDao {
     private static final int MEMORI = 65536;
     private static final int PARALLELISM = 1;
 
-    public static String hashSenha(String senha) {
+    @Override
+    public String hashSenha(String senha) {
         return argon2.hash(ITERATIONS, MEMORI, PARALLELISM, senha.toCharArray() + "gs");
     }
 
     @Override
     public boolean verifica(String senhaSalva) {
-        return false;
+
+        //aqui
+
+        //return argon2.verify(hashSalvo, senhaPlana.toCharArray());
+
+        return  true;
     }
+
+
 }

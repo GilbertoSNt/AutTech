@@ -4,4 +4,6 @@ public interface CrypDao {
 
     String hashSenha(String senha);
     boolean verifica (String senhaSalva);
+
+
 }

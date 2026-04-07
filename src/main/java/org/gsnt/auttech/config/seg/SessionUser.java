@@ -11,7 +11,7 @@ public class SessionUser {
     public static boolean verificaSenha(String senha, String hashSalvo, String nome) {
 
         boolean a = false;
-        a =
+
         if (a) {
             setId(nome);
             return a;

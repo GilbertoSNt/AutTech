@@ -1,0 +1,253 @@
+CREATE DATABASE "BaseGeralPrinc"
+    WITH
+    OWNER = gilberto
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'pt_BR.UTF-8'
+    LC_CTYPE = 'pt_BR.UTF-8'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+GRANT CREATE, CONNECT ON DATABASE "BaseGeralPrinc" TO gilberto;
+
+GRANT CONNECT ON DATABASE "BaseGeralPrinc" TO usuario_base;
+
+
+/* >>>>> Tabela Cliente <<<<< */
+
+/* ok */
+
+CREATE SEQUENCE IF NOT EXISTS pvt.sqcodcliente
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE pvt.sqcodcliente
+    OWNER TO "gilberto";
+
+CREATE TABLE IF NOT EXISTS pvt.tabcliente
+(
+    cod bigint NOT NULL DEFAULT nextval('sqcodcliente'::regclass),
+    cnpj character varying(19) COLLATE pg_catalog."default",
+    cpf character varying(15) COLLATE pg_catalog."default",
+    rg character varying(15) COLLATE pg_catalog."default",
+    nome character varying(180) COLLATE pg_catalog."default" NOT NULL,
+    apelido character varying(180) COLLATE pg_catalog."default",
+    dataini date,
+    status boolean NOT NULL DEFAULT false,
+    inscr character varying(15) COLLATE pg_catalog."default",
+    "inscrMun" character varying(15) COLLATE pg_catalog."default",
+    perfil boolean,
+    datacad date,
+    tipo "char",
+    CONSTRAINT tabcliente_pkey PRIMARY KEY (cod)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS pvt.tabcliente
+    OWNER to gilberto;
+
+REVOKE ALL ON TABLE pvt.tabcliente FROM usuario_base;
+
+GRANT ALL ON TABLE pvt.tabcliente TO gilberto;
+
+GRANT DELETE, UPDATE, INSERT, SELECT ON TABLE pvt.tabcliente TO usuario_base;
+-- Index: idx_tabcliente_cnpj
+
+-- DROP INDEX IF EXISTS public.idx_tabcliente_cnpj;
+
+CREATE INDEX IF NOT EXISTS idx_tabcliente_cnpj
+    ON pvt.tabcliente USING btree
+    (cnpj COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_tabcliente_cpf
+
+-- DROP INDEX IF EXISTS public.idx_tabcliente_cpf;
+
+CREATE INDEX IF NOT EXISTS idx_tabcliente_cpf
+    ON pvt.tabcliente USING btree
+    (cpf COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+
+
+/* >>>>> Tabela Telefone Cliente <<<<< */
+
+CREATE SEQUENCE IF NOT EXISTS pvt.sqcodtelefone
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE pvt.sqcodtelefone
+    OWNER TO "gilberto";
+
+CREATE TABLE IF NOT EXISTS pvt.tabtelefone
+(
+    cod bigint NOT NULL DEFAULT nextval('pvt.sqcodtelefone'::regclass),
+    codexterno bigint NOT null,
+	codcaso int NOT null,
+	tipo int NOT NULL,
+	numerotel character varying(15),
+	CONSTRAINT tabtelefone_pkey PRIMARY KEY (cod)
+)
+
+REVOKE ALL ON TABLE pvt.tabtelefone FROM usuario_base;
+
+GRANT ALL ON TABLE pvt.tabtelefone TO gilberto;
+
+GRANT DELETE, UPDATE, INSERT, SELECT ON TABLE pvt.tabtelefone TO usuario_base;
+
+
+/* >>>>> Tabela email Cliente <<<<< */
+
+CREATE SEQUENCE IF NOT EXISTS pvt.sqemail
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE pvt.sqemail
+    OWNER TO "gilberto";
+
+CREATE TABLE IF NOT EXISTS pvt.tabemail
+(
+    cod bigint NOT NULL DEFAULT nextval('pvt.sqemail'::regclass),
+    codexterno bigint NOT null,
+	codcaso int NOT null,
+	tipo int NOT NULL,
+	email character varying(150),
+	CONSTRAINT tabemail_pkey PRIMARY KEY (cod)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS pvt.tabemail
+    OWNER to "gilberto";
+
+REVOKE ALL ON TABLE pvt.tabemail FROM usuario_base;
+
+GRANT ALL ON TABLE pvt.tabemail TO gilberto;
+
+GRANT DELETE, UPDATE, INSERT, SELECT ON TABLE pvt.tabemail TO usuario_base;
+
+
+
+/* >>>>> Tabela endereço Cliente <<<<< */
+
+CREATE SEQUENCE IF NOT EXISTS pvt.sqcodendereco
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE pvt.sqcodendereco
+    OWNER TO "gilberto";
+
+CREATE TABLE IF NOT EXISTS pvt.tabendereco
+(
+    cod bigint NOT NULL DEFAULT nextval('pvt.sqcodendereco'::regclass),
+	codexterno bigint NOT null,
+	codcaso int NOT null,
+	tipoend int NOT null,
+	endereco character varying(150),
+	numero  character varying(10),
+	bairro character varying(80),
+	cidade character varying(80),
+	estado int,
+        complemento character varying(150),
+	cep character varying(10),
+	CONSTRAINT tabendereco_pkey PRIMARY KEY (cod)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS pvt.tabendereco
+    OWNER to "gilberto";
+
+REVOKE ALL ON TABLE pvt.tabendereco FROM usuario_base;
+
+GRANT ALL ON TABLE pvt.tabendereco TO gilberto;
+
+GRANT DELETE, UPDATE, INSERT, SELECT ON TABLE pvt.tabendereco TO usuario_base;
+
+
+/* >>>>> Tabela usuário x cliente <<<<< */
+
+CREATE SEQUENCE IF NOT EXISTS pvt.squsuarioempresa
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE pvt.sqcodendereco
+    OWNER TO "gilberto";
+
+-- Table: pvt.tabusuarioempresa
+
+-- DROP TABLE IF EXISTS pvt.tabusuarioempresa;
+
+CREATE TABLE IF NOT EXISTS pvt.tabusuarioempresa
+(
+    cod bigint NOT NULL DEFAULT nextval('pvt.squsuarioempresa'::regclass),
+    codexterno bigint NOT NULL,
+    unidade bigint,
+    perfil "char",
+    nome character varying(200) COLLATE pg_catalog."default",
+    cpf character varying(16) COLLATE pg_catalog."default",
+    usuario character varying(30) COLLATE pg_catalog."default",
+    senha character varying COLLATE pg_catalog."default",
+    CONSTRAINT tabusuarioempresa_pkey PRIMARY KEY (codexterno)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS pvt.tabusuarioempresa
+    OWNER to gilberto;
+
+REVOKE ALL ON TABLE pvt.tabusuarioempresa FROM usuario_base;
+
+GRANT ALL ON TABLE pvt.tabusuarioempresa TO gilberto;
+
+GRANT DELETE, UPDATE, INSERT, SELECT ON TABLE pvt.tabusuarioempresa TO usuario_base;
+
+
+
+// >>>>> functions <<<<< //
+
+
+-- FUNCTION: public.fn_cliente_por_cnpj(text)
+
+-- DROP FUNCTION IF EXISTS public.fn_cliente_por_cnpj(text);
+
+CREATE OR REPLACE FUNCTION public.fn_cliente_por_cnpj(
+	p_cnpj text)
+    RETURNS TABLE(cod integer, nome text)
+    LANGUAGE 'sql'
+    COST 100
+    STABLE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $BODY$
+    SELECT cod, nome
+    FROM pvt.tabcliente
+    WHERE cnpj = p_cnpj;
+$BODY$;
+
+ALTER FUNCTION public.fn_cliente_por_cnpj(text)
+    OWNER TO gilberto;
+
+
+GRANT EXECUTE ON FUNCTION public.fn_cliente_por_cnpj(text) TO gilberto;
+
+GRANT EXECUTE ON FUNCTION public.fn_cliente_por_cnpj(text) TO usuario_base;
+
+REVOKE EXECUTE ON FUNCTION public.fn_cliente_por_cnpj(text) from PUBLIC;
+
+REVOKE EXECUTE ON FUNCTION public.fn_cliente_por_cnpj(text) from postgres;
