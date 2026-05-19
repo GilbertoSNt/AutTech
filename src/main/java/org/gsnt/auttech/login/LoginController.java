@@ -1,4 +1,4 @@
-package org.gsnt.auttech.controller;
+package org.gsnt.auttech.login;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -11,6 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.gsnt.auttech.util.MaskValid;
 import org.gsnt.auttech.util.TesteConexao;
 import org.gsnt.auttech.config.DaoFactory;
 import org.gsnt.auttech.model.dao.FuncionarioDao;
@@ -29,6 +30,7 @@ public class LoginController implements Initializable {
     private final FuncionarioDao func = DaoFactory.createFuncionarioDao();
     private final SessionUserDao log = DaoFactory.createSessionUserDao();
     private final IniDAO ini = DaoFactory.createIniDao();
+    private MaskValid maskValid = new MaskValid();
 
     private final TesteConexao t = new TesteConexao();
     private int tntv = 0;//Tentativas de acesso
@@ -44,6 +46,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField txtCNPJ;
+
+    @FXML
+    private TextField txtCPF;
 
     @FXML
     private Button btAcesso;
@@ -71,6 +76,8 @@ public class LoginController implements Initializable {
 
     @FXML
     private void RbCnpjOnAcion(){
+        txtCNPJ.setVisible(true);
+        txtCPF.setVisible(false);
         LbTipo.setText("CNPJ - ");
     }
 
@@ -79,6 +86,8 @@ public class LoginController implements Initializable {
 
     @FXML
     private void RbCpfOnAcion(){
+        txtCNPJ.setVisible(false);
+        txtCPF.setVisible(true);
         LbTipo.setText("CPF - ");
     }
 
@@ -166,6 +175,11 @@ public class LoginController implements Initializable {
         RbCpf.setToggleGroup(Tg1);
         RbCnpj.setSelected(true);
         RbCnpj.requestFocus();
+        txtCPF.setVisible(false);
+
+        maskValid.maskCPF(txtCPF);
+        maskValid.maskCNPJ(txtCNPJ);
+
 
     }
 

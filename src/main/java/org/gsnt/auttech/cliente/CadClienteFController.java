@@ -80,8 +80,7 @@ public class CadClienteFController implements Initializable {
     @FXML
     private TextField txtRg;
 
-    @FXML
-    private ComboBox cbTipoEndereco;
+    @FXML private ComboBox cbTipoEndereco;
 
     /**
      * passa o foco para o próximo campo
@@ -109,9 +108,7 @@ public class CadClienteFController implements Initializable {
     private void oncbTipoTelefone(){
 
         txtNumTelefone.clear();
-        int opcao = 0;
-        String opcao2 = "";
-        opcao2 = cbTipoTelefone.getValue().toString();
+        String opcao2 = cbTipoTelefone.getValue().toString();
         if (opcao2.equals("1") || opcao2.equals("3") || opcao2.equals("5") || opcao2.equals("6") || opcao2.equals("7")){
             txtNumTelefone.setPromptText("(__)_____-____");
             maskValid.maskTel9Dig(txtNumTelefone);

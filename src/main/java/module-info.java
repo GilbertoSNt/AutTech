@@ -1,7 +1,7 @@
 module org.gsnt.auttech {
     requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.web;
+    //requires javafx.web;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -18,12 +18,12 @@ module org.gsnt.auttech {
     requires de.mkammerer.argon2.nolibs;
 
     opens org.gsnt.auttech to javafx.fxml, javafx.base, javafx.graphics;
-    opens org.gsnt.auttech.model.entities to javafx.base;
 
     exports org.gsnt.auttech;
     exports org.gsnt.auttech.controller;
     opens org.gsnt.auttech.controller to javafx.fxml;
-    opens org.gsnt.auttech.entitiesgenerics to javafx.base;
+    exports org.gsnt.auttech.entitiesgenerics;
+    opens org.gsnt.auttech.entitiesgenerics to javafx.fxml, javafx.base, javafx.graphics;
     exports org.gsnt.auttech.agenda;
     opens org.gsnt.auttech.agenda to javafx.base, javafx.fxml;
     exports org.gsnt.auttech.cliente;
@@ -44,4 +44,6 @@ module org.gsnt.auttech {
     opens org.gsnt.auttech.modelo to javafx.base;
     opens org.gsnt.auttech.status to javafx.base;
     opens org.gsnt.auttech.telefone to javafx.base;
+    exports org.gsnt.auttech.login;
+    opens org.gsnt.auttech.login to javafx.fxml;
 }

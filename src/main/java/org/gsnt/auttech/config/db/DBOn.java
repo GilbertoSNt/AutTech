@@ -43,7 +43,7 @@ public class DBOn {
                 throw new DbException(e.getMessage()+" Erro no getConnection db não encontrado o arquivo");
             }
             catch (SQLException e) {
-                throw new DbException(e.getMessage()+" Erro no getConnection db");
+                throw new DbException(e.getMessage()+" Erro no getConnection db1");
             }
 
         }
@@ -102,6 +102,8 @@ public class DBOn {
         }finally {
             return a;
         }
+
+
     }
 
 }

@@ -3,9 +3,12 @@ package org.gsnt.auttech.util;
 import javafx.event.EventHandler;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 import java.util.InputMismatchException;
+import java.util.Locale;
 
 public class MaskValid {
 
@@ -118,60 +121,62 @@ public class MaskValid {
         });
     }
 
-    public void maskCNPJ(TextField textField){
 
-        textField.setOnKeyTyped(new EventHandler<KeyEvent>() {
-            private int a = 1;
-            private int b = 0;
-            private String delta1 = "";
-            @Override
-            public void handle(KeyEvent event) {
+    public void maskCNPJ(TextField textField) {
 
-                if ("0123456789".contains(event.getCharacter())&& a<=18){
+        textField.setTextFormatter(new TextFormatter<>(change -> {
 
-                    a++;
-                    delta1 = delta1+event.getCharacter();
+            String newText = change.getControlNewText().toUpperCase()
+                    .replace("Ç", "")
+                    .replace("ç", "")
+                    .replaceAll("[^A-Z0-9./\\-]", "");
 
-                    switch (a) {
-                        case 3:
-                            delta1 = delta1+".";
-                            a++;
-                            break;
-                        case 7:
-                            delta1 = delta1+".";
-                            a++;
-                            break;
-                        case 11:
-                            delta1 = delta1+"/";
-                            a++;
-                            break;
-                        case 16:
-                            delta1 = delta1+"-";
-                            a++;
-                            break;
-                        default:
-                            break;
-                    }
+            // Remove a máscara para contar só os dígitos/letras
+            String digits = newText.replaceAll("[^A-Z0-9]", "");
 
-                } else if("\b".contains(event.getCharacter())&& textField.getLength() >= 0){
+            if (digits.length() > 14) return null;
 
-                    delta1 = textField.getText();
-                    b=delta1.length();
-                    delta1 = delta1.substring(0,b);
-                    a=b+1;
-
-                }else{
-                    event.consume();
-                }
-                textField.setText(delta1);
-                textField.positionCaret(delta1.length());
-
+            // Valida que as posições 13 e 14 sejam só números
+            for (int i = 12; i < digits.length(); i++) {
+                if (!Character.isDigit(digits.charAt(i))) return null;
             }
-        });
+
+            // Reconstrói com a máscara
+            StringBuilder masked = new StringBuilder();
+            for (int i = 0; i < digits.length(); i++) {
+                if (i == 2)  masked.append(".");
+                if (i == 5)  masked.append(".");
+                if (i == 8)  masked.append("/");
+                if (i == 12) masked.append("-");
+                masked.append(digits.charAt(i));
+            }
+
+            change.setText(masked.toString());
+            change.setRange(0, change.getControlText().length());
+            change.setCaretPosition(masked.length());
+            change.setAnchor(masked.length());
+
+            return change;
+        }));
     }
 
     public void maskkCEP(TextField textField){
 
+        textField.setTextFormatter(new TextFormatter<>(change -> {
+
+            String text = change.getControlNewText().replaceAll("[^0-9]", "");
+            StringBuilder mascara = new StringBuilder();
+
+            for(int i = 0; i<=9;i++){
+                if(i==5) mascara.append("-");
+            }
+            change.setText(mascara.toString());
+            change.setRange(0,change.getControlText().length());
+            change.setCaretPosition(mascara.length());
+            change.setAnchor(mascara.length());
+            return change;
+        }));
+/*
         textField.setOnKeyTyped(new EventHandler<KeyEvent>() {
 
             private int a = 1;
@@ -212,7 +217,7 @@ public class MaskValid {
                 textField.positionCaret(delta.length());
             }
         });
-
+*/
     }
 
     public void maskData(DatePicker datePicker){
@@ -252,6 +257,36 @@ public class MaskValid {
 
     }
 
+    public void maskCPF(TextField textField) {
+
+        textField.setTextFormatter(new TextFormatter<>(change -> {
+
+            String newText = change.getControlNewText()
+                    .replaceAll("[^0-9./\\-]", "");
+
+            // Remove a máscara para contar só os dígitos
+            String digits = newText.replaceAll("[^0-9]", "");
+
+            if (digits.length() > 11) return null; // bloqueia mais de 11 dígitos
+
+            // Reconstrói com a máscara
+            StringBuilder masked = new StringBuilder();
+            for (int i = 0; i < digits.length(); i++) {
+                if (i == 3) masked.append(".");
+                if (i == 6) masked.append(".");
+                if (i == 9) masked.append("-");
+                masked.append(digits.charAt(i));
+            }
+
+            change.setText(masked.toString());
+            change.setRange(0, change.getControlText().length());
+            change.setCaretPosition(masked.length());
+            change.setAnchor(masked.length());
+
+            return change;
+        }));
+    }
+/*
     public void maskCPF(TextField textField){
 
         textField.setOnKeyTyped(new EventHandler<KeyEvent>() {
@@ -299,7 +334,7 @@ public class MaskValid {
             }
         });
     }
-
+*/
 
     public void maskHora(TextField textField){
 

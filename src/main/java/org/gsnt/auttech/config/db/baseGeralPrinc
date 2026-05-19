@@ -13,19 +13,12 @@ GRANT CREATE, CONNECT ON DATABASE "BaseGeralPrinc" TO gilberto;
 GRANT CONNECT ON DATABASE "BaseGeralPrinc" TO usuario_base;
 
 
+
 /* >>>>> Tabela Cliente <<<<< */
 
-/* ok */
+-- Table: pvt.tabcliente
 
-CREATE SEQUENCE IF NOT EXISTS pvt.sqcodcliente
-    INCREMENT 1
-    START 1
-    MINVALUE 1
-    MAXVALUE 9223372036854775807
-    CACHE 1;
-
-ALTER SEQUENCE pvt.sqcodcliente
-    OWNER TO "gilberto";
+-- DROP TABLE IF EXISTS pvt.tabcliente;
 
 CREATE TABLE IF NOT EXISTS pvt.tabcliente
 (
@@ -42,6 +35,9 @@ CREATE TABLE IF NOT EXISTS pvt.tabcliente
     perfil boolean,
     datacad date,
     tipo "char",
+    datafim date,
+    usuario character varying COLLATE pg_catalog."default",
+    pas character varying COLLATE pg_catalog."default",
     CONSTRAINT tabcliente_pkey PRIMARY KEY (cod)
 )
 
@@ -54,10 +50,10 @@ REVOKE ALL ON TABLE pvt.tabcliente FROM usuario_base;
 
 GRANT ALL ON TABLE pvt.tabcliente TO gilberto;
 
-GRANT DELETE, UPDATE, INSERT, SELECT ON TABLE pvt.tabcliente TO usuario_base;
+GRANT SELECT ON TABLE pvt.tabcliente TO usuario_base;
 -- Index: idx_tabcliente_cnpj
 
--- DROP INDEX IF EXISTS public.idx_tabcliente_cnpj;
+-- DROP INDEX IF EXISTS pvt.idx_tabcliente_cnpj;
 
 CREATE INDEX IF NOT EXISTS idx_tabcliente_cnpj
     ON pvt.tabcliente USING btree
@@ -65,12 +61,135 @@ CREATE INDEX IF NOT EXISTS idx_tabcliente_cnpj
     TABLESPACE pg_default;
 -- Index: idx_tabcliente_cpf
 
--- DROP INDEX IF EXISTS public.idx_tabcliente_cpf;
+-- DROP INDEX IF EXISTS pvt.idx_tabcliente_cpf;
 
 CREATE INDEX IF NOT EXISTS idx_tabcliente_cpf
     ON pvt.tabcliente USING btree
     (cpf COLLATE pg_catalog."default" ASC NULLS LAST)
     TABLESPACE pg_default;
+
+
+
+
+
+/* ok */
+-- Table: pvt.tabclientefilial
+
+-- DROP TABLE IF EXISTS pvt.tabclientefilial;
+
+CREATE TABLE IF NOT EXISTS pvt.tabclientefilial
+(
+    cod bigint NOT NULL DEFAULT nextval('sqcodcliente'::regclass),
+    cnpj character varying(19) COLLATE pg_catalog."default",
+    cpf character varying(15) COLLATE pg_catalog."default",
+    rg character varying(15) COLLATE pg_catalog."default",
+    nome character varying(180) COLLATE pg_catalog."default" NOT NULL,
+    apelido character varying(180) COLLATE pg_catalog."default",
+    dataini date,
+    status boolean NOT NULL DEFAULT false,
+    inscr character varying(15) COLLATE pg_catalog."default",
+    "inscrMun" character varying(15) COLLATE pg_catalog."default",
+    perfil boolean,
+    datacad date,
+    tipo "char",
+    "cnpjMatriz" character varying(19) COLLATE pg_catalog."default",
+    datafim date,
+    CONSTRAINT tabclientefilial_pkey PRIMARY KEY (cod)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS pvt.tabclientefilial
+    OWNER to gilberto;
+
+REVOKE ALL ON TABLE pvt.tabclientefilial FROM usuario_base;
+
+GRANT ALL ON TABLE pvt.tabclientefilial TO gilberto;
+
+GRANT SELECT ON TABLE pvt.tabclientefilial TO usuario_base;
+
+-- Index: idx_tabclientefilial_cnpj
+
+-- DROP INDEX IF EXISTS pvt.idx_tabclientefilial_cnpj;
+
+CREATE INDEX IF NOT EXISTS idx_tabclientefilial_cnpj
+    ON pvt.tabclientefilial USING btree
+    (cnpj COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_tabclientefilial_cpf
+
+-- DROP INDEX IF EXISTS pvt.idx_tabclientefilial_cpf;
+
+CREATE INDEX IF NOT EXISTS idx_tabclientefilial_cpf
+    ON pvt.tabclientefilial USING btree
+    (cpf COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+
+
+
+
+
+??????????????????????????????????????????????????????????
+
+    -- FUNCTION: public.fn_clientefilial_por_cnpj(text)
+
+    -- DROP FUNCTION IF EXISTS public.fn_clientefilial_por_cnpj(text);
+
+    CREATE OR REPLACE FUNCTION public.fn_clientefilial_por_cnpj(
+    	p_cnpj text)
+        RETURNS TABLE(nome text, ativo boolean)
+        LANGUAGE 'sql'
+        COST 100
+        STABLE PARALLEL UNSAFE
+        ROWS 1000
+
+    AS $BODY$
+        SELECT
+            nome,
+            datafim >= CURRENT_DATE AS ativo
+        FROM pvt.tabclientefilial
+        WHERE cnpj = p_cnpj;
+    $BODY$;
+
+    ALTER FUNCTION public.fn_cliente_por_cnpj(text)
+        OWNER TO gilberto;
+
+
+    GRANT EXECUTE ON FUNCTION public.fn_cliente_por_cnpj(text) TO gilberto;
+
+    GRANT EXECUTE ON FUNCTION public.fn_cliente_por_cnpj(text) TO usuario_base;
+
+
+-- FUNCTION: public.fn_clientefilial_por_cpf(text)
+
+-- DROP FUNCTION IF EXISTS public.fn_clientefilial_por_cpf(text);
+
+CREATE OR REPLACE FUNCTION public.fn_clientefilial_por_cpf(
+	p_cpf text)
+    RETURNS TABLE(nome text, ativo boolean)
+    LANGUAGE 'sql'
+    COST 100
+    STABLE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $BODY$
+    SELECT
+        nome,
+        datafim >= CURRENT_DATE AS ativo
+    FROM pvt.tabclientefilial
+    WHERE cpf = p_cpf;
+$BODY$;
+
+ALTER FUNCTION public.fn_clientefilial_por_cpf(text)
+    OWNER TO gilberto;
+
+
+GRANT EXECUTE ON FUNCTION public.fn_clientefilial_por_cpf(text) TO gilberto;
+
+GRANT EXECUTE ON FUNCTION public.fn_clientefilial_por_cpf(text) TO usuario_base;
+
+
+
 
 
 /* >>>>> Tabela Telefone Cliente <<<<< */
