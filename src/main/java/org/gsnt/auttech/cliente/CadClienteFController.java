@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import org.gsnt.auttech.TelaPrincipal;
+import org.gsnt.auttech.endereco.Endereco;
 import org.gsnt.auttech.endereco.TipoEndereco;
 import org.gsnt.auttech.entitiesgenerics.*;
 import org.gsnt.auttech.telefone.TipoTelefone;
@@ -38,20 +39,18 @@ public class CadClienteFController implements Initializable {
      *
      * @param obsListTipoTelefone,obsListTipoEndereco,obsListEstados,obsListEmail,obsListPerfilFiscal
      */
+  /*
     private ObservableList<TipoTelefone> obsListTipoTelefone;
     private ObservableList<TipoEndereco> obsListTipoEndereco;
     private ObservableList<Estados> obsListEstados;
     private ObservableList<TiposEmail> obsListEmail;
     private ObservableList<PerfilFiscal> obsListPerfilFiscal;
-
-    /**
-     * @param maskvalid para validação de datas;
+*/
+    /*
+     * maskvalid para validação de datas;
      */
     protected MaskValid maskValid = new MaskValid();
 
-    /**
-     * @param dadosCombos objeto que tem os dados fixos dos combos;
-     */
     protected DadosCombos dadosCombos = new DadosCombos();
 
     @FXML
@@ -120,7 +119,7 @@ public class CadClienteFController implements Initializable {
     }
 
     @FXML
-    private ComboBox cbEstado;
+    private ComboBox<Estados> cbEstado;
 
 
     /**
@@ -332,6 +331,12 @@ public class CadClienteFController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        ObservableList<TipoTelefone> obsListTipoTelefone;
+        ObservableList<TipoEndereco> obsListTipoEndereco;
+        ObservableList<Estados> obsListEstados;
+        ObservableList<TiposEmail> obsListEmail;
+        ObservableList<PerfilFiscal> obsListPerfilFiscal;
 
         //dados do combo tipo endereço
         obsListTipoEndereco = FXCollections.observableList(dadosCombos.tipoEndereco());

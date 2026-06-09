@@ -1,4 +1,4 @@
-package org.gsnt.auttech.login;
+package org.gsnt.auttech.usuario.login;
 
 public class LogUser {
 

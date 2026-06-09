@@ -7,7 +7,7 @@ public class ExceptionGenerics extends RuntimeException {
     public ExceptionGenerics(String msg) {
 
         super(msg);
-        log.escreveErro(msg);
+        log.escreve(1,msg);
 
     }
 }

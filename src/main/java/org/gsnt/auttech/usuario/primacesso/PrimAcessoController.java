@@ -1,12 +1,11 @@
-package org.gsnt.auttech.primacesso;
+package org.gsnt.auttech.usuario.primacesso;
 
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import org.gsnt.auttech.config.DaoFactory;
+import org.gsnt.auttech.config.db.DaoFactory;
 import org.gsnt.auttech.util.MaskValid;
 import org.gsnt.auttech.entitiesgenerics.Empresa;
 
@@ -74,6 +73,7 @@ public class PrimAcessoController implements Initializable {
 
     @FXML
     private void onKeyPressedCNPJ(KeyEvent event){
+
         ResultSet rs = null;
         String cod = null;
 

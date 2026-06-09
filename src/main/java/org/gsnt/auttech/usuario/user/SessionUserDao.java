@@ -1,4 +1,4 @@
-package org.gsnt.auttech.config.seg;
+package org.gsnt.auttech.usuario.user;
 
 import org.gsnt.auttech.funcionario.Funcionario;
 

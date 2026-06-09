@@ -370,3 +370,16 @@ GRANT EXECUTE ON FUNCTION public.fn_cliente_por_cnpj(text) TO usuario_base;
 REVOKE EXECUTE ON FUNCTION public.fn_cliente_por_cnpj(text) from PUBLIC;
 
 REVOKE EXECUTE ON FUNCTION public.fn_cliente_por_cnpj(text) from postgres;
+
+
+
+
+CREATE SEQUENCE IF NOT EXISTS pvt.sqcodusuario
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE pvt.sqcodusuario
+    OWNER TO gilberto;

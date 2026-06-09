@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="590.0" styleClass="anchorpane" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.primacesso.PrimAcessoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="590.0" styleClass="anchorpane" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gsnt.auttech.usuario.primacesso.PrimAcessoController">
    <children>
       <Button layoutX="554.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="btn1" stylesheets="@css/button.css" text="X">
          <font>
@@ -22,8 +22,8 @@
             <Label layoutX="14.0" layoutY="14.0" text="Dados da empresa - " AnchorPane.leftAnchor="15.0" />
             <Label fx:id="lbCNPJ" layoutX="15.0" layoutY="58.0" text="CNPJ - " AnchorPane.leftAnchor="15.0" />
             <!--<TextField fx:id="txtCnpj" layoutX="60.0" layoutY="54.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressedCNPJ" prefHeight="25.0" prefWidth="200.0" stylesheets="@css/TextField.css" />-->
-            <TextField fx:id="txtCnpj"  layoutX="60.0" layoutY="54.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressedCNPJ" prefHeight="25.0" prefWidth="200.0" promptText="00.000.000/0000-00" stylesheets="@css/TextField.css" />
-            <TextField fx:id="txtLogCPF"  layoutX="60.0" layoutY="54.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressedCNPJ" prefHeight="25.0" prefWidth="200.0" promptText="000.000.000-00" stylesheets="@css/TextField.css" />
+            <TextField fx:id="txtCnpj" layoutX="60.0" layoutY="54.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressedCNPJ" prefHeight="25.0" prefWidth="200.0" promptText="00.000.000/0000-00" stylesheets="@css/TextField.css" />
+            <TextField fx:id="txtLogCPF" layoutX="60.0" layoutY="54.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressedCNPJ" prefHeight="25.0" prefWidth="200.0" promptText="000.000.000-00" stylesheets="@css/TextField.css" />
             <Label layoutX="14.0" layoutY="91.0" text="Nome da empresa -" AnchorPane.leftAnchor="15.0" />
             <Label fx:id="lbNome" layoutX="134.0" layoutY="91.0" />
             <Separator layoutX="7.0" layoutY="165.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="300.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="13.0" />
@@ -46,6 +46,11 @@
             <RadioButton fx:id="rbJuridico" layoutX="141.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@css/checkbox.css" text="Jurídica" />
             <RadioButton fx:id="rbDono" layoutX="124.0" layoutY="290.0" mnemonicParsing="false" stylesheets="@css/checkbox.css" text="Proprietário" />
             <RadioButton fx:id="rbGerente" layoutX="228.0" layoutY="290.0" mnemonicParsing="false" stylesheets="@css/checkbox.css" text="Gerente" />
+            <Label layoutX="281.0" layoutY="14.0" prefHeight="90.0" prefWidth="288.0" text="Nesta tela você vai cadastrar o usuário que terá acesso total ao sistema. Não perca o nome do usúario e senha isto será irrecuperável" textAlignment="JUSTIFY" textFill="#fc0303" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
 
          </children>
       </AnchorPane>

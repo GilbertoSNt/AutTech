@@ -5,8 +5,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import org.gsnt.auttech.config.DaoFactory;
-import org.gsnt.auttech.config.seg.SessionUser;
+import org.gsnt.auttech.config.db.DaoFactory;
+import org.gsnt.auttech.usuario.user.SessionUser;
 import org.gsnt.auttech.util.Alerts;
 import org.gsnt.auttech.util.LogTxt;
 import org.gsnt.auttech.util.MaskValid;
@@ -26,22 +26,22 @@ import java.util.ResourceBundle;
 public class AgendaController implements Initializable {
 
     /**
-     * @param maskvalid para validação de datas;
+     * maskvalid para validação de datas;
      */
     private final MaskValid maskValid = new MaskValid();
 
     /**
-     * @param agendaService acesso ao banco de dados;
+     * agendaService acesso ao banco de dados;
      */
     private final AgendaDao agendaService = DaoFactory.createAgendaDao();
 
     /**
-     * @param log gera log de comandos e erros;
+     * log gera log de comandos e erros;
      */
     private final LogTxt log = new LogTxt();
 
     /**
-     * @param a,b,c,d Todas as variáveis são usadas para validação de horas e datas;
+     * a,b,c,d Todas as variáveis são usadas para validação de horas e datas;
      */
     private LocalDate a = null;
     private LocalDate b = null;
@@ -49,12 +49,12 @@ public class AgendaController implements Initializable {
     private LocalTime d = null;
 
     /**
-     * @param tipoTela para verificar se é alteração ou agenda nova;
+     * tipoTela para verificar se é alteração ou agenda nova;
      */
     private int tipoTela = 0;
 
     /**
-     * @param placaTela cerraga a placa na chamada da tela;
+     * placaTela cerraga a placa na chamada da tela;
      */
     private String placaTela = null;
 
@@ -174,10 +174,10 @@ public class AgendaController implements Initializable {
         Boolean confirma = false;
         if (tipoTela == 0){
             confirma = agendaService.insertAgenda(coletaDados());
-            log.escreveLog(SessionUser.getId(),"Gravou novo agendamento para placa "+this.placaTela);
+            log.escreve(SessionUser.getId(),"Gravou novo agendamento para placa "+this.placaTela);
         }else if(tipoTela == 1) {
             confirma = agendaService.saveAlterAgenda(coletaDados(), this.placaTela);
-            log.escreveLog(SessionUser.getId(),"Alterou agendamento para placa "+this.placaTela);
+            log.escreve(SessionUser.getId(),"Alterou agendamento para placa "+this.placaTela);
         }
 
         if (confirma){

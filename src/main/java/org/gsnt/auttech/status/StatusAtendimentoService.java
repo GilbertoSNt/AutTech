@@ -2,10 +2,10 @@ package org.gsnt.auttech.status;
 
 import org.gsnt.auttech.config.db.DBLocal;
 import org.gsnt.auttech.config.db.DbException;
-import org.gsnt.auttech.config.DaoFactory;
+import org.gsnt.auttech.config.db.DaoFactory;
 import org.gsnt.auttech.modelo.ModeloVeiculoDao;
 import org.gsnt.auttech.os.OrdemServico;
-import org.gsnt.auttech.config.seg.SessionUser;
+import org.gsnt.auttech.usuario.user.SessionUser;
 import org.gsnt.auttech.util.Circulos;
 import org.gsnt.auttech.util.Utils;
 

@@ -13,7 +13,7 @@ import org.gsnt.auttech.TelaPrincipal;
 import org.gsnt.auttech.agenda.Agenda;
 import org.gsnt.auttech.cliente.Cliente;
 import org.gsnt.auttech.cliente.ClienteDao;
-import org.gsnt.auttech.config.DaoFactory;
+import org.gsnt.auttech.config.db.DaoFactory;
 import org.gsnt.auttech.marca.MarcaVeiculoDao;
 import org.gsnt.auttech.modelo.ModeloVeiculoDao;
 import org.gsnt.auttech.orcamento.Orcamento;

@@ -1,4 +1,4 @@
-package org.gsnt.auttech.login;
+package org.gsnt.auttech.usuario.login;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -11,18 +11,19 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import org.gsnt.auttech.util.MaskValid;
-import org.gsnt.auttech.util.TesteConexao;
-import org.gsnt.auttech.config.DaoFactory;
-import org.gsnt.auttech.model.dao.FuncionarioDao;
+import org.gsnt.auttech.config.seg.CrypDao;
+import org.gsnt.auttech.config.seg.CrypService;
+import org.gsnt.auttech.util.*;
+import org.gsnt.auttech.config.db.DaoFactory;
+import org.gsnt.auttech.funcionario.FuncionarioDao;
 import org.gsnt.auttech.inicio.IniDAO;
-import org.gsnt.auttech.config.seg.SessionUserDao;
+import org.gsnt.auttech.usuario.user.SessionUserDao;
 import org.gsnt.auttech.funcionario.Funcionario;
-import org.gsnt.auttech.config.seg.SessionUser;
-import org.gsnt.auttech.util.ExceptionGenerics;
+import org.gsnt.auttech.usuario.user.SessionUser;
 
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -30,10 +31,19 @@ public class LoginController implements Initializable {
     private final FuncionarioDao func = DaoFactory.createFuncionarioDao();
     private final SessionUserDao log = DaoFactory.createSessionUserDao();
     private final IniDAO ini = DaoFactory.createIniDao();
+    private final CrypDao cry = new CrypService();
     private MaskValid maskValid = new MaskValid();
 
     private final TesteConexao t = new TesteConexao();
+
     private int tntv = 0;//Tentativas de acesso
+
+    private  String arq = "C:\\pen\\OfProg\\AutTech\\ini\\login.txt";
+
+    private LogTxt g = new LogTxt();
+
+    //Responsável pela comparação do código carregado do arquivo
+    private String codInic = "";
 
     @FXML
     private Label lblEmpresa;
@@ -90,10 +100,6 @@ public class LoginController implements Initializable {
         txtCPF.setVisible(true);
         LbTipo.setText("CPF - ");
     }
-
-
-
-
 
 
 
@@ -180,9 +186,53 @@ public class LoginController implements Initializable {
         maskValid.maskCPF(txtCPF);
         maskValid.maskCNPJ(txtCNPJ);
 
+        txtCPF.focusedProperty().addListener((observable, oldValue, newValue)->{
+
+                if(!newValue) {
+                    verificaRegistro(txtCPF);
+                    cry.hashSenha(txtCPF.getText());
+                }
+        });
+
+        txtCNPJ.focusedProperty().addListener((observable, oldValue, newValue)->{
+
+            if(!newValue) {
+                verificaRegistro(txtCNPJ);
+
+            }
+        });
+
 
     }
 
+    /**
+     * Verifica se o item digitado é o mesmo do gravado
+     * se não for ele grava
+     */
+    private void verificaRegistro(TextField text){
+
+        try {
+            if (!codInic.equals(text.getText())) {
+
+                Optional<ButtonType> result = Alerts.showConfirmation("Atenção", "Houve a digitação de um novo identificador. Confirma a mudança ?");
+
+                if(result.get() == ButtonType.OK) {
+                    System.out.println( cry.hashSenha(text.getText()));
+                    g.escreve(2, text.getText());
+                }else{
+                    if(txtCNPJ.isDisabled()){
+                        txtCPF.requestFocus();
+                    }else if(txtCPF.isDisabled()){
+                        txtCNPJ.requestFocus();
+                    }
+                }
+
+            }
+        }catch (Exception e){
+            throw new ExceptionGenerics(e.getStackTrace()+" Login Controller - Verifica Registro");
+        }
+
+    }
 
 
     //separa aqui
@@ -253,6 +303,7 @@ public class LoginController implements Initializable {
 
             tela();
             executarTestes();
+            leArquivoIni();
            // carregaCombo();
 
         }catch (Exception e){
@@ -261,6 +312,29 @@ public class LoginController implements Initializable {
 
     }
 
+    private void leArquivoIni(){
+
+        try {
+
+            String ver = g.le();
+            codInic = ver;
+
+                if (ver.length() == 11 ){
+                    txtCNPJ.setVisible(false);
+                    txtCPF.setVisible(true);
+                    txtCPF.setText(ver);
+                    RbCpf.setSelected(true);
+                }else if(ver.length() == 14 ) {
+                    txtCNPJ.setVisible(true);
+                    txtCPF.setVisible(false);
+                    txtCNPJ.setText(ver);
+                    RbCnpj.setSelected(true);
+                }
+
+        } catch (Exception e) {
+            throw new ExceptionGenerics(e.getStackTrace()+" LoginController - lerArquiviini");
+        }
+    }
 
 
     private void gravaCNPJ(){

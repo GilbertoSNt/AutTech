@@ -1,4 +1,4 @@
-package org.gsnt.auttech.primacesso;
+package org.gsnt.auttech.usuario.primacesso;
 
 import org.gsnt.auttech.entitiesgenerics.Empresa;
 

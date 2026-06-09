@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import org.gsnt.auttech.config.seg.SessionUser;
+import org.gsnt.auttech.usuario.user.SessionUser;
 import org.gsnt.auttech.util.ExceptionGenerics;
 
 import javafx.scene.image.Image;

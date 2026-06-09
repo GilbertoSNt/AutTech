@@ -1,11 +1,10 @@
-package org.gsnt.auttech.config;
+package org.gsnt.auttech.config.db;
 
 
 import org.gsnt.auttech.agenda.AgendaDao;
 import org.gsnt.auttech.agenda.AgendaService;
 import org.gsnt.auttech.cliente.ClienteDao;
 import org.gsnt.auttech.cliente.ClienteService;
-import org.gsnt.auttech.config.db.*;
 import org.gsnt.auttech.direcionamento.ProfServDao;
 import org.gsnt.auttech.direcionamento.ProfServService;
 import org.gsnt.auttech.email.EmailDao;
@@ -17,20 +16,20 @@ import org.gsnt.auttech.inicio.IniDAO;
 import org.gsnt.auttech.inicio.IniService;
 import org.gsnt.auttech.marca.MarcaVeiculoDao;
 import org.gsnt.auttech.marca.MarcaVeiculoService;
-import org.gsnt.auttech.model.dao.FuncionarioDao;
-import org.gsnt.auttech.config.seg.SessionUserDao;
-import org.gsnt.auttech.config.seg.SessionUserService;
+import org.gsnt.auttech.funcionario.FuncionarioDao;
+import org.gsnt.auttech.usuario.user.SessionUserDao;
+import org.gsnt.auttech.usuario.user.SessionUserService;
 import org.gsnt.auttech.modelo.ModeloVeiculoDao;
 import org.gsnt.auttech.modelo.ModeloVeiculoService;
 import org.gsnt.auttech.orcamento.Orcamento;
 import org.gsnt.auttech.os.OrdemServicoDao;
 import org.gsnt.auttech.os.OrdemServicoService;
-import org.gsnt.auttech.primacesso.PrimAcessoDao;
+import org.gsnt.auttech.usuario.primacesso.PrimAcessoDao;
 import org.gsnt.auttech.status.StatusAtendimentoDao;
 import org.gsnt.auttech.status.StatusAtendimentoService;
 import org.gsnt.auttech.veiculo.VeiculoDao;
 import org.gsnt.auttech.veiculo.VeiculoService;
-import org.gsnt.auttech.primacesso.PrimAcessoService;
+import org.gsnt.auttech.usuario.primacesso.PrimAcessoService;
 
 public class DaoFactory {
 
@@ -41,8 +40,6 @@ public class DaoFactory {
             return new MarcaVeiculoService(DBOn.getConnection());
         } catch (RuntimeException e) {
             throw new DbException(e.getMessage()+" Erro no DaoFactory createMarcaVeiculoDao");
-        }finally {
-            return null;
         }
 
     }
@@ -53,8 +50,6 @@ public class DaoFactory {
             return new ModeloVeiculoService(DBOn.getConnection());
         } catch (RuntimeException e) {
             throw new DbException(e.getMessage()+" Erro no DaoFactory createModeloVeiculoDao");
-        }finally {
-            return null;
         }
 
     }
@@ -65,8 +60,6 @@ public class DaoFactory {
             return new ClienteService(DBLocal.getConnection());
         } catch (RuntimeException e) {
             throw new DbException(e.getMessage()+" Erro no DaoFactory createClienteDao");
-        }finally {
-            return null;
         }
 
     }
@@ -76,8 +69,6 @@ public class DaoFactory {
             return new AgendaService(DBLocal.getConnection());
         } catch (RuntimeException e) {
             throw new DbException(e.getMessage()+" Erro no DaoFactory createAgendaDao");
-        }finally {
-            return null;
         }
     }
 
@@ -86,8 +77,6 @@ public class DaoFactory {
             return new OrdemServicoService(DBLocal.getConnection());
         } catch (RuntimeException e) {
             throw new DbException(e.getMessage()+" Erro no DaoFactory createOrdemServiçoDao");
-        }finally {
-            return null;
         }
     }
 
@@ -96,8 +85,6 @@ public class DaoFactory {
             return new Orcamento.OrcamentoService(DBLocal.getConnection());
         } catch (RuntimeException e) {
             throw new DbException(e.getMessage()+" Erro no DaoFactory createOrçamentoDao");
-        }finally {
-            return null;
         }
 
     }
@@ -108,8 +95,6 @@ public class DaoFactory {
 
         } catch (RuntimeException e) {
             throw new DbException(e.getMessage()+" Erro no DaoFactory createVeiculoDao");
-        }finally {
-            return null;
         }
     }
 
@@ -119,8 +104,6 @@ public class DaoFactory {
 
         }catch (RuntimeException e) {
             throw new DbException(e.getMessage()+" Erro no DaoFactory createVeiculoDaoGeral");
-        }finally {
-            return null;
         }
     }
 
@@ -130,8 +113,6 @@ public class DaoFactory {
 
         }catch (RuntimeException e) {
             throw new DbException(e.getMessage()+" Erro no DaoFactory createIniDao");
-        }finally {
-            return null;
         }
     }
 
@@ -141,8 +122,6 @@ public class DaoFactory {
 
         }catch (RuntimeException e) {
             throw new DbException(e.getMessage()+" Erro no DaoFactory createEnderecoDao");
-        }finally {
-            return null;
         }
     }
 
@@ -152,8 +131,6 @@ public class DaoFactory {
 
         }catch (RuntimeException e) {
             throw new DbException(e.getMessage()+" Erro no DaoFactory createFuncionarioDao");
-        }finally {
-            return null;
         }
     }
 
@@ -162,8 +139,6 @@ public class DaoFactory {
             return new EmailService(DBLocal.getConnection());
         }catch (RuntimeException e) {
             throw new DbException(e.getMessage()+" Erro no DaoFactory createEmailDao");
-        }finally {
-            return null;
         }
     }
 
@@ -172,8 +147,6 @@ public class DaoFactory {
             return new StatusAtendimentoService(DBLocal.getConnection(), DBSttOn.getConnection());
         }catch (RuntimeException e) {
             throw new DbException(e.getMessage()+" Erro no DaoFactory createStatusAtendimemtoDao");
-        }finally {
-            return null;
         }
     }
 
@@ -182,8 +155,6 @@ public class DaoFactory {
             return new ProfServService(DBLocal.getConnection());
         }catch (RuntimeException e) {
             throw new DbException(e.getMessage()+" Erro no DaoFactory createDirecionadosDao");
-        }finally {
-            return null;
         }
     }
 
@@ -192,8 +163,6 @@ public class DaoFactory {
             return new SessionUserService(DBLocal.getConnection());
         }catch (RuntimeException e) {
             throw new DbException(e.getMessage()+" Erro no DaoFactory createSessionUserDao");
-        }finally {
-            return null;
         }
     }
 
@@ -202,8 +171,6 @@ public class DaoFactory {
             return new PrimAcessoService(DBPrimario.getConnection());
         } catch (RuntimeException e) {
             throw new DbException(e.getMessage() + " Erro no DaoFactory createPrinmAcessoDao");
-        } finally {
-            return null;
         }
     }
 

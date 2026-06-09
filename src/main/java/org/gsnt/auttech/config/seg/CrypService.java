@@ -17,13 +17,10 @@ public class CrypService implements CrypDao {
     }
 
     @Override
-    public boolean verifica(String senhaSalva) {
+    public boolean verifica(String senhaSalva, String dado) {
 
-        //aqui
+        return argon2.verify(senhaSalva, dado.toCharArray());
 
-        //return argon2.verify(hashSalvo, senhaPlana.toCharArray());
-
-        return  true;
     }
 
 

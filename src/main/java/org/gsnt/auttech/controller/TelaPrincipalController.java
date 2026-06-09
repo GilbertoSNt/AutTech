@@ -18,14 +18,14 @@ import org.gsnt.auttech.agenda.AgendaController;
 import org.gsnt.auttech.agenda.AgendaDao;
 import org.gsnt.auttech.cliente.ClienteDao;
 import org.gsnt.auttech.cliente.ListaClienteController;
-import org.gsnt.auttech.config.DaoFactory;
+import org.gsnt.auttech.config.db.DaoFactory;
 import org.gsnt.auttech.config.db.DbException;
 import org.gsnt.auttech.direcionamento.Direcionados;
 import org.gsnt.auttech.direcionamento.DirecionamentoController;
 import org.gsnt.auttech.direcionamento.ProfServDao;
 import org.gsnt.auttech.funcionario.ListaAtendFuncController;
 import org.gsnt.auttech.cliente.ClienteService;
-import org.gsnt.auttech.config.seg.SessionUser;
+import org.gsnt.auttech.usuario.user.SessionUser;
 import org.gsnt.auttech.orcamento.Orcamento;
 import org.gsnt.auttech.os.CriaOsController;
 import org.gsnt.auttech.os.OrdemServico;
@@ -162,7 +162,7 @@ public class TelaPrincipalController implements Initializable {
                 if(result.get() == ButtonType.OK) {
                     agendaService.excluiAgenda(tt);
                     updateTableView();
-                    log.escreveLog(SessionUser.getId(),"Cancelou agendamento para placa "+tt.getPlaca());
+                    log.escreve(SessionUser.getId(),"Cancelou agendamento para placa "+tt.getPlaca());
                 }
         }else{
             Alerts.showAlert("Cancelar agendamento", "Você deve selecionar uma linha na tabela agenda", null, Alert.AlertType.INFORMATION);
@@ -185,7 +185,7 @@ public class TelaPrincipalController implements Initializable {
                      criaOsController.preencheDadosAgenda(dado);
   // ativar aqui novamente                      agendaService.excluiAgenda(tt);
                       //  updateTableView();
-                    log.escreveLog(SessionUser.getId(),"Criou OS para o veículo - "+tt.getPlaca());
+                    log.escreve(SessionUser.getId(),"Criou OS para o veículo - "+tt.getPlaca());
                     });}
                     catch(Exception d){
                         throw new DbException(d.getMessage());
@@ -221,7 +221,7 @@ public class TelaPrincipalController implements Initializable {
                         agendaService.reverteEnvioGuincho(tt);
                     }
                 }
-                log.escreveLog(SessionUser.getId(),"Alterou o status do envio do socorro para placa "+tt.getPlaca());
+                log.escreve(SessionUser.getId(),"Alterou o status do envio do socorro para placa "+tt.getPlaca());
             } else {
                 Alerts.showAlert("Atenção", "Agendamento não tem registro da necessidade do guinho / socorro para o veículo", null, Alert.AlertType.ERROR);
             }
@@ -251,7 +251,7 @@ public class TelaPrincipalController implements Initializable {
                         agendaService.reverterEnvioRecolhimento(tt);
                     }
                 }
-                log.escreveLog(SessionUser.getId(),"Alterou o status do deslocamento para placa "+tt.getPlaca());
+                log.escreve(SessionUser.getId(),"Alterou o status do deslocamento para placa "+tt.getPlaca());
             }
             else{
                 Alerts.showAlert("Atenção","Agendamento não tem registro da necessidade de buscar o veículo",null, Alert.AlertType.ERROR);
@@ -381,7 +381,7 @@ public class TelaPrincipalController implements Initializable {
                 orcService.recusaOrcamento(st.getCod());
                 stAtendimento.cancelaAtendimento(st.getCod());
                 osServ.cancelaOrdemServico(st.getCod());
-                log.escreveLog(SessionUser.getId()," Cancelou a OS para placa "+st.getPlaca());
+                log.escreve(SessionUser.getId()," Cancelou a OS para placa "+st.getPlaca());
 
             }
         }else{
@@ -504,7 +504,7 @@ public class TelaPrincipalController implements Initializable {
                 orcService.recusaOrcamento(st.getCod());
                 stAtendimento.cancelaAtendimento(st.getCod());
                 osServ.cancelaOrdemServico(st.getCod());
-                log.escreveLog(SessionUser.getId(),"cancelou o orçamento para placa "+st.getPlaca());
+                log.escreve(SessionUser.getId(),"cancelou o orçamento para placa "+st.getPlaca());
 
                 //falta enviar informação para a tela de entrega do orçamento
 

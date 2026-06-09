@@ -1,7 +1,6 @@
 package org.gsnt.auttech.funcionario;
 import org.gsnt.auttech.config.db.DBLocal;
 import org.gsnt.auttech.config.db.DbException;
-import org.gsnt.auttech.model.dao.FuncionarioDao;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;

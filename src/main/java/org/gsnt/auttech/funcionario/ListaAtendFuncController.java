@@ -10,9 +10,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.gsnt.auttech.config.DaoFactory;
+import org.gsnt.auttech.config.db.DaoFactory;
 import org.gsnt.auttech.direcionamento.ProfServDao;
-import org.gsnt.auttech.model.dao.FuncionarioDao;
 import org.gsnt.auttech.direcionamento.Direcionados;
 
 import java.net.URL;

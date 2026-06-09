@@ -9,7 +9,7 @@ public class DbException extends RuntimeException {
     public DbException(String msg){
 
         super(msg);
-        log.escreveErro(msg);
+        log.escreve(1,msg);
 
     }
 

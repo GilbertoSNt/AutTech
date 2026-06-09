@@ -1,5 +1,7 @@
-package org.gsnt.auttech.config.seg;
+package org.gsnt.auttech.usuario.user;
 
+import org.gsnt.auttech.config.seg.CrypDao;
+import org.gsnt.auttech.config.seg.CrypService;
 import org.gsnt.auttech.funcionario.Funcionario;
 import org.gsnt.auttech.util.LogTxt;
 
@@ -45,7 +47,7 @@ public class SessionUserService implements SessionUserDao {
 
     @Override
     public void logoffSistema(String nome){
-        lg.escreveLog(nome,"Fez logoff");
+        lg.escreve(nome,"Fez logoff");
         SessionUser.setId("");
     }
 

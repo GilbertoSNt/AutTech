@@ -2,7 +2,7 @@ package org.gsnt.auttech.os;
 
 import org.gsnt.auttech.config.db.DBLocal;
 import org.gsnt.auttech.config.db.DbException;
-import org.gsnt.auttech.config.DaoFactory;
+import org.gsnt.auttech.config.db.DaoFactory;
 import org.gsnt.auttech.status.StatusAtendimentoDao;
 import org.gsnt.auttech.status.StatusAtendimento;
 

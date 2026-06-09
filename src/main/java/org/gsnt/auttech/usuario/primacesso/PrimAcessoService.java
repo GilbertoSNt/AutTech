@@ -1,4 +1,4 @@
-package org.gsnt.auttech.primacesso;
+package org.gsnt.auttech.usuario.primacesso;
 
 import org.gsnt.auttech.config.db.DBPrimario;
 import org.gsnt.auttech.entitiesgenerics.Empresa;
@@ -9,6 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+/**
+ * Controlao banco de dados do primeiro acesso na tela de login
+ */
+
 
 public class PrimAcessoService implements PrimAcessoDao {
 

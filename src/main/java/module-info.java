@@ -44,6 +44,9 @@ module org.gsnt.auttech {
     opens org.gsnt.auttech.modelo to javafx.base;
     opens org.gsnt.auttech.status to javafx.base;
     opens org.gsnt.auttech.telefone to javafx.base;
-    exports org.gsnt.auttech.login;
-    opens org.gsnt.auttech.login to javafx.fxml;
+    exports org.gsnt.auttech.usuario.login;
+    opens org.gsnt.auttech.usuario.login to javafx.fxml;
+    exports org.gsnt.auttech.usuario;
+    opens org.gsnt.auttech.usuario to javafx.fxml;
+    opens org.gsnt.auttech.usuario.user to javafx.base;
 }

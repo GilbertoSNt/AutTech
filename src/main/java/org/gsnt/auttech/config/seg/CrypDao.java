@@ -3,7 +3,7 @@ package org.gsnt.auttech.config.seg;
 public interface CrypDao {
 
     String hashSenha(String senha);
-    boolean verifica (String senhaSalva);
+    boolean verifica (String senhaSalva, String dado);
 
 
 }
