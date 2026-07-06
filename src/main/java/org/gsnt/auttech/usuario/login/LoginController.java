@@ -28,11 +28,11 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
-    private final FuncionarioDao func = DaoFactory.createFuncionarioDao();
-    private final SessionUserDao log = DaoFactory.createSessionUserDao();
-    private final IniDAO ini = DaoFactory.createIniDao();
+    private FuncionarioDao func;
+    private SessionUserDao log;
+    //private final IniDAO ini = DaoFactory.createIniDao();
     private final CrypDao cry = new CrypService();
-    private MaskValid maskValid = new MaskValid();
+    private MaskValid maskValid;
 
     private final TesteConexao t = new TesteConexao();
 
@@ -150,6 +150,7 @@ public class LoginController implements Initializable {
         cbUsuario.setCellFactory(factoryBalan);
         cbUsuario.setButtonCell(factoryBalan.call(null));
     }
+
 
     private void tela(){
 
@@ -301,13 +302,21 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
 
+            maskValid = new MaskValid();
             tela();
-            executarTestes();
             leArquivoIni();
-           // carregaCombo();
+            executarTestes();
+
+
+
+
+            //func = DaoFactory.createFuncionarioDao();
+            //log = DaoFactory.createSessionUserDao();
+
+            // carregaCombo();
 
         }catch (Exception e){
-            throw new ExceptionGenerics(e+" Erro na tela de login");
+            throw new ExceptionGenerics(e.getStackTrace()+" Erro na tela de login");
         }
 
     }
@@ -316,19 +325,19 @@ public class LoginController implements Initializable {
 
         try {
 
-            String ver = g.le();
-            codInic = ver;
+            codInic = g.le();
 
-                if (ver.length() == 11 ){
+            System.out.println(codInic);
+                if (codInic.length() == 14 ){
                     txtCNPJ.setVisible(false);
                     txtCPF.setVisible(true);
-                    txtCPF.setText(ver);
                     RbCpf.setSelected(true);
-                }else if(ver.length() == 14 ) {
+                    txtCPF.setText(codInic);
+                }else if(codInic.length() == 18 ) {
                     txtCNPJ.setVisible(true);
                     txtCPF.setVisible(false);
-                    txtCNPJ.setText(ver);
                     RbCnpj.setSelected(true);
+                    txtCNPJ.setText(codInic);
                 }
 
         } catch (Exception e) {

@@ -227,3 +227,125 @@
 2026-06-06 - 21:55:02.522915900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
 2026-06-06 - 21:55:03.026392900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
 2026-06-06 - 21:55:03.572140900 - org.postgresql.Driver Erro no getConnection db1 não encontrado o arquivo
+2026-06-08 - 22:32:27.519789200 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-06-08 - 22:32:27.524087100 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo Erro no DaoFactory createFuncionarioDao
+2026-06-08 - 22:32:27.525227 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login.fxml:14
+ Erro no carregamento da tela de login
+2026-06-08 - 22:35:11.131900500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-06-08 - 22:35:11.136206900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo Erro no DaoFactory createFuncionarioDao
+2026-06-08 - 22:35:11.138254900 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login.fxml:14
+ Erro no carregamento da tela de login
+2026-06-08 - 22:40:30.254511200 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-06-08 - 22:40:30.260808500 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo Erro no DaoFactory createFuncionarioDao
+2026-06-08 - 22:40:30.265796900 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login.fxml:14
+ Erro no carregamento da tela de login
+2026-06-08 - 22:42:00.533705300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-06-08 - 22:42:00.546885100 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo Erro no DaoFactory createFuncionarioDao
+2026-06-08 - 22:42:00.550402300 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login.fxml:14
+ Erro no carregamento da tela de login
+2026-06-08 - 22:43:32.007208300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-06-08 - 22:43:32.012219600 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo Erro no DaoFactory createFuncionarioDao
+2026-06-08 - 22:43:32.014278400 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login.fxml:14
+ Erro no carregamento da tela de login
+2026-06-08 - 22:53:29.520065400 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-06-08 - 22:53:29.524154400 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo Erro no DaoFactory createFuncionarioDao
+2026-06-08 - 22:53:29.527164400 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login.fxml:14
+ Erro no carregamento da tela de login
+2026-06-08 - 22:54:06.851321900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-06-08 - 22:54:06.854946 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo Erro no DaoFactory createFuncionarioDao
+2026-06-08 - 22:54:57.664377300 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-06-08 - 22:54:57.667595800 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo Erro no DaoFactory createFuncionarioDao
+2026-06-08 - 22:56:34.349749700 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo
+2026-06-08 - 22:56:34.352800900 - org.postgresql.Driver Erro no getConnection db não encontrado o arquivo Erro no DaoFactory createFuncionarioDao
+2026-06-08 - 23:03:47.834184900 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-08 - 23:03:47.836898400 - A tentativa de conexão falhou. Erro no getConnection db Erro no DaoFactory createFuncionarioDao
+2026-06-08 - 23:11:48.556213600 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-08 - 23:11:48.576302900 - A tentativa de conexão falhou. Erro no getConnection db Erro no DaoFactory createFuncionarioDao
+2026-06-08 - 23:11:48.579264 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login.fxml:14
+ Erro no carregamento da tela de login
+2026-06-19 - 20:39:50.084588100 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-19 - 20:39:50.107660200 - A tentativa de conexão falhou. Erro no getConnection db Erro no DaoFactory createFuncionarioDao
+2026-06-19 - 20:39:50.113663500 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login.fxml:14
+ Erro no carregamento da tela de login
+2026-06-19 - 21:00:50.748444 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-19 - 21:00:50.751727900 - A tentativa de conexão falhou. Erro no getConnection db Erro no DaoFactory createFuncionarioDao
+2026-06-19 - 21:00:50.755721600 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login.fxml:14
+ Erro no carregamento da tela de login
+2026-06-19 - 21:19:24.456025100 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-19 - 21:19:24.461510 - A tentativa de conexão falhou. Erro no getConnection db Erro no DaoFactory createSessionUserDao
+2026-06-19 - 21:19:24.467140700 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login.fxml:14
+ Erro no carregamento da tela de login
+2026-06-19 - 21:31:06.784544300 - A tentativa de conexão falhou. Erro no getConnection db1
+2026-06-19 - 21:31:06.786545700 - A tentativa de conexão falhou. Erro no getConnection db1 Erro no DaoFactory createIniDao
+2026-06-19 - 21:31:06.790250200 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login.fxml:14
+ Erro no carregamento da tela de login
+2026-06-19 - 21:38:26.580598100 - A tentativa de conexão falhou. Erro no getConnection db1
+2026-06-19 - 21:38:26.582839300 - A tentativa de conexão falhou. Erro no getConnection db1 Erro no DaoFactory createIniDao
+2026-06-19 - 21:38:26.586358200 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login1.fxml:14
+ Erro no carregamento da tela de login
+2026-06-19 - 21:40:21.464653500 - java.lang.NullPointerException: Cannot invoke "org.gsnt.auttech.util.MaskValid.maskCPF(javafx.scene.control.TextField)" because "this.maskValid" is null Erro na tela de login
+2026-06-19 - 21:40:21.468655800 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login1.fxml
+ Erro no carregamento da tela de login
+2026-06-19 - 21:42:00.916068100 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-19 - 21:42:00.919073500 - A tentativa de conexão falhou. Erro no getConnection db Erro no DaoFactory createFuncionarioDao
+2026-06-19 - 21:42:00.921111300 - org.gsnt.auttech.config.db.DbException: A tentativa de conexão falhou. Erro no getConnection db Erro no DaoFactory createFuncionarioDao Erro na tela de login
+2026-06-19 - 21:42:00.923111200 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login1.fxml
+ Erro no carregamento da tela de login
+2026-06-19 - 21:48:02.485946800 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-19 - 21:48:02.491001200 - A tentativa de conexão falhou. Erro no getConnection db Erro no DaoFactory createFuncionarioDao
+2026-06-19 - 21:48:02.494991 - org.gsnt.auttech.config.db.DbException: A tentativa de conexão falhou. Erro no getConnection db Erro no DaoFactory createFuncionarioDao Erro na tela de login
+2026-06-19 - 21:48:02.500514700 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login1.fxml
+ Erro no carregamento da tela de login
+2026-06-19 - 21:50:04.852268600 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-19 - 21:50:15.405828100 - A tentativa de conexão falhou. Erro no getConnection db1
+2026-06-19 - 21:50:25.953468900 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-19 - 21:58:41.386268800 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-19 - 21:58:51.896823400 - A tentativa de conexão falhou. Erro no getConnection db1
+2026-06-19 - 21:59:02.412812900 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-19 - 22:00:22.218896100 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-19 - 22:00:32.729193400 - A tentativa de conexão falhou. Erro no getConnection db1
+2026-06-19 - 22:00:43.237817100 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-19 - 22:01:33.577344800 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-19 - 22:01:44.087636900 - A tentativa de conexão falhou. Erro no getConnection db1
+2026-06-19 - 22:01:54.597242400 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-20 - 20:09:11.200185700 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-20 - 20:09:21.751037600 - A tentativa de conexão falhou. Erro no getConnection db1
+2026-06-20 - 20:19:32.921183400 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-20 - 20:20:03.632197700 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-20 - 20:26:29.175991800 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-20 - 20:26:39.697272200 - A tentativa de conexão falhou. Erro no getConnection db1
+2026-06-20 - 20:26:50.211502700 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-25 - 19:22:51.163440400 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-25 - 19:22:51.172441300 - A tentativa de conexão falhou. Erro no getConnection db Erro no DaoFactory createFuncionarioDao
+2026-06-25 - 19:22:51.176433600 - [Ljava.lang.StackTraceElement;@b00f704 Erro na tela de login
+2026-06-25 - 19:22:51.183435800 - 
+/C:/pen/OfProg/AutTech/target/classes/org/gsnt/auttech/Login1.fxml
+ Erro no carregamento da tela de login
+2026-06-25 - 19:58:10.679654500 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-25 - 19:58:21.191504400 - A tentativa de conexão falhou. Erro no getConnection db1
+2026-06-25 - 19:58:31.739087200 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-25 - 20:03:36.358874100 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-25 - 20:03:46.868772700 - A tentativa de conexão falhou. Erro no getConnection db1
+2026-06-25 - 20:03:57.380028 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-29 - 21:53:03.490881100 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-29 - 21:53:14.041794100 - A tentativa de conexão falhou. Erro no getConnection db1
+2026-06-29 - 21:53:24.587564100 - A tentativa de conexão falhou. Erro no getConnection db
+2026-06-29 - 22:24:50.994308700 - A tentativa de conexão falhou. Erro no getConnection db
+2026-07-05 - 21:32:38.573134400 - A tentativa de conexão falhou. Erro no getConnection db
+2026-07-05 - 21:32:49.083821200 - A tentativa de conexão falhou. Erro no getConnection db1
+2026-07-05 - 21:32:59.594916500 - A tentativa de conexão falhou. Erro no getConnection db

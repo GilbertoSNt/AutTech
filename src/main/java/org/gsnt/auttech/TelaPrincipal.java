@@ -20,21 +20,20 @@ public class TelaPrincipal extends Application {
     private static Scene mainScene;
     private static String id= "";
     private static final Image ICON = new Image(TelaPrincipal.class.getResourceAsStream("icones/AuttechIcon64.png"));
-    private SessionUser sessionUser = new SessionUser();
+    public static SessionUser sessionUser = new SessionUser();
 
     @Override
     public void start(Stage mainStage) throws IOException {
 
         //icon = new Image(getClass().getResourceAsStream("icones/AuttechIcon64.png"));
         mainStage.getIcons().add(ICON);
-
         chamaTela(mainStage);
     }
 
     private void telaLogin(){
         try {
-           // Image iconn = new Image(getClass().getResourceAsStream("icones/AuttechIcon64.png"));
-            FXMLLoader loader = new FXMLLoader(TelaPrincipal.class.getResource("Login.fxml"));
+            Image iconn = new Image(getClass().getResourceAsStream("icones/AuttechIcon64.png"));
+            FXMLLoader loader = new FXMLLoader(TelaPrincipal.class.getResource("Login1.fxml"));
             Parent splashRoot = loader.load();
             Scene splashScene = new Scene(splashRoot);
             Stage splashStage = new Stage();
@@ -44,6 +43,7 @@ public class TelaPrincipal extends Application {
             splashStage.showAndWait();
         }
         catch (Exception e){
+            e.printStackTrace();
             throw new ExceptionGenerics(e.getMessage()+" Erro no carregamento da tela de login");
         }
     }
@@ -61,6 +61,7 @@ public class TelaPrincipal extends Application {
             mainStage.show();
         }
         catch (Exception e){
+            e.printStackTrace();
             throw new ExceptionGenerics(e.getMessage()+" Erro no carregamento da tela de principal");
         }
 

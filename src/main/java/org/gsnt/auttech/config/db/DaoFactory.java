@@ -33,8 +33,6 @@ import org.gsnt.auttech.usuario.primacesso.PrimAcessoService;
 
 public class DaoFactory {
 
-
-
     public static MarcaVeiculoDao createMarcaVeiculoDao() {
         try {
             return new MarcaVeiculoService(DBOn.getConnection());

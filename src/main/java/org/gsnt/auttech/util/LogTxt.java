@@ -149,14 +149,12 @@ public class LogTxt {
     private String leLinhaID(){
 
         String linha = null;
+
         try(BufferedReader br = new BufferedReader(new FileReader(identIni))){
-            System.out.println("aqui - "+br.readLine());
-            linha = br.readLine();
-            if(linha != null){
-                return linha;
-            }else            {
-                return "--";
-            }
+           // System.out.println("aqui - "+br.readLine());
+
+                return br.readLine();
+
 
         } catch (IOException e){
             throw new ExceptionGenerics("Erro no LogTXT - lelinhaId "+e.getMessage());
